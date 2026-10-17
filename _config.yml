@@ -1,5 +1,6 @@
 # Site settings
 title: Pingback Podcast
+tagline: Ruby, tech & more with Greg Molnar and Joel Gaff Jr.
 description: >-
   Greg Molnar and Joel Gaff Jr. talk about Ruby on Rails, building indie products, and the people doing it.
 url: "https://pingbackpodcast.com"
@@ -13,12 +14,22 @@ timezone: America/Los_Angeles
 # Full 3000px podcast cover: assets/images/pingback-cover-3000.png
 logo: /assets/images/cover.jpg
 twitter:
+  username: pingbackpodcast
   card: summary
+social:
+  name: Pingback Podcast
+  links:
+    - https://x.com/pingbackpodcast
+    - https://www.youtube.com/@PingbackPodcast
+    - https://podcasts.apple.com/us/podcast/the-pingback-podcast/id6818664245
+    - https://open.spotify.com/show/0M7PYgsCtumUzsEKSgYfny
+# Podcast RSS (Buzzsprout) — advertised in <head> so podcast apps can find it.
+podcast_feed: https://rss.buzzsprout.com/2443886.rss
 
 theme: minima
 plugins:
-  - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sitemap
 
 minima:
   skin: auto
@@ -43,11 +54,9 @@ defaults:
   - scope: { path: "", type: posts }
     values:
       layout: episode
+      seo:
+        type: PodcastEpisode
 
-# Site-level update feed (feed.xml). The podcast RSS that Apple/Spotify read
-# comes from the podcast host, not from here — see _data/platforms.yml.
-feed:
-  path: feed.xml
 
 sass:
   quiet_deps: true

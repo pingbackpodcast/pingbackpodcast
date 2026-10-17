@@ -3,13 +3,20 @@
 Website for the **Pingback Podcast** — https://pingbackpodcast.com. Jekyll site on GitHub Pages, repo `pingbackpodcast/pingbackpodcast` (GitHub org, free plan; Joel is owner, co-host to be added as owner).
 
 ## How the site works
-- **Theme:** Minima 3 (unreleased upstream) is pinned to a commit in `Gemfile`, but it only supplies `head.html` (SEO tags, feed link) and plugin wiring. **All visuals are ours:** layouts in `_layouts/` (base, home, page, episode), includes in `_includes/` (header, footer, episode-list, listen-links, custom-head for fonts), and the entire stylesheet in `assets/css/style.scss`, which replaces Minima's CSS.
+- **Theme:** Minima 3 (unreleased upstream) is pinned to a commit in `Gemfile`, but it only supplies plugin wiring; even `_includes/head.html` is ours. **All visuals are ours:** layouts in `_layouts/` (base, home, page, episode), includes in `_includes/` (header, footer, episode-list, listen-links, custom-head for fonts), and the entire stylesheet in `assets/css/style.scss`, which replaces Minima's CSS.
 - **Design:** cool paper `#f2f4f7`, navy ink `#15192b`, cobalt accent `#2f4fe0`. Dark mode follows the OS and uses a deep navy, not near-black. One typeface, Archivo (Google Fonts, variable): the wide cut (`wdth 125`) for headings and the normal cut for body. The single flourish is the cobalt full stop after the homepage wordmark, which pings on load (off under reduced motion). Keep it simple: no all-caps labels, mono tags, cards with shadows, gradients, or decorative arrows.
 - **Episodes are posts.** `_posts/YYYY-MM-DD-episode-N.md` → `/episodes/episode-N/`. `layout: episode` is applied automatically via `defaults` in `_config.yml`.
 - **Static pages:** `about.md`, `episodes.md` (full list), `index.md` (homepage intro text; the layout adds the wordmark and episode list), `404.html`. Header nav order = `minima.nav_pages` in `_config.yml`. Hosts (name + link) live in `hosts:` in `_config.yml` and are linked in the footer.
-- **Audio and podcast RSS live at Buzzsprout**, not in this repo. Set `buzzsprout_podcast_id` in `_config.yml` and `buzzsprout_id` on each episode to show the Buzzsprout player. `feed.xml` (jekyll-feed) is a plain site feed, NOT the podcast feed — don't submit it to Apple/Spotify.
+- **Audio and podcast RSS live at Buzzsprout**, not in this repo. Set `buzzsprout_podcast_id` in `_config.yml` and `buzzsprout_id` on each episode to show the Buzzsprout player. The podcast feed is `https://rss.buzzsprout.com/2443886.rss` (`podcast_feed` in `_config.yml`, advertised in `<head>`). Minima still makes an unlinked `feed.xml` (a plain site feed). Never submit that one anywhere.
 - **Video:** every episode is also on YouTube (https://www.youtube.com/@PingbackPodcast). `youtube_id` embeds it (privacy-enhanced youtube-nocookie domain), and chapter timestamps link into the video.
 - **"Listen on" links:** `_data/platforms.yml`, rendered by `_includes/listen-links.html` on the homepage and in the footer elsewhere. Empty `url` = hidden.
+
+## SEO
+- jekyll-seo-tag builds the title, description, canonical URL, Open Graph and Twitter tags. Home title = `title | tagline`; other pages = `page title | site title`. Give every page a `description`.
+- Share image: `assets/images/cover.jpg`, set for every page via `defaults`. Twitter card is `summary` (square art).
+- Structured data: episodes are typed `PodcastEpisode` (via `seo.type` in defaults); the homepage adds a `PodcastSeries` block (`_includes/podcast-series-ld.html`) with hosts, feed, and `social.links`.
+- `jekyll-sitemap` makes `/sitemap.xml`; `robots.txt` points to it; `404.html` is left out of the sitemap.
+- Homepage H1 is "Pingback Podcast" (big wordmark + smaller "Podcast" line).
 
 ## Episode front matter
 ```yaml

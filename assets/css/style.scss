@@ -113,7 +113,13 @@ a:hover { color: var(--accent); }
   height: 56px;
   border-radius: 12px;
 }
-.home .site-mark__name { display: none; } // the hero wordmark stands in
+.home .site-mark__name { // the hero wordmark stands in visually
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
 .site-nav { display: flex; gap: 1.25rem; }
 .site-nav a {
   color: var(--muted);
@@ -138,6 +144,15 @@ main { padding-bottom: 4rem; }
   white-space: nowrap;
   letter-spacing: -0.035em;
   line-height: 0.9;
+}
+
+.wordmark__sub {
+  display: block;
+  margin-top: 0.35em;
+  font-size: 0.3em;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--muted);
 }
 
 // The one flourish: the full stop after "Pingback" sends out a single ping.

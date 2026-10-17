@@ -3,11 +3,13 @@ layout: base
 body_class: home
 ---
 <section class="hero">
-  <h1 class="wordmark">Pingback<span class="ping" aria-hidden="true"></span></h1>
+  <h1 class="wordmark">Pingback<span class="ping" aria-hidden="true"></span> <span class="wordmark__sub">Podcast</span></h1>
   <div class="hero__intro">
     {{ content }}
   </div>
 </section>
+
+{% include podcast-series-ld.html %}
 
 <section class="latest" aria-labelledby="latest-heading">
   <h2 id="latest-heading" class="section-title">Episodes</h2>

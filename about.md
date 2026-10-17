@@ -2,6 +2,7 @@
 layout: page
 title: About
 permalink: /about/
+description: "About the Pingback Podcast: Greg Molnar and Joel Gaff Jr. on Ruby on Rails, indie products, and the people building them."
 ---
 
 Pingback is a podcast by Greg Molnar and Joel Gaff Jr., two Ruby on Rails developers. Each week they talk about what's happening in the Rails world, the products people are building on their own, and the tools they work with every day.

@@ -1,0 +1,13 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "PodcastSeries",
+  "name": {{ site.title | jsonify }},
+  "description": {{ site.description | jsonify }},
+  "url": {{ site.url | append: '/' | jsonify }},
+  "image": {{ site.image | default: '/assets/images/cover.jpg' | absolute_url | jsonify }},
+  "webFeed": {{ site.podcast_feed | jsonify }},
+  "author": [{% for h in site.hosts %}{"@type": "Person", "name": {{ h.name | jsonify }}, "url": {{ h.url | jsonify }}}{% unless forloop.last %}, {% endunless %}{% endfor %}],
+  "sameAs": {{ site.social.links | jsonify }}
+}
+</script>

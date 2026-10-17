@@ -1,0 +1,10 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- seo -%}
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  {%- if site.podcast_feed %}
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ site.podcast_feed }}">
+  {%- endif %}
+  {%- include custom-head.html -%}
+</head>
