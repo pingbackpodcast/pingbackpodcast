@@ -30,6 +30,9 @@ social:
     - https://www.youtube.com/@PingbackPodcast
     - https://podcasts.apple.com/us/podcast/the-pingback-podcast/id6818664245
     - https://open.spotify.com/show/0M7PYgsCtumUzsEKSgYfny
+# Cloudflare Web Analytics (cookieless, no consent banner needed). The token is
+# public by design. Only loaded in production builds, so local previews don't count.
+cloudflare_analytics_token: "1029078cc1db45b1b198d47296e532ac"
 # Podcast RSS (Buzzsprout) — advertised in <head> so podcast apps can find it.
 podcast_feed: https://rss.buzzsprout.com/2443886.rss
 

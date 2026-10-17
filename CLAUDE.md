@@ -11,6 +11,10 @@ Website for the **Pingback Podcast** — https://pingbackpodcast.com. Jekyll sit
 - **Video:** every episode is also on YouTube (https://www.youtube.com/@PingbackPodcast). `youtube_id` embeds it (privacy-enhanced youtube-nocookie domain), and chapter timestamps link into the video.
 - **"Listen on" links:** `_data/platforms.yml`, rendered by `_includes/listen-links.html` on the homepage and in the footer elsewhere. Empty `url` = hidden.
 
+## Analytics
+- **Site visits:** Cloudflare Web Analytics (cookieless), site set to "JS snippet" mode because DNS is grey-cloud. Snippet is in `_includes/head.html`, production builds only; token in `_config.yml` (`cloudflare_analytics_token`). Dashboard: Cloudflare → Analytics & Logs → Web Analytics → pingbackpodcast.com.
+- **Downloads** (the number sponsors care about most) come from Buzzsprout's stats; video views from YouTube Studio.
+
 ## SEO
 - jekyll-seo-tag builds the title, description, canonical URL, Open Graph and Twitter tags. Home title = `title | tagline`; other pages = `page title | site title`. Give every page a `description`.
 - Share cards (X / Open Graph) are 1200x630 PNGs in `assets/images/og/`, card type `summary_large_image`. `default.png` covers every page via `defaults`; each episode has `image: /assets/images/og/episode-N.png`. **Cards are automatic:** a Claude Code hook (`.claude/settings.json` → `bin/og-cards-hook`) runs `bin/og-cards N` after any Write/Edit to an episode in `_posts/`, rendering the card and adding the `image:` block. Commit the new `assets/images/og/episode-N.png` with the episode. Editing outside Claude? Run `bin/og-cards N` yourself (`bin/og-cards` alone re-renders all). Check a card with the X post composer or opengraph.xyz after deploying.
