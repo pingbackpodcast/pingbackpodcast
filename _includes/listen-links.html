@@ -2,7 +2,7 @@
 {%- if live.size > 0 -%}
 <ul class="listen-links" aria-label="Find Pingback on">
   {%- for p in live %}
-  <li><a href="{{ p.url }}">{{ p.name }}</a></li>
+  <li><a href="{{ p.url }}" target="_blank" rel="noopener">{{ p.name }}</a></li>
   {%- endfor %}
 </ul>
 {%- endif -%}

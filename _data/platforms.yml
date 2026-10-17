@@ -1,9 +1,9 @@
 # Links to the show elsewhere (listen + follow), shown on the homepage and in the footer.
 # Leave url empty to hide a platform. Fill these in once the show is listed.
 - name: Apple Podcasts
-  url: ""
+  url: "https://podcasts.apple.com/us/podcast/the-pingback-podcast/id6818664245"
 - name: Spotify
-  url: ""
+  url: "https://open.spotify.com/show/0M7PYgsCtumUzsEKSgYfny"
 - name: YouTube
   url: "https://www.youtube.com/@PingbackPodcast"
 - name: X
@@ -11,4 +11,4 @@
 - name: Overcast
   url: ""
 - name: RSS
-  url: "" # podcast host's feed URL
+  url: "https://rss.buzzsprout.com/2443886.rss" # Buzzsprout feed
