@@ -1,8 +1,7 @@
 ---
 layout: home
-list_title: Latest episodes
 ---
 
-Placeholder intro for the Pingback Podcast. Replace with a one-paragraph pitch.
+Greg Molnar and Joel Gaff Jr. talk about Ruby on Rails, building indie products, and the people doing it. New episodes on Fridays.
 
 {% include listen-links.html %}

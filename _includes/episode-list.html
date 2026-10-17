@@ -1,0 +1,13 @@
+{%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+<ol class="episode-list" reversed>
+  {%- for post in include.posts %}
+  <li class="episode-row">
+    <span class="episode-row__num" aria-hidden="true">{{ post.episode }}</span>
+    <div class="episode-row__body">
+      <h3 class="episode-row__title"><a href="{{ post.url | relative_url }}"><span class="visually-hidden">Episode {{ post.episode }}: </span>{{ post.title | escape }}</a></h3>
+      {%- if post.description %}<p class="episode-row__desc">{{ post.description | escape }}</p>{% endif %}
+      <p class="episode-row__meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time>{% if post.duration %}, {{ post.duration }}{% endif %}{% if post.guests and post.guests.size > 0 %}, with {{ post.guests | array_to_sentence_string }}{% endif %}</p>
+    </div>
+  </li>
+  {%- endfor %}
+</ol>

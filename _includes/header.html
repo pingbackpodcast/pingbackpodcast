@@ -1,0 +1,11 @@
+<header class="site-header wrap">
+  <a class="site-mark" href="{{ '/' | relative_url }}" {% if page.url == '/' %}aria-current="page"{% endif %}>{{ site.title | escape }}</a>
+  <nav class="site-nav" aria-label="Main">
+    {%- for path in site.minima.nav_pages %}
+      {%- assign p = site.pages | where: "path", path | first %}
+      {%- if p %}
+      <a href="{{ p.url | relative_url }}" {% if page.url == p.url %}aria-current="page"{% endif %}>{{ p.title | escape }}</a>
+      {%- endif %}
+    {%- endfor %}
+  </nav>
+</header>

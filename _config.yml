@@ -1,10 +1,11 @@
 # Site settings
 title: Pingback Podcast
 description: >-
-  The Pingback Podcast. Placeholder description — replace with the show's pitch.
+  Greg Molnar and Joel Gaff Jr. talk about Ruby on Rails, building indie products, and the people doing it.
 url: "https://pingbackpodcast.com"
 baseurl: ""
 lang: en
+hosts: ["Greg Molnar", "Joel Gaff Jr."]
 timezone: America/Los_Angeles
 # image: /assets/images/cover.png  # show artwork for social cards — add the file, then uncomment
 
@@ -21,6 +22,10 @@ minima:
     - about.md
   # social_links:
   #   - { title: Pingback on GitHub, icon: github, url: "https://github.com/pingbackpodcast" }
+
+# Buzzsprout show ID (the number in buzzsprout.com/<id>/...). Set it, then add
+# buzzsprout_id to each episode to get the Buzzsprout player.
+buzzsprout_podcast_id: ""
 
 # Episodes are Jekyll posts in _posts/ and live at /episodes/<slug>/
 permalink: /episodes/:title/

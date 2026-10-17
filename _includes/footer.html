@@ -1,0 +1,4 @@
+<footer class="site-footer wrap">
+  <p>Made by {{ site.hosts | array_to_sentence_string }}</p>
+  {% unless page.url == '/' %}{% include listen-links.html %}{% endunless %}
+</footer>

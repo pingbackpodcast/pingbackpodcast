@@ -5,7 +5,7 @@
 - name: Spotify
   url: ""
 - name: YouTube
-  url: ""
+  url: "https://www.youtube.com/@PingbackPodcast"
 - name: Overcast
   url: ""
 - name: RSS

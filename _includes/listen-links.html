@@ -1,6 +1,6 @@
 {%- assign live = site.data.platforms | where_exp: "p", "p.url != ''" -%}
 {%- if live.size > 0 -%}
-<ul class="listen-links">
+<ul class="listen-links" aria-label="Listen on">
   {%- for p in live %}
   <li><a href="{{ p.url }}">{{ p.name }}</a></li>
   {%- endfor %}

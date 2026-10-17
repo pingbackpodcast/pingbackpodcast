@@ -2,46 +2,72 @@
 layout: base
 ---
 {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-<article class="post episode h-entry" itemscope itemtype="http://schema.org/PodcastEpisode">
+<article class="episode h-entry" itemscope itemtype="http://schema.org/PodcastEpisode">
 
-  <header class="post-header">
+  <header class="episode-header">
     {%- if page.episode %}
-    <p class="episode-number">
-      {% if page.season %}Season {{ page.season }} · {% endif %}Episode {{ page.episode }}
-    </p>
+    <p class="episode-num"><span class="visually-hidden">Episode </span>{{ page.episode }}</p>
     {%- endif %}
-    <h1 class="post-title p-name" itemprop="name">{{ page.title | escape }}</h1>
-    <div class="post-meta">
-      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {{ page.date | date: date_format }}
-      </time>
-      {%- if page.duration %}
-      <span class="bullet-divider">•</span>
-      <span itemprop="timeRequired">{{ page.duration }}</span>
-      {%- endif %}
-      {%- if page.guests and page.guests.size > 0 %}
-      <span class="bullet-divider">•</span>
-      <span class="episode-guests">With {{ page.guests | array_to_sentence_string }}</span>
-      {%- endif %}
-    </div>
+    <h1 class="episode-title p-name" itemprop="name">{{ page.title | escape }}</h1>
+    <p class="episode-meta">
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: date_format }}</time>
+      {%- if page.duration %}, {{ page.duration }}{% endif %}
+      {%- if page.guests and page.guests.size > 0 %}, with {{ page.guests | array_to_sentence_string }}{% endif %}
+    </p>
   </header>
 
-  {%- if page.embed_url and page.embed_url != "" %}
+  {%- assign bz_show = site.buzzsprout_podcast_id -%}
+  {%- if page.buzzsprout_id and bz_show and bz_show != "" %}
+  <div class="episode-player" id="buzzsprout-player-{{ page.buzzsprout_id }}"></div>
+  <script src="https://www.buzzsprout.com/{{ bz_show }}/{{ page.buzzsprout_id }}.js?container_id=buzzsprout-player-{{ page.buzzsprout_id }}&player=small" charset="utf-8"></script>
+  {%- elsif page.embed_url and page.embed_url != "" %}
   <div class="episode-player">
     <iframe src="{{ page.embed_url }}" width="100%" height="{{ page.embed_height | default: 180 }}"
       frameborder="0" scrolling="no" loading="lazy" title="Play {{ page.title | escape }}"></iframe>
   </div>
   {%- elsif page.audio_url and page.audio_url != "" %}
   <div class="episode-player">
-    <audio controls preload="none" src="{{ page.audio_url }}" style="width:100%"></audio>
+    <audio controls preload="none" src="{{ page.audio_url }}"></audio>
   </div>
   {%- endif %}
 
-  {% include listen-links.html %}
+  {%- if page.youtube_id %}
+  <div class="episode-video">
+    <iframe src="https://www.youtube-nocookie.com/embed/{{ page.youtube_id }}" loading="lazy"
+      title="Watch {{ page.title | escape }} on YouTube" frameborder="0"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+  {%- endif %}
 
-  <div class="post-content e-content" itemprop="description">
+  <div class="prose e-content" itemprop="description">
     {{ content }}
   </div>
+
+  {%- if page.chapters %}
+  <section class="chapters" aria-labelledby="chapters-heading">
+    <h2 id="chapters-heading">Chapters</h2>
+    <ol>
+      {%- for c in page.chapters %}
+      {%- assign parts = c.t | split: ":" -%}
+      {%- if parts.size == 3 -%}
+        {%- assign h = parts[0] | times: 3600 -%}
+        {%- assign m = parts[1] | times: 60 -%}
+        {%- assign secs = h | plus: m | plus: parts[2] -%}
+      {%- else -%}
+        {%- assign secs = parts[0] | times: 60 | plus: parts[1] -%}
+      {%- endif %}
+      <li>
+        {%- if page.youtube_id %}
+        <a href="https://www.youtube.com/watch?v={{ page.youtube_id }}&amp;t={{ secs }}s"><span class="chapter-time">{{ c.t }}</span>{{ c.title }}</a>
+        {%- else %}
+        <span class="chapter-time">{{ c.t }}</span>{{ c.title }}
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ol>
+  </section>
+  {%- endif %}
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>

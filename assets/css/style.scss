@@ -1,0 +1,330 @@
+---
+---
+// Pingback — the whole stylesheet. Minima supplies layouts/SEO wiring only.
+
+:root {
+  --paper: #f2f4f7;
+  --ink: #15192b;
+  --muted: #5d6478;
+  --rule: #d5dae3;
+  --accent: #2f4fe0;
+  --accent-soft: #e3e8fc;
+
+  --font: "Archivo", system-ui, sans-serif;
+  --measure: 40rem;
+  --gutter: clamp(1rem, 4vw, 2rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #10162e;
+    --ink: #e8ebf5;
+    --muted: #9aa3bd;
+    --rule: #2a3355;
+    --accent: #8ea2ff;
+    --accent-soft: #1b2448;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-variation-settings: "wdth" 100;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 0.09em;
+  text-underline-offset: 0.2em;
+}
+a:hover { color: var(--accent); }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.wrap {
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem; top: -3rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--ink);
+  color: var(--paper);
+}
+.skip-link:focus { top: 1rem; }
+
+// Wide cut of Archivo for anything that's a heading.
+.site-mark, .wordmark, .section-title, .page-title,
+.episode-title, .episode-row__title, .episode-num, .episode-row__num,
+.prose h2, .chapters h2 {
+  font-variation-settings: "wdth" 125;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+// Header -----------------------------------------------------------------
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-block: 1.5rem;
+}
+.site-mark {
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-decoration: none;
+}
+.home .site-mark { visibility: hidden; } // the hero wordmark stands in
+.site-nav { display: flex; gap: 1.25rem; }
+.site-nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.site-nav a:hover, .site-nav a[aria-current] { color: var(--ink); }
+.site-nav a[aria-current] {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+}
+
+main { padding-bottom: 4rem; }
+
+// Hero -------------------------------------------------------------------
+
+.hero { padding-block: clamp(2rem, 8vw, 5rem) 3rem; }
+
+.wordmark {
+  margin: 0;
+  font-weight: 850;
+  font-size: clamp(3rem, 15vw, 6.5rem);
+  white-space: nowrap;
+  letter-spacing: -0.035em;
+  line-height: 0.9;
+}
+
+// The one flourish: the full stop after "Pingback" sends out a single ping.
+.ping {
+  position: relative;
+  display: inline-block;
+  width: 0.16em;
+  height: 0.16em;
+  margin-left: 0.05em;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.ping::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 0.03em solid var(--accent);
+  opacity: 0;
+  animation: ping 1.6s cubic-bezier(0.2, 0.6, 0.3, 1) 0.6s 2;
+}
+@keyframes ping {
+  0%   { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(5); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ping::after { animation: none; }
+}
+
+.hero__intro {
+  margin-top: 1.75rem;
+  max-width: 32rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+.hero__intro p { margin: 0 0 1.25rem; }
+
+// Listen links -----------------------------------------------------------
+
+.listen-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.95rem;
+}
+.listen-links a {
+  display: inline-block;
+  padding: 0.3rem 0.85rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.listen-links a:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+// Episode list -----------------------------------------------------------
+
+.section-title, .page-title {
+  margin: 0 0 1.5rem;
+  font-weight: 800;
+  font-size: 1.75rem;
+}
+.page-title { font-size: clamp(2.25rem, 7vw, 3.25rem); margin-top: 1.5rem; }
+
+.episode-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1.5px solid var(--ink);
+}
+.episode-row {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: 1rem;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+.episode-row__num {
+  font-weight: 800;
+  font-size: 3rem;
+  line-height: 0.85;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.episode-row__title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.3rem;
+  line-height: 1.2;
+}
+.episode-row__title a { text-decoration: none; }
+.episode-row__title a:hover { text-decoration: underline; text-decoration-color: var(--accent); color: inherit; }
+.episode-row__desc {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.episode-row__meta {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 30rem) {
+  .episode-row { grid-template-columns: 3rem 1fr; gap: 0.75rem; }
+  .episode-row__num { font-size: 2.25rem; }
+}
+
+// Episode page -----------------------------------------------------------
+
+.episode-header { padding-block: 1.5rem 2rem; }
+.episode-num {
+  margin: 0 0 0.75rem;
+  font-weight: 850;
+  font-size: clamp(5rem, 22vw, 9rem);
+  line-height: 0.8;
+  color: var(--accent);
+}
+.episode-title {
+  margin: 0;
+  font-weight: 800;
+  font-size: clamp(1.9rem, 5.5vw, 2.75rem);
+  text-wrap: balance;
+}
+.episode-meta {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.episode-player, .episode-video { margin: 0 0 2.5rem; }
+.episode-player audio { width: 100%; }
+.episode-video iframe {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 6px;
+  background: var(--accent-soft);
+}
+
+// Prose ------------------------------------------------------------------
+
+.prose > :first-child { margin-top: 0; }
+.prose p, .prose ul, .prose ol { margin: 0 0 1.25rem; }
+.prose ul, .prose ol { padding-left: 1.25rem; }
+.prose li { margin-bottom: 0.35rem; }
+.prose h2, .chapters h2 {
+  margin: 2.5rem 0 1rem;
+  font-weight: 750;
+  font-size: 1.35rem;
+}
+.prose img { max-width: 100%; height: auto; }
+
+.chapters ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+.chapters li {
+  border-bottom: 1px solid var(--rule);
+  font-size: 1rem;
+}
+.chapters a, .chapters li > .chapter-time:first-child {
+  display: flex;
+  gap: 1rem;
+  padding-block: 0.6rem;
+  text-decoration: none;
+}
+.chapter-time {
+  min-width: 3.25rem;
+  color: var(--accent);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+// Footer -----------------------------------------------------------------
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 2rem 3rem;
+  background: linear-gradient(var(--rule), var(--rule)) no-repeat center top / calc(100% - 2 * var(--gutter)) 1px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.site-footer p { margin: 0; }
