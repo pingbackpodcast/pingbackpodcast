@@ -5,9 +5,15 @@ description: >-
 url: "https://pingbackpodcast.com"
 baseurl: ""
 lang: en
-hosts: ["Greg Molnar", "Joel Gaff Jr."]
+hosts:
+  - { name: "Greg Molnar", url: "https://greg.molnar.io" }
+  - { name: "Joel Gaff Jr.", url: "https://joelgaff.com" }
 timezone: America/Los_Angeles
-# image: /assets/images/cover.png  # show artwork for social cards — add the file, then uncomment
+# Social share card (1200px) is set per page via defaults below.
+# Full 3000px podcast cover: assets/images/pingback-cover-3000.png
+logo: /assets/images/cover.jpg
+twitter:
+  card: summary
 
 theme: minima
 plugins:
@@ -31,6 +37,9 @@ buzzsprout_podcast_id: ""
 permalink: /episodes/:title/
 
 defaults:
+  - scope: { path: "" }
+    values:
+      image: /assets/images/cover.jpg
   - scope: { path: "", type: posts }
     values:
       layout: episode

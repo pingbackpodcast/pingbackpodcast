@@ -1,4 +1,8 @@
 <footer class="site-footer wrap">
-  <p>Made by {{ site.hosts | array_to_sentence_string }}</p>
+  <p>Made by
+    {%- for h in site.hosts %}
+    {% if forloop.last and forloop.length > 1 %}and {% endif %}<a href="{{ h.url }}">{{ h.name }}</a>{% unless forloop.last or forloop.length == 2 %},{% endunless %}
+    {%- endfor %}
+  </p>
   {% unless page.url == '/' %}{% include listen-links.html %}{% endunless %}
 </footer>

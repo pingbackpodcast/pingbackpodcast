@@ -1,5 +1,8 @@
 <header class="site-header wrap">
-  <a class="site-mark" href="{{ '/' | relative_url }}" {% if page.url == '/' %}aria-current="page"{% endif %}>{{ site.title | escape }}</a>
+  <a class="site-mark" href="{{ '/' | relative_url }}" {% if page.url == '/' %}aria-current="page"{% endif %}>
+    <img class="site-logo" src="{{ '/assets/images/logo-160.png' | relative_url }}" width="56" height="56" alt="">
+    <span class="site-mark__name">{{ site.title | escape }}</span>
+  </a>
   <nav class="site-nav" aria-label="Main">
     {%- for path in site.minima.nav_pages %}
       {%- assign p = site.pages | where: "path", path | first %}
