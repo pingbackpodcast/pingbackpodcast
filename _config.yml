@@ -16,12 +16,13 @@ hosts:
     photo: /assets/images/hosts/joel-gaff.jpg
     role: "Rails developer in Portland, Oregon"
 timezone: America/Los_Angeles
-# Social share card (1200px) is set per page via defaults below.
+# Share cards (1200x630, made by bin/og-cards): og/default.png for pages via
+# defaults below; each episode sets its own og/episode-N.png.
 # Full 3000px podcast cover: assets/images/pingback-cover-3000.png
 logo: /assets/images/cover.jpg
 twitter:
   username: pingbackpodcast
-  card: summary
+  card: summary_large_image
 social:
   name: Pingback Podcast
   links:
@@ -56,7 +57,11 @@ permalink: /episodes/:title/
 defaults:
   - scope: { path: "" }
     values:
-      image: /assets/images/cover.jpg
+      image:
+        path: /assets/images/og/default.png
+        width: 1200
+        height: 630
+        alt: "Pingback Podcast: Ruby, tech & more with Greg Molnar and Joel Gaff Jr."
   - scope: { path: "", type: posts }
     values:
       layout: episode

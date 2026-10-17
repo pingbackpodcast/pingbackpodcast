@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Claude Code PostToolUse hook (see .claude/settings.json): when an episode in
+# _posts/ is written or edited, re-render its share card with bin/og-cards.
+set -euo pipefail
+
+file=$(jq -r '.tool_response.filePath // .tool_input.file_path // empty')
+[[ "$file" =~ /_posts/[^/]+\.md$ ]] || exit 0
+[[ -f "$file" ]] || exit 0
+
+num=$(sed -n '/^---$/,/^---$/{s/^episode:[[:space:]]*\([0-9][0-9]*\).*/\1/p}' "$file" | head -1)
+[[ -n "$num" ]] || exit 0
+
+cd "$(dirname "$0")/.."
+bin/og-cards "$num"

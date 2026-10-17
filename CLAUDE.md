@@ -13,7 +13,7 @@ Website for the **Pingback Podcast** — https://pingbackpodcast.com. Jekyll sit
 
 ## SEO
 - jekyll-seo-tag builds the title, description, canonical URL, Open Graph and Twitter tags. Home title = `title | tagline`; other pages = `page title | site title`. Give every page a `description`.
-- Share image: `assets/images/cover.jpg`, set for every page via `defaults`. Twitter card is `summary` (square art).
+- Share cards (X / Open Graph) are 1200x630 PNGs in `assets/images/og/`, card type `summary_large_image`. `default.png` covers every page via `defaults`; each episode has `image: /assets/images/og/episode-N.png`. **Cards are automatic:** a Claude Code hook (`.claude/settings.json` → `bin/og-cards-hook`) runs `bin/og-cards N` after any Write/Edit to an episode in `_posts/`, rendering the card and adding the `image:` block. Commit the new `assets/images/og/episode-N.png` with the episode. Editing outside Claude? Run `bin/og-cards N` yourself (`bin/og-cards` alone re-renders all). Check a card with the X post composer or opengraph.xyz after deploying.
 - Structured data: episodes are typed `PodcastEpisode` (via `seo.type` in defaults); the homepage adds a `PodcastSeries` block (`_includes/podcast-series-ld.html`) with hosts, feed, and `social.links`.
 - `jekyll-sitemap` makes `/sitemap.xml`; `robots.txt` points to it; `404.html` is left out of the sitemap.
 - Homepage H1 is "Pingback Podcast" (big wordmark + smaller "Podcast" line).

@@ -1,0 +1,97 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Builds the 1200x630 share cards (X/Open Graph) with headless Chromium:
+#   assets/images/og/default.png      homepage and static pages
+#   assets/images/og/episode-N.png    one per episode
+# and adds an `image:` block (path, size, alt) to any episode missing one.
+#
+# Usage: bin/og-cards          (re-renders every card)
+#        bin/og-cards 3        (only episode 3, plus the default card)
+
+require "yaml"
+require "date"
+require "cgi"
+require "tmpdir"
+require "fileutils"
+
+ROOT    = File.expand_path("..", __dir__)
+OUT_DIR = File.join(ROOT, "assets/images/og")
+ART     = File.join(ROOT, "assets/images/cover.jpg")
+CHROME  = %w[chromium google-chrome-stable google-chrome].find { |b| system("command -v #{b} >/dev/null 2>&1") } or
+  abort "Needs Chromium or Chrome on PATH."
+
+config = YAML.safe_load_file(File.join(ROOT, "_config.yml"), permitted_classes: [Date, Time])
+only   = ARGV.first&.to_i
+
+def h(text) = CGI.escapeHTML(text.to_s)
+
+def page(body)
+  <<~HTML
+    <!doctype html>
+    <html><head><meta charset="utf-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=block">
+    <style>
+      * { margin: 0; box-sizing: border-box; }
+      html, body { width: 1200px; height: 630px; overflow: hidden; }
+      body { display: flex; background: #181a26; color: #e8ebf5; font-family: "Archivo", sans-serif; }
+      .art { width: 630px; height: 630px; flex: none; display: block; }
+      .text { flex: 1; display: flex; flex-direction: column; padding: 64px 60px 56px 48px; }
+      .kicker { font-variation-settings: "wdth" 125; font-weight: 800; font-size: 30px; color: #8ea2ff; }
+      .title { margin-top: 20px; font-variation-settings: "wdth" 112; font-weight: 750; line-height: 1.08;
+               letter-spacing: -0.01em; text-wrap: balance; }
+      .show { font-variation-settings: "wdth" 125; font-weight: 850; font-size: 68px; line-height: 0.98; letter-spacing: -0.02em; }
+      .tagline { margin-top: 24px; font-size: 28px; line-height: 1.3; color: #9aa3bd; }
+      .meta { margin-top: auto; font-size: 24px; line-height: 1.4; color: #9aa3bd; }
+      .meta b { color: #e8ebf5; font-weight: 600; }
+    </style></head>
+    <body><img class="art" src="file://#{ART}">#{body}</body></html>
+  HTML
+end
+
+def render(html, out)
+  Dir.mktmpdir do |dir|
+    src = File.join(dir, "card.html")
+    File.write(src, html)
+    ok = system(CHROME, "--headless", "--disable-gpu", "--hide-scrollbars", "--force-device-scale-factor=1",
+                "--allow-file-access-from-files", "--virtual-time-budget=8000", "--window-size=1200,630",
+                "--screenshot=#{out}", "file://#{src}", out: File::NULL, err: File::NULL)
+    abort "Chromium failed rendering #{out}" unless ok && File.exist?(out)
+  end
+  puts "wrote #{out.delete_prefix("#{ROOT}/")}"
+end
+
+FileUtils.mkdir_p(OUT_DIR)
+
+hosts = Array(config["hosts"]).map { |x| x["name"] }
+render(page(<<~HTML), File.join(OUT_DIR, "default.png"))
+  <div class="text">
+    <div class="show">Pingback<br>Podcast</div>
+    <div class="tagline">Ruby, tech &amp; more with #{h hosts.join(" and ")}</div>
+    <div class="meta">pingbackpodcast.com</div>
+  </div>
+HTML
+
+Dir[File.join(ROOT, "_posts/*.md")].sort.each do |path|
+  raw = File.read(path)
+  fm  = YAML.safe_load(raw[/\A---\n(.*?)\n---/m, 1], permitted_classes: [Date, Time])
+  num = fm["episode"] or next
+  next if only && num != only
+
+  title = fm["title"].to_s
+  size  = title.length > 75 ? 44 : title.length > 50 ? 50 : 58
+  with  = Array(fm["guests"]).any? ? "with <b>#{h Array(fm["guests"]).join(" and ")}</b><br>" : ""
+  render(page(<<~HTML), File.join(OUT_DIR, "episode-#{num}.png"))
+    <div class="text">
+      <div class="kicker">Episode #{num}</div>
+      <div class="title" style="font-size: #{size}px">#{h title}</div>
+      <div class="meta">#{with}Pingback Podcast</div>
+    </div>
+  HTML
+
+  next if fm.key?("image")
+  card = "image:\n  path: /assets/images/og/episode-#{num}.png\n  width: 1200\n  height: 630\n" \
+         "  alt: \"Pingback Podcast episode #{num} share card\"\n"
+  File.write(path, raw.sub(/\A---\n/, "---\n#{card}"))
+  puts "  added image to #{File.basename(path)}"
+end
