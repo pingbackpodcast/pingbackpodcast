@@ -1,4 +1,4 @@
-# "Listen on" links shown on every episode page and the homepage.
+# Links to the show elsewhere (listen + follow), shown on the homepage and in the footer.
 # Leave url empty to hide a platform. Fill these in once the show is listed.
 - name: Apple Podcasts
   url: ""
@@ -6,6 +6,8 @@
   url: ""
 - name: YouTube
   url: "https://www.youtube.com/@PingbackPodcast"
+- name: X
+  url: "https://x.com/pingbackpodcast"
 - name: Overcast
   url: ""
 - name: RSS
