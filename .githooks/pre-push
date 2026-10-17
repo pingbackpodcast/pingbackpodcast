@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Pre-push guard: run bin/ci before anything reaches GitHub. A push to main
+# deploys the site, so a broken build never goes out. Takes about a second.
+#
+# bin/setup enables it once per clone with:  git config core.hooksPath .githooks
+# Skip a single push (an emergency) with:   git push --no-verify
+set -euo pipefail
+
+refs=$(cat)  # git passes the refs being pushed on stdin
+zero=0000000000000000000000000000000000000000
+if [[ -z "$refs" ]] || ! grep -qv " $zero " <<<"$refs"; then
+  exit 0  # nothing but branch deletions
+fi
+
+if [[ -n "$(git status --porcelain)" ]]; then
+  echo "pre-push: note: uncommitted changes; bin/ci checks the working tree, not exactly what you're pushing." >&2
+fi
+
+echo "pre-push: running bin/ci..."
+if ! bin/ci; then
+  echo "pre-push: bin/ci FAILED. Push blocked. Fix it, or bypass with 'git push --no-verify'." >&2
+  exit 1
+fi
+echo "pre-push: bin/ci passed. Pushing."

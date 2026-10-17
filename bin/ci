@@ -1,0 +1,85 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Local CI for the site, run by .githooks/pre-push before anything reaches
+# GitHub (a push to main deploys). Fast on purpose: a few seconds.
+#
+#   1. Production build, strict front matter, no errors or warnings
+#   2. Every episode has the front matter the templates need
+#   3. Every episode's share card exists and is committed
+#   4. No episode is dated in the future (Jekyll would silently skip it)
+#   5. Every internal link and image in the built site resolves
+
+require "yaml"
+require "date"
+require "time"
+require "tmpdir"
+require "open3"
+
+ROOT = File.expand_path("..", __dir__)
+Dir.chdir(ROOT)
+
+failures = []
+step = ->(name) { puts "== #{name}" }
+
+Dir.mktmpdir("pingback-ci") do |site|
+  step["Production build"]
+  out, status = Open3.capture2e({ "JEKYLL_ENV" => "production" },
+                                "bundle", "exec", "jekyll", "build", "--strict_front_matter", "-d", site)
+  noisy = out.lines.grep(/error|warn|deprecat/i)
+  if !status.success? || noisy.any?
+    failures << "Build failed or warned:\n#{(noisy.any? ? noisy : out.lines.last(15)).join}"
+  end
+
+  step["Episode front matter"]
+  required = %w[title episode description duration]
+  tracked = `git ls-files -z`.split("\0")
+  now = Time.now
+  Dir["_posts/*.md"].sort.each do |path|
+    raw = File.read(path)
+    fm = YAML.safe_load(raw[/\A---\n(.*?)\n---/m, 1].to_s, permitted_classes: [Date, Time]) || {}
+    name = File.basename(path)
+
+    missing = required.reject { |k| fm[k].to_s.strip != "" }
+    failures << "#{name}: missing #{missing.join(", ")}" if missing.any?
+    if [fm["youtube_id"], fm["buzzsprout_id"], fm["embed_url"], fm["audio_url"]].all? { |v| v.to_s.strip.empty? }
+      failures << "#{name}: no youtube_id, buzzsprout_id, embed_url, or audio_url"
+    end
+
+    card = fm.dig("image", "path").to_s.delete_prefix("/")
+    if card.empty?
+      failures << "#{name}: no share card (run bin/og-cards #{fm["episode"]})"
+    elsif !File.exist?(card)
+      failures << "#{name}: share card #{card} is missing (run bin/og-cards #{fm["episode"]})"
+    elsif !tracked.include?(card)
+      failures << "#{name}: share card #{card} is not committed (git add it)"
+    end
+
+    date = fm["date"] || Date.parse(name[0, 10])
+    date = date.to_time if date.respond_to?(:to_time)
+    failures << "#{name}: dated #{date} which is in the future; Jekyll will not publish it" if date > now
+  end
+
+  step["Internal links and images"]
+  Dir.glob("#{site}/**/*.html").each do |file|
+    html = File.read(file)
+    html.scan(/(?:href|src)="([^"]+)"/).flatten.uniq.each do |ref|
+      next if ref.start_with?("http", "//", "mailto:", "#", "data:")
+
+      target = ref.split(/[?#]/).first
+      next if target.nil? || target.empty?
+
+      path = File.join(site, target)
+      ok = File.file?(path) || File.file?(File.join(path, "index.html")) || File.file?("#{path}.html")
+      failures << "#{file.delete_prefix(site)}: broken link #{ref}" unless ok
+    end
+  end
+end
+
+if failures.empty?
+  puts "CI passed."
+else
+  warn "\nCI FAILED:"
+  failures.each { |f| warn "  - #{f}" }
+  exit 1
+end

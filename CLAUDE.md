@@ -39,11 +39,15 @@ Show notes in Markdown. Use "## Heading" for sections such as links for the gues
 
 ## Commands
 ```bash
-bundle install                  # gems go to vendor/bundle (.bundle/config)
+bin/setup                       # first time: gems + enable the pre-push guard
+bin/ci                          # the same checks the pre-push hook runs
 bundle exec jekyll serve        # http://localhost:4000, auto-rebuild
 bundle exec jekyll build        # → _site/
 ```
 Ruby version is in `.ruby-version` (mise). After a build, check output by grepping `_site/`.
+
+## Local CI (pre-push)
+`.githooks/pre-push` runs `bin/ci` before every push and blocks it if anything fails (a push to `main` deploys). `bin/ci` takes about a second and checks: production build with strict front matter (no errors/warnings), required episode front matter, each episode's share card exists **and is committed**, no future-dated episodes (Jekyll silently skips them), and every internal link/image resolves. Fresh clone: run `bin/setup` (installs gems, sets `core.hooksPath`). Emergency bypass: `git push --no-verify`.
 
 ## Deploy
 Push to `main` → `.github/workflows/jekyll.yml` builds and deploys to Pages (Pages source = "GitHub Actions"). Check: `gh run list -L 3`. Pages status: `gh api repos/pingbackpodcast/pingbackpodcast/pages`.
