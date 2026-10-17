@@ -338,6 +338,45 @@ main { padding-bottom: 4rem; }
   font-variant-numeric: tabular-nums;
 }
 
+// Hosts (About page) ----------------------------------------------------
+
+.hosts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin: 0 0 1.25rem;
+}
+.host { margin: 0; }
+.host img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 6px;
+  background: var(--accent-soft);
+}
+.host figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  margin-top: 0.75rem;
+}
+.host__name {
+  font-weight: 700;
+  font-variation-settings: "wdth" 112;
+  text-decoration: none;
+}
+.host__name:hover { text-decoration: underline; text-decoration-color: var(--accent); }
+.host__role {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 26rem) {
+  .hosts { grid-template-columns: 1fr; max-width: 18rem; }
+}
+
 // Footer -----------------------------------------------------------------
 
 .site-footer {

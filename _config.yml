@@ -7,8 +7,14 @@ url: "https://pingbackpodcast.com"
 baseurl: ""
 lang: en
 hosts:
-  - { name: "Greg Molnar", url: "https://greg.molnar.io" }
-  - { name: "Joel Gaff Jr.", url: "https://joelgaff.com" }
+  - name: "Greg Molnar"
+    url: "https://greg.molnar.io"
+    photo: /assets/images/hosts/greg-molnar.jpg
+    role: "Ruby developer and penetration tester"
+  - name: "Joel Gaff Jr."
+    url: "https://joelgaff.com"
+    photo: /assets/images/hosts/joel-gaff.jpg
+    role: "Rails developer in Portland, Oregon"
 timezone: America/Los_Angeles
 # Social share card (1200px) is set per page via defaults below.
 # Full 3000px podcast cover: assets/images/pingback-cover-3000.png

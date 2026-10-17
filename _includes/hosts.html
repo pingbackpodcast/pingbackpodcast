@@ -1,0 +1,13 @@
+<div class="hosts">
+  {%- for h in site.hosts %}
+  <figure class="host">
+    <a href="{{ h.url }}" target="_blank" rel="noopener">
+      <img src="{{ h.photo | relative_url }}" width="240" height="240" alt="{{ h.name }}" loading="lazy">
+    </a>
+    <figcaption>
+      <a class="host__name" href="{{ h.url }}" target="_blank" rel="noopener">{{ h.name }}</a>
+      <span class="host__role">{{ h.role }}</span>
+    </figcaption>
+  </figure>
+  {%- endfor %}
+</div>
