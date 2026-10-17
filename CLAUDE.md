@@ -35,7 +35,7 @@ chapters:                         # optional; "m:ss" or "h:mm:ss"
 ---
 Show notes in Markdown. Use "## Heading" for sections such as links for the guest.
 ```
-**Importing from YouTube:** `yt-dlp --skip-download --write-info-json -o ID "https://www.youtube.com/watch?v=ID"` gives the title, `upload_date`, `duration_string`, description, and chapters. The upload date is the post date.
+**Importing from YouTube:** `yt-dlp --skip-download --write-info-json -o ID "https://www.youtube.com/watch?v=ID"` gives the title, `upload_date`, `duration_string`, description, and chapters. For the post date, use the Buzzsprout `pubDate` from the RSS feed converted to Pacific time (`date: YYYY-MM-DD HH:MM:SS -0700`), since YouTube upload dates are UTC and can land a day late. The Buzzsprout episode ID is the number in the feed item's `<guid>Buzzsprout-NNNN</guid>`. Jekyll skips future-dated posts.
 
 ## Commands
 ```bash
