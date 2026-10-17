@@ -1,0 +1,47 @@
+---
+layout: base
+---
+{%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+<article class="post episode h-entry" itemscope itemtype="http://schema.org/PodcastEpisode">
+
+  <header class="post-header">
+    {%- if page.episode %}
+    <p class="episode-number">
+      {% if page.season %}Season {{ page.season }} · {% endif %}Episode {{ page.episode }}
+    </p>
+    {%- endif %}
+    <h1 class="post-title p-name" itemprop="name">{{ page.title | escape }}</h1>
+    <div class="post-meta">
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {{ page.date | date: date_format }}
+      </time>
+      {%- if page.duration %}
+      <span class="bullet-divider">•</span>
+      <span itemprop="timeRequired">{{ page.duration }}</span>
+      {%- endif %}
+      {%- if page.guests and page.guests.size > 0 %}
+      <span class="bullet-divider">•</span>
+      <span class="episode-guests">With {{ page.guests | array_to_sentence_string }}</span>
+      {%- endif %}
+    </div>
+  </header>
+
+  {%- if page.embed_url and page.embed_url != "" %}
+  <div class="episode-player">
+    <iframe src="{{ page.embed_url }}" width="100%" height="{{ page.embed_height | default: 180 }}"
+      frameborder="0" scrolling="no" loading="lazy" title="Play {{ page.title | escape }}"></iframe>
+  </div>
+  {%- elsif page.audio_url and page.audio_url != "" %}
+  <div class="episode-player">
+    <audio controls preload="none" src="{{ page.audio_url }}" style="width:100%"></audio>
+  </div>
+  {%- endif %}
+
+  {% include listen-links.html %}
+
+  <div class="post-content e-content" itemprop="description">
+    {{ content }}
+  </div>
+
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+</article>

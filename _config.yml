@@ -1,0 +1,48 @@
+# Site settings
+title: Pingback Podcast
+description: >-
+  The Pingback Podcast. Placeholder description — replace with the show's pitch.
+url: "https://pingbackpodcast.com"
+baseurl: ""
+lang: en
+timezone: America/Los_Angeles
+# image: /assets/images/cover.png  # show artwork for social cards — add the file, then uncomment
+
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+minima:
+  skin: auto
+  date_format: "%b %-d, %Y"
+  nav_pages:
+    - episodes.md
+    - about.md
+  # social_links:
+  #   - { title: Pingback on GitHub, icon: github, url: "https://github.com/pingbackpodcast" }
+
+# Episodes are Jekyll posts in _posts/ and live at /episodes/<slug>/
+permalink: /episodes/:title/
+
+defaults:
+  - scope: { path: "", type: posts }
+    values:
+      layout: episode
+
+# Site-level update feed (feed.xml). The podcast RSS that Apple/Spotify read
+# comes from the podcast host, not from here — see _data/platforms.yml.
+feed:
+  path: feed.xml
+
+sass:
+  quiet_deps: true
+  silence_deprecations: [import]
+
+exclude:
+  - CLAUDE.md
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .ruby-version

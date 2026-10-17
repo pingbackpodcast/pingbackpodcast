@@ -1,0 +1,21 @@
+// Pingback overrides on top of Minima 3. Restyle the site here.
+
+.episode-number {
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.episode-player {
+  margin: 1.5rem 0;
+}
+
+.listen-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin: 0 0 1.5rem;
+  list-style: none;
+}

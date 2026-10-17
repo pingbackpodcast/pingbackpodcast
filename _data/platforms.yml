@@ -1,0 +1,12 @@
+# "Listen on" links shown on every episode page and the homepage.
+# Leave url empty to hide a platform. Fill these in once the show is listed.
+- name: Apple Podcasts
+  url: ""
+- name: Spotify
+  url: ""
+- name: YouTube
+  url: ""
+- name: Overcast
+  url: ""
+- name: RSS
+  url: "" # podcast host's feed URL
