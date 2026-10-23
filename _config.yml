@@ -82,6 +82,9 @@ sass:
   silence_deprecations: [import]
 
 exclude:
+  - bin
+  - lib
+  - test
   - docs
   - CLAUDE.md
   - README.md
