@@ -3,13 +3,30 @@
 
 # Episode tasks. See docs/plans/2026-10-23-redesign-and-publishing.md.
 #
-#   bin/episode transcript N    save Buzzsprout's transcript for episode N
-#                               as _data/transcripts/episode-N.json
-#   bin/episode thumbnail N     save the YouTube thumbnail for episode N as
-#                               assets/images/episodes/episode-N.jpg
+#   bin/episode transcript N        save Buzzsprout's transcript for episode N
+#                                   as _data/transcripts/episode-N.json
+#   bin/episode thumbnail N         save the YouTube thumbnail as
+#                                   assets/images/episodes/episode-N.jpg
+#   bin/episode youtube N [--print] copy the YouTube description (notes +
+#                                   chapters + links) to the clipboard
+#   bin/episode status N            what Buzzsprout has vs the repo
+#   bin/episode sync N [--dry-run]  push title, notes, tags, number and
+#                                   chapters to Buzzsprout; copy YouTube text
+#   bin/episode publish N [--at "2026-10-30 23:00 -0700"]
+#                                   make the Buzzsprout episode public (or
+#                                   schedule it); defaults to the post's date
+#
+# Buzzsprout commands read the API token from 1Password (vault "Pingback
+# Podcast", item "Buzzsprout API") or PINGBACK_BUZZSPROUT_TOKEN.
 
+require "bundler/setup"
+require "optparse"
+require "open3"
+require "yaml"
 require_relative "../lib/pingback/transcript_import"
 require_relative "../lib/pingback/thumbnail"
+require_relative "../lib/pingback/publisher"
+require_relative "../lib/pingback/secrets"
 
 ROOT = File.expand_path("..", __dir__)
 
@@ -18,21 +35,59 @@ def usage!
   exit 64
 end
 
+options = {}
+OptionParser.new do |o|
+  o.on("--dry-run") { options[:dry_run] = true }
+  o.on("--at TIME") { |t| options[:at] = t }
+  o.on("--print") { options[:print] = true }
+end.parse!(ARGV)
+
 command, number = ARGV
 usage! unless command && number&.match?(/\A\d+\z/)
+n = number.to_i
+$print_only = options[:print]
+
+def clipboard(text)
+  return (puts(text); :printed) if $print_only
+
+  _, status = Open3.capture2("wl-copy", stdin_data: text)
+  return :copied if status.success?
+
+  puts text
+  :printed
+rescue Errno::ENOENT
+  puts text
+  :printed
+end
+
+def publisher(with_buzzsprout: true)
+  config = YAML.safe_load_file(File.join(ROOT, "_config.yml"))
+  bz = if with_buzzsprout
+         lambda do
+           Pingback::Buzzsprout.new(podcast_id: config.fetch("buzzsprout_podcast_id"),
+                                    token: Pingback::Secrets.new.fetch(:buzzsprout))
+         end
+       end
+  Pingback::Publisher.new(root: ROOT, buzzsprout: bz, clipboard: method(:clipboard))
+end
 
 begin
   case command
   when "transcript"
-    path = Pingback::TranscriptImport.new(root: ROOT).run(number.to_i)
+    path = Pingback::TranscriptImport.new(root: ROOT).run(n)
     turns = JSON.parse(File.read(path))["turns"]
     puts "wrote #{path.delete_prefix("#{ROOT}/")} (#{turns.size} turns, speakers: #{turns.map { |t| t["speaker"] }.uniq.join(", ")})"
   when "thumbnail"
-    path = Pingback::Thumbnail.new(root: ROOT).run(number.to_i)
+    path = Pingback::Thumbnail.new(root: ROOT).run(n)
     puts "wrote #{path.delete_prefix("#{ROOT}/")}"
-  else
-    usage!
+  when "youtube"
+    publisher(with_buzzsprout: false).youtube_text(n)
+  when "status"  then publisher.status(n)
+  when "sync"    then publisher.sync(n, dry_run: options[:dry_run])
+  when "publish" then publisher.publish(n, at: options[:at])
+  else usage!
   end
-rescue Pingback::TranscriptImport::Error, Pingback::Thumbnail::Error => e
+rescue Pingback::TranscriptImport::Error, Pingback::Thumbnail::Error, Pingback::Publisher::Error,
+       Pingback::Buzzsprout::Error, Pingback::Secrets::Error, Pingback::YoutubeText::Error => e
   abort "bin/episode: #{e.message}"
 end
