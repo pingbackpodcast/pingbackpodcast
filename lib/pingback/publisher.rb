@@ -3,6 +3,8 @@
 require "yaml"
 require "time"
 require "kramdown"
+require "uri"
+require "tmpdir"
 require_relative "episode_file"
 require_relative "buzzsprout"
 require_relative "transcript"
@@ -60,6 +62,35 @@ module Pingback
       say "Buzzsprout: #{future ? "scheduled for #{when_at}" : "published (#{when_at})"}" \
           "#{result['private'] == false ? '' : ' — check the dashboard'}"
       say "YouTube: set the video to Public in Studio: #{studio_url(ep)}" if ep["youtube_id"]
+    end
+
+    # Descript renders the audio; a new private Buzzsprout episode gets it.
+    # Records buzzsprout_id and descript_project in the episode file.
+    def publish_audio(number, descript_link:, descript:, downloader:)
+      ep = EpisodeFile.find(@root, number) or raise Error, "no post for episode #{number} in _posts/"
+      raise Error, "episode #{number} is already on Buzzsprout (buzzsprout_id #{ep['buzzsprout_id']})" if ep["buzzsprout_id"]
+
+      created = bz.create_episode(
+        "title" => ep["title"], "description" => description_html(ep), "tags" => topic_names(ep).join(","),
+        "episode_number" => ep["episode"], "private" => true
+      )
+      id = created.fetch("id")
+      ep.set!("buzzsprout_id", id)
+      ep.set!("descript_project", descript_link)
+      say "Buzzsprout: created private episode #{id}"
+
+      descript = descript.call if descript.respond_to?(:call)
+      url = descript.publish_audio(descript_link)
+      ext = File.extname(URI(url).path).downcase
+      ext = ".mp3" if ext.empty?
+      Dir.mktmpdir do |dir|
+        file = File.join(dir, "episode-#{number}#{ext}")
+        downloader.call(url, file)
+        bz.upload(id, file)
+      end
+      say "Buzzsprout: audio uploaded; the episode stays private until `bin/episode publish #{number}`."
+      say "Next: once Buzzsprout finishes its transcript, run `bin/episode transcript #{number}`."
+      id
     end
 
     # Just the YouTube description (works before Buzzsprout has the episode).

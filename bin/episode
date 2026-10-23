@@ -9,6 +9,9 @@
 #                                   assets/images/episodes/episode-N.jpg
 #   bin/episode youtube N [--print] copy the YouTube description (notes +
 #                                   chapters + links) to the clipboard
+#   bin/episode audio N --descript LINK
+#                                   Descript renders the audio; creates the
+#                                   private Buzzsprout episode and uploads it
 #   bin/episode status N            what Buzzsprout has vs the repo
 #   bin/episode sync N [--dry-run]  push title, notes, tags, number and
 #                                   chapters to Buzzsprout; copy YouTube text
@@ -16,8 +19,8 @@
 #                                   make the Buzzsprout episode public (or
 #                                   schedule it); defaults to the post's date
 #
-# Buzzsprout commands read the API token from 1Password (vault "Pingback
-# Podcast", item "Buzzsprout API") or PINGBACK_BUZZSPROUT_TOKEN.
+# API tokens come from 1Password (vault "Pingback Podcast", items "Buzzsprout
+# API" / "Descript API") or PINGBACK_BUZZSPROUT_TOKEN / PINGBACK_DESCRIPT_TOKEN.
 
 require "bundler/setup"
 require "optparse"
@@ -27,6 +30,7 @@ require_relative "../lib/pingback/transcript_import"
 require_relative "../lib/pingback/thumbnail"
 require_relative "../lib/pingback/publisher"
 require_relative "../lib/pingback/secrets"
+require_relative "../lib/pingback/descript"
 
 ROOT = File.expand_path("..", __dir__)
 
@@ -40,6 +44,7 @@ OptionParser.new do |o|
   o.on("--dry-run") { options[:dry_run] = true }
   o.on("--at TIME") { |t| options[:at] = t }
   o.on("--print") { options[:print] = true }
+  o.on("--descript LINK") { |l| options[:descript] = l }
 end.parse!(ARGV)
 
 command, number = ARGV
@@ -82,12 +87,18 @@ begin
     puts "wrote #{path.delete_prefix("#{ROOT}/")}"
   when "youtube"
     publisher(with_buzzsprout: false).youtube_text(n)
+  when "audio"
+    abort "bin/episode audio N --descript <Descript project link>" unless options[:descript]
+    descript = -> { Pingback::Descript.new(token: Pingback::Secrets.new.fetch(:descript)) }
+    publisher.publish_audio(n, descript_link: options[:descript], descript: descript,
+                               downloader: ->(url, path) { Pingback::Http.download(url, path) })
   when "status"  then publisher.status(n)
   when "sync"    then publisher.sync(n, dry_run: options[:dry_run])
   when "publish" then publisher.publish(n, at: options[:at])
   else usage!
   end
 rescue Pingback::TranscriptImport::Error, Pingback::Thumbnail::Error, Pingback::Publisher::Error,
-       Pingback::Buzzsprout::Error, Pingback::Secrets::Error, Pingback::YoutubeText::Error => e
+       Pingback::Buzzsprout::Error, Pingback::Secrets::Error, Pingback::YoutubeText::Error,
+       Pingback::Descript::Error => e
   abort "bin/episode: #{e.message}"
 end
