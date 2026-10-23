@@ -1,8 +1,0 @@
-{%- assign live = site.data.platforms | where_exp: "p", "p.url != ''" -%}
-{%- if live.size > 0 -%}
-<ul class="listen-links" aria-label="Find Pingback on">
-  {%- for p in live %}
-  <li><a class="chip" href="{{ p.url }}" target="_blank" rel="noopener">{{ p.name }}</a></li>
-  {%- endfor %}
-</ul>
-{%- endif -%}

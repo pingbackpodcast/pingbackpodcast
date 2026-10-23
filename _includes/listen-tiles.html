@@ -1,0 +1,9 @@
+{%- assign live = site.data.platforms | where_exp: "p", "p.url != ''" -%}
+<div class="listen-tiles">
+  {%- for p in live %}
+  <a class="listen-tile" href="{{ p.url }}" target="_blank" rel="noopener">
+    <span class="listen-tile__icon">{% include icons/{{ p.icon }}.svg %}</span>
+    <span class="listen-tile__text"><span class="listen-tile__kind">{{ p.kind }}</span><span class="listen-tile__name">{{ p.name }}</span></span>
+  </a>
+  {%- endfor %}
+</div>

@@ -6,10 +6,10 @@ require "test_helper"
 class PagesRestyleTest < SiteTest
   EPISODES = [3, 2, 1].freeze
 
-  def assert_episode_cards(doc)
+  def assert_episode_cards(doc, episodes = EPISODES)
     cards = doc.css("article.card.episode-card")
-    assert_equal EPISODES.size, cards.size, "one card per episode"
-    cards.zip(EPISODES).each do |card, n|
+    assert_equal episodes.size, cards.size, "one card per episode"
+    cards.zip(episodes).each do |card, n|
       assert_equal "Episode #{n}", card.at_css(".chip")&.text&.strip
       link = card.at_css("a.card__link")
       assert link, "card #{n} has a whole-card link"
@@ -18,8 +18,9 @@ class PagesRestyleTest < SiteTest
     end
   end
 
-  def test_homepage_lists_episodes_as_cards
-    assert_episode_cards(page("/"))
+  # The latest episode gets its own feature card, so the grid holds the rest.
+  def test_homepage_lists_earlier_episodes_as_cards
+    assert_episode_cards(page("/"), EPISODES.drop(1))
   end
 
   def test_episodes_page_lists_episodes_as_cards
@@ -55,10 +56,5 @@ class PagesRestyleTest < SiteTest
 
   def test_about_hosts_are_cards
     assert_equal 2, page("/about/").css("figure.host.card").size
-  end
-
-  def test_listen_links_are_chips
-    links = page("/about/").css(".site-footer .listen-links a.chip")
-    assert_includes links.map(&:text), "Spotify"
   end
 end

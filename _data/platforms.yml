@@ -1,14 +1,26 @@
-# Links to the show elsewhere (listen + follow), shown on the homepage and in the footer.
-# Leave url empty to hide a platform. Fill these in once the show is listed.
+# Links to the show elsewhere (listen + follow): homepage tiles, chips, footer.
+# Leave url empty to hide a platform. icon = file in _includes/icons/.
 - name: Apple Podcasts
+  kind: Audio
+  icon: applepodcasts
   url: "https://podcasts.apple.com/us/podcast/the-pingback-podcast/id6818664245"
 - name: Spotify
+  kind: Audio
+  icon: spotify
   url: "https://open.spotify.com/show/0M7PYgsCtumUzsEKSgYfny"
 - name: YouTube
+  kind: Video
+  icon: youtube
   url: "https://www.youtube.com/@PingbackPodcast"
 - name: X
+  kind: Social
+  icon: x
   url: "https://x.com/pingbackpodcast"
 - name: Overcast
+  kind: Audio
+  icon: rss
   url: ""
 - name: RSS
+  kind: Feed
+  icon: rss
   url: "https://rss.buzzsprout.com/2443886.rss" # Buzzsprout feed

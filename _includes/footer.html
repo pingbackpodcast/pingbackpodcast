@@ -1,8 +1,28 @@
-<footer class="site-footer wrap">
-  <p>Made by
-    {%- for h in site.hosts %}
-    {% if forloop.last and forloop.length > 1 %}and {% endif %}<a href="{{ h.url }}" target="_blank" rel="noopener">{{ h.name }}</a>{% unless forloop.last or forloop.length == 2 %},{% endunless %}
-    {%- endfor %}
-  </p>
-  {% unless page.url == '/' %}{% include listen-links.html %}{% endunless %}
+<footer class="site-footer">
+  <div class="wrap site-footer__grid">
+    <div class="site-footer__about">
+      <p class="site-footer__mark">{{ site.title | escape }}</p>
+      <p>{{ site.tagline | escape }} New episodes weekly.</p>
+    </div>
+    <nav class="site-footer__col" aria-label="Explore">
+      <p class="site-footer__heading">Explore</p>
+      <a href="{{ '/episodes/' | relative_url }}">Episodes</a>
+      <a href="{{ '/about/' | relative_url }}">About</a>
+    </nav>
+    <div class="site-footer__col site-footer__listen">
+      <p class="site-footer__heading">Listen everywhere</p>
+      <div class="site-footer__icons">
+        {%- assign live = site.data.platforms | where_exp: "p", "p.url != ''" -%}
+        {%- for p in live %}
+        <a href="{{ p.url }}" target="_blank" rel="noopener" aria-label="{{ p.name }}">{% include icons/{{ p.icon }}.svg %}</a>
+        {%- endfor %}
+      </div>
+    </div>
+    <div class="site-footer__col site-footer__hosts">
+      <p class="site-footer__heading">Hosted by</p>
+      {%- for h in site.hosts %}
+      <a href="{{ h.url }}" target="_blank" rel="noopener">{{ h.name }}</a>
+      {%- endfor %}
+    </div>
+  </div>
 </footer>
