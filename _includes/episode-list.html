@@ -1,7 +1,7 @@
 {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
 <div class="card-grid episode-grid">
   {%- for post in include.posts %}
-  <article class="card episode-card">
+  <article class="card episode-card" data-topics="{{ post.topics | join: ' ' }}">
     <div class="episode-card__media">
       <img class="episode-card__thumb" src="{{ '/assets/images/episodes/episode-' | append: post.episode | append: '.jpg' | relative_url }}" width="1280" height="720" alt="" loading="lazy">
     </div>

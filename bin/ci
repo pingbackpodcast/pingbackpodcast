@@ -35,7 +35,7 @@ Dir.mktmpdir("pingback-ci") do |site|
   end
 
   step["Episode front matter"]
-  required = %w[title episode description duration]
+  required = %w[title episode description duration topics]
   tracked = `git ls-files -z`.split("\0")
   topic_slugs = Array(YAML.safe_load_file("_data/topics.yml")).map { |t| t["slug"] }
   to_secs = ->(t) { t.to_s.split(":").map(&:to_i).reduce(0) { |a, b| a * 60 + b } }

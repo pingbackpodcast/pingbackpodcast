@@ -1,0 +1,10 @@
+<div class="card-grid topic-grid">
+  {%- for topic in site.data.topics %}
+  {%- assign tagged = site.posts | where_exp: "p", "p.topics contains topic.slug" %}
+  <article class="card topic-card">
+    <h3 class="card__title"><a class="card__link" href="{{ '/topics/' | append: topic.slug | append: '/' | relative_url }}">{{ topic.name }}</a></h3>
+    <p class="card__desc">{{ topic.blurb }}</p>
+    <p class="topic-card__count">{{ tagged.size }} episode{% if tagged.size != 1 %}s{% endif %}</p>
+  </article>
+  {%- endfor %}
+</div>

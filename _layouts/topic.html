@@ -1,0 +1,14 @@
+---
+layout: base
+---
+{%- assign episodes = site.posts | where_exp: "p", "p.topics contains page.topic" -%}
+<header class="topic-header">
+  <p class="episode-header__chips"><a class="chip" href="{{ '/topics/' | relative_url }}">All topics</a></p>
+  <h1 class="page-title">{{ page.title | escape }}</h1>
+  <p class="topic-blurb">{{ page.description | escape }}</p>
+</header>
+{%- if episodes.size > 0 %}
+{% include episode-list.html posts=episodes %}
+{%- else %}
+<p class="topic-empty card">No episodes on this topic yet. <a href="{{ '/episodes/' | relative_url }}">Browse every episode</a>.</p>
+{%- endif %}

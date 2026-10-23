@@ -51,6 +51,7 @@ minima:
   date_format: "%b %-d, %Y"
   nav_pages:
     - episodes.md
+    - topics.md
     - about.md
   # social_links:
   #   - { title: Pingback on GitHub, icon: github, url: "https://github.com/pingbackpodcast" }

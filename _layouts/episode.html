@@ -14,6 +14,8 @@ layout: base
         <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: date_format }}</time>
         {%- if page.duration %}, {{ page.duration }}{% endif %}
       </span>
+      {%- for slug in page.topics %}{% assign topic = site.data.topics | where: "slug", slug | first %}{% if topic %}
+      <a class="chip" href="{{ '/topics/' | append: slug | append: '/' | relative_url }}">{{ topic.name }}</a>{% endif %}{% endfor %}
     </p>
     <h1 class="episode-title p-name" itemprop="name">{{ page.title | escape }}</h1>
     {%- if page.description %}<p class="episode-summary">{{ page.description | escape }}</p>{% endif %}

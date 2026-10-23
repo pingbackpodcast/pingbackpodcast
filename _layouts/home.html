@@ -49,6 +49,8 @@ body_class: home
 </section>
 {%- endif %}
 
+{% include start-here.html %}
+
 {%- assign earlier = site.posts | slice: 1, 6 -%}
 {%- if earlier.size > 0 %}
 <section class="section" aria-labelledby="earlier-heading">
@@ -56,6 +58,14 @@ body_class: home
   {% include episode-list.html posts=earlier %}
 </section>
 {%- endif %}
+
+<section class="section topics" aria-labelledby="topics-heading">
+  <div class="section-head">
+    <h2 id="topics-heading" class="section-title">Pick a topic</h2>
+    <a class="btn btn--ghost" href="{{ '/topics/' | relative_url }}">All topics</a>
+  </div>
+  {% include topic-cards.html %}
+</section>
 
 <section class="section card listen" id="listen" aria-labelledby="listen-heading">
   <div class="listen__intro">

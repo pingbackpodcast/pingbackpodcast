@@ -1,0 +1,18 @@
+{%- assign picks = site.data.start_here -%}
+{%- if picks and picks.size > 0 %}
+<section class="section start-here" aria-labelledby="start-heading">
+  <h2 id="start-heading" class="section-title">Start with one of these</h2>
+  <div class="card-grid">
+    {%- for pick in picks %}
+    {%- assign ep = site.posts | where: "episode", pick.episode | first %}
+    {%- if ep %}
+    <article class="card">
+      <p class="card__chips"><span class="chip">{{ pick.label }}</span></p>
+      <h3 class="card__title"><a class="card__link" href="{{ ep.url | relative_url }}">{{ ep.title | escape }}</a></h3>
+      <p class="card__desc">{{ pick.blurb | default: ep.description }}</p>
+    </article>
+    {%- endif %}
+    {%- endfor %}
+  </div>
+</section>
+{%- endif %}

@@ -485,6 +485,30 @@ main { padding-bottom: 5rem; }
 .listen-tile__kind { color: var(--muted); font-size: 0.75rem; }
 .listen-tile__name { font-weight: 700; font-size: 0.95rem; }
 
+// Topics -------------------------------------------------------------------
+
+.topic-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1.5rem;
+}
+.topic-card { display: flex; flex-direction: column; }
+.topic-card .card__title { margin-top: 0; }
+.topic-card__count {
+  margin: auto 0 0;
+  padding-top: 1rem;
+  color: var(--ruby-text);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.topic-header { max-width: var(--measure); margin-bottom: 2rem; }
+.topic-header .page-title { margin-top: 0.5rem; }
+.topic-header .episode-header__chips { margin-top: 2.5rem; }
+.topic-blurb { margin: 0; color: var(--muted); font-size: 1.1rem; }
+.topic-empty { color: var(--muted); }
+.topic-empty:hover { border-color: var(--line); }
+
 // Episode page -------------------------------------------------------------
 
 [hidden] { display: none !important; }
