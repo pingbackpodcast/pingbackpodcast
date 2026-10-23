@@ -21,8 +21,9 @@
 #                                   make the Buzzsprout episode public (or
 #                                   schedule it); defaults to the post's date
 #
-# API tokens come from 1Password (vault "Pingback Podcast", items "Buzzsprout
-# API" / "Descript API") or PINGBACK_BUZZSPROUT_TOKEN / PINGBACK_DESCRIPT_TOKEN.
+# API tokens come from 1Password (vault "Pingback Podcast": "Buzzsprout API" item,
+# and the "Descript" item's "website publish API token" field) or
+# PINGBACK_BUZZSPROUT_TOKEN / PINGBACK_DESCRIPT_TOKEN.
 
 require "bundler/setup"
 require "optparse"

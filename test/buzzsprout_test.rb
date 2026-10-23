@@ -86,6 +86,13 @@ class SecretsTest < Minitest::Test
     assert_equal [["op", "read", "op://Pingback Podcast/Buzzsprout API/credential"]], calls
   end
 
+  def test_descript_token_is_a_field_on_the_descript_login_item
+    calls = []
+    runner = ->(*cmd) { calls << cmd; ["dtok\n", true] }
+    assert_equal "dtok", Pingback::Secrets.new(runner: runner, env: {}).fetch(:descript)
+    assert_equal [["op", "read", "op://Pingback Podcast/Descript/website publish API token"]], calls
+  end
+
   def test_environment_variable_wins
     runner = ->(*) { flunk "op should not run" }
     assert_equal "envtok", Pingback::Secrets.new(runner: runner, env: { "PINGBACK_DESCRIPT_TOKEN" => "envtok" }).fetch(:descript)
