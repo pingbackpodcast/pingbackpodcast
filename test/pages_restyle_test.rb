@@ -54,6 +54,12 @@ class PagesRestyleTest < SiteTest
     end
   end
 
+  def test_about_group_photo_caption_has_no_left_to_right
+    captions = page("/about/").css("figcaption").map { |c| c.text.strip }
+    assert_includes captions, "Greg and Joel."
+    refute captions.any? { |c| c.match?(/left to right/i) }
+  end
+
   def test_about_hosts_are_cards
     assert_equal 2, page("/about/").css("figure.host.card").size
   end
