@@ -15,12 +15,19 @@ body_class: home
       <a class="btn btn--primary" href="{{ latest.url | relative_url }}">Play the latest</a>
       {%- endif %}
       <a class="btn btn--ghost" href="{{ '/episodes/' | relative_url }}">All episodes</a>
-      <a class="btn btn--ghost" href="#listen">Follow the show</a>
     </div>
   </div>
   <figure class="hero__art card">
     <img src="{{ '/assets/images/cover.jpg' | relative_url }}" width="1200" height="1200" alt="Pingback Podcast cover art: a ruby gem sending out ping waves">
   </figure>
+</section>
+
+<section class="section card listen" id="listen" aria-labelledby="listen-heading">
+  <div class="listen__intro">
+    <h2 id="listen-heading" class="section-title">Follow the show where you already listen</h2>
+    <p>Watch full episodes on YouTube, or listen in any podcast app.</p>
+  </div>
+  {% include listen-tiles.html %}
 </section>
 
 {% include podcast-series-ld.html %}
@@ -65,12 +72,4 @@ body_class: home
     <a class="btn btn--ghost" href="{{ '/topics/' | relative_url }}">All topics</a>
   </div>
   {% include topic-cards.html %}
-</section>
-
-<section class="section card listen" id="listen" aria-labelledby="listen-heading">
-  <div class="listen__intro">
-    <h2 id="listen-heading" class="section-title">Follow the show where you already listen</h2>
-    <p>Watch full episodes on YouTube, or listen in any podcast app.</p>
-  </div>
-  {% include listen-tiles.html %}
 </section>

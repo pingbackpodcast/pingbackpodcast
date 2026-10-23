@@ -46,8 +46,14 @@ class HomepageTest < SiteTest
     end
   end
 
-  def test_hero_follow_button_jumps_to_listen_tiles
-    assert home.at_css('.hero a.btn[href="#listen"]'), "Follow the show button"
+  def test_follow_box_sits_right_under_the_hero
+    sections = home.css("main section").map { |s| s["id"] || s["class"] }
+    assert_equal "hero", sections[0]
+    assert_equal "listen", sections[1], "Follow the show box comes right after the hero"
+  end
+
+  def test_hero_has_no_follow_button_now_the_box_is_right_below
+    refute home.at_css('.hero a[href="#listen"]')
   end
 
   def test_footer_has_about_explore_listen_and_hosts
