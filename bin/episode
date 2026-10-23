@@ -3,6 +3,8 @@
 
 # Episode tasks. See docs/plans/2026-10-23-redesign-and-publishing.md.
 #
+#   bin/episode new N --youtube URL scaffold _posts/…-episode-N.md from the
+#                                   (unlisted is fine) YouTube video
 #   bin/episode transcript N        save Buzzsprout's transcript for episode N
 #                                   as _data/transcripts/episode-N.json
 #   bin/episode thumbnail N         save the YouTube thumbnail as
@@ -31,6 +33,7 @@ require_relative "../lib/pingback/thumbnail"
 require_relative "../lib/pingback/publisher"
 require_relative "../lib/pingback/secrets"
 require_relative "../lib/pingback/descript"
+require_relative "../lib/pingback/new_episode"
 
 ROOT = File.expand_path("..", __dir__)
 
@@ -45,6 +48,7 @@ OptionParser.new do |o|
   o.on("--at TIME") { |t| options[:at] = t }
   o.on("--print") { options[:print] = true }
   o.on("--descript LINK") { |l| options[:descript] = l }
+  o.on("--youtube URL") { |u| options[:youtube] = u }
 end.parse!(ARGV)
 
 command, number = ARGV
@@ -78,6 +82,10 @@ end
 
 begin
   case command
+  when "new"
+    abort "bin/episode new N --youtube <video link>" unless options[:youtube]
+    path = Pingback::NewEpisode.new(root: ROOT).run(n, youtube: options[:youtube])
+    puts "wrote #{path.delete_prefix("#{ROOT}/")} (fill in the TODOs)"
   when "transcript"
     path = Pingback::TranscriptImport.new(root: ROOT).run(n)
     turns = JSON.parse(File.read(path))["turns"]
@@ -99,6 +107,6 @@ begin
   end
 rescue Pingback::TranscriptImport::Error, Pingback::Thumbnail::Error, Pingback::Publisher::Error,
        Pingback::Buzzsprout::Error, Pingback::Secrets::Error, Pingback::YoutubeText::Error,
-       Pingback::Descript::Error => e
+       Pingback::Descript::Error, Pingback::NewEpisode::Error => e
   abort "bin/episode: #{e.message}"
 end

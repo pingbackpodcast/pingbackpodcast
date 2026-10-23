@@ -1,6 +1,10 @@
 # Pingback redesign + one-command publishing — plan
 
-Status: **plan only, nothing built yet.** Written 2026-10-23.
+Status (2026-10-23): **phases 1–7 built and committed locally, not pushed.** Waiting on
+Joel: review the drafted moments/topics, add the Buzzsprout + Descript tokens to
+1Password, confirm Descript API access, then a first real `/episode` run (episode 4).
+Open item: drafting from Descript's transcript export (markers → chapters) needs one
+real export to pin its format; transcripts come from Buzzsprout until then.
 
 ## Context
 

@@ -9,7 +9,8 @@
 #   3. Every episode's share card exists and is committed
 #   4. No episode is dated in the future (Jekyll would silently skip it)
 #      Chapters are in order; chapter and moment times fall inside the episode;
-#      every moment has committed art; topic slugs exist in _data/topics.yml
+#      every moment has committed art; topic slugs exist in _data/topics.yml;
+#      no TODOs left from `bin/episode new`
 #   5. Every internal link and image in the built site resolves
 #   6. The site test suite (bin/test) passes
 
@@ -44,6 +45,7 @@ Dir.mktmpdir("pingback-ci") do |site|
     raw = File.read(path)
     fm = YAML.safe_load(raw[/\A---\n(.*?)\n---/m, 1].to_s, permitted_classes: [Date, Time]) || {}
     name = File.basename(path)
+    failures << "#{name}: still has TODOs (finish the draft before pushing)" if raw.include?("TODO")
 
     missing = required.reject { |k| fm[k].to_s.strip != "" }
     failures << "#{name}: missing #{missing.join(", ")}" if missing.any?

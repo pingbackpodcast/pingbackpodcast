@@ -72,6 +72,14 @@ class AudioPublishTest < Minitest::Test
 end
 
 class EpisodeFileSetTest < Minitest::Test
+  def test_date_string_ignores_a_trailing_comment
+    Dir.mktmpdir do |dir|
+      path = File.join(dir, "2026-10-30-episode-4.md")
+      File.write(path, "---\ndate: 2026-10-30 23:00:00 -0700  # TODO: confirm\nepisode: 4\n---\n")
+      assert_equal "2026-10-30 23:00:00 -0700", Pingback::EpisodeFile.new(path).date_string
+    end
+  end
+
   def test_set_adds_or_replaces_a_key_without_touching_the_rest
     Dir.mktmpdir do |dir|
       path = File.join(dir, "2026-10-23-episode-4.md")
