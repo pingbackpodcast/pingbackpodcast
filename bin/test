@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Run the site test suite (builds the site once, then asserts on it).
+set -euo pipefail
+cd "$(dirname "$0")/.."
+exec bundle exec ruby -Itest -e 'Dir["test/**/*_test.rb"].sort.each { |f| require File.expand_path(f) }' -- "$@"

@@ -6,7 +6,7 @@ layout: base
 
   <header class="episode-header">
     {%- if page.episode %}
-    <p class="episode-num"><span class="visually-hidden">Episode </span>{{ page.episode }}</p>
+    <p class="episode-header__chips"><span class="chip chip--ruby">Episode {{ page.episode }}</span></p>
     {%- endif %}
     <h1 class="episode-title p-name" itemprop="name">{{ page.title | escape }}</h1>
     <p class="episode-meta">
@@ -45,7 +45,7 @@ layout: base
   </div>
 
   {%- if page.chapters %}
-  <section class="chapters" aria-labelledby="chapters-heading">
+  <section class="card chapters" aria-labelledby="chapters-heading">
     <h2 id="chapters-heading">Chapters</h2>
     <ol>
       {%- for c in page.chapters %}
@@ -59,9 +59,9 @@ layout: base
       {%- endif %}
       <li>
         {%- if page.youtube_id %}
-        <a href="https://www.youtube.com/watch?v={{ page.youtube_id }}&amp;t={{ secs }}s"><span class="chapter-time">{{ c.t }}</span>{{ c.title }}</a>
+        <a href="https://www.youtube.com/watch?v={{ page.youtube_id }}&amp;t={{ secs }}s"><span class="timestamp">{{ c.t }}</span>{{ c.title }}</a>
         {%- else %}
-        <span class="chapter-time">{{ c.t }}</span>{{ c.title }}
+        <span class="timestamp">{{ c.t }}</span>{{ c.title }}
         {%- endif %}
       </li>
       {%- endfor %}

@@ -2,16 +2,26 @@
 layout: base
 body_class: home
 ---
+{%- assign latest = site.posts | first -%}
 <section class="hero">
   <h1 class="wordmark">Pingback<span class="ping" aria-hidden="true"></span> <span class="wordmark__sub">Podcast</span></h1>
   <div class="hero__intro">
     {{ content }}
   </div>
+  <div class="hero__actions">
+    {%- if latest %}
+    <a class="btn btn--primary" href="{{ latest.url | relative_url }}">Play the latest</a>
+    {%- endif %}
+    <a class="btn btn--ghost" href="{{ '/episodes/' | relative_url }}">All episodes</a>
+  </div>
+  <div class="hero__listen">
+    {% include listen-links.html %}
+  </div>
 </section>
 
 {% include podcast-series-ld.html %}
 
-<section class="latest" aria-labelledby="latest-heading">
+<section class="section" aria-labelledby="latest-heading">
   <h2 id="latest-heading" class="section-title">Episodes</h2>
   {% include episode-list.html posts=site.posts %}
 </section>

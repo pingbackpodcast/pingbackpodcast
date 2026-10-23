@@ -12,3 +12,9 @@ group :jekyll_plugins do
   gem "jekyll-seo-tag", "~> 2.8"
   gem "jekyll-sitemap", "~> 1.4"
 end
+
+# Site tests (bin/test): build once, assert on the generated HTML and CSS.
+group :test do
+  gem "minitest", "~> 5.25"
+  gem "nokogiri", "~> 1.18"
+end

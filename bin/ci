@@ -9,6 +9,7 @@
 #   3. Every episode's share card exists and is committed
 #   4. No episode is dated in the future (Jekyll would silently skip it)
 #   5. Every internal link and image in the built site resolves
+#   6. The site test suite (bin/test) passes
 
 require "yaml"
 require "date"
@@ -75,6 +76,10 @@ Dir.mktmpdir("pingback-ci") do |site|
     end
   end
 end
+
+step["Site tests"]
+out, status = Open3.capture2e("bin/test")
+failures << "Site tests failed:\n#{out.lines.grep(/Failure|Error|runs,|Expected/).first(20).join}" unless status.success?
 
 if failures.empty?
   puts "CI passed."

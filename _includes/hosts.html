@@ -1,6 +1,6 @@
 <div class="hosts">
   {%- for h in site.hosts %}
-  <figure class="host">
+  <figure class="host card">
     <a href="{{ h.url }}" target="_blank" rel="noopener">
       <img src="{{ h.photo | relative_url }}" width="240" height="240" alt="{{ h.name }}" loading="lazy">
     </a>
