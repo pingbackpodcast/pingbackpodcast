@@ -58,8 +58,7 @@ Dark-first, drawn from the cover art (sampled `#181a26` background):
 - **Type:** Archivo stays (wide cut for headings, normal for body). JetBrains Mono
   only for timestamps and the terminal-prompt flourish, because the logo is
   terminal-styled.
-- **Light mode:** keep a light variant via `prefers-color-scheme` (same tokens,
-  light values). The current cobalt site goes away.
+- **Dark only** (decided): no light mode. The current cobalt site goes away.
 - **Keep from today:** the pinging dot (recoloured ruby), single-column reading width
   for prose, sentence case, no decorative arrows, no all-caps labels.
 
@@ -91,7 +90,8 @@ filter chips filter in place with JS and link to topic pages without it.
 
 ### Topics + start here
 - `/topics/` index and `/topics/<slug>/` pages (episode cards filtered by topic).
-- Start-here picks curated in `_data/start_here.yml`.
+- Start-here picks curated in `_data/start_here.yml`. **Hidden until ~6 episodes**
+  (decided); the row renders only when the file has entries. Remind Joel at episode 6.
 
 ### About
 Restyled into the card system; content unchanged.
@@ -172,7 +172,7 @@ thumbnails from YouTube; moments and topics drafted by Claude for Joel to approv
 5. Edit until Joel approves. **`sync` and `publish` only on his explicit word.**
 
 ### Secrets
-1Password items (vault to confirm, shared so Greg can use it):
+1Password vault **`Pingback Podcast`** (Joel's; not shared yet, so only Joel can sync/publish until Greg is added):
 `Pingback – Buzzsprout API` and `Pingback – Descript API`, field `credential`.
 Scripts call `op read op://<vault>/<item>/credential`; fail with a clear message
 if `op` isn't signed in.
@@ -184,8 +184,8 @@ push until Joel says "push"**. `bin/ci` grows with each phase.
 
 | # | Phase | Done when |
 |---|---|---|
-| 0 | **Joel's prep:** Buzzsprout + Descript tokens into 1Password; confirm the Descript plan includes API access; pick the vault | `op read` works for both |
-| 1 | **Design system:** tokens, card/chip/button components, hover + focus + reduced motion; restyle existing pages | Screenshots desktop + phone, dark + light |
+| 0 | **Joel's prep:** Buzzsprout + Descript tokens into the `Pingback Podcast` vault; confirm the Descript plan includes API access (needed by phase 6 only) | `op read` works for both |
+| 1 | **Design system:** tokens, card/chip/button components, hover + focus + reduced motion; restyle existing pages | Screenshots desktop + phone |
 | 2 | **Episode page:** new layout, chapters with seek, transcript with search + seek; backfill eps 1–3 from Buzzsprout | All 3 episodes show transcript and chapters; clicking seeks the video |
 | 3 | **Best moments:** front matter, moment-card art, grid; draft moments for eps 1–3 | Joel approves the moments |
 | 4 | **Homepage + episodes grid:** hero, latest card, thumbnails, listen tiles with icons, footer | Screenshots reviewed |
@@ -213,10 +213,13 @@ thumbnails and moment cards are committed.
   video loads only on click.
 - **YouTube description** stays a manual paste (by choice, no Google Cloud).
 
-## Open questions for Joel
+## Decisions (answered 2026-10-23)
 
-1. Topic list (e.g. Rails, AI, indie products, tools/Omarchy, security, community)?
-2. Start-here picks: which three episodes, and how to label them?
-3. Keep a light mode, or go dark-only like the artwork?
-4. Underlord highlight clips for social: generate them in Descript each episode, yes/no?
-5. Which 1Password vault, and should Greg have access?
+1. **Topics:** Rails & Ruby (`rails`), AI & agents (`ai`), Indie & business (`indie`),
+   Tools & setup (`tools`), Other tech (`other-tech`).
+2. **Start here:** hidden until about six episodes exist.
+3. **Theme:** dark only.
+4. **Underlord clips:** not yet; revisit once the pipeline runs smoothly.
+5. **1Password:** existing `Pingback Podcast` vault; share with Greg later.
+
+Still open: Joel to confirm the Descript plan includes API access (blocks phase 6 only).
