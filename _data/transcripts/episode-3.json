@@ -1,0 +1,710 @@
+{
+  "source": "buzzsprout",
+  "turns": [
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 20.9,
+      "text": "Hi, everybody. Welcome back to the Pingback Podcast, uh, for episode number three today. We've got a special guest with us today who, uh, needs probably no introduction, but I'm going to introduce him anyway, uh, and then let him introduce himself a little bit. Um, our guest today is someone, uh, you've probably heard of or known about without even knowing it. Uh, if you've ever subscribed to a feed, uh, on the internet, you can, uh, you can thank Sam Ruby, uh, for part of that because, uh, as of 2003, he was, um, really in the lead of, of kicking off what is known as the Atom standard, um, for feeds. Uh, he also helped build the Feed Validator. He's been a leader at the Apache Software Foundation, including, uh, a short bit as president."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 66.0,
+      "text": "He's worked on open source at IBM, uh, and he co-chaired the W3C's HTML Working Group during the HTML 5 years. Uh, Rails folks know him as a longtime author of Agile Web Development for Rails, and which is now in its eighth edition. Uh, after three years as a Rails specialist at Fly.io, he retired again. since then, he's built Roundhouse, uh, which compiles Rails apps into Rust, Go, and even native binaries. Uh, he just came, uh, came back from giving a, a keynote speech at Deck and Queen in Pune, uh, where the conference chat, um, was Basecamp's Campfire compiled to a single native binary with no Ruby inside. Um, oh, and by the way, he and his wife are ballroom dancing fans, which maybe we'll hear about, uh, during the show today."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 115.9,
+      "text": "So Sam Ruby, welcome to the Pingback Podcast."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 119.8,
+      "text": "Oh, great to be here. I'm not certain how much more I can add to that. I've been literally programming for 50 years. I worked at IBM for 39. I did retire after about 25 months. I w- I had an application that I wanted to host on the cloud, and, um, joined Flyte.io because of it, because, I mean, they wanted somebody who knew Rails, and, uh, I literally co-authored the book on it. Um, after about three years, I decided... I mean, they wanted to start telling me what to do, and I said, \"Oh, no, I'm retired. I- I'll just retire again.\" And I've been playing and building what's become Roundhouse. That wasn't what I intended to build, but it is... It's been a fascinating thing to, to see it mature. What I'd started with, you said, you'd mentioned ballroom dancing."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 166.3,
+      "text": "My wife and I do some ballroom dancing as a hobby. Um, just after COVID, I, um, went to a competition, and went out to the floor, and had both my wife and another instructor with me, and they s- they both were going to be s- dancing with me, and that's not the way it's supposed to work. You dance with one partner at a time. There was a scheduling mishap, and after the competition, my wife came up to the person and said You didn't use a spreadsheet, did you? And he said, \"Yeah.\" And it was just after COVID, all people canceling and whatever else, and rearranging all the, the heats and stuff on the spreadsheet. I made a mistake. My-- I said, \"You-- Sam could do better.\" So I wrote a program. There's people using it all over the world, um, and I wanted to host it on a cloud. And it originally just did scheduling, and that was fine."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 214.3,
+      "text": "And then people wanted invoicing, and that's fine. And they wanted scoring, and that's fine. And then at the events, scoring would often not work because it-- in-- Wi-Fi at an event's kind of weird. So I wanted something that translates my application, which has now got... I mean, it's a reasonable-sized application. Could do TypeScript or JavaScript, so it could actually run on the browser and offline. And I had another project I started in twenty thirteen, Ruby2JS. It's still out there. This is back when jQuery and, I mean, and, uh, CoffeeScript were popular because JavaScript sucked and browsers sucked, and these things helped. And one of the nice things about JavaScript is people would write JavaScript on the server and the client and be able to write code that runs both places."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 264.1,
+      "text": "I wanted to write, run Ruby on both places, so I wrote a Ruby2JS transpiler, and this was, again, twenty thirteen, long before LLMs. It was written by hand, and, uh, it, it did the job, and I used it and probably got a few dozen other people using it. And after a bunch of years, JavaScript improved, and I lost interest. Uh, another person picked it up, kept it going for another couple years, and then, um, now I had the problem again, so I lo- I gained interest again, trying to build my showcase application in JavaScript, and I s- started building on top of the base I built the twenty thirteen on and found that it didn't quite work. I had to take types, type inferencing seriously."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 311.0,
+      "text": "So I built a second version of it. It's called Railcar. It's out there, and it was built by LLMs, and it could do TypeScript, and it could do Rust and C# and all sorts of other languages, and basically anything I asked the LLM to do, it said, \"Okay, sure.\" But I took a look at it, and it was basically, \"Okay, here's a complete implementation for each language.\" It didn't actually share any logic, and that meant if I wanted to add a new feature, I'd have to add it to all of them. So I took a look at that design and said, \"Nah, that's not the right design. Let's build it like a real compiler.\" So Roundhouse was the third major iteration, and it did all my simple little tasks quite well, and I thought, \"Okay, can I do it with a real blog?\""
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 356.1,
+      "text": "I'm talking about a blog with, um, Action Cable and, uh, Tailwind CSS and, um, t- uh, Turbo Streams and everything, and it could handle it. It could handle everything, and so I transpiled it to literally a- about a dozen different languages, and you could deploy it literally on Vercel or on Cloudflare. I mean, basically, uh, it could deploy places where Rails couldn't work. So I did a demo for that in RubyConf and got some people interested in it, and I started playing with Campfire, got that working just before this Deck and Queuing on Rails conference you mentioned. And along the way, Matt started getting interested in it because he had been building this thing called Spinel, and I hadn't heard of Spinel when I started this, and when I heard about it, I started targeting Spinel and feeding him with dozens of, um, literally now hundreds of, uh, pull requests and issues and the like, improving Spinel, and he's actually done a, a number of issues back."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 418.2,
+      "text": "Um, he's using Campfire as a baseline to make Spinel better. And then he spoke up about it in a European conference, and a bunch of people got interested in Roundhouse, and then he spoke about it again at, uh, Rails World, and a lot more people got interested in it. And it's really taking off to the point where Shopify is interested in it. I mean, I'm not, not talking about my little blogger and not talking about Campfire, I'm talking about Shopify Core. And that is kinda huge. I have no idea whether it can be done, but I've so far not hit anything that couldn't be done. So it might just take some time. I've been answering some other questions. Uh, I mean, obviously I've never seen a code or anything, but, uh,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 459.8,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 460.6,
+      "text": "just the thought that something I started could end up being of value to Shopify is just beyond me"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 467.1,
+      "text": "That is pretty, that is pretty incredible. Um, and you mentioned it in, uh, I just, I watched your, your Deck and Queen, uh, keynote just the other day, and you mentioned how, and you just said it here how, y- a few weeks ago, a month ago, nobody really knew about Spinel, nobody really knew about Roundhouse. But the interest and the awareness has just, you know, skyrocketed since those conferences where you and Matt, uh, have mentioned these things, um, which, uh, is something that's been kind of a, a, a great way to help, uh, bolster the, the building of this application"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 498.6,
+      "text": "And I'm just sitting here enjoying the ride. I mean, I'm retired, uh, uh, watching Claude code. It's just amazing"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 506.4,
+      "text": "How, uh, uh, how, how does that feel as somebody who's been in the software world for as long as you have with as much experience and breadth of, of exposure as you have from, from writing Fortran to now having Claude write your code for you? How does this moment that we're in now feel? I, I've, I've not had, uh, the fortune to talk to somebody in your position yet, uh, about this. You know, most of us are, are, aren't as experienced as you, so how, in your shoes with your experience, how does it feel to be in this world of agents?"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 536.9,
+      "text": "I mean, you mentioned Fortran. My first language was Basic, and I literally programmed 370 assembler for about a decade. Uh, punched cards, COBOL, uh, mag tapes. Um, um, I mean, uh, my first access was on a Teletype. Um, everything that you read about in the ancient history, that's what I, I lived. Um, it feels less like a programmer and more of the owner of a business or something. You know, it's if you wanted to build something, you're still ultimately responsible. You're the one setting direction, but it's other people doing the work, and you're supervising and you're verifying, and you're doing that type of stuff, and that's sort of how it feels. I mean, basically, um, um, I'm not literally writing the code, not even literally reviewing the code."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 584.7,
+      "text": "I mean, I, I agree with that, uh, talk about that. I, I know a whole bunch of languages. Rust is not one of them, and Groundhogs is written in Rust, so it's not like I, um, I am correcting it or whatever. I'm just trying to build the constraints to say, \"Your job is to build something that behaves exactly like Rails.\" And that is a... That's a very rigorous definition all by itself, so I don't have to end up doing what a lot of people, other people do, which you s- you sort of specify your problem and the, the, um, the LLM guesses at what you want and builds slop. No, this, it's gotta build be... If I can say Rails behaves differently than that, that's a bug. So. And that's also-- No, go ahead."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 626.5,
+      "text": "No, go ahead. Sorry, I'll let you finish"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 628.3,
+      "text": "It also lets build a community. There's now a whole bunch of, um, people who are collaborating directly in, uh, Roundhouse. And since there isn't any architectural arguments, it's basically does it do the job? Uh, let's figure out what direction to go or what the, what the API should look like. It's just a bunch of people doing work, and that includes now three different people at Shopify they said."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 652.8,
+      "text": "Do you feel, uh, um, uh... I'm, I'm, first of all, I'm glad you said, uh, I'm just, I'm glad to hear you say the way you, you framed it, you feel kind of like a, a manager or supervisor, um, which is kind of the way I've, I've viewed myself now. I'm no longer writing the code, but I feel like I've kind of stepped up a layer in management, if you will, as a middle manager or even a higher level manager with all the agents actually writing the code. Um, do you feel loss, uh, if you will, for lack of a better term, as to not being able to actually type the code in or, or, or, or not?"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 685.6,
+      "text": "No, I mean, I'm still dropping into VI and making, uh, editing other things. Um, I am still aware of what can be done, and then because of that, being able to direct Claude. Uh, Claude will often build a plan and I say, \"No, I disagree with this piece.\" And it'll say, \"Oh, you're right.\" Well, of course it says, \"Oh, you're right,\" 'cause that's what LLMs do. But, um, it's... Some of my demos were basically Roundhouse running in the browser because Rust can compile to Wasm and the browser can run Wasm and the, the, the, uh, the demos can work that way. It was just sort of from my history and knowledge, I know that type of thing can be done, and I know it's something I could probably do in a week, and it did it in an hour. I mean, knowing what is possible is why you, is why this stuff is successful."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 737.4,
+      "text": "I wonder how this will affect future generations. With like you have 50 years of experience, I have 20, Joel have I don't know how many. We, we, we s- we, all of us wrote code before, so we know what you can actually make by wri- by writing code. This is why you can tell the LLM, \"Oh, I think this is a bad decision. We are going to the wrong path.\" What about people who just get into programming a year ago or just get into programming now? Because they won't have that experience, and they might not be able to tell the LLM when the LLM is wrong. I think that might be an interesting thing to figure out in the future once we are all gone and then there are people us."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 776.8,
+      "text": "I mean, it's certainly gonna have a big impact on the job market. There's a number of jobs are gonna go away, and there's a number of jobs gonna be created, and we just don't know what yet."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 784.2,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 785.7,
+      "text": "I mean, the people who-"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 786.8,
+      "text": "of an interesting similar thing on this island. We have these stone walls, and people used to build them dry, so with no mortar. And by now, nobody knows how to build it without mortar. But we have these old walls which are mortarless dry walls, and they are actually much better quality than the one people build today. But nobody knows how to build it anymore because all the old people died who knew how to build without concrete. It's kind of crazy"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 815.9,
+      "text": "I don't... Yeah, I don't"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 817.3,
+      "text": "end up in the same spot eventually"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 821.7,
+      "text": "I don't know what the future is. You can take a look and there's a number of jobs that are obviously gonna go away 'cause it's, it's the types of things that LLMs do well. But, um, the-- If people don't know what the right questions to ask are, they won't necessarily be able to get good success with, um, with agents. And so there will still be a big difference between those people who can build indirectly through LLMs and, uh, people who can't. It'll be a different set of skills. I mean, it's just been fun to watch and fun to participate in, and I don't know what the world will look like a year from now, 'cause this has all changed in the last year. When I started on Roundhouse, which was, um, about six months ago, it was still just beyond the ability to, um, complete your sentences or write a, write a complete, uh, method."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 870.3,
+      "text": "Now it's, uh, it can build entire programs."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 875.2,
+      "text": "Yeah. year was insane. I know because last year, last year at Rails World, we were talk- everybody was talking about, \"Yeah, Deno Lamps can be okay-ish, but it's still not there yet.\" And then this year it was like, \"Yeah, I don't write code anymore.\" It's crazy happened in 12 months"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 892.5,
+      "text": "I mean, the example I give to people is 12 months ago, it would've been insane to let your LLM write a program and release it 'cause it'd have security bugs. Today, it would be insane to have a human write a program and not have an LLM re-review it because it will have security bugs. The LLM will be able to catch the security bugs. They've obviously got agents that, that can do it, even including ones that haven't been released. So I mean, the whole thing is flipped"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 918.6,
+      "text": "Yeah. It's, it's, it's a change in the set of tools. I, I've, I've tried to think a lot about this and make comparisons to the past and, and I see it as an evolution of just the tools we're using."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 927.9,
+      "text": "Mm-hmm."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 928.6,
+      "text": "uh, uh, uh, back in the day, we couldn't use calculators to do arithmetic, and then a calculator came along, and then the graphing calculator, and then-- and then here we are. And so this-- I see this as a similar evolution of that, in that it's just we're always getting better tools and the way we use them, and what we have to learn around them is just what's changing"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 949.1,
+      "text": "Yeah. Even with programming like punch cards, right?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 952.1,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 952.8,
+      "text": "Who knows how to make punch cards these days? Only a few"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 957.3,
+      "text": "And go ahead"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 959.8,
+      "text": "Sam, which, uh, which, which Rails features, uh, Roundhouse have been, uh, been the most difficult to, to translate or to, to, to deal with, with, with Roundhouse so far? Sorry, I didn't mean to get us off track there"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 975.1,
+      "text": "No, that's a, it's a good question and I can't think of anyone 'cause basically, um Core to Roundhouse is the idea of a type system. So the type information flows from your schema, which of course has got strongly typed. You, your schema describes every, uh, every column and what data type it is. It flows through the, um, uh, controllers into the views, into the partials and whatever. And because Roundhouse treats Rails as a language, it actually understands render as like a procedure call, and in passing what variables are passed and like. And getting that from the schema, you find out that you might have a Rails repository that doesn't have a schema.db, uh, created just yet. And so I just said, \"Can you get that from the migrations?\""
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1020.7,
+      "text": "And it said, \"Sure.\" And, and, and then basically about a half an hour later, it said, \"Done.\" I mean, this, these, this types of things, yeah, I could have researched it and whatever else and figured out how to conceptually manually apply the m-migrations in order and whatever else, and build the same data the schema will be. And it just said, \"Done.\" So if I can do a well-defined question, um, I will say, as I did each language, I could, um... Rust is a lot harder than, uh, Crystal, which is, uh, which is slightly harder than, say, Python or whatever. So in other words, the different languages, the, the more rigorous they are. Um, when I was doing them initially, Rust took a week, whereas adding Python, I think, took an extra day."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1070.0,
+      "text": "So in other words, there is, there is a difference in the languages. Um, and at the moment, I mean, uh, my focus on Campfire is just admitting to Ruby-like languages. Uh, I'd go through the same thing again if I wanted to make Campfire run on Rust or other languages. In fact, I wouldn't make Rust the first one. I would probably pick, um, JavaScript or something the second one, and then a s-a slightly harder one like Crystal, and then move up the chain that way. e"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1093.8,
+      "text": "Is is there a part of Roundhouse, Sam, or, or a, a feature that, uh, you really, uh... W- what's the next bigger thing that you wanna work on or add to, to Roundhouse? Is there one particular thing, or are you just kind of building and going as things come, and having pull requests come in and get added?"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1109.6,
+      "text": "I mean, pull requests are coming in from all sorts of people doing all sorts of things. I'm trying right now to get Campfire back up and running 'cause all this interest has got people adding features to Campfire, and those features to Campfire are now exercising new things, and so I'm trying to keep up with it. Um, but there's people now trying to get Writebook working, people now trying to get Fizzi working, um, a, a person trying to get Mastodon working. And of course Shopify is trying to get Shopify Core working, which again, uh, totally boggles my mind. But, um, it's just been... I mean, trying a new code base, seeing what's interesting, and not really knowing what I'll be working on tomorrow, 'cause tomorrow may end up hitting a different feature of Rails that, oh yeah, that's kind of interesting. Go play with that. Um, so it, it's more I'm following than leading."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1156.8,
+      "text": "I'm tr- I'm actually trying different code bases saying, \"Oh, this is what doesn't work today,\" and trying to get that back up and running."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1165.0,
+      "text": "That, uh, that seems a reasonable way to, to do it, and it seems a way that, uh, makes the most sense with, with so much popularity and so many people giving pull requests from all sides to kinda just, you know, go with the wave of what's happening."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1175.6,
+      "text": "Mhm"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1177.2,
+      "text": "Um, so you mentioned, uh, Spinel, uh, Matze's, uh, uh, uh, product, if you will. Um, have you been working directly with him, having side conversations on how you guys can integrate, or are you just kinda working, working on the front end with everybody else and adding pull requests and features and, and things like that with... to, to make the two able to work together, uh, as cleanly as possible?"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1198.6,
+      "text": "I mean, I've now met Mats a couple of times, but no, it's, it's basically been all pull requests and, um, issues. And as a matter of fact, it's my Claude opening up an issue or a pull request and his Claude, uh, applying it usually within an hour, at worst case, within a day. Uh, and it's just been totally amazing. Initially, when we were doing that, um, there was a big difference between the time zones. I mean, he's in Japan, I'm in Raleigh. Uh, and so there was two small slices of times when both of us were, were active. Um, he's now automated it enough that Claude just continues running even when he's asleep. And so, um, you can actually see it working. I w- I would submit an issue or a, uh, pull request, and it would either apply it or say, \"Okay, I need to escalate this to, to, to Mats, and he will m- he'll make the decision.\""
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1251.1,
+      "text": "Um, and I'd say 80% of them, it, it just takes care of for Mats. So it just, just does it. And I wouldn't have thought LLMs would work well with an open source community, but it's worked well with Roundhouse integrating with Spinl and with other contributors on Roundhouse. So it is just, it's just amazing."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1276.2,
+      "text": "It, it really is amazing, especially when you've got agents talking to agents now, like you said. And I think you mentioned that in the, um, the keynote you gave where it's not you talking to, to Matt, it's your agents talking to each other,"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1288.1,
+      "text": "Yeah, absolutely. We're just observing."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1290.6,
+      "text": "Yeah. We're, uh, we're just observing and, and making sure they're, they're, they're staying in their lane, so to speak. Is, um, is there a feature or something, an area of Roundhouse that you, uh, would like folks to kind of spend more time on or pay more attention to that you, you feel like could use a little extra work at the moment?"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1312.2,
+      "text": "People were doing exactly what I would like, which is I'd like this field to support real applications, not just toy applications. Um, and two or three of the contributors are doing it f- on their real application that I can't see because, I mean, it's, it's, it's proprietary and that type of stuff. And, um, they share just enough details, but you could see it's of value to them, and any feature they add is a feature that everybody else will benefit from. Um, I mean, again, when I started, I wasn't certain this could handle a blog. And, um, I was pleasantly surprised when it did, and it's just wonderful to watch to see how far it can go. I mean, I figured with a blog, you'd end up having to say, \"Okay, it can do this much.\""
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1359.2,
+      "text": "You'd have to adjust the... You'd have to adjust your input slightly, but it's worth it because the output gets you a new platform or better performance or whatever, but it's worth it. And it turns out you don't have to do anything. It'll actually do the whole, do the whole thing, and you get the benefit. Um, I don't know whether that will scale all the way to, uh, uh, I mean, how far it will scale, but so far I've yet to hit that limit. But again, the, the main thing I'd like to see now is real applications using it, not just, uh, toys. I've got pretty demos. Let's get some real apps."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1392.7,
+      "text": "I, I think, Joel, what would be helpful to the listeners is to know that what they could do is just download Spina or Roundhouse, sorry, and Roundhouse has a check command, I think. But they can just ask the LLM, \"Hey, I want to compile my app with Roundhouse.\" It has an agents or whatever. If you tell your agents what it needs to, to run and check if your app is compatible with Roundhouse, it will be very much likely not compatible. But then you can tell your agent, \"Hey, can you fix me this first issue? Open a pull request, move on.\" And then if all of us will... But I think it, it's better to start with a small application, because if you start with something big, I can't even imagine how Shopify does this, how many issues it has to flag it for them. It's, I think it's insane."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1438.6,
+      "text": "if you start with a smaller application, then you fix a bunch of issues, then you move on to the next one, it's less issue. Then over time, we will fix everything because we can fix everything now"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1449.2,
+      "text": "Yeah. Um, a nice success story is when I went to India, um, the organizer of the conference, Vipul, actually had Campfire up and running, uh, on one screen so people could actually make comments and you could actually see it happen live. Um, he took that Campfire, uh, and actually modified it. He changed the skin to be the colors of the conference and that type of stuff. And I think it was like a total of 12 commits, and I asked him did he have any problems with it, and he said, \"I just let the LLM do it.\" I mean, these days, I mean, the Roundhouse, if you read the README, to s- to get started you do a cargo build and a... Which for most people, uh, especially a Rails person, that's not something you would know how to do or, or that type of stuff. You just point your LLM at it and it says, \"Oh, sure, I'll take care of that for you,\" and it just works."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1499.7,
+      "text": "I mean, I'm used to in open source projects you actually have gotta make it easy for people to get, come on, but nowadays the LLM takes care of that. So that's... If he could do that without any knowledge, uh, can you imagine, I mean, other people getting started and just making pull requests just by simply saying, pointing their LLM at it and saying go"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1523.3,
+      "text": "It's, it's truly a- an amazing time to be alive and just witnessing all this stuff, including flying cars, for crying out loud. Um, uh, in- incredible. Um, I'm, I'm just dumbfounded by where we're at. So, um, Sam, you mentioned in your talk in Pune, um, that you argued that, um, was a, a 4GL all along. Um, could you, for those who-- for folks who aren't familiar with the term or what it means or, or what that, what your standpoint is on that, could you explain, um, to, to folks what you mean by that?"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1559.3,
+      "text": "Okay. A first-generation language was machine code. It was actually just, um, hex or, um, octal numbers. Uh, that was actually the, the, the code the machine ran. The f- second generation was assembly language, uh, which you wrote in short little words and thing to move to the civil register and that, to stuff, and I've actually programmed in that for a fair number of years. Third generation languages was like Fortran and COBOL and C and Java and the like, and that includes Ruby. Um, as the people in those-- that era were evolving these languages, some people started experimenting with what they called a fourth generation language, where you didn't say, \"Do this, then do this, then do this, then do this.\" What you said is, \"This is the outcome I want produced.\""
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1604.7,
+      "text": "And the best example of that is SQL. You say select from where. You don't say what indexes you use and what order you do things and whatever else. You just describe what you're trying to get. And a lot of companies, including I worked for IBM, a lot of companies built application generators that you describe the output you want, forms and queries and the like, and it would actually build the code for you. And things that would take you a week to write, you could write in an afternoon because it knew how to do these things. Rails is pretty much that. You write models, views, and controllers. The c- the mo- the views are just basically some HTML with some things to b- be plugged in. The controller is usually just small snippets of, yeah, grab some data from here and some here and put it together and pass it off to the view."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1655.0,
+      "text": "And the, the model has validations and the like, but it's usually just little small snippets of code, and everything just kind of fits together nicely. Um, it's implemented not as a language, it's implemented as a framework. Uh, if you were to implement it as a language, you could build a compiler for that, and that's sort of what I've done. Um, and I argue that If you think about in chess, for example, you can think three, five moves ahead or the like, and a computer can do a bunch more. But as soon as you get like 10 or 20 moves ahead, it's just the combinatorics are just too big. That's why I'm skeptical of the things where people say, \"I can take applications that are significantly bigger than Campfire and one-shot it with an LLM in the future,\" because the combinatorics will just kill you."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1708.1,
+      "text": "Um, I think expressing what you want done in a much more concise method, describing what you want as the output versus how to implement that output means the LLMs could actually do that thing a lot more efficient. And there's a lot of studies out there, you can find them easily, that say Ruby is one of the best languages for LLMs because of token efficiency and the like. I think that scales. I don't think Shopify could one shot replace their core in Rust. Um, I do think now it is possible that it might be months away or possibly even a short number of years, but they could compile their entire core- Mm-hmm to, to a binary and run."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1756.2,
+      "text": "And the first step to that isn't necessarily doing that. The first step is-- I mean, I've talked to Toby. Their first step they wanna do is transpile it to Ruby, eliminate the Ruby, the Rails magic. That Rail is a sort of an interpreter, and it does all sorts of magic and stuff. But if you actually spit out instead of treating everything internally as a hash and the like, actually spit out separate classes for each model, spit out what attributes they've got and the like, things run a lot faster. And I've got benchmarks where... I've even got benchmarks right now where Ruby is, is faster than Spinl. I mean, it's, it's just amazing that, um, just amazing the, the different combinatorics and trying to figure out, um, which one's best and letting the LLMs build all of them, and you pick instead of, uh, doing analysis and, and, uh, saying, \"Okay, I'm gonna place my bets here.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1810.9,
+      "text": "Sam, would you consider with that in mind as kind of the way you walked us up the hierarchy of generations of language, so to speak, would you-- how do you view, um, where we're at with prompting, uh, and just talking to our LLMs? Would you consider that kind of a fifth generation, or how do you see that fitting in? Or is that still part of the fourth generation, but just more of a lateral move?"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1831.7,
+      "text": "That is literally what they explored and they called the fifth generation. And I don't, I don't know what I think about that yet. Um, my shorthand for that is the rigor has to go someplace. And when you're talking in English, that's not rigorous. That's not... I'm-- I've gotten lucky. I can say, \"Behave exactly as Rails does.\" And in a just a few words, I express something that is extremely rigorous. I don't have to figure out all the edge cases or whatever else. If it behaves different than Rails, it, it failed."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1865.3,
+      "text": "Mm-hmm."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1865.8,
+      "text": "most problems don't behave that way. In other words, if you're building an application, you're not sure what you want, you express it, and then you blame the, um, AI for building slop because it did what you asked for, but it not what you wanted. Um, which is, I mean, if you go back to Waterfall and that type of stuff, people building what you asked for it but not getting what you wanted is, is a common meme. They show trees with, uh, with a, with a, um, a swing or whatever, and it looks, it looks different from than what the customer asked for. Um, that's the problem with the fifth generation. I don't know the way to solve it. Um, somewhere the rigor's gotta be there. It could be in tests, it could be in specifications, it could be in, uh, by reference, which is what I'm doing, which is saying, \"Do like this other thing.\""
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1914.6,
+      "text": "Um, I mean, DHH was successful in porting Campfire. Toby did one too, uh, porting Campfire to, uh, to other languages, and that's another reference. There is, \"Here's an existing thing, do that.\" Um, that's a completely different effort than, \"I want to build a new business.\" So I... Yes, fifth generation is prompts, and I don't know where that's gonna lead. I just-"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1938.0,
+      "text": "interesting. Yeah"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 1941.5,
+      "text": "OK"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1941.8,
+      "text": "Um, the way you said, um, that the rigor, you need the rigor, that really just struck me in, in a good way that English language or any spoken language doesn't have the, the rigor and the f- the framework, for lack of a better term, that, uh, a, a language, a, a computer, uh, language has and a framework has. So do you, how do you achieve that to, to achieve, uh, this fifth generation to be an actual language? But right now we're using it, uh, in comparison. The comparison to other benchmarks, other frameworks is that rigor, and that's a really interesting, uh, that I hadn't thought of, but I would, I would agree with, and that's, uh, that's the rigor because you, you do need that. You need to, to give what we're feeding into these LLMs some sort of a, of a, of a framework, of a benchmark, of a, of a what, what should be done."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1996.4,
+      "text": "Um, and English as a language doesn't necessarily provide that"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 2000.9,
+      "text": "And that's why I look at a lot of these wonderful demos that people have produced as anecdotes. Basically, they, they, they don't prove a whole lot. They prove that you can, you can, you can do problems that are solved by s- reference, but that's not what most programs are. So you haven't solved the, you haven't solved the bigger problem, and the best example I know of today is Rails of... where it's got 20 years of people designing a, a framework for actually models, views, and controllers, how they relate, and it's all the batteries included. That's why I'm focusing there"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2039.9,
+      "text": "Which I think you've mentioned it, um, and, and I think others in the Rails community have said it as well, that, uh, we're kind of fortunate because, uh, Rails has provided the LLMs a really strong, structured, conventional foundation, uh, upon which it should read and ingest its information, whereas other frameworks and languages maybe don't have as, as much of the structure. So we're, we're fortunate in that regard to, to, to be starting from that position"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 2064.4,
+      "text": "Hmm. I wouldn't be surprised if somebody builds a Roundhouse equivalent for other ones. Um, but the ones that for- focus mostly on what problem you're trying to solve and less on how to solve it, uh, are the ones that are gonna be successful. Um, there are a lot more frameworks that are more f- uh, efficient in terms of running code than Rails, but they focus on mechanisms. They focus on, um, do this, do this, do this versus this is the output"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2097.2,
+      "text": "Yeah. And all of this is, uh, the, the beauty of all of this, at least one of the beauties in my mind, is that this is all open source. We're all working on this together as a community of folks across the entire globe, literally. Um, and you, you have a, a background spending a lot of time with the Apache Foundation, um, and, and working-- you've been working in open source, I think, 27 years or so, um, if I've done the math correctly. Um, and, uh, what, uh... How do you see the, uh... How did your time at Apache and the time you spent in, in open source for the last almost three decades, um, with all that experience and kinda seeing where we're at now with, with agents and, and, and the fact that more people are able to join the open source community because of LLMs and the ability to be more of a manager rather than a code writer, um, how do you, how do you see the, the health or the state of, of, of open source, at least the corner that you're, that you're hanging out in, um, uh, at the moment?"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 2156.8,
+      "text": "Um, three months ago I would've said I'm not certain this works with open source, and to my- much to my surprise, it's, it's been exactly the opposite. My first open source project was PHP t- in 1999. I sent an, uh, an email to a mailing, uh, mailing list and said, \"I have an idea I'd like to explore, and here's a sketch.\" Anyway, I, I submitted a, a email to a mailing list and s- the response was, \"Here's your CVS account,\" which was just amazing to me. I didn't even know what CVS was. It's re- it's the predecessor to Git, and I was immediately able to commit directly into main and, um, my name is still on the PHP credits, much to my surprise. Um, but that profoundly ch- affected me, so I've been able to join communities and build communities, and I'd never seen a community come together as fast as with Roundhouse, and the real reason why is that each person is coming with an, an agent."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 2214.4,
+      "text": "Uh, Roundhouse has got an agents.md file that basically says, \"These are the constraints.\" And everybody's agent knows to look at that. It... They know how to do the constraints, so I don't have to onboard anybody. They just basically point their agents at it, their agent, and some use Claude, some use other, uh, other models. They all, uh, they all follow the same rules, and it just works. So everybody comes on as a peer. Uh, it's much like my experience with PHP, and away we go. I have never seen a community come together this fast. Um, and no arguing, no whatever. It's just go"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2255.9,
+      "text": "I wonder, I wonder if that's because, uh, like you mentioned, uh, people, everybody comes with their agent, comes with their, their agents.md, their Claude.md file, and as we've mentioned already in our conversation today, we're almost one level removed. We're not the code writers anymore. So these folks, when they enter into these, uh, open source communities, they're not actually writing the code, they're managing their personal coding agent. So rather than, than, than-- They're, they're kind of one level removed. And, and one thing that DHH mentioned, which I think kind of applies here, is that, uh, when somebody submits a pull request to a project, they didn't actually write that pull request. They didn't actually write that code. So if, if it gets rejected or there's criticism of it, good or bad, it's maybe taken a little bit less personally because they didn't write it."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2302.7,
+      "text": "So, uh, that, that, that l- that slight level of re- of removal in the chain, uh, has, uh, maybe taken some of that personal, the, the personal feelings out of it that can come along with"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 2314.8,
+      "text": "Mm-hmm."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2315.1,
+      "text": "putting hard work into a project and then saying, \"Eh, that doesn't work,\" or, \"We don't like that.\" Um-"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 2321.5,
+      "text": "I would agree. Um I have seen, I mean, one of the things I often do when I wake up in the morning is tell Claude, \"Go, go see all the pull requests and figure out which ones are ready and put comments on the rest.\" And, um, and when it puts comments on one, their agents take a look at it and say, \"Oh, you're right,\" and, uh, makes fixes. And you're right, there's no hurt feelings, there's no anything"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2348.3,
+      "text": "Yeah, that's one of the beauties of agents is they, as far as we know, they don't have feelings."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 2352.4,
+      "text": "Yes"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2353.9,
+      "text": "We'll"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2354.3,
+      "text": "I also think we need"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2355.4,
+      "text": "they do have feelings or not"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2358.3,
+      "text": "And I also think maybe it's because there is the agents file, which tells the agents what you expect. So the, the actual pull request submitted meets more the expectation than if it would be a human who didn't read the whole read me and all of the curves here and there, because, you know, we don't like to read sometimes. And that's why maybe you get much better quality pull request actually, since people are using LLMs. Because that is the, the documentation and the LLM reads it. It's not lazy as humans, and we try to satisfy everything that's required. Like, hey, you need tests, you need documentation, you need a change log entry. It's all done by the agent automatically. It's not like a human. We are more prone to forget or just not want to do those things."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 2400.5,
+      "text": "And it's... I mentioned in the Deck and Queen on Rails, um, talk, the nice feedback loop. One person submitted a pull request. Their code, when they compiled through Roundhouse, got an error, and their agent said, \"Okay, let's just get rid of the error.\" And instead of rejecting the pull request or whatever, I changed agents to the MD to say, \"If you remove an error message, that's gotta be a positive assertion that that code now works, and needs to be accompanied by a test.\" And that rule, it's, I think, rule six in the, the list of rules, means no future pull requests got that error. Uh, I mean, basically the agents followed the rule."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2442.4,
+      "text": "Yeah, interesting uh... So you've, you are the, the author, Sam, of an amazing book that has been a foundation in the Rails community for a long, long time, and, and this book has, has really helped a lot of us Rails developers, uh, really learn the ropes and, and know, know some of the best practices in, in developing in Rails. Um, what, uh, over the time you've spent, uh, working with, um, Agile Web Development for Rails, what has, um, if you could narrow it down, what has, what has been w- one of the, the t- one or two things that have changed the most over the, the different editions of that book? Um, if you, if that's a po- an, a question you can answer"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 2480.9,
+      "text": "Well, first thing I wanna mention is I learned Rails from that book. Uh, Dave Thomas wrote the first edition, uh, when Rails 1 came out. He wrote the second edition still while Rails 1 came out because Rails was making so many changes the book was no longer relevant. Uh, by the time, uh, Rails 2 came out and he looked like he had to do a complete rewrite, he said, \"Ah, I want some help.\" And so he, I just got a call out of the blue and said, \"Would you like to help?\" And I've been doing it ever since. Um, Rails 2 and 3 and 4 were major rewrites. As I start to get further on, it's gotten a lot sta- more stable. The major things that happened in between was this brief diversion towards, um, supporting React as a front end and replacing it now with, um, Hotwire as the, as the preferred way, and my book has always focused on what the canonical preferred way is."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 2539.7,
+      "text": "And I'll be honest, I didn't quite care for all that React stuff. Um, I, I... React is great, and if you wanna go with React, I would actually prefer to use a, uh, JavaScript server framework. Uh, I mean, let's, uh, let's go all the way, not, not have two big, huge pieces to figure out how to integrate them. Um, and I've gotten a long ways with Hotwire, and so the, the major things were the additions of and then the removal of all the Webpack stuff."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2570.1,
+      "text": "Coupled along with that question, Sam, um, if for, for, for folks who are wanting to get into the software development world today, it's, uh, it's a much different world than it was two years ago, three years ago, let alone 30 years ago, 40 years ago. Um, how, uh... What kind of advice if, if for lack of a better term, would you give or what kind of a path, maybe is a better way to say it, should somebody who wants to get involved in, in software development, uh, if we can call it that still, as a career, um, these days in the age of, of LLMs and, and agents?"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 2602.7,
+      "text": "Then you got to find a way to ride the wave and not actually be, um, taken out by the wave. Uh, a lot of the people coming in as programmers, those jobs will be gone. What will be there is the people that can direct LLMs to do stuff, and that's not a trivial thing. There's a lot of people who can pick up Claude code and build crap because they don't know what they want. Um, so figuring out how to harness the energy of LLMs and pointing it in a, in a constructive way, I mean, the people who can Translate a requirement into a concise and complete rigorous definition and statement for an LM to follow, that's still a skill to have."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 2649.9,
+      "text": "Um, whether you r- are physically the one to write it down and code or not doesn't matter. The ability to actually think through a problem and, and solve it, and I don't know how to teach that. I don't know where that comes from. Uh, some of us learned it by actually writing code for dozens of years or whatever, but, um, um, there still will be the people who can't do that, and those people need help, and you can build a career off of that"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2682.3,
+      "text": "That's a really, really interesting way to say it is, is how do you teach that? And I hadn't thought about that, and it's true that you still have to be able to c- to communicate your ideas to the computer, and rather than using writing in Ruby or writing in, in some other language, you have to-- We're now writing in English, uh, kind of as our de facto, uh, input"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 2701.8,
+      "text": "input language Yeah, I"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2706.1,
+      "text": "uh, and how do you teach that ability to succinctly do that is, is, is the question, and that's the skill it sounds like, and I, I, that's, that's good right to hear you say that."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 2715.0,
+      "text": "Yeah, I-- and through college, I liked the math and the sciences and didn't quite care as much for the, uh, the literature and the, um, the other softer arts. But now it's sort of I'm learning that those things may end up being what's really important in the long run. The computers can take care of the, uh, can c-take care of the other stuff, uh, but being able to express yourself clearly and concisely and correctly, um, is the skill to have"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2745.2,
+      "text": "As time goes by, I think bigger"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2747.3,
+      "text": "for a minute. That's great Go ahead, Greg"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2752.9,
+      "text": "I think as time goes by, we will learn how to teach that because it's still too early. Like if"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 2757.0,
+      "text": "М?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2757.2,
+      "text": "we are just talking about this 12 months ago, who would have thought where we are going to be today, right? So I think as time goes by, we'll probably figure out what these newcomers needs to learn and how to learn achieve something without having the experience we have"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2773.5,
+      "text": "Do you, do you think, Sam, that, um, speaking specifically about Rails, um, that, uh, somebody who's, who's new or wanting to get into this, that it's as important today, um, to really understand the deep, to, to study Rails at its deep foundation, read the docs, read the guides, and, and know that stuff? Or is it more important, like you said, to kind of ride the wave? And, and, and to me, what that is saying, what I'm hearing is, is work with your agents, let your agents do this, and, and, and kind of go from there. How, how important do you... is it, do you think, uh, to actually still have, uh, some level of understanding, and you can say whether it should be deep or superficial, of the, the Rails underneath the hood?"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 2814.0,
+      "text": "I think you need to understand the concepts. I mean, model, view, controller. What, um... I mean, my son does some coding incidentally. It's, it's not his, his day job or whatever else, and, um, when I talk to him, he's not often sure this piece is running in the browser, this piece is running on the server. He doesn't understand that split. He just knows that he's written the code. Um, understanding which pieces are running where. I mean, I've heard Matz talk. I mean, Matz understands Spinel. He doesn't write a line of code of it, but he knows how it works. Um, I have people asking me questions about how things work in Roundhouse, and I can still explain. I'm not a compiler writer, but I've been watching it now for six months, and so I now know that there is a AST that lowers to an IR, and there's lowers that actually take it further, and there's emitters, and there are things that they do."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 2863.1,
+      "text": "Um, so by observing it all along, I have learned an awful lot, and you need to be able to understand at least at that level what your application does. Uh, all of us go into Google and s- and, and query syntax. Uh, I mean, you can be a programmer for, uh, twenty-plus years and still have to, uh, to Google to figure out what order parameters are and that type of stuff, and there's no shame in that. Uh, LLM just takes that up to the next level. But it's the understanding of architectures and how pieces fit together, um, there's no, no replacement for that."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2900.6,
+      "text": "Fair"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2900.9,
+      "text": "it's more like the Rails guides are more important to read these days. For high level, the docs are the more what kind of methods you have, what the parameter orders and whatnot. I think the Rails guides give you a more high level description of what the framework does, how it works, what the MVC is, w- how the convention, configuration works. I think the Rails guide is actually more useful these days to read for everybody than it was even before"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 2928.5,
+      "text": "Mm-hmm"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2932.3,
+      "text": "I've, uh, I've got a question that's a person- not a personal to you question, but a q- per question that's personal to me. Tell us, uh, Sam, if you could, what is the, uh, the meaning or the, what is the meaning of your, uh, your blog address, your, your, your name there? How did that come to be? And tell us what it is for those who aren't familiar with it"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 2951.0,
+      "text": "Okay, it's called intertwingly.net, and my avatar is basically a, a Celtic knot. It, it shows, um, everything all twisted together, and my philosophy has always been you need to look at the whole problem. Everything is intertwingled. You can't just sort of pe- pull out a piece and whatever. You actually have to be able to solve the whole problem. Uh, if you look at what Roundhouse is, it's trying to solve porting your whole application. It's not just the model piece or just the HTML piece or just the whatever. It's looking at the whole problem. Ruby is just a language. Rou- uh, Roundhouse tries to target Rails as a whole problem. That's why Intertwingly, looking at, at how all the pieces fit together, and the Celtic knot has been sort of my avatar."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3000.0,
+      "text": "I like that. It all inter-twingles together."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 3004.7,
+      "text": "I mean, everything in Roundhouse, every... All the types flow from the schema through the controller, through the, um, views to the partials, et cetera. And it is just e- everything, everything has to be... I mean, there's sort of a zen quality to it. You gotta look at the whole piece"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3019.7,
+      "text": "Yeah. Yeah. Um, Greg, what other questions, uh, should we ask Sam as we kinda get near the end of our conversation here today?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3031.2,
+      "text": "We covered pretty much everything. Yeah, maybe one thing. What is the, what do you think the, the, what is your expected outcome of, uh, Roundhouse? So where do you see Roundhouse in, let's say, six months?"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 3043.6,
+      "text": "Um, I mean, I probably wanna get... Yeah, I probably wanna get back to what I originally wanted to solve, which is to build offline processing for my showcase application, which is what I originally wanted to do while I've been doing all this stuff. But, um, meanwhile, I'm just simply having a blast. I mean, I'm retired. I could be reading books or playing video games or watching TVs, but I'm actually watching a compiler being built. And actually"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3069.3,
+      "text": "you are. Of course you are."
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 3070.8,
+      "text": "it, it's, uh, that's, that's more fun and interesting than all the other stuff I've been doing. Um, and hopefully in six months it's actually running real applications, businesses depending on it. Um, at that point, uh, it is a success, and it will be self-sustaining at that point too"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3091.5,
+      "text": "I s- I just hope that happens"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 3093.2,
+      "text": "Hmm?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3096.6,
+      "text": "Well, uh, as we get ready to land here, uh, Sam, and, and bring the, the conversation to a close, um, I, uh, just wanna say thanks for, for taking the time to, to join us today. And for our listeners who are either listening or watching, uh, a, a, a, a, a f- a fact about today's podcast with Sam is that Sam informed us right before we went on, on live today that this is his first ever podcast appearance. So we're honored to have you, Sam, as our, as our first guest on the Pingback Podcast. And, um, if folks wanna find you, uh, on the, on the internet, Sam, you already mentioned your blog. Could you spell that for folks, how to, how to get there, what that address is?"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 3132.5,
+      "text": "I-N-T-E-R-T-W-I-N-G-L-Y.net. But"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3141.0,
+      "text": "We didn't put it in the show"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 3142.2,
+      "text": "yeah,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3142.6,
+      "text": "note."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3142.8,
+      "text": "in the show notes"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 3144.3,
+      "text": "just-- Yeah, but just you can find me on, um, X or on Blue Sky or on, uh, uh, a number of different social places, LinkedIn, et cetera. And from there you can trace back"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3156.6,
+      "text": "Sam, is there anything else you wanna share with anybody about, um, any of the projects or that you're working on or otherwise, or anything we didn't touch on today?"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 3163.9,
+      "text": "No, I, I, I think you came well prepared and I, I think that's exactly We, we dis- did discuss all the things I wanted to talk about"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3172.9,
+      "text": "Excellent. uh,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3174.8,
+      "text": "Great"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3175.5,
+      "text": "thanks for all the work you're doing with Roundhouse, but thanks for all the work you've done over the last decades. Um, as we mentioned off the top, you're a, a really, um, a, a, a foundational figure in our, in our, in our world. So thank you for all the work you've put in, and I'm excited that you're in your second retirement still choosing to watch code compile rather than sitting on the beach, uh, and reading books and sipping a lemonade. So thank you for that, Sam. Um, and I, I can't wait to see more work from you in your retirement. Um, hopefully you're keeping it fun and, uh, and light and not having to worry about things maybe as much as you did while you were a, a bill-paying career worker. But, uh, but thank you for all of your work that you continue to do today"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 3215.4,
+      "text": "Appreciate it. Thank you"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3217.7,
+      "text": "I can also just second Joel. Thanks for everything you've done for the Ruby community, 'cause I was also learning from your books and, and I love the whole idea behind Roundhouse, and I think it's gonna be great for the community in the future. So thanks for everything you've done so far and for any future work we do"
+    },
+    {
+      "speaker": "Sam Ruby",
+      "t": 3236.9,
+      "text": "Appreciate it"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3239.2,
+      "text": "All right. Well, thanks everybody for tuning in to the episode today. Until the next time, be well"
+    }
+  ]
+}

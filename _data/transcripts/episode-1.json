@@ -1,0 +1,860 @@
+{
+  "source": "buzzsprout",
+  "turns": [
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 21.6,
+      "text": "Hey, everybody. Welcome to the first episode of the Pingback Podcast with your hosts Joel Gaff and Greg Molnar. Um, we're here today to, uh, introduce our very first show. Um, before we get any further, um, I'll introduce myself. My name's Joel Gaff Jr. Uh, I'm a Ru- by- Ruby on Rails software developer. Um, and, um, with me I've got h- co-host Greg Molnar. Greg, why don't you tell us a little bit about yourself?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 47.6,
+      "text": "Hi, everyb- hi, every-everybody. My name is Greg, and I'm, uh, also a Rails and Ruby developer, just like Joel. I'm also penetration tester. And yeah, this is going to be your very first episode"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 59.0,
+      "text": "Well, uh, speaking of this being our first episode, Greg, um, the, the, the, for this podcast came to be just about a week ago or so when we were both in Austin attending Rails World 2026. Um, tell, tell everybody how this, uh, how the, how the idea for this podcast came about"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 79.0,
+      "text": "So I knew Joel online before, and then we met at Rails World. And then at the after party, few- after a few drinks on my end at least, I don't know how much did you had to drink,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 91.0,
+      "text": "as well, yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 92.5,
+      "text": "we were chatting, and then we are talking about how I live on this isolated island and, uh, how my only opportunity usually to talk to tech people is conferences, and this is why I love them, and this is why I, I, I go to conferences. And then I just told the... Actually, it was Raul. Raul was also with us, and I just told the guys, uh, \"I'm actually thinking about starting a podcast so I would have a, a, a way to talk tech with someone regularly, not just when I go to conference.\" And then Joel immediately said, \"Oh, let's go for it. I'm gonna be your co-host.\" We shook hands, and then we followed up, and here we are."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 128.2,
+      "text": "And, uh, we'll maybe share in the show notes, uh, or somewhere attached to this, the photo we took afterwards, which we are considering to be our thumbnail. To be determined yet. Um, uh, but we can definitely share that little, uh, that, that, uh, photo we took. But yeah, that's how it happened. It was kind of a, a bar bet you might call it. But, uh, but yeah, we shook hands on it, and here we are just about a week later, uh, with episode one of the Pingback Podcast. So, um, on this podcast, uh, the idea that Greg and I have is that we will talk about all things from Ruby, Rails, uh, general technology, uh, maybe even some entrepreneurship and other things. So don't expect this to be just about Rails or just about Ruby, um, but kind of the, the world that we live in as software folks and as tech folks, um, and all the things that kind of come along with it."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 175.4,
+      "text": "So, um, that's a, a general idea of what you might expec- uh, expect from the, the podcast here."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 182.6,
+      "text": "Yep, exactly"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 183.4,
+      "text": "yeah. So speaking of Rails World, um, this was my first ever Rails World, uh, in Austin, uh, a, a week or so ago. And, uh, I don't know about you, Greg, but it was, uh... I've been to other conferences before for other types of, of things, and this was, it- the Rails World community, the Rails community, and the community that was there in Austin felt really like a community. Um, other conferences you go to, you kinda feel like you're just a single person watching all the talks. But it really feels like a community. Um, did you, do you have a similar feeling, um, of w- how things went at Rails World, or what the vibe was like there?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 219.9,
+      "text": "Yes. I go to, uh, my, a lot of Ruby conferences, and you are exactly right. It, that, that's what it, it sets apart. It's like a co- community. You're never on your own. If you are on your own, somebody's gonna go there and talk to you for sure, and, and you can... And people are very friendly, very welcoming. And Rails World is the, in my opinion, is the crown jewel of the Ruby conferences. It's just the whole organization, everything. From the music, to the after-party, to the little games, to all, to the venue, to everything, it's just made for us. It's perfect. I think the reason for this is because Amanda really gets us. She knows what we prefer, and that's why it's always, for me, that's always the best conference of the year. I really like small conferences as well for a different reason, because if you go to a small conference, it's 100 people, you talk to pretty much everybody."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 272.2,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 273.1,
+      "text": "And I usually also watch the talks. At big conferences, I never watch the talks. I'm always in the hallway because there's always somebody who I can talk to. And, uh, at Rails World, I'm sure I missed people I know because it's so big. It's more, it's 1,000, over 1,000 people. You cannot talk to everybody. Actually, there was Avi. I wanted to talk to Avi, and we were looking for each other for a day, and then we found each other."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 297.0,
+      "text": "happen. There's so many people"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 297.8,
+      "text": "Yeah, we had to message to each other, \"Where are you?\" multiple times, and then by, I think, the end of first day, we finally found each other at the door, at the exit door. So yeah, I, I, I really think that the Rails, Ruby conference are very welcoming"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 311.9,
+      "text": "Yeah, and I like the way you said this is the crown jewel. Um, I've been to some, to, to one smaller Ruby conference, uh, XO Ruby, um, put on by Jim Remstik, and it was a great conference. Small, about 50, 60, 70 people, and you get to talk to everybody. But man, Rails World is really just, there's a ton of energy and obviously tons of people, um, and it really is kind of the pinnacle. Um, and, uh, next year it was announced that, tell everybody who doesn't already know, where's Rails World 2027 gonna be, Greg?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 340.7,
+      "text": "It's going to be in Lisbon, Portugal"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 342.6,
+      "text": "Little bit, little bit closer to you, a little bit farther from me"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 346.4,
+      "text": "Yeah, it's great news for me. It's only a two hours flight, no connection. So for me it's gonna be easy travel"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 353.1,
+      "text": "Yeah, we didn't, we didn't share with people where we're at. Um, so I live in Portland, Oregon in the US, and where are you at, Greg?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 359.9,
+      "text": "I live in Portugal, but I own an island in the middle of the Atlantic. It's called the Azores, and it's a small island, 160,000 people. Very remote. Very beautiful, but very remote"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 371.3,
+      "text": "I think we're, what did we say, seven time zones apart from each other, uh, right now. So almost, uh, you know, we're on completely different parts of the world. Um, but, uh, yeah, I think having it in Lisbon next year, uh, seemed like a logical choice. Uh, it seems like the conference has kind of gone from Europe to North America. This was the first time it was in the United States, I think. Um, but it, it made sense that, uh, I expected it to be somewhere in Europe. And I'm personally excited to have it in Lisbon because I've been to Spain a handful of times, but never been to Portugal. So I'm looking forward for the chance to, to explore Portugal and, and Lisbon next year."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 407.0,
+      "text": "Yeah, it will be fun for sure. I don't know what the venue is going to be. We don't know it yet. But Lisbon as a city, it's pretty nice. It's, it's not as nice as it used to be actually. You know, tourism, too much tourism I think ruins things"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 421.1,
+      "text": "Yeah,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 421.5,
+      "text": "my experience, and it's ve- a, a very, uh, high demand location, but it still will be fine. It's nice. It's green. The weather is, is usually perfect in September. Not cold, not warm"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 435.4,
+      "text": "No,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 435.7,
+      "text": "So we should have"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 436.4,
+      "text": "my smart, my smart speaker thinks it's, it's being talked to right now, but, uh, it's not."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 443.9,
+      "text": "So yeah, it should be fine. I-I'm really glad it's close to me finally. I don't need to travel much. Amsterdam is also-- was also a good location for me. It's easy to get there"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 453.5,
+      "text": "Yeah, anything in Europe is obviously much closer to you, but, uh, I think it's only fair that, uh, uh, that we kind of split it across the, the globe like that. So it's easier for you next year, and it's harder for me, but hey, that's, that's just part of the way it goes."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 466.9,
+      "text": "Yeah, even Toronto was good actually for me. It's a six hours direct flight. My problem on the... if I go to the west is more like the jet lag, you know, because I wake up super early and I'm very tired during the day. If I go towards the east, it's just I'm getting more tired in the evening, but that's no big deal. I can just go to bed earlier"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 486.0,
+      "text": "Yeah. Yeah, that's, uh, that's a good point, the jet lag, and especially if you're only going for a conference that's two or three days long, you're taking the whole conference to... You never really catch up from the jet lag, so, um."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 496.4,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 497.4,
+      "text": "So, uh, circling back to Rails World 2026, uh, I'm sure anybody that's watching this podcast or listening to this podcast, um, is aware of the opening keynote speech that was given by, uh, David Heinemeier Hansson, DHH. Um, and it has been somewhat of a, to put it lightly, a polarizing talk, uh, I think, uh, would be an easy way to say it. Um, I personally, I, uh, I, I'm still kind of trying to digest it, but I'm not, I'm not one of those people that's upset or angry or, or frustrated. I mean, I think, uh, he, he spoke so much about how AI is really becoming a big part of our life as folks who work with software, which was completely not surprising to me."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 544.5,
+      "text": "Um, but I think he did say some things that were surprising to even me and to many folks, um, uh, other programming languages and how he's using them and how 37signals is using them. Um, what-- how did you, how did you see that? What were your thoughts on the, the opening keynote?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 561.1,
+      "text": "I need to rewatch it because I was very tired and jet-lagged when"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 565.0,
+      "text": "There we"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 565.3,
+      "text": "I watched it. But my takeaway was just basically nobody really knows what's gonna happen in a year. Because if you look back at last year's DevsWorld, nobody would have thought where we are going to be at this time. It's just crazy. You, you can't foresee the future. And if we go by this pace, then he might be really right, and we might be not needed in a year at all, or, or our profession is going to be changed a lot for sure in the next c- le- the next couple of months. You can't really deny that. Uh, but yeah, he's using other languages because they are faster. It was a bit of a surprise. And, uh, yeah, I... And also I, I really admire David."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 610.7,
+      "text": "I think he sees a lot of things which other people don't. But on one thing, I don't really agree with him. I think you should still not to write-- read all lines of code like you used to, but you should still glance through the code you are working with. Otherwise, you have absolutely no idea."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 627.5,
+      "text": "Sure"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 628.2,
+      "text": "And I think to me, that's scary if I have absolutely no idea what's going on under the hood and if I deliver something, especially if I deliver to a client."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 636.6,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 637.1,
+      "text": "this is also an important thing to consider. It's just like React and Facebook. It's you are not Facebook, you probably don't need React. But everybody, even on their personal blog, started to use React, which doesn't make sense. Most of us is not DHH."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 653.0,
+      "text": "Mm-hmm."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 653.5,
+      "text": "of us writes code for clients. We have responsibilities. We are-- W- we have to deliver things and put our name on it, and if there is an issue with what we produced, we are responsible, right?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 665.7,
+      "text": "name on that issue"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 666.5,
+      "text": "Whereas he, he can do whatever he want. If-- even if he would say, \"Yeah, I'm gonna go all in on AI, and I'm gonna drive Basecamp to the ground\", he, he already made it, so why would it matter to him, right?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 679.9,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 680.7,
+      "text": "I don't think that's what he's going to do. I'm just saying that he's in a totally different position than ninety-nine percent of the Ruby developers and, uh, and we should take that into consideration."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 692.2,
+      "text": "Totally true. Totally true. And you, especially somebody who works in, in security and penetration testing and that kind of stuff, it-- Security should be important to all of us, but maybe even more so to you, who that's kind of where your lens is, is looking at, you know, what are the gaps that would make this application maybe a little bit less secure than it could or should be. So that makes sense."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 711.6,
+      "text": "Yes, and, and in my experience, AI is, is somewhat okay with security, but you really need to know how to drive it. You need the domain knowledge, you need the security knowledge to tell it how to check things. Because I find issues in applications where people are using heavy AI-- heavily AIs with a bunch of different tooling to check for security issues, and they are still shipping security issues. And the more code you ship, the more likely you are overlooking things."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 738.2,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 738.7,
+      "text": "complicated and complex something gets, the more likely you have issues. And if you have issues in something which you have no clue about how it works, good luck figuring it out"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 750.6,
+      "text": "It's kinda like, uh, going into a, a technical interview every time you look in your code base now. Here's this code base I've never seen before. Figure it out. You have 15 minutes, uh, so to speak. Um, I think, I think more than one person at the conference from low-level beginning folks to, to DHH talked about how they're-- haven't written code by hand in months at this point in time. And obviously DHH talked about how he hasn't even barely looked at the code. Um, but I tend to, to agree more with you where, sure, you don't need to be looking at every single line of code, but it doesn't hurt to look at some of the critical parts in your applications. Um, and it, it, it could be really simple stuff, um, just to make sure that you're, you're not, um, you're not shooting yourself in the foot when you could easily be, um, be keeping your app more secure and running more efficiently."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 802.2,
+      "text": "Yeah. And I don't know about you, but I don't like to look at Rust. I, I was actually learning Rust when it was like 0 point something, 10, 15 years ago. I don't, I don't remember. It was m- about 10, 12 years ago when it was in very early, early stages. And, uh, it was somewhat okay-ish to start it, but then I was like, \"Yeah, this is not really my cup of tea.\" And then since then I didn't really touch it. I read some Go stuff sometimes because of security work, but I only read a little bit of code, and I always try to avoid because it's really not something I like to read"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 835.6,
+      "text": "Well, that's, that's something we can brag about as Rubyists, that how beautiful Ruby is to look at and read and understand as humans. Um, whereas I think, uh, I forget, I-- somewhere along the line, I don't know if it was on X or if it was at the conference, somebody showed an, a snippet of Ruby code versus the same snippet in Rust, and it was just ugly and undecipherable and, and, and just ugly easy to work with. But, you know, that's the point, the point it seemed like that I'm gathering from DHH and everybody who's using Rust as the language of the day, is that it-- don't care what it looks like because it's fast. So, um,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 872.3,
+      "text": "I think it's the second ugliest language. The ugliest I ever worked with was Objective-C. That was a crazy syntax, crazy syntax. And back then you had no option, because if you wanted to do any iOS development, you had to do Objective-C."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 888.1,
+      "text": "yeah. Well, let's just be thankful that we don't have to read a ton of Rust or any Rust at all, um, nor Objective-C. Um, and, you know, on that note, um, there were a couple of things that were talked about at the conference, Roundhouse and Spinl. Um, tell us, uh, give us the, the background on, on... Pick one of those and, and kick that off for us. That was one of the things we wanted to talk about today"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 913.0,
+      "text": "So Spinner is the older project of the two. Spinner is from Matz, creator of Ruby, and it's an ahead of time compiler. And what it does, it takes your Ruby code and it compiles it down to, uh, s- to s- to a binary, and, uh, which means you gotta... You, you have a super fast exe-executable at the end. And then what Roundhouse does, this has, uh, limitations, of course. If you are using certain Ruby features like heavy meta programming, it's not going to work. And then there came a other person who is, uh, really n-good to have in the Ruby community called Sam Ruby. He's actually retired a few years ago, but now he came back to save us probably. And he started to work on this Roundhouse idea, which is a, I think he calls it a compiler."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 962.9,
+      "text": "I haven't looked into the details, so I might be totally wrong here, but from what I understand it's"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 966.3,
+      "text": "at it yet either deeply, so I'll, put that"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 968.6,
+      "text": "From what I understand, it's more like a transpiler, so it can transpile your Ruby into other languages. Here is the input, and then you can define the out-- the input is the, the Ruby code, and the output can be whatever: Go, Rust, Crystal. Actually, we should also talk about Crystal a little bit. But, uh, to f- to wrap up the Roundhouse thing, uh, then you get, uh, you can also use it, uh, for Spinel. What it does, it fixes all the non-compatible-- it rewrites all the non-compatible Ruby into compatible Ruby. Like, all the meta programming is going to be expanded probably, I don't know, but that's how I think it might work. And then you can compile it with Spinel, and then you get a really fast executable at the end. And, uh, this is one way to speed up your Ruby and to be able to still look at the code and glance it through, understand it, but the end result is a fast executable."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1023.8,
+      "text": "So you get the speed benefit. It's not as fast as Rust, probably. It might not be. I don't know how the binary is, if it, if it's, uh, if it can run on anything, if it's a single binary for every architecture or, or not. I, I didn't look into those details. Maybe Rust wins in that segment, but I think you need to weigh your preferences, and if you want to be able to look at the code, this might be a better option, in my opinion, than just rewriting it in Rust."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1052.6,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1053.3,
+      "text": "uh, because you can write beautiful Ruby perfectly and super fast with AI and just still glance. This is how I work, actually. So I, I, I didn't use AI for a very long time. I'm a very late adopter because I had a bunch of issues with the quality of the code it generated. I still have-- It's, it's a rollercoaster for me. Some days I'm like, \"This is st- unbelievably stupid,\" but it still makes me faster because it generates a bunch of, bunch of stuff and I just need to correct what I don't like. But on some days, I'm like, \"This is amazing. I think I might be out of a job soon.\" So... But, uh, but the point is that you can still use an LLM and generate Ruby, glance it through, and then you are s- still ten times faster than you used to be or however much faster you are."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1098.4,
+      "text": "And if you have any issues, you can still look at the code and, and understand because you know what, what the code does and, and what it is. It's not like it's a totally foreign language."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1109.7,
+      "text": "Yeah, it's a, it's a pretty-- We were talking about before we started recording, uh, today on how, uh, it, it really, you could take, like you mentioned, you could take an app in any language, transpile it into another language, uh, compile it into the binary, and it's just, it's created this, workflow or this portability from language to binary and which gives you so many different options, including speed with a compiled binary and the ability to go from language to language relatively easy. Uh, I mean, it's as-- I, I've not used either of these yet, but it's, I imagine it's fairly simple of giving it a repo or giving it some code and some files, it spits it out on the back end, more or less. Which,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1152.2,
+      "text": "Yep"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1153.1,
+      "text": "Greg, think about that. Think about if we would've said two years ago, years ago, that you could do that. I, I don't know. Personally, I would've thought, \"Wow, that would be pretty magical. Maybe we can do that in 15 years or 10 years.\" But here we are, like, know, AI's kind of been around for, I would say, two or three years in our world significantly, and my mind is kind of blown that that's where we're at and that that's, that we can actually do that. Um, and sure, maybe it's not perfect, um, but neither is the code that you and I write by hand. We, we as individual developers are gonna write code that has bugs in it. Um, and, and that's-- And so will the code that Claude writes for me or, or whoever. So, um, the fact that we've got these agents and these models and these, these applications that can, can do this is, I don't know, pretty mind-blowing, uh, to, to say the least."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1210.2,
+      "text": "Yep. Yeah, and for the speed, uh, discussion, the other, uh, interesting thing which I don't really see that many people talk about, which is weird, is there's this language called Crystal language, which is actually it looks like Ruby,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1226.6,
+      "text": "Okay"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1227.5,
+      "text": "statically typed, but the syntax is, is very, very close to Ruby. You can probably take any Ruby code or most Ruby code and just, uh, run through the Crystal compiler, and it's going to compile. And then you get an executable at the end, a binary, which is super fast with a low memory footprint, and, uh, it's still readable. The only issue is it's a typed language. I used Crystal. I, I did a few project in Crystal, and my problem was the static typing, especially one of these projects was using an API, multiple APIs ingesting JSON and, you know, sometimes in the bloody JSON, it... one field is a, a string, sometimes it's an integer. So I had a lot of issues with the types, with the strict static typing, but otherwise it's a, it's a very good language in my opinion."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1276.1,
+      "text": "But, uh, I think the web is not made for static types, uh, especially if you're interacting with third party data because you c- you have to trust that the data is actually strict with the types. And, uh, yeah, like nil, sometimes a nil is an empty string in the JSON response, sometimes it's nil, sometimes it's an empty string. I had a bunch of these issues which I had to resolve, and sometimes the solution was to not have a type. It has a wildcard type. I don't recall now what it's called, but it's kind of like the any in TypeScript. So"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1307.0,
+      "text": "Mhm"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1307.2,
+      "text": "it can be whatever type, but then why do we even have types, right? If you can have whatever type, that's basically a non-typed language."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1314.7,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1315.9,
+      "text": "But I think that would be another, uh, interesting thing to, to look at for people who are like, \"Now I don't really need to write all the code. I, I don't need to write all the type annotations,\" which a lot of people don't like, but I still want to be able to read the code, and Crystal is much, much more readable than Rust or anything else. It pretty much looks like Ruby."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1337.4,
+      "text": "Sure"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1337.8,
+      "text": "I recommend you to just check it after the, after we finish the recording because it's a really interesting language."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1343.6,
+      "text": "and we can put a link to it in the show notes as well,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1345.7,
+      "text": "Yeah,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1346.1,
+      "text": "we, uh, when we"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1346.7,
+      "text": "definitely put the link in the show notes"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1347.8,
+      "text": "I'm not super familiar with it. I, I... You had mentioned it before, uh, but I haven't looked at it and played with it, but, um, it's something that I'll check out as well. That sounds pretty cool"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1355.8,
+      "text": "Yeah, I used it, uh, uh, also at the early, early times when it was a zero whatever re- re- release every time and they release a new version, I had to rewrite some part because it didn't compile anymore because they broke everything. But now it's... I don't know what the current version is, but it's in a stable version, so now you don't have the same issues I used to have. And even with those issues, I loved it. I enjoyed it. It's, it's pretty much like writing Ruby with type annotations,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1380.6,
+      "text": "Yeah, with some"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1381.6,
+      "text": "wasn't that much fun, but it wasn't too bad either, and the speed is just insane"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1387.2,
+      "text": "Significantly faster than, than,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1389.3,
+      "text": "Significantly faster. So, uh, uh, Ruby, uh, there is a, a framework called Kemal, and it's kind of like Sinatra in Ruby. It's basically a Sinatra clone in, uh, in Crystal. And if you run the Sinatra version, the response times are in milliseconds. If you run the Crystal version, the response times are in microseconds."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1412.0,
+      "text": "Wow. Microseconds. That is,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1414.9,
+      "text": "Yeah. So"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1415.4,
+      "text": "is fast."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1416.4,
+      "text": "it's blazing fast"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1417.9,
+      "text": "are, are lightning"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1419.6,
+      "text": "Yeah, it's blazing fast. It's blazing fast."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1422.6,
+      "text": "All right"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1423.7,
+      "text": "It's, it's a very interesting language, but, uh, yeah, I think for web stuff in general, I don't know, I would still stick to Ruby and Rails"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1432.4,
+      "text": "Fair enough. Fair enough."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1435.2,
+      "text": "Yeah. But yeah,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1435.6,
+      "text": "Um, yeah, what"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1437.4,
+      "text": "we will still see where we go with this whole AI thing. But I love to see how a lot of people started to say, or not just to say, started to experiment with things, to say, \"No, no, no. So Ruby is small, let's make it faster. Let's see where we can take this, and we don't wanna go to Rust. We can, we can experiment with other tools like Spinner and Roundhouse.\" It's amazing to see how these things evolve."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1462.4,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1463.0,
+      "text": "Also, they are very popular from la- like the last week. I think Roundhouse had, like, a thousand pull requests or something. Crazy"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1470.5,
+      "text": "Matt's posted about how, uh, uh, the, the Spinl, uh, PR, uh, load jumped significantly since, since Rails World, which makes sense. He, he mentioned it a couple times during the, uh, the day two, uh, opening keynote when he was talking with DHH. And, um, yeah, I'm sure it's, uh, it's just gone bonkers since everybody now is... It's gotten in front of everybody"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1493.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1494.1,
+      "text": "Well, uh, let's see. There was, uh, maybe we're getting close to, to maybe wrapping up for the day. Um, but one thing I wanted to point out, uh, and, and talk about, uh, something that you and I, uh, are, are kind of a part of outside of the Ruby and the Rails is Omachi. Omachi, however you wanna say it. If you're DHH, you say it one way. If you're, if you're somebody, you say it another way. Um, you just published your first, uh, plugin. Is that what I remember seeing?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1521.5,
+      "text": "Yep, yep. I made my first plugin. It's an UpSignal integration. It's a very, very simple plugin. It is a, a, a bar widget or whatever it's called in Omachi."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1532.5,
+      "text": "on the"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1532.8,
+      "text": "Basically, your main bar, you have a little, uh, icon which shows if you have any new issues, uh, on, uh, UpSignal. Then you can click, see the list, see the-- some of the details, and then you can assign it to yourself. You can close the issue if you fixed it and deploy the fix or, and, or you can just click on it and s- and go to UpSignal and see how it is. And it's a very, very lightweight ac-- uh, plugin because it actually just builds on top of the UpSignal CLI. So you have to install the UpSignal CLI. You have to do the authentication through that. So this plugin doesn't ha-- It's like, it's a, a lot less security considerations doing it this way. It's not my responsibility. It's all in the CLI."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1574.1,
+      "text": "Right."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1574.5,
+      "text": "is just building on top of that"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1576.3,
+      "text": "That's awesome. Um, and that's, that's"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1578.6,
+      "text": "It's super easy to make"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1580.1,
+      "text": "It's"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1580.4,
+      "text": "it"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1580.7,
+      "text": "easy. I've built a couple of small plugins as well, um, and it's, it's, it's beyond simple to have your agent, let's be honest, to have our agents build them for us. Um, but I built a similar one for Hatchbox. I use Hatchbox to deploy, um, almost all of my applications, and I built a little top bar widget where I can click it and see all of my apps, when the last deploy was, whether it was successful or not. I can redeploy, I can restart, all from the bar there, um, connected through the API that, that Hatchbox has created. So I don't have to go to hatchbox.io and, and manually open up another browser. It's all right there. So it's really great when I'm working and pushing to main, uh, in Hatchbox, which I have set up to automatically deploy. Um, I can go up to the top bar and see when that deploy actually is finished, so I know that it's live and it succeeded."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1628.5,
+      "text": "Um, and it makes, uh, it makes the, the flow so much easier when I'm, when I'm doing that constant, uh, pushing and, and, and updating. And, uh, that's one of the beauties of, of Omachi is that all these little, these little tools that we can create for little, little things that you want to, to have as a little convenience, um, in your system"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1647.9,
+      "text": "Yeah. Yeah, and also it brings out the Linux mentality to have to connect a lot of little tools to do something bigger."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1655.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1656.9,
+      "text": "I'm also working on a new project for a... It's an interception proxy. You know, if you are working in security and you do penetration testing, the way it works, you have an interception proxy. So every request goes through this tool, and then you can see the details of the request, all the request headers, response headers, and then the most important part is then you can modify them and, and play with it, and that's how you usually trigger vulnerabilities or find issues."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1683.0,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1683.9,
+      "text": "And, uh, there is one called Burp Suite, which I use for years. It's a really good one. I like it. It... Well, mostly I like it. It's a Java tool, so I don't like that part. It's ugly. It's not nice at all. S- The UX is not the best, but it's a really good tool still, and also it costs like... Now they increased the price. Now it costs close to, like, six hundred bucks a year, the license,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1706.6,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1707.4,
+      "text": "my license was just about to expire. And then I had this idea for years that why don't I build something for myself which is not cross-platform, just Linux. I can build on top of existing tools. There's a bunch of tools which I know I could just piggyback on it,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1722.7,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1723.3,
+      "text": "I need is basically just a, a UI and, and just inter, uh, connecting all these tools. And I started to work on that one, which is, it's still in early stage. I use Crystal, actually. So I get the, I get the binary at the end. And, uh, and yeah, it's, so it's web-based. It's on top of man in, man in the middle proxy, which is a, a, a Linux proxy. So it... I don't have to do all the heavy lifting. And, uh, yeah, I will see how that goes. But this whole Linux mentality is a really good one to have that. We have all these little tools and just connect the pieces together. It's just like Ruby and, uh, and RubyGems, right?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1766.7,
+      "text": "Yep."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1767.1,
+      "text": "when you build a rail set, usually you just connect the pieces"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1770.2,
+      "text": "Plug it"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1770.6,
+      "text": "and then... Exactly"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1772.7,
+      "text": "You know, you re- you, you just said something there, uh, that made me think of, uh, how when you said you had this subscription which cost $600 a year and you decided to not renew it and just build your own tool. I think, I know I'm, I'm in the same boat with so many subscriptions that now that we've got agents, and especially with, with Linux, I've, I've considered I really need to pay for this thing that, that I could probably make an alternative for? Um, and I've, uh, I've, I've made a couple of, of things that I've already used. Um, and the one I'm working on recently right now is, um, I use an online accounting system for my small business, um, to do all my accounting, to re- reconcile my bank statements and transactions and all that."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1818.0,
+      "text": "And just, I, I don't use it a ton, but I, I need something. But it costs, I think, probably like $600 a year. And, and I said, \"Could I make something for it?\" And I'm probably really close to, um, um, having a product that will work and be able to replace that. A little, um, bookkeeping app for a, for a small business. So, um, I say that to then raise the question of what do you think is, is happening to... I mean, we're guys that work in software, and we build products, and we work for clients who build products and s- and services and things like that, which is if we can just build tools that we want, is SaaS gonna be a thing anymore? Are these tools w- without taking another two hours to talk about this, uh, what do you think about the fact that we can now create our own tools and not subscribe to the tools that we used to subscribe to?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1869.6,
+      "text": "Is that gonna be a good thing or a bad thing?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1872.5,
+      "text": "I think SaaS is still going to be a thing because it's, uh... So if I would be a company-- There are different tools. Like, I think the, the tools that are in danger is the ones which are targeting an individual, and they are pricey, like the five to six hundred bucks a year. Because if you can get that done in, let's say, half a day and whatever, a few tokens and with help of AI. But even without that, to be honest, this tool, I could have done this years ago on my own. It's not a lot of code"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1903.2,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1903.9,
+      "text": "I'm connecting a lot of pieces, but I just had the idea now. I was thinking about it for a long time, but now everything just clicked with this whole Omash thing. It's like, \"Oh yeah, this is how you build a plugin.\" It's just, I just connected the pieces. It's super easy. Why not just do it with something else as well? So I think these tools are in danger. But let's say if you are a company and you pay for something for the company, they don't want to host anything. I know this from experience from my previous workplaces, like let's say, uh, uh, UpSignal. Uh, everybody rather pays for it or... Not even UpSignal, there is the other one, Sentry. Sentry used to have this kind of extortion pricing thing that once you went through your limits of the exceptions, which was super easy to do because you deploy a bloody bug and then it just floods, right?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1949.1,
+      "text": "If you have a lot of visitors, yeah, it floods you, and then you paid, let's say, a hundred bucks a month, and now you need to pay two fifty."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1955.7,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1956.2,
+      "text": "this, otherwise, for the rest of the month, you don't see any exceptions, which is crazy. And you have to upgrade, and then maybe someone needs to downgrade next month, et cetera. It's a hassle. Maybe sometimes people forget it. But even though this was a big issue, the, the operations people said, \"We are not gonna host anything.\" They said you can self-host actually Sentry and alternatives as well. But operations people said, \"No, no, we don't wanna self-host anything. We are hosting our own software. That's enough of a headache. We don't want any more responsibilities.\" So I think pro-- tools that are targeting companies are not in danger at all because a company still values their own. They want their own people to focus on their product, not to build more products just for in-house use or internal use."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2001.3,
+      "text": "That's a really, a really good point, and I hadn't thought about it in that framing, but, uh, I, I, I would agree with you wholeheartedly and I'm, I'm gonna take that framing. Whereas tools that are assigned or designed for individuals, probably gonna disappear. Like you said, a few tokens an afternoon and you can re-replicate that. But a big company who's got a lot more on the line and, and, and it's just way easier for them, they're gonna be just utilizing what exists. and on top of it too, um, guys like and gals like you and me, it's real easy for us to just spin up a little application, but most folks out there are not software engineers uh, in,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2038.2,
+      "text": "Yeah,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2038.9,
+      "text": "And even, even though normal folks, if you will, can go on and use Claude and make something, it's, it, it's not as prevalent. There's-- I, I love my wife, but there's no way she would ever get onto Claude Code and make an application of, of any kind. She's just gonna buy whatever exists. So I think there's that too. Um, but for folks who are in that tech world and, and have that, that spirit of wanting to tinker and make something on an individual level, I think you nailed it. That's-- Those are the tools that are gonna start going, going bye-bye."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2068.2,
+      "text": "Yeah, yeah. All developer tooling which used to be paid, I think those people are in danger of losing their business. But if you still target regular folks, yeah, I, I have the same thing. We-- I-- My wife wouldn't be able to get anything done with Claude. It's impossible."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2083.5,
+      "text": "I, um, I'm-- I've"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2084.8,
+      "text": "impossible"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2084.9,
+      "text": "an Adobe Lightsh- uh, Lightroom Classic, uh, user. All of my... Outside of my phone photos, all of my photos that I take with my other cameras, I use Lightroom Classic, and I still pay, I think, $10 a month for it because it's just, I'm into their ecosystem. But there's been some, some tools for OMARCI that people have been developing recently I've seen on X that are either out already or very close to being out, and I think I'm gonna be able to, hopefully by the end of this year, that subscription for once and for all. And I know there's already other, uh, tools that kind of existed to, to get away from, from Lightroom Classic, but, um, uh, it's just the fact that it's on Linux now, um, is gonna be a, a game changer. So I'm excited to have 120 extra dollars every year, uh, moving forward that I didn't have to pay to Adobe for just holding my photos in a little catalog, um, on my computer"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2139.2,
+      "text": "Yeah. But there's also the question of these tools which, let's say I make this, uh, interception proxy, uh, public, and anybody can... It's just open source. Anybody can use it. The question is going to be, or with your, your Lightroom alternative is, if the developer loses interest in, let's say six, eight months, 12 months- Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2160.8,
+      "text": "Right"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2161.5,
+      "text": "then maybe then you are gonna go back to the SaaS option because"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2165.2,
+      "text": "true"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2165.8,
+      "text": "Ruby development. Because I see some people like Carmine Paolino, the Ruby on Rail guy, he makes so many bloody tools. I'm like, \"Man, how do you have time?\" And I, maybe I'm wrong, but m- I think he might lose interest after a while in some of those, and then maintenance is going to be having a, a, a downward spiral, and then the tool is going to be not as great as it could be. But we will see. We'll see."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2190.8,
+      "text": "And that's probably just kind of one of the risks you take in the, the risk and, and return, uh, and the return on the fact that you're not paying for these tools. Great, so you get it for free, but the risk is that it might disappear in six months, a year, two years, whatever. Um, so you can pay for a service or not pay for a service"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2209.5,
+      "text": "But actually thinking about it, you can just take it over and then you can just"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2213.8,
+      "text": "could"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2214.1,
+      "text": "do whatever you want. It's open source"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2215.9,
+      "text": "it's going, or you could take it over and, and make your own, your own fork of it, um, or, or just maintain it from there. So, uh, yeah, a lot happening in software. Um, well, Greg, we've been"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2227.9,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2228.2,
+      "text": "for a little over half an hour now. Um, is there anything we wanna to chat on before we wrap things up for the day?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2234.3,
+      "text": "Yes, one thing I really want to mention is there will be a conference next week in India, Deacon on Rails, uh, Deacon Queen on Rails, I think that's the whole name, and, uh, if you can still buy a ticket, get the visa and get there, it's really interesting because the Roundhouse guy, Sam Ruby, is going to do a keynote there."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2255.7,
+      "text": "Ah, sweet"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2256.6,
+      "text": "So even just the recording, I can't wait to see the recording and see what the talk will be about or, or his take on this whole AI and Ruby's future thing is going to be. So definitely go there if you can. Uh, I think we're gonna ship this probably tomorrow, hopefully. So you will ha- still have time to book your flights and go to India. I would have loved to go to this conference, but I had too much other things to plan, too much traveling, and I was like, \"Ah, I don't wanna go to... It's too far to go to India as well this year.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2290.0,
+      "text": "Yeah. Yeah, much closer to free than for me. There's no way in the world I could make it to India, uh, next week from Portland, Oregon. But, uh,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2298.0,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2298.5,
+      "text": "yeah, that's a, that's a good one. We'll put the, we'll put the, a link in the show notes so folks can, can hop on and, and check that out"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2306.7,
+      "text": "Yeah, and I think that's it. We can wrap it up. I think we had a good time. And, uh, we didn't mention at the beginning, but we will have guests, so probably the next episode we'll have a guest"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2317.4,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2318.0,
+      "text": "if we can book someone. And then from then on, it's gonna be either just the two of us or hopefully a guest every time"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2324.5,
+      "text": "So whenever we can get a guest, we'll have some guests on. If not, uh, folks get to hear us ping, ping back and forth and, and, and talk about what's going on in the tech world these days."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2333.6,
+      "text": "Yep"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2334.3,
+      "text": "Awesome. Well, uh, Greg, thanks for chatting today, and everybody that was listening, thanks for listening to episode one of the Pingback Podcast. We will catch you in the next episode. Take care."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2345.7,
+      "text": "Cheers. Bye"
+    }
+  ]
+}

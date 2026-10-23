@@ -16,6 +16,11 @@ hosts:
     photo: /assets/images/hosts/joel-gaff.jpg
     role: "Rails developer in Portland, Oregon"
 timezone: America/Los_Angeles
+# Transcript speaker labels (from Buzzsprout) -> names shown on the site.
+# Guests go in each episode's front matter as speaker_names.
+speakers:
+  "Greg": "Greg Molnar"
+  "Joel Gaff, Jr.": "Joel Gaff Jr."
 # Share cards (1200x630, made by bin/og-cards): og/default.png for pages via
 # defaults below; each episode sets its own og/episode-N.png.
 # Full 3000px podcast cover: assets/images/pingback-cover-3000.png

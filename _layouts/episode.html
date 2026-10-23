@@ -2,72 +2,111 @@
 layout: base
 ---
 {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-<article class="episode h-entry" itemscope itemtype="http://schema.org/PodcastEpisode">
+{%- assign transcript_key = "episode-" | append: page.episode -%}
+{%- assign transcript = site.data.transcripts[transcript_key] -%}
+{%- assign yt = page.youtube_id -%}
+<article class="episode-page h-entry" itemscope itemtype="http://schema.org/PodcastEpisode">
 
   <header class="episode-header">
-    {%- if page.episode %}
-    <p class="episode-header__chips"><span class="chip chip--ruby">Episode {{ page.episode }}</span></p>
-    {%- endif %}
-    <h1 class="episode-title p-name" itemprop="name">{{ page.title | escape }}</h1>
-    <p class="episode-meta">
-      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: date_format }}</time>
-      {%- if page.duration %}, {{ page.duration }}{% endif %}
-      {%- if page.guests and page.guests.size > 0 %}, with {{ page.guests | array_to_sentence_string }}{% endif %}
+    <p class="episode-header__chips">
+      {%- if page.episode %}<span class="chip chip--ruby">Episode {{ page.episode }}</span>{% endif %}
+      <span class="episode-meta">
+        <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: date_format }}</time>
+        {%- if page.duration %}, {{ page.duration }}{% endif %}
+      </span>
     </p>
+    <h1 class="episode-title p-name" itemprop="name">{{ page.title | escape }}</h1>
+    {%- if page.description %}<p class="episode-summary">{{ page.description | escape }}</p>{% endif %}
+    {%- if page.guests and page.guests.size > 0 %}<p class="episode-guests">With {{ page.guests | array_to_sentence_string }}</p>{% endif %}
   </header>
+
+  {%- if yt %}
+  <div class="episode-video" id="video" data-youtube-id="{{ yt }}">
+    <button class="video-facade" type="button" aria-label="Play episode {{ page.episode }} on YouTube">
+      <img src="{{ '/assets/images/episodes/episode-' | append: page.episode | append: '.jpg' | relative_url }}" width="1280" height="720" alt="">
+      <span class="video-facade__play" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
+    </button>
+  </div>
+  {%- endif %}
 
   {%- assign bz_show = site.buzzsprout_podcast_id -%}
   {%- if page.buzzsprout_id and bz_show and bz_show != "" %}
-  <div class="episode-player" id="buzzsprout-player-{{ page.buzzsprout_id }}"></div>
-  <script src="https://www.buzzsprout.com/{{ bz_show }}/{{ page.buzzsprout_id }}.js?container_id=buzzsprout-player-{{ page.buzzsprout_id }}&player=small" charset="utf-8"></script>
-  {%- elsif page.embed_url and page.embed_url != "" %}
-  <div class="episode-player">
-    <iframe src="{{ page.embed_url }}" width="100%" height="{{ page.embed_height | default: 180 }}"
-      frameborder="0" scrolling="no" loading="lazy" title="Play {{ page.title | escape }}"></iframe>
+  <div class="card episode-listen">
+    <p class="episode-listen__label">Listen instead</p>
+    <div id="buzzsprout-player-{{ page.buzzsprout_id }}"></div>
+    <script src="https://www.buzzsprout.com/{{ bz_show }}/{{ page.buzzsprout_id }}.js?container_id=buzzsprout-player-{{ page.buzzsprout_id }}&player=small" charset="utf-8"></script>
   </div>
   {%- elsif page.audio_url and page.audio_url != "" %}
-  <div class="episode-player">
+  <div class="card episode-listen">
+    <p class="episode-listen__label">Listen instead</p>
     <audio controls preload="none" src="{{ page.audio_url }}"></audio>
   </div>
   {%- endif %}
 
-  {%- if page.youtube_id %}
-  <div class="episode-video">
-    <iframe src="https://www.youtube-nocookie.com/embed/{{ page.youtube_id }}" loading="lazy"
-      title="Watch {{ page.title | escape }} on YouTube" frameborder="0"
-      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <div class="episode-body{% if page.chapters %} episode-body--with-aside{% endif %}">
+    <div class="episode-notes prose e-content" itemprop="description">
+      <h2>Show notes</h2>
+      {{ content }}
+    </div>
+
+    {%- if page.chapters %}
+    <aside class="episode-aside">
+      <section class="card chapters" aria-labelledby="chapters-heading">
+        <h2 id="chapters-heading">Chapters</h2>
+        <ol>
+          {%- for c in page.chapters %}
+          {%- assign secs = c.t | seconds %}
+          <li data-start="{{ secs }}">
+            <a href="https://www.youtube.com/watch?v={{ yt }}&amp;t={{ secs }}s" data-seek="{{ secs }}"><span class="timestamp">{{ c.t }}</span><span>{{ c.title }}</span></a>
+          </li>
+          {%- endfor %}
+        </ol>
+      </section>
+    </aside>
+    {%- endif %}
   </div>
+
+  {%- if transcript %}
+  <section class="transcript" id="transcript" aria-labelledby="transcript-heading">
+    <div class="transcript__head">
+      <h2 id="transcript-heading" class="section-title">Full transcript</h2>
+      <div class="transcript__search">
+        <label for="transcript-search" class="visually-hidden">Search the transcript</label>
+        <input type="search" id="transcript-search" placeholder="Search the transcript" autocomplete="off">
+        <p class="transcript__count" aria-live="polite"></p>
+      </div>
+    </div>
+    <div class="transcript__turns">
+      {%- for turn in transcript.turns %}
+      {%- assign secs = turn.t | floor %}
+      <div class="turn" data-start="{{ secs }}">
+        <p class="turn__head"><span class="turn__speaker">{{ turn.speaker }}</span> <a class="timestamp" href="https://www.youtube.com/watch?v={{ yt }}&amp;t={{ secs }}s" data-seek="{{ secs }}">{{ secs | clock }}</a></p>
+        <p class="turn__text">{{ turn.text | escape }}</p>
+      </div>
+      {%- endfor %}
+    </div>
+    <p class="transcript__empty" hidden>No lines match that search.</p>
+    <p class="transcript__note">Transcript made by Buzzsprout, with speaker names corrected. It may contain small errors.</p>
+  </section>
   {%- endif %}
 
-  <div class="prose e-content" itemprop="description">
-    {{ content }}
-  </div>
-
-  {%- if page.chapters %}
-  <section class="card chapters" aria-labelledby="chapters-heading">
-    <h2 id="chapters-heading">Chapters</h2>
-    <ol>
-      {%- for c in page.chapters %}
-      {%- assign parts = c.t | split: ":" -%}
-      {%- if parts.size == 3 -%}
-        {%- assign h = parts[0] | times: 3600 -%}
-        {%- assign m = parts[1] | times: 60 -%}
-        {%- assign secs = h | plus: m | plus: parts[2] -%}
-      {%- else -%}
-        {%- assign secs = parts[0] | times: 60 | plus: parts[1] -%}
-      {%- endif %}
-      <li>
-        {%- if page.youtube_id %}
-        <a href="https://www.youtube.com/watch?v={{ page.youtube_id }}&amp;t={{ secs }}s"><span class="timestamp">{{ c.t }}</span>{{ c.title }}</a>
-        {%- else %}
-        <span class="timestamp">{{ c.t }}</span>{{ c.title }}
-        {%- endif %}
-      </li>
-      {%- endfor %}
-    </ol>
-  </section>
+  {%- if page.previous or page.next %}
+  <nav class="episode-pager" aria-label="More episodes">
+    {%- if page.previous %}
+    <article class="card episode-pager__card">
+      <p class="card__meta">Previous episode</p>
+      <h3 class="card__title"><a class="card__link" href="{{ page.previous.url | relative_url }}">{{ page.previous.title | escape }}</a></h3>
+    </article>
+    {%- endif %}
+    {%- if page.next %}
+    <article class="card episode-pager__card episode-pager__card--next">
+      <p class="card__meta">Next episode</p>
+      <h3 class="card__title"><a class="card__link" href="{{ page.next.url | relative_url }}">{{ page.next.title | escape }}</a></h3>
+    </article>
+    {%- endif %}
+  </nav>
   {%- endif %}
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
+<script src="{{ '/assets/js/episode.js' | relative_url }}" defer></script>

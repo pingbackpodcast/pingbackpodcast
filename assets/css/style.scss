@@ -374,34 +374,190 @@ main { padding-bottom: 5rem; }
 
 // Episode page -------------------------------------------------------------
 
-.episode {
-  max-width: var(--measure);
+[hidden] { display: none !important; }
+
+.episode-header {
+  max-width: 52rem;
+  padding-block: 2.5rem 2rem;
 }
-.episode-header { padding-block: 2.5rem 2rem; }
-.episode-header__chips { margin: 0 0 1rem; }
+.episode-header__chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+  margin: 0 0 1rem;
+}
+.episode-meta { color: var(--muted); font-size: 0.95rem; }
 .episode-title {
   margin: 0;
   font-weight: 800;
-  font-size: clamp(1.9rem, 5.5vw, 2.75rem);
+  font-size: clamp(1.9rem, 5vw, 3rem);
   text-wrap: balance;
 }
-.episode-meta {
+.episode-summary {
+  max-width: var(--measure);
   margin: 1rem 0 0;
   color: var(--muted);
-  font-size: 1rem;
+  font-size: 1.15rem;
+  line-height: 1.55;
 }
+.episode-guests { margin: 0.75rem 0 0; font-weight: 600; }
 
-.episode-player, .episode-video { margin: 0 0 2.5rem; }
-.episode-player audio { width: 100%; }
-.episode-video iframe {
-  display: block;
-  width: 100%;
-  height: auto;
+.episode-video {
+  position: relative;
   aspect-ratio: 16 / 9;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
 }
+.episode-video iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.video-facade {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.video-facade img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 500ms ease;
+}
+.video-facade:hover img, .video-facade:focus-visible img { transform: scale(1.015); }
+.video-facade__play {
+  position: absolute;
+  left: 50%; top: 50%;
+  display: grid;
+  place-items: center;
+  width: 4.5rem; height: 4.5rem;
+  margin: -2.25rem 0 0 -2.25rem;
+  border-radius: 50%;
+  background: var(--ruby);
+  color: #14161f;
+  box-shadow: 0 16px 40px -12px var(--ruby-glow);
+  transition: transform var(--speed) ease;
+}
+.video-facade:hover .video-facade__play,
+.video-facade:focus-visible .video-facade__play { transform: scale(1.06); }
+.video-facade:focus-visible { outline: none; }
+.episode-video:has(.video-facade:focus-visible) {
+  outline: 2px solid var(--ruby);
+  outline-offset: 3px;
+}
+
+.episode-listen {
+  margin-top: 1rem;
+  padding: 1rem;
+}
+.episode-listen__label {
+  margin: 0 0 0.6rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.episode-listen audio { width: 100%; }
+
+.episode-body {
+  display: grid;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+@media (min-width: 60rem) {
+  .episode-body--with-aside { grid-template-columns: minmax(0, 1fr) 21rem; gap: 3rem; }
+  .episode-aside .chapters {
+    position: sticky;
+    top: 1.5rem;
+    max-height: calc(100vh - 3rem);
+    overflow: auto;
+  }
+}
+.episode-notes > h2:first-child { margin-top: 0; }
+
+.chapters { padding: 1.25rem; }
+.chapters h2 { margin: 0 0 0.75rem; font-size: 1.15rem; }
+.chapters ol { margin: 0; padding: 0; list-style: none; }
+.chapters li { border-top: 1px solid var(--line); font-size: 0.94rem; }
+.chapters a {
+  display: flex;
+  gap: 0.85rem;
+  padding: 0.5rem 0.25rem;
+  border-radius: 6px;
+  text-decoration: none;
+  line-height: 1.4;
+}
+.chapters a:hover { color: var(--ruby-text); background: var(--surface-2); }
+.chapters li[aria-current] a { color: var(--ruby-text); }
+.chapters .timestamp { min-width: 3.4rem; padding-top: 0.1em; }
+
+.transcript { margin-top: 4.5rem; }
+.transcript__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+.transcript__head .section-title { margin: 0; }
+.transcript__search input {
+  width: min(20rem, 100%);
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.95rem;
+  transition: border-color var(--speed) ease;
+}
+.transcript__search input:hover, .transcript__search input:focus { border-color: var(--ruby); outline: none; }
+.transcript__search { position: relative; }
+.transcript__count { position: absolute; top: 100%; left: 1rem; margin: 0.3rem 0 0; color: var(--muted); font-size: 0.8rem; white-space: nowrap; }
+.transcript__turns { max-width: var(--measure); }
+.turn {
+  padding: 1rem 0 0.25rem;
+  border-left: 2px solid transparent;
+  transition: border-color var(--speed) ease, background var(--speed) ease;
+}
+.turn[data-playing] {
+  margin-left: -1rem;
+  padding-left: calc(1rem - 2px);
+  border-left-color: var(--ruby);
+}
+.turn__head { display: flex; align-items: baseline; gap: 0.75rem; margin: 0; }
+.turn__speaker {
+  font-weight: 700;
+  font-size: 0.85rem;
+  font-variation-settings: "wdth" 112;
+  color: var(--gold);
+}
+.turn__head .timestamp { text-decoration: none; }
+.turn__head .timestamp:hover { color: var(--ruby-text); text-decoration: underline; }
+.turn__text { margin: 0.25rem 0 0; color: var(--ink); line-height: 1.65; }
+.turn mark { padding: 0 0.1em; border-radius: 3px; background: rgba(224, 176, 96, 0.35); color: var(--ink); }
+.transcript__empty, .transcript__note { color: var(--muted); font-size: 0.9rem; }
+.transcript__note { margin-top: 2rem; }
+
+.episode-pager {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 1rem;
+  margin-top: 4rem;
+}
+.episode-pager__card .card__meta { margin: 0; }
+.episode-pager__card .card__title { margin-top: 0.35rem; font-size: 1.1rem; }
+.episode-pager__card--next { text-align: right; }
 
 // Prose --------------------------------------------------------------------
 
@@ -410,31 +566,14 @@ main { padding-bottom: 5rem; }
 .prose p, .prose ul, .prose ol { margin: 0 0 1.25rem; }
 .prose ul, .prose ol { padding-left: 1.25rem; }
 .prose li { margin-bottom: 0.35rem; }
-.prose h2, .chapters h2 {
+.prose h2 {
   margin: 2.5rem 0 1rem;
   font-weight: 750;
   font-size: 1.35rem;
 }
 .prose img { max-width: 100%; height: auto; }
 
-.chapters { margin-top: 2.5rem; }
-.chapters h2 { margin-top: 0; }
-.chapters ol {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.chapters li {
-  border-top: 1px solid var(--line);
-  font-size: 0.975rem;
-}
-.chapters a, .chapters li > .timestamp:first-child {
-  display: flex;
-  gap: 1rem;
-  padding-block: 0.55rem;
-  text-decoration: none;
-}
-.chapters .timestamp { min-width: 3.5rem; }
+
 
 // About: hosts -------------------------------------------------------------
 

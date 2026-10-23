@@ -1,0 +1,1390 @@
+{
+  "source": "buzzsprout",
+  "turns": [
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 22.7,
+      "text": "Hey, everybody. Welcome back to episode two of the Pingback Podcast hosted by Joel and Greg. We've got with us today, um, our first guest of the podcast series, Raul Papadinette, uh, affectionately known as RaulOnRails, um, on X, uh, formerly known as Twitter. So Raul, welcome, uh, welcome to the show"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 45.5,
+      "text": "Yeah, glad to be here, guys. Uh, thanks for the invite. I'm Raul. I'm based in Timișoara, Romania. For people who don't know me, I've been, uh, doing Ruby on Rails for over 15 years now. And, uh, I worked with a couple of US startups over the, over the years, and now I'm a solopreneur building a couple of products myself"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 69.5,
+      "text": "Raul was, was part of the genesis of this podcast. He was right there on that couch in the speakeasy underneath Bangers in Austin, Texas a few weeks ago when, uh, when Greg and I decided... Well, Greg decided, and I, I jumped on and said, \"Let's start a podcast.\" Raul was sitting right there next to us, and I didn't look over at his face to see what his reaction was, but, uh, um, we were- we knew at that moment that... I think we made a pact, actually. We said we were gonna have- we're gonna have Raul as our first guest on the podcast."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 98.5,
+      "text": "that"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 100.0,
+      "text": "Raul, we're, uh, we're glad to have you here today."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 103.9,
+      "text": "Super glad to be here, guys"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 105.6,
+      "text": "go ahead and, uh, and, uh, tell us, Raul, um, if, if, uh, folks may know you from, from, I'm gonna call it Twitter, you guys. I hate calling it X, but X, Twitter, Twitter. Um, Raul, I first m- met you on Twitter, or knew of you by this, this project or this, uh, what would you call it? Adventure or this, this, this thing you were doing, the, the big ring binder, uh, which, uh, I think is a really cool story, and it looks like maybe it's been doing good things for you in, in one of your projects. So us a little bit about this big ring binder and, uh, a- and what it's all about."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 145.4,
+      "text": "Yeah, of course. So the idea with the ring binder was to have like a marketing campaign for one of my apps. Because everybody's building apps now, it's easy, but you have to do good marketing, find a distribution channel, right? And I was talking to-- I'm using Grok Bot a lot, and I was talking like, \"Hey, I need some car wrapping or something to do on my car that through which I can promote this app.\" Because the app is basically your vehicle's accountant. You can register a car in the app, and then you get notifications whenever your car insurance expires, your car inspection expires, things like this that people want to keep track of in one single place, and also build like a history of their car with the car service, uh, fuel receipts and whatnot."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 197.3,
+      "text": "And I wanted to build-- put it like on a car wrapping because it represents-- it's like the main thing of the app. And as I asked Grok, he, he gave me like a couple of images. I think I asked for like three variants. And on one of it, he put a ring binder on top of it, and I was like, \"Oh my God, this is it.\" The I, I have to build this thing. And then I went in a weekend, I spent two weekends in a hardware store trying to figure out how to put all the pieces together so that-- because I really wanted it to be like a big ring binder, but that's also like fully functional, not just like, uh, some cardboards put together or painted and whatnot. And then as I kept, uh, spending time in that hardware store trying to figure out all the metal pieces for the rings and how the fit-- all the pieces fit together, I got back home, and over the course of like five days, I spent like two to four hours in my free time trying to put all the pieces together."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 258.4,
+      "text": "I also have like a sh- uh, motion lapse on, on Twitter with the, with this. But I'll, I, I can also share it with you guys, uh, later after, after the pod-- yeah, after the podcast of how I put all the pieces together and how it came to be. But yeah, then afterwards, I put it on top of the car and just drove around the city to see people's reaction to like people pointing and wh-what, what is that? What, what... And it draws attention. And basically that's what I wanna, wanna end up with this ring binder, like bring more brand awareness to this, this app. Because I don't think like it will-- Uh, for now, it's not driving a ton of sales or conversion, but it does more brand awareness, and that's really good, and what I want right now for a fresh new app that's, uh, on the market."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 306.4,
+      "text": "So yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 308.0,
+      "text": "And it, I think, do I remember seeing that you have a history, uh, in woodworking or, or kind of doing this kind of stuff before?"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 315.4,
+      "text": "Yeah. Yeah, that's true. In 2020 when COVID happened, I took a sabbatical and I really got into woodworking. I built like a m- mini carpentry in the, our apartment kitchen out of nothing. So I just built it all myself where you could, like, put wine bottles and wine glasses and all, all the things there. Then I built also a couple of, uh, small other, uh, shelves and, uh, I don't know, a, a, a small library for our apartment out of wood. So yeah, a ton of stuff. But also, like, recently I'm, I'm building a cabin in the, on a... I have a mountain and, uh, a land in the mountains, and I'm building a cabin out of wood there. So that's also, like, super exciting. But that's, like, next level off of like woodworking"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 362.3,
+      "text": "Well, that's kinda like what you I think Greg's doing some building himself right now too, so you guys are like buddies on that one"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 368.1,
+      "text": "Oh yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 368.6,
+      "text": "I'm doing the exact same, very similar structure to Raul's. We are even sharing some tips and tricks between each other"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 376.0,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 378.2,
+      "text": "Well, h- have you found, Raul, that the, uh, having this giant binder... And give folks an idea of how, I've seen pictures of it, but how, how big is it? Like, tell us kind of the scale of it. Uh, give us something to compare for those who aren't be able to see it right now what it would,"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 390.5,
+      "text": "I would say like it's my daughter's height, so something like 100 centimeters. What's that? Like, uh, three..."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 398.1,
+      "text": "طري فيك"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 399.5,
+      "text": "Yeah,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 400.2,
+      "text": "feet, three feet or so"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 402.2,
+      "text": "three, three point... Yeah, three and a couple of inches. Something like that. Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 407.6,
+      "text": "It's like it fits on top of your car. Like it, it's,"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 410.2,
+      "text": "Oh yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 411.1,
+      "text": "It's huge and like the, the thickness of the binder or whatever is like three, about 100 centimeters you said, so about three feet or so,"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 418.6,
+      "text": "Yeah. And, and it's, like, fully functional, so you basically, you could"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 423.6,
+      "text": "Ended up in"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 424.6,
+      "text": "put, like, big sheets of paper in it if you would want to. So yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 430.7,
+      "text": "could put one sheet of paper and like a piece of cardboard in there as paper for every new sign-up you get. And so eventually it will start to fill up and people will see you around town and say, \"Why is that binder getting big?\" Well, 'cause people are signing up on the app, baby"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 443.9,
+      "text": "Oh yeah, that's a good idea. Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 447.6,
+      "text": "So have you, have you noticed, uh, you said you're, you're not quite sure if, if you've seen, uh, that it's been effective as a marketing tool yet, but have you at least... You said you've turned heads. Have you had any conversations with folks around, around where you're at? Or, or, or how has that gone actually, like getting feedback from people?"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 463.8,
+      "text": "Oh yeah, a lot. And so basically I have a group of friends and in- indie makers and all this, and we've been chatting around. And I'm getting... They are, like, super impressed about the marketing campaign, and they are sharing to all the people that they are talking to. I even did, like, some bumper stickers that they are putting on their cars to- with QR codes for my app for free, just because they really like the idea, and they just really want to promote it. So I feel like that's another great signal that they like the app. And then, uh, I'm seeing, right now I'm seeing, like, five to seven signups per day for the app, which is pretty good. I'm almost getting close to 300 users on, on the app, and I only, like, launched it, like, two months ago or three months ago, something like this."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 513.6,
+      "text": "So it's a really, really good, uh, sign for me, honestly."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 518.0,
+      "text": "That's great. I would, I would tend to think that something like this would, would compound the, the returns and the noti- the people noticing it would kind of build over time. Um, it's not just gonna be kind of a linear thing, but it will just slowly grow, and you've got friends putting bumper stickers on their car now, which is, you know, even more exposure. Uh, and, uh, then the more people know, the more people realize it, and that, you know, overnight successes take years to make, right? You know,"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 544.3,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 544.8,
+      "text": "the, when a new product hits and it's famous and, and wonderful, there's a long tail before that of, of how it got there. So, you know, it sounds like you're still in that initial phase before you've actually, you know, gone viral. But at w- those po- I saw you posting on Twitter the other day. Was that about, uh, uh, you were showing how you were getting some impressions or, or, or signups. Was that related to your binder?"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 565.6,
+      "text": "Uh, it's an adjacent..."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 568.2,
+      "text": "or was that a different"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 568.8,
+      "text": "No, it's a different product, but it's adjacent, so it's like that one's a funnel for this product and the two other products that I have. And it's crazy. So from that alone, I'm getting a ton of traffic now too, and signups. So it's working. Um, it's, it's like pieces of puzzles that are coming, coming together, honestly, and I feel like in three to five years this will pay off incredibly well"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 595.6,
+      "text": "I like that you're thinking in the long term like that. You know, it's, it... You might not get rich in the next three weeks, three months, but, you know, in a few years, uh, you know, it could become something"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 605.6,
+      "text": "Yeah, for sure"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 606.8,
+      "text": "quick schemes don't work right? You need to take time. But Raul, how did you end up with this whole insurance stuff, by the way?"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 616.6,
+      "text": "Yeah. So this is, uh, this is interesting. In COVID, during COVID, I saw someone selling a dozen of premium .ro insurance domains, and I thought, \"Oh, this might be a pretty good investment in the long term. Maybe I can, like, just write blog posts on them and then put Google ads and have some passive income off of that.\" But then I bought them. I bought them really cheap, honestly. They were, like, five thousand euros or something, so that's like roughly six thousand dollars. And, uh, then I started-- I wanted to see, okay, let's see if I can build the actually, like, insurance platforms on this. And then I started talking to people on Reddit and online, trying to see if I can find, like, an insurance broker with which, uh, I can maybe have a contract and have a collaboration."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 668.4,
+      "text": "And everybody was saying, \"No, man, you're mad. You, you cannot, you cannot enter in this market. It's, like, super closed. It's super hard to get-- to break into it.\" And I was like, \"Oh, okay.\" After a couple of conversations, basically, I just-- I left it. I, I just put it a pin, put it, put it a pin in it, and that was it. And then five years later, a friend of mine is getting into property asset management platform. He's building that. And he said, uh, that, uh, he wants to sell c-- uh, house insurances, like another offering for people on that platform. And he knew that I have these .ro premium insurance domain. And he was like, \"Hey, I talked with a bunch of, like, broker insurances."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 715.0,
+      "text": "They wanna, like, have a call if we can do a collab. Do you wanna join that call?\" I'm like, \"Hell yeah.\" Like, what? Are you insane? Yeah. And then we jumped on, like, two calls with... One was, is like the biggest, uh, um, broker insurance in Romania. I don't know how he ended up getting like a, with a cold DM, g-get a, uh, call with them. And then there was a second one, I think they're like fifth or something in Romania, and we ended up, like, collaborating with the fifth. It-- They seem like much, uh, much, much well, much better suited for, for what I have, and that's basically it. Afterwards, I, I started building on top of their API. They gave me access to their API."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 760.0,
+      "text": "We signed contract. And so now I'm selling, like, car insurances and travel insurances online."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 768.9,
+      "text": "That's a, that's a great story that shows that, uh, you know, y- it was a couple years ago you kind of init- initially thought about it, and then kinda like you said, let it, let it just go to the back burner, and then, and when the moment was right, you had had a little bit of exposure to it, uh, you said, \"Hey, I want in. I'm the guy who can do that,\" and, and here you are"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 788.5,
+      "text": "Yeah, that's right"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 790.3,
+      "text": "Well, um, I also remember you saying, uh, when we were chatting in Austin a few weeks back that you've got a handful of other, uh, products and, and apps and things that you're working on. What are some of the other ones that, uh, adjacent to the, to the insurance stuff that you're working on these days?"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 805.9,
+      "text": "Yeah. So besides the whole insurance stuff, I have a paid newsletter that's called Calm Companies on which I'm doing a curation of companies with a great work culture that don't burn pe- burn people out. And you can subscribe there to get like a weekly newsletter of job openings whenever, uh, one of these companies, uh, are hiring. And this is more like a personal... pers- my, probably my most beloved project because I worked on it, and I had it in my, in the back of my mind for almost six years now. Um, and that has a couple of, uh, a, of, a couple of paid subscribers now."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 852.2,
+      "text": "And, uh, then I have an OG image generator called OG Pilot that's doing more, more sales on the one-off, uh, generations where people are... Like there are a lot of people now building apps, and they feel like, \"Oh, I, I need an OG image,\" and just go in there and pay like two bucks, and they get an OG image from, uh, from it. And, uh, lastly, there's a code-based reporting tool. That was my first product that I built, um, back in 2023, I think. Uh, it's called Git Digest, and that still has like four paying customers on it. But it's like fully automated right now and mostly in maintenance mode where I'm just doing upgrading like gems and things like this because it's in Ruby on Rails."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 899.3,
+      "text": "So yeah, Calm Companies it's in, is in Ruby on Rails. Git Digest is in Ruby on Rails. OG Pilot is in Ruby on Rails. So yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 909.3,
+      "text": "Like what you said... go ahead, Greg"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 912.5,
+      "text": "When is the Rust version of those coming?"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 917.4,
+      "text": "By, by next Friday. By next Friday, that's"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 920.5,
+      "text": "Fine, okay."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 923.0,
+      "text": "I, uh, one thing that you just said jumped out at me, um, was when you said the, the Calm Companies newsletter and that, that thing was kind of a, a project that you had wanted to do. And I think that's a great place for, for folks who are trying to figure out, what should I do, or how can I make something that people might want, or, or, or what's, what's something, what's a product people might want? Well, for what you would want first, and then build it and use it, and be the first customer. And as you use it, you can iterate over it and, and if no one else uses it, great, because you're using it."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 955.4,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 955.7,
+      "text": "And then if others use it, it's just icing on the cake. Uh, and you're not trying to always figure out what's a product somebody might want"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 962.8,
+      "text": "Yeah, all these honestly were like pain points of mine. So the Git Digest, I actually, it was a pain point when I came back after a three-week vacation when I worked at Gumroad, and I was like, \"What did the team ship over these past three weeks? Like, give me the 10 biggest features or biggest deliveries that, uh, landed in production.\" And, and that's what, that was one pain point out of which Git Digest was born. Then for OGPilot, I started building a lot of projects, and I needed OG images, and then I built it, and I said, \"Okay, maybe someone else also buil- uh, needs something like this,\" and I productized it. And for Come Companies, I had this list of... Initially it was like 25 companies or so that I, I kept monitoring for whenever they are hiring, because, like, these are one of the companies that I always look up to, and they had, they seem to have, like, a super great work culture."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1018.5,
+      "text": "And I wanted to keep an eye open for whenever they have a job opening. And then I thought, \"Well, maybe others would want to get access to something like this, and let's see if they are willing to pay.\" And basically, during a weekend, in three hours, I just white coded a landing page for the Stripe link. I didn't have any newsletter built or anything, and see, \"Okay, will people pay for this?\" And it did. Like three hours later, I had like three customers, and I, I was like, \"Oh my God, I have to build this by the next Monday when the newsletter comes out.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1052.3,
+      "text": "Nothing like a fire of people already paying for a product that doesn't exist."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1058.3,
+      "text": "Yeah, that's right."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1059.6,
+      "text": "With validation"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1061.2,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1061.7,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1062.3,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1062.9,
+      "text": "uh, that's impressive, Raul. Good, good for you, man."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1066.0,
+      "text": "Thank you."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1066.4,
+      "text": "were,"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1066.9,
+      "text": "Thank you"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1067.7,
+      "text": "with those, those 25 companies, um, and whatever, however many are on the Calm Companies, uh, uh, thing now, are... You said you, you kinda picked them. Are you curating those yourself and just kind of hand selecting so you don't have any kind of automation per se, but you're really vetting and selecting what comes into that?"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1084.9,
+      "text": "Yeah, that's right. Yeah. And then I have, uh, also people... I had, like, two CEO co- uh, of some companies reach out to me if they c- they can get on the calm companies list, and one of them did. Uh, so that was another channel through which I'm basically adding companies now. I'm at 71 calm, calm companies now. So yeah. Yeah, yeah. And there are around 100, over 100, uh, job openings each week on the newsletter, so yeah. Out of a ton of, a ton of categories. So not, not only engineering, there's design, accounting, ops, finance, and, uh, executive. So yeah, it's,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1129.8,
+      "text": "just, uh, software-based, it's, it's"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1131.5,
+      "text": "No"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1132.4,
+      "text": "all companies in, in general, so to speak"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1135.0,
+      "text": "Yeah. There are... So the majority of them are in tech, for sure. Just like 90% of the companies are in the tech industry. But, uh, I'm trying to also find, like, other comm companies in other industries too. Because a friend of mine asked me, like, \"Oh, do you have something in medical?\" Uh, and I was like, \"Oh, I'm, I'm gonna look out for that.\" So I'll keep you posted. Yeah, yeah, of course"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1159.2,
+      "text": "And also, who knows where all the tech people are going to work in a year or so, right?"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1164.1,
+      "text": "Cabin hacking"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1165.3,
+      "text": "keep an eye on other opportunities and"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1167.8,
+      "text": "Oh yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1168.5,
+      "text": "something you would like"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1170.5,
+      "text": "Yeah, for sure"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1173.6,
+      "text": "Um, well, what's, uh, Are, are you, are you-- You said you're, you're-- all these things are things you're doing on your own here. You worked at Gumroad in the past, and this is kind of your thing now. You're an independent builder. You're, you're building these things. You're, you're, you're trying to find a way. Um, you find, uh, since you worked at a, a place, a, a larger entity like Gumroad, another-- I don't think they're huge, but you've worked at a place as an employee, and now you're your own boss. Um, how do you, uh, how has that lifestyle been different, and, uh, and which one do you prefer at the moment?"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1207.1,
+      "text": "I prefer the old one, honestly. It's so hard. It feels like, uh, playing in the Olympics with, uh, building a company. But it's also super satisfying when you get sales and you get customers giving you feedback on the product. I-- There's nothing that matches that feeling compared to when I worked at Gumroad or before that. But, uh, yeah, even at... So before Gumroad, I used to work at Hubstaff, which was a time tracking, uh, tool, and I worked there for five years, also became like a team leader, and I got to upskill a lot during that time. And then I, I got to Gumroad, and I got to work with even more exceptional people, uh, that's super, super hard to, to find, uh, to find honestly here in Romania."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1257.9,
+      "text": "So I felt like I was super, super lucky to be able to, to work there and upskill and kind of like preparing myself to build a business because when I worked there, I learned a lot about what it means to build a business, what's a GMV, what's-- how's equity working, uh, all sorts of taxes, documents, invoicing, reporting, and all this sort of stuff that once you have to build a business, you have to know about it. And I felt like I kind of was preparing myself to be able to, to build my own stuff and be more confident that once I got, uh, I left Gumroad, I was a bit more confident that I could do it on my own, honestly. Yeah. And I still have a couple of gigs on, on the side because, I mean, it's, uh, things are still not paying, uh, the covering like the expenses of the household, so I still have to sustain that some way."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1310.8,
+      "text": "But I'm hopeful that in, as I said, three to five years from now, uh, maybe this, uh, these apps will, will be able to sustain"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1320.7,
+      "text": "That's fantastic. I think, uh, I like, again, I'll say it one more time, I love the fact that you're thinking in the long term, um, because that's, that's so important. Uh, we were talking before we went live here how everybody wants to be an overnight success. Everybody wants to just get rich and, and go viral and have everything happen now, but not the way it usually happens. It's a lot of hard work and, um, and, and when you put in that hard work over a long period of time, that consistency is what's gonna compound and, and get you what you want or where you wanna be. So good on you"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1352.6,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1352.9,
+      "text": "for keeping that mindset"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1354.6,
+      "text": "But it's also funny because now with AI, you know, everybody's building so fast and iterating so fast, and people think that with AI now you would be able to build a successful business in a shorter period of time. But it all boils down to even what, uh, what me and Greg learned in the Small Bets community, that you have to build a credibility and reputation when you build a business, and that even with AI. And so it takes a lot of time, and you cannot do that in a week or a month. It takes at least a year, maybe three or five years, who knows? Depending on how good your marketing and sales skills go. Based on that, you build your credibility and reputation so people trust you with the money when, uh, you're trying to sell them a product"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1401.0,
+      "text": "So true. You can, you can, you can build a, a product in a weekend now, which might have taken a month or two before, but once you've got the product, you still have to market it, and like you said, let folks trust you and all that, which you can't, you can't AI that t- today, as far as I know. So,"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1417.6,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1418.1,
+      "text": "that's really important"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1420.0,
+      "text": "Yeah, for sure"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1421.9,
+      "text": "If you give it up, then you are not gonna get anywhere, right? You be persistent and be there and keep on going when things don't go well,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1430.0,
+      "text": "Exactly."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1430.8,
+      "text": "don't just give it up"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1433.7,
+      "text": "Yeah, I wanted to give up like three or four times by now in the past, uh, one year and a half since I've been doing this. So, uh, yeah, it's, it's tough, but, uh, it has ups and downs"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1446.1,
+      "text": "It, it, uh, I hear you on that. I've been a, a small business owner myself, and I'm currently an in-independent builder and, and, and I feel you. When you're independent like that, you, uh, have to be the marketer, you have to be the bookkeeper, you have to be the adverti- You have so many hats that you have to wear just to make it all happen. Um, so being able to work in a shop like Gumroad or, or wherever, I could see how that would be nice as well, where you just show up to work, pull your tickets, make your stuff happen, and then be done with it. Um, there's, there's, there's an appeal to that as well"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1478.4,
+      "text": "Yeah. It's, uh, it is. And also, I feel like when, when you hit rock bottom, when you're g- when you're doing this solo and you have these downs, I feel like it's super important to have a community you can rely on. And I'm, I'm... Yeah, exactly. I feel like it's, this is the, the thing that can keeps you afloat and just not shut down your business and just go back to a nine-to-five job"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1505.3,
+      "text": "Yeah. Well, we're gonna thank Greg for the-- for, for this conversation. I was just-- For those who are listening, I was pointing at the screen, and Raul kind of chuckled and said, \"Well, that's, that's right, man.\" But, you know, when Greg, Greg, when, when we were talking a few weeks ago, you said one of the bigger reasons you wanted to start a podcast was to, to stay connected to people. You know, you get to see these, our people in our community mostly just at conferences every few months or a couple times a year or once a year. So here we are, like Raul and, and, and Greg, we all kind of talk on, on X and Twitter, if you will. But, like, to get to chat and to talk and, and, and, and be there for each other is, is huge. So, um, I, I, I'm, I'm glad that we're able to have this conversation today to begin with, and then just know that, um, we can be there for each other as, as independent builders, um, or even not independent builders, just for folks in the community when things are tough, to know that we can give each other a pat on the back and say, you know, \"Keep going, man."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1555.2,
+      "text": "It's a, it's, it's a tough day, but, uh, you know, tomorrow's another one.\""
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1559.6,
+      "text": "Yeah. I mean, if things really go south, I still have my calm companies list that I can, uh, try to look at and, uh, apply to some companies there, so"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1569.7,
+      "text": "You've built your safety net right there. That's fantastic. Greg, you're, you're more or less, just from what I know, correct me if I'm wrong, you're kind of an independent guy as well, aren't you?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1581.3,
+      "text": "Not at the moment"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1582.7,
+      "text": "Not at the moment. Is that, is that public or something you wanna share?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1586.7,
+      "text": "No, it's public, yeah. I, I work for a comp- a company full-time."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1590.5,
+      "text": "I didn't realize that after, uh, after last time"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1594.0,
+      "text": "six months, seven months or something. But what I used to do before is I did, uh, pen testing as a contractor. I think with penetration testing, it's, uh, there's a lot of work at the end of the year, like last quarter, because a lot of companies get it for, uh, compliance reasons, and then they, uh, they realize at the end of the year, \"Oh, we need our year pen test done.\" So you have plenty of work at the end of the year, but not much work at the beginning of the year. And it was always this roller coaster for years. And then last year I was like, \"Ah, yeah, maybe...\" A- actually every year, every beginning, beginning of every year, I was contemplating going, uh, full-time. And, uh, yeah, beginning of this year I saw an interesting job opportunity, sent them an email, we talked, we had an interview. They liked me, I liked them, and then I was just like, \"Yeah, let's see how this goes.\""
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1643.0,
+      "text": "And I still build stuff on the side when I have time, but, uh, yeah, now my, my biggest chunk is full-time work. it has its pros and cons. It's, yeah, just what you described. I go there, I pick my tickets, finish them, and that's it. I don't need to do sales. I don't need to worry about invoices being paid or whatever, sales calls. It's super easy. It's, it's"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1668.3,
+      "text": "is, it is, it is a good, it, a glorious feeling"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1672.3,
+      "text": "Exactly. Exactly. I think, you know, pe- a lot of people love communism, and I think the... one of the reason is because in communism, you are told what to do, and you don't need to think, and you don't need to worry about anything. You have food and shelter, and then you just go to the factory and do whatever they tell you to do. It's very relaxing. But then you go to the United States and talk to people, then you realize, \"No, actually I wanna build something.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1696.9,
+      "text": "It's, it's two different sides of that coin. Um, and, and I think, uh, w- we've already seen in just the short few minutes we've been chatting that there's, there's pros and cons to each of them. You know, there's that, there's that freedom that comes with being your own boss and being your own builder, that you can build whatever you want, you can schedule your time how you want. But, but with that comes the weight of resting on your shoulders. Uh, you give that up and you don't have as much flexibility or, or, or, or ability to choose what you wanna work on when you work for somebody, but you also don't have that weight on your shoulders of, of everything from the paycheck to, um, marketing and everything we talked about. So, um, it's a, it's a give and a take for all of those situations."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1740.0,
+      "text": "Like, it's so hard to get out of the nine-to-five, uh, nine-to-five race, to be, to be honest, because it's comfortable. It's like you, you do your job and you get a great paycheck, and in order to get to that same paycheck with your own business, it takes so long"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1760.9,
+      "text": "Yeah. there's nothing r-"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1763.2,
+      "text": "difficult for developers because it's very easy to get back to, to work. Well, now it's more, it's more difficult, but I, I do this for like, I don't know, 15 years probably. It's a back and forth. So I, I was working for myself, then I took a full-time job. who I did a contract for, they, they wanted to hire me. I went for them full-time. It happened multiple times, and I think the problem is, yeah, it's, it's super easy to just go back to work for someone else and make a really good salary, right? It's, it's not like you have to force yourself to make money. It's just, there's always the easy path, the, the backup plan, and it's super easy to go back. So that's why I think for Raul to do this, do this for this long, it's actually admirable 'cause I probably, I would have given up already three times"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1809.6,
+      "text": "And you know, there, there's no- there's absolutely nothing wrong with, uh, with just having a full-time job and working for somebody else. It's, it's"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1816.5,
+      "text": "Not at all"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1817.4,
+      "text": "it's nice. Um, there's absolutely nothing wrong with that. Um, I, I, I kinda come and go, uh, in, in, in my thoughts about, uh, about what the best which one of those is, but working for yourself or working for somebody else, and, uh, man, every other day it kind of, it, it can, it can change. But there is, there is extreme value in both of them"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1837.9,
+      "text": "Yeah, 100%."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1839.5,
+      "text": "to work for yourself if you find something which you love to work on."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1844.6,
+      "text": "Угу."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1844.8,
+      "text": "because then it's like it's very satisfying, and I think that's, that's when you will find success. I think that's when most people find success. You try a lot of things, nothing really works out, and then you find that one thing which actually you love to work on it, and then probably that's one of the reasons why you will make it successful"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1860.4,
+      "text": "Yeah, 'cause you build like then an in-intrinsic motivation, right? You have that intrinsic motivation to, to wake up next morning even though you, you make no money out of it yet, and to continue to pursue like step by step and see if something-- maybe this thing would work, maybe this other thing would work, and so and so. But yeah, I come and go around this thought too with, uh, nine-to-five job and building a business. Before, when I worked at Gumroad, I was like, \"Why, why aren't like more people trying to build a business?\" Like, \"Why aren't like more people trying?\" And now I'm doing it for one year and a half, and I understand like, okay, yeah, that's why, because it's like super hard. It's like playing the Olympics, and nobody wants to play the Olympics. People wanna just clock in, get, get the task, finish it, clock out, get the money, and just put food on the table, and that's about it."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 1914.0,
+      "text": "I was also against people like raising money for businesses because I was like, oh yeah, like sell your soul to VCs or whatever just to be another employee for nine-to-five, but to VCs. And then one year later, building this alone, I'm like, oh, I get it. Yeah, it's like a jump start where you get help financially to be able to work on your dream project or, yeah, build something you really enjoy, and you don't have the, the capital to do it, and it makes total sense, and I respect that. But yeah, I feel like over the years, I got to mature and, and learn this."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1954.2,
+      "text": "And these are all lessons that we learn over time, uh, and we figure out what works for us. Uh, and it might work differently in different phases of our careers and of our lives too. Uh, maybe you're starting a family, and it's hard to, to have a, a full eight-hour-a-day job, so you kinda gotta work for yourself for a little bit. And then your kids get older, and you can shift the way you work. So, um, you know, I think we're, we're fortunate as folks who work in the tech world that, um, we, we have that flexibility even as an option. You know, if you're a, if you're a, a woodworker, maybe that... I don't know. If you're somebody-- There's not a lot of careers that, that can have that flexibility, especially the fact that we can all work mostly remote. Uh, we don't have to live in San Francisco or, or Madrid or New York or wherever. We can work in Romania, in the Azores, in Portland, Oregon, and, and more or less, you know, be just fine"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2004.7,
+      "text": "Yeah, that's a privilege"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2006.1,
+      "text": "time we save, you know? We save two hours a day. If"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2009.7,
+      "text": "Угу."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2010.0,
+      "text": "a city, you go one to two hours a day"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2012.7,
+      "text": "Yep. Yeah, it's true. I, um, I'm, I, I work from home. I'm in my home, my home office right now, and it's, it's great that, uh, that I get to do it. Although I will say, and tell me what you guys think about this if, if you work from home, which I think we all, we all kind of do, uh, I feel like I go stir crazy. And when the Amazon driver comes to deliver a package, I'm just so happy to see somebody else, because I'm sitting in my office all day and, and all I talk to is the Amazon driver and the grocery store person and my family. So it's It, it does I, I do feel like I miss I love interacting with people, and I'm very social, and I, I like working in places where I'm in an office, let's say, and, and I can chat with people. So, uh, that is one thing that, uh, I, I appreciate this, uh, existence of the Pingback Podcast as a thing right now to, to kind of fill that void."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2063.5,
+      "text": "But do you guys have any similar feelings in your day to day?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2068.0,
+      "text": "Yeah, I do. I do. I, I completely agree. And I worked, uh, in a, in a hybrid role for a while, and I think that was the best. And it was just like, not a, I didn't have to be in the office on set days. It was just like, yeah, whenever you feel, you work from home. Whenever you feel, you work in the office. So it was like a completely random But when I felt like, oh, yeah, I, I... When I felt like I wanna get stuff done, I stayed at home, right? No distractions, nothing. I could just crack on and get stuff done. When I wanted to socialize, I just went to the office. It was amazing. And be around people and not getting stuff done."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2102.8,
+      "text": "Yeah, I feel like that's the sweet spot too, the hybrid role where you go a couple of days in the office and then you work. Yeah. Um, 'cause at home I can focus on and be super productive, but the, uh, in the office, the chitchatter is also, is also good. 'Cause otherwise, as you said, Joel, I would probably go nuts just staying here in my, in my office. And I also have another small community in my hometown that I built, and we meet like two every two weeks, and that's also like super energizing, and I f- always feel so good after, after we meet. Uh, so yeah, that's too"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2144.5,
+      "text": "I think that, that hybrid really is the sweet spot to have that ability, um, because you're absolutely right. Both you guys said it. When you wanna get work done, there's nothing like being able to just focus at home and sit down and just crank it out. Um, you can't do that easily in, in an office. Somebody's always gonna knock on your door or whatever. So there, there really isn't anything that compares to that, which is great"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2166.3,
+      "text": "Yep."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2168.8,
+      "text": "Uh, Raul, we were, we were talking earlier, uh, before the show as well about, um, Omachi, Omachi, Omachi, however you prefer to say it. And, uh, Greg and I are, uh... Greg, you're on Omachi, right?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2182.2,
+      "text": "Yeah, from like the very days."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2185.0,
+      "text": "Yeah, yeah. And, uh, I've been on for about a year or so now, and you're not quite there, Raul, but I think you said you're, you're considering it or maybe, maybe you're gonna try it out soon"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2194.3,
+      "text": "Yeah, for sure. I got my Omachi USB stick at the Rails World."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2198.6,
+      "text": "Rails"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2199.2,
+      "text": "And, uh, yeah, I have an old M1 MacBook M1 Max that I wanna put it to work and try out Omachi on it probably next week, and I'll give you feedback. I'll reach out to Greg for sure 'cause I have a... I'll find a lot of, of, of things that are like, \"What? What? Why is this like this? Why, why it's not-\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2219.8,
+      "text": "There's a great, um, uh, it's on Discord if you're not already in it. There's a great Discord community. It's got like, I don't know, 40,000 people or something like that in it."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2228.8,
+      "text": "God"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2229.4,
+      "text": "a great spot to look for pretty much any answer you could want, and it's a really great spot. Obviously, you've got direct connections to people like Greg and like me, but or, or generally on X or, uh, Twitter, but the Discord is, is the place to go. You can find about just about anything you would want on, on the Discord"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2245.8,
+      "text": "Check it out for sure. I'm subscribed to the Omachi newsletter that Greg is running, so even though I'm not an Omachi guy already, like, oh, let's, uh, s- let's, let's warm up a bit and let's see what's launching every other week, what's happening in the community"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2261.4,
+      "text": "It's been a really cool thing I've got"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2264.1,
+      "text": "but if you used tiling before or if you like tiling, even if you don't like tiling, if you give it a try, you might realize, \"Oh, this is the way.\" And then I don't think it's, it's a way going back."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2275.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2275.8,
+      "text": "sticks with tiling window manager for life once you tried it."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2279.4,
+      "text": "I'm using the, I'm using the Raycast, uh, window manager, so I'm pretty, like, into..."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2286.0,
+      "text": "yeah."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2286.7,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2287.3,
+      "text": "but the thing with Alma, it feels way faster because of the OS, because of Hyprland, and it's just way more intuitive, everything, for me at least. 'Cause I tried AlmaKube before, is very similar on, uh, on Ubuntu, but I didn't like that because of the-- all the key binding and everything didn't feel natural at all. I was like, \"Oh yeah, my s- my custom setup is much better. I will stick with that on Fedora.\" And then when Alma came out, I installed it, and then it's like, oh yeah, it looks very similar to that, but let's give it a try. And it was just, wow, this is just exactly how I want it to work. Well, I had to tweak a few things, but like the, the general basics is I think it's a really good setup"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2329.8,
+      "text": "And it's,"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2330.1,
+      "text": "Promising"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2331.3,
+      "text": "it's infinitely, uh, configurable too. Uh, case in point, just before we came on today, I was trying to get my microphone settings set up, and instead of, like, searching around and trying to find where to click, I just opened up a terminal and, and had Claude running on my home directory and said, \"Help me figure out why my mic isn't going and why I can't hear myself.\" And then 30 seconds later, boop, it works. It's amazing"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2357.1,
+      "text": "Thanks"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2358.4,
+      "text": "Yep."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2360.6,
+      "text": "Uh, well, what else has been going on in the wor- the tech world, uh, the last couple of, of... the last week or so here? There's, like, some conferences going on, guys. Have you guys been to any conferences since, uh, since Rails World?"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2373.1,
+      "text": "It's not"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2374.5,
+      "text": "Unfortunately not, but there's a big fear of missing out."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2378.1,
+      "text": "Oh yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2378.6,
+      "text": "three"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2379.3,
+      "text": "and videos from India,"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2381.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2382.1,
+      "text": "wish, I wish I was Irina because she's been doing a world tour of, of all these, these conferences, I think. And I think, uh, she's... Is, is she at, in, in India right now"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2391.2,
+      "text": "Yeah, she is. Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2394.1,
+      "text": "But yeah, what was it?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2395.8,
+      "text": "don't know how Marco does it, but he's at every bloody conference pretty much. It's"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2401.2,
+      "text": "is"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2402.0,
+      "text": "much travel, I couldn't do it"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2405.4,
+      "text": "It's, uh, yeah, the, was it Deccan Ruby or Deccan Queen Ruby? Uh,"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2410.2,
+      "text": "Absolutely. Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2411.5,
+      "text": "I don't know how to pronounce it, but Deccan Queen"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2415.0,
+      "text": "And it looks like the keynotes are already online on YouTube, so you can check those out"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2418.7,
+      "text": "Oh, wow. Oh, that's fast"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2422.1,
+      "text": "And,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2422.7,
+      "text": "yeah. And there is one which I'm really interested about is the Sam Ruby one, because it's about Roundhouse and how this whole Ruby to s- to C to a binary path would m- would, would work or could work to speed up, uh, Rail apps. 'Cause we talked about this last week that we both heard about this Roundhouse and Spinner and how it get a lot of traction, but we didn't really know how it works. Now I s- I looked into it since last week, and, uh, yeah, the way this whole Ro- Roundhouse works, just to give you guys a, um, an idea, is, is basically it can transpile your Rails app into a few languages. And what it can also do, it can just patch up all the things which are not supported in Spinner and compile it to a, a binary."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2474.0,
+      "text": "So basically just compiling through C to a binary. And then, uh, it is super fast, way faster than CRuby. And, uh, yeah, and there is a test project which they are using it on. It's a Campfire, because it's open source, and it's a"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2487.8,
+      "text": "I saw that"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2489.8,
+      "text": "Yep, and there is even a Campfire which is running on a Spinner compiled, uh, instance,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2496.2,
+      "text": "No matter"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2497.4,
+      "text": "it's"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2497.6,
+      "text": "How do you deploy that?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2500.1,
+      "text": "Uh, Sam, Sam Ruby."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2502.0,
+      "text": "OK"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2502.2,
+      "text": "How do you deploy it? Is that what you asked, Raul?"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2504.8,
+      "text": "Yeah. How do you deploy? Like, can you deal with Kamal as well? Like, uh, the old, uh... Can you put it in a Docker container?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2511.7,
+      "text": "you just need a container, yeah, and you just need a, a, a proxy. Uh, what is it called? Um, a proxy in front of it. I, I can't find the word. But you just need a front proxy and, and then it to your, uh, to your CF. It's running on whatever port. It's pretty similar to like running any, any Rack with Ruby. And yeah, it's, it's, uh, actually it's not a public campfire. It's for people who contribute to, to Roundhouse. But yeah, it's working really well. I fixed a few security issues in Roundhouse so far. The things it has s- such a momentum, it's crazy. There are so many things going, ongoing, and, uh, it's improving. Like there was an issue, one caveat before was because everything is compiled to a binary at the end."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2559.1,
+      "text": "Now you deploy your app, there's an exception somewhere, and it's like, okay, but where the hell is it in my Ruby, right? Because you have your Ruby source, you don't have the intermediary. but they just fixed that this week. It's just like it's already done, it's already working, it's already giving you the stack trace back to the Rubico, which is amazing. And"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2578.7,
+      "text": "Thanks"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2579.3,
+      "text": "of these little things which are like, oh yeah, that thing doesn't work. there is such a momentum behind this project, I think it will be... By the end of this year, I think a lot of Rail apps will be able to just run through Spina and deploy it as a much faster version of the same application as you had before"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2598.2,
+      "text": "Oh, I can put comm companies on, uh, on Spino around house"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2602.6,
+      "text": "you can, you can. Uh, it, it depends on what are your dependencies. Like, I have a pet project idea, but I need IMAP, and that's, that doesn't work"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2612.7,
+      "text": "We don't need that"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2613.5,
+      "text": "IMAP is not... There is-- It is, like, kinda like a shim which works in Roundhouse to make it Spinel compatible, and that doesn't exist yet. having a full-blown IMAP implementation which, which removes all the meta programming and everything which doesn't work with Spinel is just, yeah, it's a big task. But if you don't have any dependencies like that, then yeah, it, it would be a good idea to try, I think. And you can give feedback to the maintainers, and they are very nice and a lot of issues are being fixed. Or you can fix it yourself, give it a try."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2653.4,
+      "text": "There's some pretty awesome stuff happening right now. Yeah. Uh, I think coming out of, coming up ra- coming out of Rails World a few weeks ago, uh, there was, of course, uh, of emotions. But, uh, this idea of, well, are we not using Rails anymore? Are we using Rust now? Or what are, what, what is this all about? And I think these projects like Roundhouse, uh, are, are showing us that you don't just have to use them. And, um,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2679.4,
+      "text": "Yep"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2681.0,
+      "text": "is now gonna be making m- more native applications because you can. You don't have to make everything in, in Rails and Ruby. Um, you know, if it's the right thing to do, y- these tools like Roundhouse are being developed to help make that, uh, a possibility"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2696.3,
+      "text": "Yep. uh, actually, I didn't put this into the show notes, but, uh, DHH made a, a Campfire benchmark. So he, he asked the ALMs to rewrite Campfire in different languages. And then, uh, initially Rust won, but then there were some optimizations, and in the end, guess, guys, what wins? So there is Rust, C, Elixir, Ruby, and I don't know, some Node.js, uh, Express or"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2727.2,
+      "text": "HP"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2729.1,
+      "text": "Maybe there is PHP as well, I don't know. But guess which one is the fastest"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2732.6,
+      "text": "saw this tweet and I saw the numbers and, but I don't remember now. I'm, I'm failing at test time. Um, uh, what was the benchmark? What was the, the thing that was being measured?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2744.8,
+      "text": "Oh, it, it measure different endpoints and,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2747.9,
+      "text": "it"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2748.3,
+      "text": "many requests it can serve"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2752.9,
+      "text": "Rust"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2754.9,
+      "text": "Rust was the fastest, but it's not the fastest anymore. I don't remember the, which one's the fastest"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2759.8,
+      "text": "Raul is right. Rust was the fastest initially, but then with the optimizations, of course it's C. C is the fastest language,"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2768.3,
+      "text": "Yeah, he wrote it in C"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2769.8,
+      "text": "is even faster."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2771.1,
+      "text": "Until next week"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2772.3,
+      "text": "the, the problem with C is it, the time you need to invest is just insane. It's so much code. It's, uh... But still, I think s- if I need to choose to write C or Rust, I'm writing C all day"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2787.4,
+      "text": "Are you actually gonna write C or write Rust or, or have your agent do it?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2793.4,
+      "text": "Now you have your agent do it, but you still need to look at the code, and you still need to understand some language constructs and language concepts. And the other thing, you still need to interact maybe with that language community, and that's also a big thing. The Rust community is full of crazies, and I don't think I want to really talk"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2809.7,
+      "text": "Shot across the bow there from Greg."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2815.5,
+      "text": "Well, yeah, you know me, I'm, I'm all... I'm, uh, Eastern European. We are blunt. We are not, uh, sugarcoating."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2821.8,
+      "text": "Oh yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2823.5,
+      "text": "But I think, yeah, that's actually, that m- that might be my biggest grief with Rust, actually. I don't really want to deal with those people, to be honest. And sometimes you need to deal with them because maybe you need to get something to fix upstream, and you have no chance to reason with those people. Like, they hate AI, for instance. A lot of projects are, are, uh, rejecting AI contributions, which is just silly. It's... You should look at quality. It's like, right, it should be merit-based. If it's good quality, who cares if it's human or LLM written? I don't care. I don't care. And, uh, back to the point, I don't really want to write C, and I don't really want to write Rust. But if I have to look at the code for whatever reason, I want to look at something which I'm at least slightly comfortable to look at, and Rust is not really that."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2872.3,
+      "text": "C is, it's kind of okay. It's just"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2875.0,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2875.0,
+      "text": "lot of code for, uh, little things"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2878.1,
+      "text": "This is the beauty of Rails, uh, i- is that it's, it's, it's so nice to write. Um, but yeah, we're in this, this weird crossroads or, or whatever you wanna call it, where we're not writing a lot of what we're using. Uh, so, uh, I, I think, I, I wonder what we're gonna... In five years, 10 years, two years, six months, when we look back at, like, this moment in time right now, uh, 2026, how will we... Will we be... What, what will be, what will we be thinking about, uh, about then? Um, I, I, and I really have no idea right now, because if, uh, two years ago you would've said I would be, be able to do everything I can with AI, I would've said, \"You're nuts that that would happen in, in a year or two.\""
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2921.2,
+      "text": "Even a year ago, I would've said"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2923.6,
+      "text": "For sure"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2924.4,
+      "text": "far, far away"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2926.0,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2928.5,
+      "text": "But yeah, we'll see. We'll see what the future holds."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2931.9,
+      "text": "We certainly will. Well,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2935.1,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2936.5,
+      "text": "about before we, uh, wrap things up here for episode two?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2941.3,
+      "text": "Yeah, one thing we didn't mention last week, which I think it should be good to, to raise awareness of, we had the last release of Rails 7. Rails 7, but the 7 line, which was 7.2.4, and no more Rails 7 releases. So if you still run those old apps, especially now in the age of AI, it's super easy to upgrade, so please do so and move on to Rails 8"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2968.2,
+      "text": "I'm not. I'm already at eight"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2972.1,
+      "text": "You know, well, I still know about applications which are always two, so"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 2976.4,
+      "text": "Oh wow"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2978.6,
+      "text": "Yeah, it looks like 7.2.4 is the latest and last, uh, 7 variant"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2986.4,
+      "text": "Yes"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2988.4,
+      "text": "Yeah, there's a lot of great changes in, that happened in the 8, uh, in Rails 8. Um, that's another episode, another day we could talk about, but, so many great things happening in 8. So if you're not in 8 yet, you should get over there, but if you're, if you're in those low 7s, you need to, need to get over and, uh, tell your agent to clean up your code for you"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3008.0,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 3008.5,
+      "text": "Oh yeah. Well, when you get to eight-two, they will have Herb in it too"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3013.5,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3014.4,
+      "text": "Yeah, yeah, we have a lot of n- cool stuff coming in 8.2. Once that's released, I'm sure we'll have a whole episode covering the new"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3021.3,
+      "text": "Yeah. for that. Marco had a great, uh, a great presentation in, uh, in Austin a few weeks back about that."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 3028.0,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3029.2,
+      "text": "It, uh, it, it seems kind of magical, which, uh, is really cool"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3034.3,
+      "text": "Yeah. I'm not really a front-end guy, but still it's impressive."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3039.1,
+      "text": "Ja,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3039.4,
+      "text": "like, I don't, I don't really like really front-end work"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3044.7,
+      "text": "Raul, um, where can folks find you, uh, if they wanna learn more about, uh, about some of the products you're doing? What's the best way for them to, to, to get a view into your world?"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 3053.7,
+      "text": "Next. Hey, I'm on Raul on the Rails. It's my handle."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3058.5,
+      "text": "Rails. All right. We'll, uh, we'll try to tag that in the, the, the, uh, the descriptions on our, our places where folks are finding this podcast, but Raul on Rails, R-A-U-L on Rails. And, uh, yeah, Raul, anything else you wanna share with everybody before we, uh, before we head out?"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 3076.1,
+      "text": "Yeah, you can subscribe to calmcompanies.club, uh, if you wanna check out, like, job openings, uh, on a weekly basis. And, uh, yeah, find me on X, hit me a DM if you wanna chat about building a business alone, solo, indie hacking, whatever you want"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3098.7,
+      "text": "I also have one more thing which you forgot to mention at the conferences. So there's Exo Ruby tomorrow in New York. If you are live nearby, you can still get a ticket, I guess, and just go and have fun. Conferences are amazing."
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 3112.1,
+      "text": "Amazing"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3112.5,
+      "text": "in about a month, there will be SF Ruby"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3115.8,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3116.3,
+      "text": "Francisco, is you can still book your trip and go there. Actually, Raul was there last year, so maybe he can give us a bit of a experience. How"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 3125.2,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3125.8,
+      "text": "last-"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 3126.2,
+      "text": "I was the, at the first SF Ruby Conference. It was amazing, honestly. Got to meet a lot of new people that m- I've been, I've known from X and never met in real life, which happens a lot on, during these conferences. So yeah, just go to conferences. Greg convinced me, like, two, three years ago. I don't know when Friendly RB happened,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3150.9,
+      "text": "Last"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 3151.3,
+      "text": "that was the, that was my, uh, starting point. Off of that, I'm trying to go to, to conferences and meet people. It's amazing. Go to conferences, people."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3162.9,
+      "text": "Amen. It's so true. I, I know you guys personally now because we went to a conference together. Um, there's, there's really nothing like it."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3170.5,
+      "text": "We wouldn't be here today talking if there wouldn't be Ray as well, right?"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 3175.6,
+      "text": "Yep, exactly"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3178.5,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3179.2,
+      "text": "Are, uh, so are either of you gonna, are you either of you scheduled to go to, to SF Ruby, um, next month yet?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3186.6,
+      "text": "Unfortunately, not too much traveling for this year already for me, so I'm skipping it. Maybe next year. problem is there are so many great conferences I want to go to, but A, it costs a lot of money and also time. So it's just, it's really hard to go to all of them"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3202.9,
+      "text": "Yeah. Yeah, I'm, uh, I'm, I'm, I'm currently not scheduled to go, but I'm, I'm... It's, it's really just gonna come down to if I can work it out with the family and get the time away to, to, to travel down, because I'm lucky. For me, it's, it's like an hour 45 or an hour and a half flight in the same time zone from Portland down to San Francisco. So it's, it's, it's about as close as I'm gonna get to anything. So, um,"
+    },
+    {
+      "speaker": "Raul Papadineti",
+      "t": 3223.9,
+      "text": "it should go"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3224.8,
+      "text": "try to make it, but, uh, to be determined still if I'll actually be able to make it happen"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3231.6,
+      "text": "Let's hope it's gonna happen."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3233.5,
+      "text": "so Well, Raul, thanks for joining us and being our first ever guest on the Pingback Podcast. Um, folks know where to find you, uh, on X now, and we look forward to hearing more about, uh, how your work continues. Um, Greg and I will be back with another episode probably again next week. Um, and we've got a couple of guests lined up that we're working on scheduling and, um, uh, I think, uh, folks who are listening out there to the Pingback Podcast are gonna, uh, be excited about some of the guests that we've got lined up for the, the next couple of episodes. So, um, everybody out there listening, thanks again, uh, from your hosts Greg and Joel. Uh, this is Pingback Podcast episode number two. Until the next time, be well"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3278.7,
+      "text": "Thanks, Rahul. See you guys"
+    }
+  ]
+}

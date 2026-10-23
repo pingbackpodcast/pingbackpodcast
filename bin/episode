@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Episode tasks. See docs/plans/2026-10-23-redesign-and-publishing.md.
+#
+#   bin/episode transcript N    save Buzzsprout's transcript for episode N
+#                               as _data/transcripts/episode-N.json
+#   bin/episode thumbnail N     save the YouTube thumbnail for episode N as
+#                               assets/images/episodes/episode-N.jpg
+
+require_relative "../lib/pingback/transcript_import"
+require_relative "../lib/pingback/thumbnail"
+
+ROOT = File.expand_path("..", __dir__)
+
+def usage!
+  warn File.read(__FILE__)[/^# Episode tasks.*?(?=^\n|\z)/m].gsub(/^# ?/, "")
+  exit 64
+end
+
+command, number = ARGV
+usage! unless command && number&.match?(/\A\d+\z/)
+
+begin
+  case command
+  when "transcript"
+    path = Pingback::TranscriptImport.new(root: ROOT).run(number.to_i)
+    turns = JSON.parse(File.read(path))["turns"]
+    puts "wrote #{path.delete_prefix("#{ROOT}/")} (#{turns.size} turns, speakers: #{turns.map { |t| t["speaker"] }.uniq.join(", ")})"
+  when "thumbnail"
+    path = Pingback::Thumbnail.new(root: ROOT).run(number.to_i)
+    puts "wrote #{path.delete_prefix("#{ROOT}/")}"
+  else
+    usage!
+  end
+rescue Pingback::TranscriptImport::Error, Pingback::Thumbnail::Error => e
+  abort "bin/episode: #{e.message}"
+end
