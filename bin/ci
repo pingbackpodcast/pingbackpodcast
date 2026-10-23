@@ -8,6 +8,8 @@
 #   2. Every episode has the front matter the templates need
 #   3. Every episode's share card exists and is committed
 #   4. No episode is dated in the future (Jekyll would silently skip it)
+#      Chapters are in order; chapter and moment times fall inside the episode;
+#      every moment has committed art; topic slugs exist in _data/topics.yml
 #   5. Every internal link and image in the built site resolves
 #   6. The site test suite (bin/test) passes
 
@@ -35,6 +37,8 @@ Dir.mktmpdir("pingback-ci") do |site|
   step["Episode front matter"]
   required = %w[title episode description duration]
   tracked = `git ls-files -z`.split("\0")
+  topic_slugs = Array(YAML.safe_load_file("_data/topics.yml")).map { |t| t["slug"] }
+  to_secs = ->(t) { t.to_s.split(":").map(&:to_i).reduce(0) { |a, b| a * 60 + b } }
   now = Time.now
   Dir["_posts/*.md"].sort.each do |path|
     raw = File.read(path)
@@ -55,6 +59,19 @@ Dir.mktmpdir("pingback-ci") do |site|
     elsif !tracked.include?(card)
       failures << "#{name}: share card #{card} is not committed (git add it)"
     end
+
+    limit = fm["duration"].to_s[/\d+/].to_i * 60 + 59
+    chapter_secs = Array(fm["chapters"]).map { |c| to_secs.call(c["t"]) }
+    failures << "#{name}: chapters are not in time order" unless chapter_secs == chapter_secs.sort
+    failures << "#{name}: a chapter starts after the episode ends (#{fm["duration"]})" if chapter_secs.any? { |c| c > limit }
+    Array(fm["moments"]).each.with_index(1) do |m, i|
+      failures << "#{name}: moment #{i} at #{m["t"]} is after the episode ends (#{fm["duration"]})" if to_secs.call(m["t"]) > limit
+      %w[title quote].each { |k| failures << "#{name}: moment #{i} has no #{k}" if m[k].to_s.strip.empty? }
+      art = "assets/images/moments/episode-#{fm["episode"]}-#{i}.jpg"
+      failures << "#{name}: moment #{i} art #{art} is missing or not committed (run bin/og-cards #{fm["episode"]})" unless tracked.include?(art)
+      (Array(m["topics"]) - topic_slugs).each { |t| failures << "#{name}: moment #{i} has unknown topic #{t}" }
+    end
+    (Array(fm["topics"]) - topic_slugs).each { |t| failures << "#{name}: unknown topic #{t}" }
 
     date = fm["date"] || Date.parse(name[0, 10])
     date = date.to_time if date.respond_to?(:to_time)

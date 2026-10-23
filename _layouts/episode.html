@@ -43,6 +43,34 @@ layout: base
   </div>
   {%- endif %}
 
+  {%- if page.moments and page.moments.size > 0 %}
+  <section class="moments" aria-labelledby="moments-heading">
+    <h2 id="moments-heading" class="section-title">Best moments</h2>
+    <p class="section-intro">Short on time? Jump straight to the parts most likely to pull you in. Quotes lightly edited for reading.</p>
+    <div class="moment-grid">
+      {%- for m in page.moments %}
+      {%- assign secs = m.t | seconds %}
+      <article class="card moment-card">
+        <div class="moment-card__media">
+          <img class="moment-card__art" src="{{ '/assets/images/moments/episode-' | append: page.episode | append: '-' | append: forloop.index | append: '.jpg' | relative_url }}" width="480" height="640" alt="" loading="lazy">
+          <span class="moment-card__dot" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
+        </div>
+        <div class="moment-card__body">
+          {%- if m.topics and m.topics.size > 0 %}
+          <p class="card__chips">
+            {%- for slug in m.topics %}{% assign topic = site.data.topics | where: "slug", slug | first %}<span class="chip">{{ topic.name | default: slug }}</span>{% endfor %}
+          </p>
+          {%- endif %}
+          <h3 class="card__title">{{ m.title }}</h3>
+          <blockquote class="moment-card__quote">{{ m.quote }}</blockquote>
+          <a class="card__link moment-card__play" href="https://www.youtube.com/watch?v={{ yt }}&amp;t={{ secs }}s" data-seek="{{ secs }}">Play from {{ m.t }}</a>
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </section>
+  {%- endif %}
+
   <div class="episode-body{% if page.chapters %} episode-body--with-aside{% endif %}">
     <div class="episode-notes prose e-content" itemprop="description">
       <h2>Show notes</h2>

@@ -1,0 +1,16 @@
+# Topics episodes and moments are tagged with (slugs are used in front matter).
+- slug: rails
+  name: Rails & Ruby
+  blurb: Framework news, Rails World, Roundhouse and Spinel, upgrades, and the people building Ruby's future.
+- slug: ai
+  name: AI & agents
+  blurb: Coding with agents, LLMs, and how the work of building software is changing.
+- slug: indie
+  name: Indie & business
+  blurb: Solo products, marketing, contracting versus full-time, and making a living from what you build.
+- slug: tools
+  name: Tools & setup
+  blurb: Omarchy, editors, plugins, workflows, and the gear behind the work.
+- slug: other-tech
+  name: Other tech
+  blurb: Other languages, performance, compilers, and the wider tech world beyond Ruby.

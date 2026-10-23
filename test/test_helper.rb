@@ -39,6 +39,7 @@ class SiteTest < Minitest::Test
   # Declarations of every rule whose selector list includes `selector` exactly.
   def rules_for(selector)
     css.scan(/([^{}]+)\{([^{}]*)\}/).filter_map do |sels, body|
+      sels = sels.sub(/\A\s*@charset[^;]*;/, "")
       body if sels.split(",").map(&:strip).include?(selector)
     end.join(";")
   end

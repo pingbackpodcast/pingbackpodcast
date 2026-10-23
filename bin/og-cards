@@ -4,6 +4,7 @@
 # Builds the 1200x630 share cards (X/Open Graph) with headless Chromium:
 #   assets/images/og/default.png      homepage and static pages
 #   assets/images/og/episode-N.png    one per episode
+#   assets/images/moments/episode-N-M.jpg  480x640 art for each best moment
 # and adds an `image:` block (path, size, alt) to any episode missing one.
 #
 # Usage: bin/og-cards          (re-renders every card)
@@ -17,6 +18,7 @@ require "fileutils"
 
 ROOT    = File.expand_path("..", __dir__)
 OUT_DIR = File.join(ROOT, "assets/images/og")
+MOMENT_DIR = File.join(ROOT, "assets/images/moments")
 ART     = File.join(ROOT, "assets/images/cover.jpg")
 CHROME  = %w[chromium google-chrome-stable google-chrome].find { |b| system("command -v #{b} >/dev/null 2>&1") } or
   abort "Needs Chromium or Chrome on PATH."
@@ -49,19 +51,45 @@ def page(body)
   HTML
 end
 
-def render(html, out)
+# Portrait art for a best-moment card: the gem and arcs cropped from the cover,
+# then the episode and timestamp. The moment's title lives in the HTML card.
+def moment_page(episode, time)
+  <<~HTML
+    <!doctype html>
+    <html><head><meta charset="utf-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@700&display=block">
+    <style>
+      * { margin: 0; box-sizing: border-box; }
+      html, body { width: 480px; height: 640px; overflow: hidden; }
+      body { position: relative; background: #181a26; color: #e8ebf5; font-family: "Archivo", sans-serif; }
+      .crop { position: absolute; inset: 0 0 160px 0; overflow: hidden; }
+      .crop img { position: absolute; width: 1108px; left: -295px; top: -205px; }
+      .foot { position: absolute; left: 0; right: 0; bottom: 0; height: 160px; padding: 18px 32px 0;
+              border-top: 4px solid #e8436b; background: #14161f; }
+      .ep { font-variation-settings: "wdth" 125; font-weight: 800; font-size: 26px; color: #ff7d99; }
+      .time { margin-top: 6px; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 72px;
+              line-height: 1; color: #7cc8ff; letter-spacing: -0.02em; }
+    </style></head>
+    <body><div class="crop"><img src="file://#{ART}"></div>
+      <div class="foot"><div class="ep">Episode #{h episode}</div><div class="time">#{h time}</div></div>
+    </body></html>
+  HTML
+end
+
+def render(html, out, size: "1200,630", quiet: false)
   Dir.mktmpdir do |dir|
     src = File.join(dir, "card.html")
     File.write(src, html)
     ok = system(CHROME, "--headless", "--disable-gpu", "--hide-scrollbars", "--force-device-scale-factor=1",
-                "--allow-file-access-from-files", "--virtual-time-budget=8000", "--window-size=1200,630",
+                "--allow-file-access-from-files", "--virtual-time-budget=8000", "--window-size=#{size}",
                 "--screenshot=#{out}", "file://#{src}", out: File::NULL, err: File::NULL)
     abort "Chromium failed rendering #{out}" unless ok && File.exist?(out)
   end
-  puts "wrote #{out.delete_prefix("#{ROOT}/")}"
+  puts "wrote #{out.delete_prefix("#{ROOT}/")}" unless quiet
 end
 
 FileUtils.mkdir_p(OUT_DIR)
+FileUtils.mkdir_p(MOMENT_DIR)
 
 hosts = Array(config["hosts"]).map { |x| x["name"] }
 render(page(<<~HTML), File.join(OUT_DIR, "default.png"))
@@ -88,6 +116,23 @@ Dir[File.join(ROOT, "_posts/*.md")].sort.each do |path|
       <div class="meta">#{with}Pingback Podcast</div>
     </div>
   HTML
+
+  moments = Array(fm["moments"])
+  moments.each.with_index(1) do |m, i|
+    out = File.join(MOMENT_DIR, "episode-#{num}-#{i}.jpg")
+    Dir.mktmpdir do |tmp|
+      png = File.join(tmp, "moment.png")
+      render(moment_page(num, m["t"]), png, size: "480,640", quiet: true)
+      system("magick", png, "-strip", "-quality", "84", out, exception: true)
+    end
+    puts "wrote #{out.delete_prefix("#{ROOT}/")}"
+  end
+  Dir[File.join(MOMENT_DIR, "episode-#{num}-*.{png,jpg}")].each do |stale|
+    next if stale.end_with?(".jpg") && stale[/-(\d+)\.jpg\z/, 1].to_i <= moments.size
+
+    File.delete(stale)
+    puts "removed #{stale.delete_prefix("#{ROOT}/")}"
+  end
 
   next if fm.key?("image")
   card = "image:\n  path: /assets/images/og/episode-#{num}.png\n  width: 1200\n  height: 630\n" \

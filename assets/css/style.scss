@@ -467,6 +467,66 @@ main { padding-bottom: 5rem; }
 }
 .episode-listen audio { width: 100%; }
 
+.section-intro { margin: -0.5rem 0 1.5rem; color: var(--muted); max-width: var(--measure); }
+
+.moments { margin-top: 3.5rem; }
+.moment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 30rem), 1fr));
+  gap: 1rem;
+}
+.moment-card {
+  display: grid;
+  grid-template-columns: 9.5rem minmax(0, 1fr);
+  padding: 0;
+  overflow: hidden;
+}
+.moment-card__media { position: relative; overflow: hidden; background: #14161f; }
+.moment-card__art {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  transition: transform 500ms ease;
+}
+.moment-card:hover .moment-card__art, .moment-card:focus-within .moment-card__art { transform: scale(1.04); }
+.moment-card__dot {
+  position: absolute;
+  right: 0.6rem; top: 0.6rem;
+  display: grid;
+  place-items: center;
+  width: 2.25rem; height: 2.25rem;
+  border-radius: 50%;
+  background: var(--ruby);
+  color: #14161f;
+  transition: transform var(--speed) ease;
+}
+.moment-card:hover .moment-card__dot { transform: scale(1.08); }
+.moment-card__body {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.25rem 1.1rem;
+  border-left: 1px solid var(--line);
+}
+.moment-card .card__title { margin-top: 0.75rem; font-size: 1.15rem; }
+.moment-card__quote {
+  margin: 0.6rem 0 1rem;
+  color: var(--ink);
+  font-size: 0.975rem;
+  line-height: 1.55;
+}
+.moment-card__quote::before { content: "\201C"; }
+.moment-card__quote::after { content: "\201D"; }
+.moment-card__play {
+  margin-top: auto;
+  color: var(--ruby-text);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+@media (max-width: 30rem) {
+  .moment-card { grid-template-columns: 6.5rem minmax(0, 1fr); }
+}
+
 .episode-body {
   display: grid;
   gap: 2rem;
