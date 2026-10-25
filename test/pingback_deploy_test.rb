@@ -38,7 +38,12 @@ class PingbackDeployTest < Minitest::Test
   def test_skill_exists_and_old_episode_skill_is_gone
     skill = File.read(File.join(ROOT, ".claude/skills/pingback-deploy/SKILL.md"))
     assert_match(/^name: pingback-deploy$/, skill)
-    assert_match(/thumbnail-style\.md/, skill, "skill reads the saved thumbnail preferences")
+    # Joel sets the thumbnail and writes chapter timestamps in YouTube himself;
+    # the skill takes both from the video instead of making its own.
+    assert_match(/bin\/episode new N --youtube/, skill)
+    assert_match(/bin\/episode thumbnail N/, skill)
+    refute_match(/thumbnail-style/, skill)
+    refute File.exist?(File.join(ROOT, "docs/thumbnail-style.md"))
     refute File.exist?(File.join(ROOT, ".claude/skills/episode/SKILL.md"))
   end
 end
