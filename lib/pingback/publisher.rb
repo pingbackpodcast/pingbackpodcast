@@ -29,6 +29,7 @@ module Pingback
     # changes private/published), then put the YouTube description on the
     # clipboard. dry_run: only read and report what would change.
     def sync(number, dry_run: false)
+      ensure_unlocked!(number) unless dry_run
       ep = load(number)
       id = ep["buzzsprout_id"]
       remote = bz.episode(id)
@@ -55,6 +56,7 @@ module Pingback
     end
 
     def publish(number, at: nil)
+      ensure_unlocked!(number)
       ep = load(number)
       when_at = Time.parse(at || ep.date_string).iso8601
       result = bz.update_episode(ep["buzzsprout_id"], "private" => false, "published_at" => when_at)
@@ -67,6 +69,7 @@ module Pingback
     # Descript renders the audio; a new private Buzzsprout episode gets it.
     # Records buzzsprout_id and descript_project in the episode file.
     def publish_audio(number, descript_link:, descript:, downloader:)
+      ensure_unlocked!(number)
       ep = EpisodeFile.find(@root, number) or raise Error, "no post for episode #{number} in _posts/"
       raise Error, "episode #{number} is already on Buzzsprout (buzzsprout_id #{ep['buzzsprout_id']})" if ep["buzzsprout_id"]
 
@@ -116,6 +119,16 @@ module Pingback
     private
 
     def bz = (@bz ||= @buzzsprout.respond_to?(:call) ? @buzzsprout.call : @buzzsprout)
+
+    # Episodes up to buzzsprout_locked_through went out before this pipeline
+    # existed; nothing here may change them on Buzzsprout.
+    def ensure_unlocked!(number)
+      locked = @config["buzzsprout_locked_through"].to_i
+      return if number.to_i > locked
+
+      raise Error, "episode #{number} is locked: episodes 1-#{locked} are already published on Buzzsprout " \
+                   "and stay as they are (buzzsprout_locked_through in _config.yml)"
+    end
 
     def load(number)
       ep = EpisodeFile.find(@root, number) or raise Error, "no post for episode #{number} in _posts/"

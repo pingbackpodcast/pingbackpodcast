@@ -2,6 +2,7 @@
 
 require "minitest/autorun"
 require "json"
+require "yaml"
 require "tmpdir"
 require "fileutils"
 require_relative "buzzsprout_test" # FakeHttp
@@ -125,6 +126,40 @@ class PublisherTest < Minitest::Test
     p = Pingback::Publisher.new(root: @root, buzzsprout: factory, out: StringIO.new)
     assert_raises(Pingback::Publisher::Error) { p.sync(9) }
     refute asked, "no token request before the episode is found"
+  end
+
+  # Episodes 1-3 went out before the pipeline existed; Buzzsprout keeps them as is.
+  def lock_through(n)
+    File.write(File.join(@root, "_config.yml"), "buzzsprout_locked_through: #{n}\n", mode: "a")
+  end
+
+  def test_locked_episodes_refuse_sync_publish_and_audio_without_asking_for_a_token
+    lock_through(3)
+    asked = false
+    factory = -> { asked = true; Pingback::Buzzsprout.new(podcast_id: "1", token: "t", http: FakeHttp.new) }
+    p = Pingback::Publisher.new(root: @root, buzzsprout: factory, out: StringIO.new)
+    [-> { p.sync(3) }, -> { p.publish(3) },
+     -> { p.publish_audio(3, descript_link: "x", descript: -> { flunk }, downloader: ->(*) { flunk }) }].each do |call|
+      error = assert_raises(Pingback::Publisher::Error) { call.call }
+      assert_match(/episode 3 is locked/, error.message)
+    end
+    refute asked, "no token request for a locked episode"
+  end
+
+  def test_locked_episodes_still_allow_dry_run_and_status
+    lock_through(3)
+    publisher(FakeHttp.new([200, remote], [200, []])).sync(3, dry_run: true)
+    publisher(FakeHttp.new([200, remote], [200, []])).status(3)
+  end
+
+  def test_episodes_after_the_lock_sync_normally
+    lock_through(2)
+    publisher(FakeHttp.new([200, remote], [200, remote], [200, []])).sync(3)
+    assert_equal 1, @clipboard.size
+  end
+
+  def test_site_config_locks_episodes_one_to_three
+    assert_equal 3, YAML.safe_load_file(File.expand_path("../_config.yml", __dir__))["buzzsprout_locked_through"]
   end
 
   def test_episode_without_buzzsprout_id_explains_what_to_do

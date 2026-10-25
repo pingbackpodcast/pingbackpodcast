@@ -59,6 +59,8 @@ minima:
 # Buzzsprout show ID (the number in buzzsprout.com/<id>/...). Set it, then add
 # buzzsprout_id to each episode to get the Buzzsprout player.
 buzzsprout_podcast_id: "2443886"
+# Episodes 1-3 were published before bin/episode; sync/publish/audio refuse them.
+buzzsprout_locked_through: 3
 
 # Episodes are Jekyll posts in _posts/ and live at /episodes/<slug>/
 permalink: /episodes/:title/
