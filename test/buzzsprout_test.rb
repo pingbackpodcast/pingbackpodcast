@@ -90,7 +90,7 @@ class SecretsTest < Minitest::Test
     calls = []
     runner = ->(*cmd) { calls << cmd; ["dtok\n", true] }
     assert_equal "dtok", Pingback::Secrets.new(runner: runner, env: {}).fetch(:descript)
-    assert_equal [["op", "read", "op://Pingback Podcast/Descript/website publish API token"]], calls
+    assert_equal [["op", "read", "op://Pingback Podcast/Descript/website deploy API token"]], calls
   end
 
   def test_environment_variable_wins

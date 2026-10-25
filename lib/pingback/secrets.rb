@@ -6,14 +6,14 @@ module Pingback
   # API tokens come from 1Password at run time (never stored on disk):
   # vault "Pingback Podcast"; Buzzsprout from item "Buzzsprout API", field
   # "credential"; Descript from the "Descript" login item, field "website
-  # publish API token". PINGBACK_BUZZSPROUT_TOKEN / PINGBACK_DESCRIPT_TOKEN override.
+  # deploy API token". PINGBACK_BUZZSPROUT_TOKEN / PINGBACK_DESCRIPT_TOKEN override.
   class Secrets
     class Error < StandardError; end
 
     VAULT = "Pingback Podcast"
     ITEMS = {
       buzzsprout: ["Buzzsprout API", "credential"],
-      descript: ["Descript", "website publish API token"]
+      descript: ["Descript", "website deploy API token"]
     }.freeze
 
     def initialize(runner: ->(*cmd) { out, status = Open3.capture2(*cmd); [out, status.success?] }, env: ENV)

@@ -22,7 +22,7 @@
 #                                   schedule it); defaults to the post's date
 #
 # API tokens come from 1Password (vault "Pingback Podcast": "Buzzsprout API" item,
-# and the "Descript" item's "website publish API token" field) or
+# and the "Descript" item's "website deploy API token" field) or
 # PINGBACK_BUZZSPROUT_TOKEN / PINGBACK_DESCRIPT_TOKEN.
 
 require "bundler/setup"
