@@ -8,10 +8,11 @@ description: Take a Pingback Podcast episode from an unlisted YouTube video (upl
 Started by the `pingback-deploy` terminal command (`bin/pingback-deploy`), or
 typed in Claude Code.
 
-**What the host does in Descript and YouTube before starting:** names the
-speakers in Descript, uploads the video to YouTube as **unlisted**, sets the
-**thumbnail** in YouTube Studio, and writes the **chapter timestamps** in the
-YouTube description. Treat those as theirs: use their chapters and thumbnail
+**What the host does before starting:** names the speakers in Descript,
+publishes the audio from Descript to Buzzsprout **privately** (with "Episode N"
+in the title), publishes the video to YouTube as **Unlisted** (not Private:
+nothing can read a private video), sets the **thumbnail** in YouTube Studio,
+and writes the **chapter timestamps** in the YouTube description. Treat those as theirs: use their chapters and thumbnail
 as they are (fix only obvious typos, and say so); don't make thumbnails.
 
 **What you do:** everything else. One episode file
@@ -31,23 +32,27 @@ Work out the episode number: N if given, else one more than the highest
 the choices, plain questions for the rest):
 
 1. **Episode number**: confirm the one you worked out.
-2. **YouTube link** (unlisted is fine) and the **Descript project link**.
+2. **YouTube link** (must be Unlisted or Public) and the **Descript project
+   link** (for the transcript; optional if Buzzsprout's will do).
 3. **Guests**: full names, links (site, X, GitHub, company). Or just Joel and Greg.
-4. **Audio**: already on Buzzsprout, or should you send it?
-5. **Release time**: default is one week after the previous episode's `date:`
+4. **Release time**: default is one week after the previous episode's `date:`
    (Pacific). Offer that and "other".
-6. Anything to mention in the notes (links, sponsors, corrections).
+5. Anything to mention in the notes (links, sponsors, corrections).
 
 Don't ask for what you can read (duration, chapters, thumbnail, ids).
 
 ## 1. Scaffold and media
 ```bash
-bin/episode new N --youtube <video link>   # post with the host's chapters, duration, youtube_id
+bin/episode new N --youtube <video link>   # post with the host's chapters, duration,
+                                           # youtube_id; then links the private Buzzsprout
+                                           # episode ("Episode N" in its title)
 bin/episode thumbnail N                    # the host's YouTube thumbnail, for the site
-bin/episode audio N --descript <project link>   # only if Buzzsprout doesn't have it:
-                                           # Descript renders the audio, a new PRIVATE
-                                           # Buzzsprout episode gets it, ids recorded
 ```
+If `new` says the video is private, ask the host to set it to Unlisted in
+Studio and Save. If it couldn't link Buzzsprout, the audio isn't there yet:
+ask, then `bin/episode link N`. Fallback only, if Descript's Buzzsprout publish
+isn't working: `bin/episode audio N --descript <project link>` (Descript renders
+the audio, a new private Buzzsprout episode gets it).
 If the thumbnail or chapters aren't on YouTube yet, say so and carry on; fetch
 them again before step 3. Check the chapters meet YouTube's rules (first at
 0:00, ≥3, ≥10 s apart) and tell the host if not: YouTube ignores them otherwise.
