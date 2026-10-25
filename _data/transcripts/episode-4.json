@@ -1,0 +1,1485 @@
+{
+  "source": "buzzsprout",
+  "turns": [
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 20.8,
+      "text": "Hey, everybody. Welcome back to another episode of the \"Pingback Podcast.\" Uh, our guest today has worked at nearly every layer of the stack, from packaging Ruvi- Ruby for Fedora, to being CTO, to shipping Rails and Elixir in production. Today, he's a Ruby developer advocate at SERP API, but you probably know him best as an author. He wrote \"Development From Scratch,\" uh, a from first principles guide to hosting your own apps, and more recently, \"The Kamal Handbook,\" which is the first book on the deploymen- deployment tool that now ships with Rails. He's an indie maker who turned his own products into a real business. He gave a Kamal deep dive at Rails World in Austin just a few weeks ago, and he has a sharp set of grounded takes on where AI is and isn't useful, and, uh, also has some sharp opinions on platforms as a service and self-hosting, which we will chat about in a little bit."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 79.3,
+      "text": "Please welcome to the show J- uh, Josef Strvinsky."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 85.0,
+      "text": "Hello, Joel, and hello, Greg. Nice to see you again"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 90.7,
+      "text": "It's been a, it's been a couple of weeks since we, uh, we all had the chance to hang out in Austin there, and, uh, we're glad to have you on the, uh, on the Pingback Podcast now that it's a, a new, a new thing since we, uh, last saw each other in, in Austin"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 104.6,
+      "text": "Yeah. Thank you. Um, yeah, Austin was pretty special. It was the biggest Rails world, right? Uh, so a lot of people there. Uh, controversial, uh, in-introduction by DHH. So lot of things to talk about, lot of jokes. And it's crazy to see"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 126.3,
+      "text": "Oh, sorry, go ahead"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 127.7,
+      "text": "Yeah, and it's nice to see that, uh, you actually decided to do this podcast, uh, during World War"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 135.6,
+      "text": "Yeah, that was, uh, as, as anybody who listened to the show, uh, a couple of weeks ago knows, that was, uh, something that came about the very last night while we were there in Austin at the, uh, the closing party. So, uh, listen to episode one if you wanna hear more about that. Uh, Josef, uh, tell us a little bit more about your background. Um, anything that we, uh, maybe folks don't know a- about you out there that I didn't include in that quick intro"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 159.9,
+      "text": "I think you sum it up pretty well. Uh, maybe even before I was like self-taught, uh, PHP developer. You know, we all heard about PHP recently because of the vulnerability, so I had a flashback. Uh, and yeah, s- then I discovered Ruby, and I went to actually study computer science, and then I went, uh, to work for Red Hat as my first job, kind of already during the university and then after. So that was my first, first job. But at heart, I think I'm still like developer, and I would even say Rubyist, uh, because as you say, uh, I also worked with Elixir. Uh, that was nice three years, I would say."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 207.0,
+      "text": "But then came back to Rails, uh, when I joined Reaze. And then I had a time where I worked a lot of, for myself, uh, with just like small contracts here and there. And yeah, then here we are today. I am the Ruby developer advocate at SerpAPI. So lot of stuff, uh, happened since then."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 231.6,
+      "text": "T- t- tell us, tell me about what, uh, what that developer advocate position, what, what is that? Tell us what you do. I was a little bit intrigued by that title"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 240.7,
+      "text": "Yeah, I think a lot of people are. A lot of people always ask like, \"So what do you do?\" Like, \"Who's developer advocate?\" I think it depends on the company, of course, and on the person. Uh, but I would say, uh, as a SERP-- as a developer advocate at SERP API, I make sure, uh, developers and today also robots have a good time adopting a SERP API. So, um, in our company structure, it would be more under marketing than, let's say, something else. But you really do various things from writing video production to also working, uh, on the SDKs or with communities, with sponsorships, uh, conferences."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 291.1,
+      "text": "So it really depends on the person. For our team, I'm happy to say that we usually play to each person's strength. So someone is doing more video, someone is doing more writing, you know, and, uh, you can shape your role a little bit. Uh, so that's really, really nice because I personally, I'm also like software engineer and r- Rails developer at that, at that, right? And the company is a Rails shop, so we have-- our main application is Ruby on Rails. So I'll-- when I, for example, give feedback to some new preparing features, I can do like really deep review, not just from the point of like a potentially a user, but also as a, as a developer to do proper review and help the developer team."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 342.3,
+      "text": "You, uh, you can, you can walk the walk. Not only are you helping to make the developers and everybody kind of have a good or great experience in the marketing, but you've worked in the trenches. You know Rails, you know Ruby, so, uh, that's a unique position I would think for somebody who is kind of in that role who sounds like you're maybe not doing, uh, engineering or, or, or, or coding every day. That's part of it, but, uh, but you've definitely got that experience, so I think that's probably something that would, uh, would lend good for your team."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 369.8,
+      "text": "Yeah, for me it's good that I can combine all of it because then it never gets boring, you know? Uh, so I think that's definitely part, part of the job"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 382.9,
+      "text": "Yeah, I, uh, I've worked in different jobs over the years where, uh, some of them were, were quite different. I wore different hats every day, uh, and sometimes multiple hats in a single day. Uh, and those-- some of those jobs were great because you never felt like you were just going to work and punching the clock and doing the same thing over and over again. You had a little bit of variety. So, um, that sound, does that, sounds a little bit kinda like what you're doing? You have a lot of different things that you're doing and different kind of angles and areas of, of the company?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 411.0,
+      "text": "Yeah. Yeah. And maybe if people still think that we are just talking in general and they still don't know what I'm doing, then I can give also some more concrete examples. So for example, this week we were, uh, judging our first Indian hackathon at SAP PI. So we had over seven hundred applicants, which was really cool. And, um, uh, I was judging together with my colleagues the submissions, you know, for the winners. So it was, for example, the first time I was a judge of hackathons or something. I was part of hackathons, like company hackathons before, but I was never a judge, so that's a new thing, right? Uh, that's great. Or there was a potential user customer on our customer support chat, which I'm actually not part of."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 460.6,
+      "text": "I don't reply there every day, but I was tagged by a colleague because there was some, some issue, potential issue with, uh, timing out request with our CLI. So I went ahead and simply quickly made a fix for that so they, uh, they can, uh, continue"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 479.3,
+      "text": "So you work in a lot of different angles then of, uh, of the company. So there you go. How did, uh, I saw somewhere, I don't know if it was on your X timeline or somewhere, but about that hackathon. Uh, do you, is it, are the results public for the, for that yet or not for, or not?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 495.6,
+      "text": "Uh, yeah, they are, they are now public. So we have our"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 501.2,
+      "text": "that experience was being a judge in a hackathon and what, uh, what were you judging? I didn't, admittedly, I didn't dive deep into what the hackathon was, uh, you know, about in detail, but I did see that it was happening and you were, you were a judge on it."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 515.8,
+      "text": "Yeah. So, um, the cool thing is that with, um, Serapi API, you can make a lot of application or like, Serapi API can be part of many applications because we have over one hundred plus search, uh, search engines, uh, covered. So there are a lot of use cases people can bring up. There were some, for example, some nice travel, uh, projects. You know, I can give an example of one, uh, that I like the most, where you, uh, where you have a chat with your friends, and you can suggest like, \"Okay, we will do this on the trip,\" and then they can vote on it. And, uh, then there will be some consensus how the trip is made, you know."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 564.5,
+      "text": "But then because you can search for hotels, you can search for anything you want, then you can make very precise plan, uh, by chatting with your friends, which is really nice. Uh, and another project that, uh, I really liked is actually our winner, is the project that puts Serapi API kind of in Supabase. So Supabase is like those, this magical database. It's very popular, especially in Next.js. Not that much in Rails, but I g-got to try it because early this year I was vibe coding a Next.js app just to try like something else from Rails even before the DH talk. Uh, just, just for myself, because it crossed my mind like, \"Oh, how is it feel when I will really not understand anything, right?\""
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 613.0,
+      "text": "So I, I touched a little bit on that. It's very popular in Next.js, and I-I-I just thought it's like pretty interesting application, like technical one, because it's almost like, for example, you have Google Sheet, you co- you can also have like Serapi API function for ranking of your website or something like that. So it's similar but not in Sheets, but directly in Supabase. So I thought this is really interesting, you know. So that surprised me, for example. But there were many, many more projects because you can really, uh, do many things. So that was nice to see."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 647.6,
+      "text": "And, uh, what, uh, what was w- what was something interesting in the judging of that competition that kinda jumped out at you that surprised you, uh, that you, you didn't quite expect to see coming from one of the contestants?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 660.8,
+      "text": "Well, I don't know if it's a positive thing, but we had--"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 665.1,
+      "text": "all"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 665.5,
+      "text": "we asked them, we, we asked them to make a short video, right? So we can see even if we don't run, uh, the project from GitHub so that we see it, we know what it does, yeah. We can, we can see if it's interesting or not. And, uh, not many people put much effort into the video. Uh, a lot of like AI-generated videos, sometimes even without voice, which is not that fun thing as a judge to go through. It's just like, Why I'm watching this?\" You know? It's like some mute video that was somehow put together, generated. On one hand, I understand it, like it was not part of the conditions to judge."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 711.0,
+      "text": "Like we judge it on different things like the originality, technical merit. Yeah. So we didn't say we would judge it on video, so we didn't necessarily judge it on video. But maybe because of that also people didn't spend so much effort into it."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 727.6,
+      "text": "Right"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 728.1,
+      "text": "So I'm thinking if to do it next time also to take it into consideration that it's like nice video that, uh, we can actually repost, for example, because it makes sense. Yeah. So that, that's one insight for me, I, I would say. Yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 744.7,
+      "text": "Yeah. It kinda, it kinda r- r- think, makes me think of like, uh, uh, in a resume for a job application. Sure, you've got all the technical qualifications there, but if it's a plain blah, you know, application and you don't put any flavor into it, or you're making a website for a job application and it's just kind of got the requirements but it doesn't have any character, eh, what good is that? You know, you wanna stand out"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 770.2,
+      "text": "Yeah, you need to bring across your personality, right? Otherwise, it's just one o- one of a dozen"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 776.8,
+      "text": "Yeah, and I feel like you're right. It's so easy, Yosef, to like just have AI make it for you today, whatever whatever it is, except dinner. Um, and, uh, and but yet giving it that, that personality is kind of what makes things shines right now, I think"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 792.4,
+      "text": "I think, yeah, exactly"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 794.2,
+      "text": "AI you give it some personality because you can just make the same thing with AI that everybody else does, or you can put in the effort and make it show something from you, believe"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 807.9,
+      "text": "I think it might be more and more important because, I mean, most of that code was generated. So at least do the video, you know."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 816.7,
+      "text": "Right?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 817.4,
+      "text": "Even, even, even if--"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 818.9,
+      "text": "video for crying out loud."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 821.2,
+      "text": "put yourself there, for example, like that you-- like when you do screencast or something, you know. That's some personality and yeah, I was missing, missing that like, uh, really that was, that was the hard part. So I think it could be much more fun for me, uh, if the videos are better. But I did want to be agile also for the fact that I wanted to see the use cases, you know, where people take it, uh, because it's definitely useful for us"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 849.5,
+      "text": "That's great for somebody who is, who is trying to your hands on many parts of the application and where it's deployed and how it's used. That's a perfect position to be in where you can see it used in lots of different, uh, different use cases."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 864.7,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 866.6,
+      "text": "So, um, how many, did you say how many contestants or how many submissions there were in that, in that contest? Do you know?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 871.6,
+      "text": "over 700 submissions and some were teams."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 875.0,
+      "text": "was that I remember"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 876.1,
+      "text": "Yeah, and some were teams."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 879.5,
+      "text": "I'm, uh... That's a"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 881.6,
+      "text": "there were pro-- both professionals and students. More students than professionals,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 885.9,
+      "text": "Okay"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 886.6,
+      "text": "but we got both. Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 889.2,
+      "text": "All right. Would you do it again? Would you, would you be a judge again?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 894.3,
+      "text": "Uh, yes. Yes, for sure. Why not?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 899.1,
+      "text": "Uh"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 901.9,
+      "text": "to be charged than be judged, maybe."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 907.9,
+      "text": "coming from with that. Better to be a judge than to be judged. You've got the"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 912.9,
+      "text": "Especially if it's a criminal court case."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 916.7,
+      "text": "In that case, I'll agree wholeheartedly, yes. Um, one thing, uh, I wanna, to chat about is, is, is Kamal. Uh, shifting gears a little bit. You, uh, are, are kind of a Kamal expert. You literally wrote the book on it, on how, how to use it and how it works, and you gave a talk on it at Rails World a couple of weeks ago, which was extremely in-depth. I was lucky enough to, to, to watch that in person. And, uh, for, for those who aren't familiar with Kamal, which I imagine many folks are, but give us the, the elevator pitch or the elevator description as to what Kamal is and, and, uh, and how it works"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 957.0,
+      "text": "So Kamal is, uh, really rather simple deploy tool. It's kind of a Docker wrapper that can deploy your application and run it for you. And, um, I think that's the big selling point that is simple enough to learn in the-- during the weekend, even, uh, without AI, you know. Like maybe today you can ask agent to run Kubernetes, and we'll just run it for you. But, um, if you want to understand your tools and if you want to understand your infrastructure and how you are running things, you can learn Kamal in a weekend, and that's a big selling point. I like, uh, its, uh, its nature where it prints every single command that is being run."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1003.6,
+      "text": "So that's another way how you learn, how you learn deployment and what's going on just by running it, because you will see directly all the commands. And it's very, very useful, um, for learning, for debugging, for, for, for anything. So the downside to Kamal is maybe that it's a simple deploy tool, so it not-- doesn't automatically do other things that are connect-connected with, uh, deployment, like, um, some configuration management, you know. It can install Docker and sometimes it's even enough or you add a few batch commands as a, as a hook. And I think for most people, this is, this is actually enough, you know?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1052.1,
+      "text": "So you don't need more. But for example, for the Seven Signals that developed Kamal, for those of you that don't know it, Kamal was also started by DHH like Rails originally. Uh, so they use al-also together with Chef, you know, which is an older tool also written in Ruby, that for example brings some other infrastructure parts. So Kamal cannot do maybe everything, but it can do a lot of, lot of stuff, and it does them with like, with ease because with Kamal, I finally transformed to a container era of the, the deployment. Yeah, before I didn't use containers, I was still like-- Because at the beginning, Docker wasn't a-actually that good, and so I was waiting, waiting for the right moment, and Kamal was that moment for me."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1103.1,
+      "text": "I was like, \"Okay, now it's actually not that annoying, and I can take advantage of containers.\" Uh, so that, that's it for me."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1113.3,
+      "text": "It, uh, it really, it was one of those products that 37signals created out of necessity, if I remember. Kind of they wanted to get off... I don't remember if it was when they were trying to get out of the cloud and, and get onto their own servers, but I think that wanting to do that really helped push it and develop it a little bit more, um, into, into the mainstream. But it is a great thing, and now it, it ships standard. It has for some time now. In Rails 8 it's, it's part of, part of Rails, so you can use it if you... You know, it's, it's right there if you're making a Rails app already, which is, which is awesome."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1144.8,
+      "text": "Yeah. I remember some early posts from them. So they were looking at some vendors to run Kubernetes, you know. Kubernetes is also kind of like vanilla thing. It's the upstream, and then you have, uh, for example, Rancher. I know the idea was mentioning it. It's from SUSE, right? Or you have OpenShift, that's from Red Hat, and that's like kind of distributions of Kubernetes to bring even more things, right? And then they want to run it for you because it's so complicated now. And, uh, so I know they were looking at, uh, some of these options, but it was very expensive. And I think they realized that if they want to run things themselves, they want something simpler, something that they can understand in a small team, and that's how they started with Kamall."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1192.0,
+      "text": "And it is, it is pretty simple from, from, from the basics. Like you said, it doesn't do everything. You kinda do need to do some, other work. Uh, it's a little bit different than, than obviously a platform, uh, like a Railway or a Fly.io or something like that. But, um, but it is super easy and it gets the base there, and it's baked in, and the, the configuration isn't all that complicated. Like you said, you could learn it in a weekend, and now with agents, you could-- your agent could, could, could learn it in about 10 minutes and, and configure things if you're just having that conversation with it and getting thing- getting things up and, and running for you. Uh, but what, what are some of the things that, that Kamal doesn't do that somebody who wants to use it or is considering using it should think about that they will also have to do, um, if they were, for example, coming from, uh, a platform like, like Railway or, or something like that and they wanna start using Kamal?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1245.2,
+      "text": "Uh, they can't just use Kamal to deploy it and say, \"Okay, we're good. Everything's set.\" What are some of the big things that a user also needs to do when they're using Kamal, when they, when they ship?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1257.6,
+      "text": "So I would say it's like kind of two things. The first one is obvious, auto-scaling, because that's not built in, uh, into Kamal. Although you can probably write some kind of auxiliary script that would, you know, add something to the configuration and bring up new server. But I think a lot of people, um, over, overestimate how much they would need auto-scaling, you know? Uh, I think it's very narrow use case, uh, to, to need that in the first place. And the second thing is that for accessories, which are the things that are not your application, but like things like databases or some headless browsers or whatever else, uh, Kamal all treats them just some Docker containers."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1306.2,
+      "text": "So it doesn't really have any special knowledge about, okay, you are running database, maybe you want a replica, or maybe you want a backup. It doesn't know anything about that, which is... which makes Kamal simple and keeps it simple, but it's maybe something you might want. So I often say, like, try adopting Kamal for your web servers and job servers, right? Uh, your job queues. But keep your managed database because there is some complexity of running that, uh, running that right. So I feel there is still, uh, lot of reason to, to go managed for the database that you are really worried about the data."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1352.3,
+      "text": "But really for everything else, like for your re-regular servers, it's so simple. I, I think some people don't even realize how simple it, that is, you know. They, they think they need PaaS, and, uh, PaaS can be convenient, of course, but when you really think about the annoying parts, you still have to do them for PaaS as well. For example, my big annoying thing with deployment is always environment variables, right? Putting them somewhere, caring about them, and you still have to kind of put them there and manage them somehow, you know. And you still have to keep your application, uh, up to date and secure, you know."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1398.5,
+      "text": "So you still have to, uh, care about your images. That's also not going away. So you have to ask yourself, what's really remaining that the PaaS gives you, you know? And suddenly it's not actually that much."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1413.4,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1414.6,
+      "text": "bill. That's what they're gonna give you at the end of the month. I"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1417.9,
+      "text": "Get the bill."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1419.1,
+      "text": "makes I think autoscaling especially makes sense in terms of Heroku, right? When everything is so expensive, you don't want to run a bunch of dynos all the time unless you need them. But once you can minimize the cost, then do you really care if it's a whole machine's running all the time, and sometimes it's only 10% utilization? It doesn't cost much, so who cares?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1443.1,
+      "text": "Yeah, for me it's the, it's the cost of these platforms that's just bonkers, especially when you're starting something that maybe is a small project, a side project, an I don't know if this is gonna work project. You know, and you're, you're spending chunks of money every month just to host an app on Heroku when buy a Hetzner server, rent a Hetzner server and, and, and that's relatively cheap, and you can throw up 30 different mini small applications on there that you're testing out with Kamal and boom, you're done"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1473.9,
+      "text": "Yeah. And there, there are a lot of actually cases where you would be surprised how, how many servers you actually need. For example, Stack Overflow. I don't mean now where nobody goes there anymore, but when they were actually useful and at the top, they were running, I believe it was two servers, you know? Uh, so did they need autoscaling, you know, even in, in their heyday? Not really, no"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1503.0,
+      "text": "Yeah, I think it's true. The auto-scaling, the idea of auto-scaling sounds like something you, you, you, you wanna always be ready for, um, but there are, in today's infrastructure, probably not as many cases where that's really, really a necessity."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1518.6,
+      "text": "Ja, but main i Ja."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1521.8,
+      "text": "are some apps when you have spikes of traffics and it might make sense, but only if the costs are high. If you can have a, a good base cost for a strong machine, then don't need autoscaling. It's just not utilized all the time 100%, but you still spend less than if you would go with somewhere maybe even with autoscaling"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1541.8,
+      "text": "Yep"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1543.6,
+      "text": "But you still want to probably watch your application because even with auto-scaling, on one hand, yeah, it will scale, but you don't want to suddenly pay a big bill from AWS or somewhere else, right? So that is also a case for many people and especially for me as I run some side projects, some small projects. I never want to get a big bill that will bankrupt me because most of the projects are in zero or are not profit or something."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1571.7,
+      "text": "ja"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1573.1,
+      "text": "And so I rather the VPS goes down than to receive a big bill, you know? That's what I prefer, so"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1581.6,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1583.6,
+      "text": "Just imagine you post your pet project on Hacker News. know if you remember guys, but that used to be this case. If somebody posted something on Hacker News, it made to the top 10, and then people were clicking on the link, and it was, uh, already down because of the traffic"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1597.2,
+      "text": "It, it wasn't ready for it"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1599.8,
+      "text": "Yeah. Now imagine you have auto-scaling and your, your pet project just gets, uh, popular and you get the bill at the end of the month. You made zero money, but you have a quite high bill to pay. Can happen really easily"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1613.7,
+      "text": "That's a really good point, yeah Yeah, you have a tweet"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1617.8,
+      "text": "Yeah, whatever"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1618.4,
+      "text": "someday, and then all of a sudden your, your, your pocketbook is empty."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1624.1,
+      "text": "Yeah, there, there were quite a few people like that. I actually got to front page of Hacker News like five times, I think. I was a bit lucky in that. And well, luckily it was not, not this case that my project would go down because it's mostly like with the static pages. Uh, but, uh, yeah, actually one show Hacker News was my best-selling day for my book, you know, for my fir-first book. So that was, uh, that was great. And yeah, if you need, uh, good traffic, submit show Hacker News and maybe you get lucky"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1659.7,
+      "text": "Just to be careful with your auto-scaling setting, uh, if"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1662.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1663.3,
+      "text": "Kamal."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1665.7,
+      "text": "Exactly. Exactly"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1667.8,
+      "text": "Are there, are there certain use cases when, uh, with, with as great as, as Kamal is, and, and we're kind of already talking about how, how wonderful it is, are there, are there certain circumstances when you think, uh, reaching for a platform is a better option for, for a user?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1685.5,
+      "text": "So Beyond what I said about like running, for example, the database or something. I was, I was thinking about it before, like maybe it could be the team size and team, uh, seniority in a way, uh, where you might want to reach for the platform, right? So maybe if you are skilled one person, uh, Kamal is great. If you are, uh, worried you do something wrong, uh, it might be better to start with the platform. Usually when the project is small or has no, no traffic, it's also not automatically going to be expensive. So you can start with that. So there are probably like some team size maybe with a certain seniority, I would say, among them, uh, that makes sense, uh, to, to run PaaS."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1741.1,
+      "text": "Uh, but more and more I would say give it a go because you would be surprised. You would really be surprised how, uh, how easy it can be to run with Kamal."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1753.4,
+      "text": "And I, I will even, uh, admit that I, I-- when I was going into Rails World, I knew I wanted to come see your talk and learn more about Kamal 'cause I hadn't actually used it yet. Um, but I, the last week or so have really started playing around with it and trying to deploy things, and, and I have deployed a few things to a, to a couple of, um, a couple of servers. And I, I... It's so easy that I did point an agent at one of my projects and said, \"Just configure this to deploy with Kamal to my server,\" and it, it essentially did it. I, it, it's a, it's a non-critical app, so I wasn't worried about little thing, but I just wanted to kinda see could I just tell my agent, \"Put this on Kamal and make it happen?\" And it did. So, and it works and it's live and it's out there. Um, so even more so now, the, the complexities or the kind of having to configure and work with the, the configuration files with Kamal, that complexity is kind of in a way going away because, uh, we've got agents that can do that for us."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1810.8,
+      "text": "So it's, it's maybe not as smooth as, as Hatchbox, let's say, where you can really just tell the machine what to do, but it's, and it's not as plush and luxurious as a Heroku, uh, but, uh, it's getting, if you've got a little bit of technical chops, uh, you can, you can do it with an agent or just by hand like you said if you take a little bit of time and really look at the docs and look at some of the things you've talked about and explained. It's, uh, not that, it's not that big of a deal. So it's really, it's really a cool feature to have, especially that it's baked into Rails. I mean, that's the other thing. You don't have to bolt anything on, depend on anything. It's, it's there."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1847.5,
+      "text": "Yeah, especially for Rails, I think, uh, th- when you get the default config already there, it's almost like extra step to reach for some paths, you know? Like, uh, and now with,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1859.8,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1861.6,
+      "text": "uh, making the local registry, that was a big pain point, let's say, that you needed some extra service. But now when you can do it locally, it's just so smooth. It's just, uh, so nice. And a lot of people think that you spend a lot of time maintaining it, but you really spend time that, uh, you have to spend time anyway. Because for me, I also don't think about my Kamal setups at all. Like, I set it up, you know, uh, and you might upgrade Kamal, and you might upgrade the proxy, but it also kind of happens with a command from Kamal. It's, it's not big of a deal. And, uh, the other things, like the vulnerabilities, you still have to take care of yourself."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1906.7,
+      "text": "So we had vulnerability, uh, just recently in Ruby, right? PHP had even bigger one, and you still have to, you have to take care of that. You still have to kind of care about your systems, about your containers, what you are running, or at least, uh, ask the agents to keep an eye on it, if nothing else"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1931.6,
+      "text": "Ask your underlings to, uh, take care of the dirty work for you."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1936.6,
+      "text": "On the server, you can just turn on auto security updates and then it does the job. You can run those multiple times a day and then you are probably safe. But like, yeah, Ruby upgrades, you have to do it manually anyways,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1948.3,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1948.7,
+      "text": "Even if you're on a platform, you have to do it yourself. It's not gonna be done for you"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1954.1,
+      "text": "Yeah. And one thing, one thing you just said a second ago reminded me that you can, you can use Kamal for things other than Rails too, right? Like, it's not just exclusively for Rails 'cause you're essentially launching a, a container. You're, you're deploying a container, so as long as that container's... You can deploy any kind of container. Is that, is that true?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1971.9,
+      "text": "Yeah, of course, it's, it's true. I also wrote"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1974.5,
+      "text": "person to necessarily use this even"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 1977.7,
+      "text": "Yeah, I also wrote a book"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1979.3,
+      "text": "a, I deployed a s-, uh, a Roundhouse Spinel app with Kamal"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1985.5,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1987.2,
+      "text": "And because it's just, you just create a Docker container, you run the binary inside the Docker container, that's it."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1993.2,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1993.9,
+      "text": "proxy does the proxying, and you are all done. So anything, anything that can run in a container can be deployed with Kamar"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2001.7,
+      "text": "It's, uh, it's, it's kinda like it's magic, and the more, the more I think about it and the more I'm learning about it, it's pretty, it's pretty cool that it's as a Rails guy, it's built in. I love that. It's just, it makes it, uh, a no-brainer the more I learn about it and get comfortable with it, uh, that that's, I kind of think the direction I'm gonna head and, and wanna use."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2018.9,
+      "text": "Ja, en"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2019.5,
+      "text": "is, uh, you, Josef. Do you know if Kamal is-- has any popularity in any other tech stacks?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2027.5,
+      "text": "I don't really think so because in Laravel they have their own thing kind of, and otherwise a lot of people like Doku. We used it like long time ago before it got even more complicated. Um Yeah. So Doku and there is now also Dockploy, like some smaller project. But you know, Kamal for me, it's simple and small, but it's also battle-tested in some big deployment and pretty sound signals. And that's important for me."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2062.2,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2062.5,
+      "text": "I see this other project like Dockploy, like who is, who is running it? Who's testing the release, you know? And that's big advantage that we have also with Rails, that it comes from real apps. Like other stacks don't have it, you know. And so, yeah. Personally, I'm still, um, hopeful f-for some Rail because I kind of, kind of still like it, at least for my project. Um, all these things coming, coming together for me. And, uh, yes, uh, Gabe was explaining about, uh, his use case. I also wrote a blog post, for example, about, uh, how to deploy Next.js, you know. In a way it's even simpler because suddenly I was like trying to find so what's the configuration about this host checking and SSL setting."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2114.6,
+      "text": "So Rails have them cause that's a great framework, and then configures them f-for you for Kamal, so it's like almost no work. And it's also no work in Next.js, but o-only because they don't have these settings at all, at all. They just, they just don't have it, you know. It's, it's not there. Um, so, uh, yeah, I don't think it's really popular in some other site, but it can definitely be used by everyone and, uh, I think a lot more people could benefit from Kamal for sure. And as, as you mentioned, Joe, like, um, agents got so much better. I know that in the beginning, like they got everything wrong about Kamal. But now, uh, with the time progress and they got better, we really, uh, really have powerful agents so they can do it for you"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2168.7,
+      "text": "What, uh, what are some things that, uh, even though these agents are so great, uh, and can really, really get your back and make sure you don't mess anything up, what are some, what are some things that are common for folks who are working with, with Kamal for some, one of the first times? What are some things they trip up on or get wrong or don't quite understand or, or mess up with? Are there any common pitfalls with, with Kamal?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2193.7,
+      "text": "I'm not, I'm not sure lately. Yeah, there were a lot of problems with like earlier versions, you know. Kamal also didn't support everything, so all the settings with domains, SSL. Uh, maybe there's still thing when you have subdomains for, let's say, your customers, like you have a SaaS, you have subdomains for them, and then you are like pointing their websites, their domains to your like s-subdomain or something to resolve it. So for example, I had one set up like that, and I seemed to deploy the next server with a different, uh, configuration because Kamal cannot do it out of the box."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2239.4,
+      "text": "So that's one thing that, uh, crossed my mind. But a lot of things were really, really solved, I think."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2247.5,
+      "text": "Well, one of the great things about Kamal is it's open source, so if you did-- if there was a use case, like you said, the multiple servers or the subdomains or things like that, that becomes a pain point for enough people, or at least for an one person to wanna do it, submit a pull request, get it added into the, into the, into the thing"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2265.5,
+      "text": "Yeah, I think the SSL was the, the issue. A lot of people had understanding how this whole SSL thing works, because you can do it in different ways. You can let Kamal handle SSL for you, and it generates a certificate, or you can terminate SSL on the... it of, like Cloudflare, you use a, a proxy, and then it terminates the SSL, and then you don't have SSL from that to Kamal. Or you can still have SSL between those and still use Cloudflare. So you can have a variety of setups, and a lot of people, I think, don't understand all these options. And I remember many people had issues with Cloudflare and Kamal because they didn't turn off the SSL termination, and then Cloudflare were looking for a valid certificate. I think even there are three modes on Cloudflare. You can have strict,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2311.5,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2312.5,
+      "text": "other-- I forgot the third one."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2314.7,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2315.2,
+      "text": "that's the part where people can get confused"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2318.2,
+      "text": "Yeah, yeah. But if you are new to Kamall deploying to one server, you want the auto SSL, you use Cloudflare, you can just switch it to full SSL, and now there's no problem, like it can, it can work this way"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2335.0,
+      "text": "Pretty magic. Pretty magical"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2337.3,
+      "text": "And that also brings me to one thing, it crossed my mind when you mentioned Cloudflare. Like, uh, I had this idea before, uh, now I don't know if it's still valid idea in terms of agents. But I knew that, uh, Kamall tries to be very thin and small, which is, uh, good, but yeah, some things are missing. So I was thinking of doing a Kamall distribution. You know, like how Kubernetes have distributions? I would do Kamall distribution that would put all the things that people might want and the upstream core, they don't want to manage it because I understand, like that's not yet their use case. I would put all of that there, and then, uh, Kamall itself, like the distribution of, of Kamall could, uh, do many other things because I still have some stuff that I don't like to do, whether it's like connected with the domains, you know, DNS, and then also this backup stuff."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2393.2,
+      "text": "So I can imagine it could all be like some seamless experience, and it'll be even better than some PaaS, you know. I'm just, uh, thinking now if it's really worth it. You can do a lot now with agents. So for example, you can, uh, use Cloudflare, MCP or CLI to do a lot of stuff for you."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2411.9,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2412.2,
+      "text": "these things definitely improve. But one thing, for example, that I come across that, uh, annoys me is that I somehow cannot, uh, create the project in the EU, like EU data center on Cloudflare. Yeah, uh, that is the buckets, buckets in the EU, uh, with this like CLI or something. That it needed some confirmation or something, and this is... I just didn't want to do it or couldn't do it, which was like annoying because I of course wanted EU"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2444.8,
+      "text": "The agent, the agent couldn't approve the cookie banner probably"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2449.7,
+      "text": "Yeah, it is, it is something like that"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2453.2,
+      "text": "Reject all. Reject all."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2458.4,
+      "text": "Yeah, so I can imagine like having a little bit smoother experience where really you then don't have to think about anything because you just have Rails new and basically you do like, uh, come out deploy, and it would also get you the domain and, you know, like everything. That would be like, that would be nice. That would be nice for me. Yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2481.8,
+      "text": "But do you think that in the agent era that's maybe not as viable as it was, uh, a year ago or six months ago?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2488.1,
+      "text": "Yeah, I think it's partially not as good as the idea as before, but I think it will still be nice. For example, I still like to use trust-trusted and tested tools with agents and let them do less if the tools I already know like works really well. That's why I also like to use Rails and not just code from the ground up of everything, you know. Maybe it will change, like things are changing so fast, uh, like I cannot even keep up, you know."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2520.3,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2521.1,
+      "text": "Um, but maybe yes, I don't know. I still have, have it in my, in my head. Maybe, maybe it will be a project but"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2532.4,
+      "text": "We'll keep an eye out for that. On, uh, on that note, uh, where do you, where do you see Kamal heading next? Kind of what's its... If it's, if maybe that distribution type, uh, situation maybe isn't where, where it's headed or, or at least where you're headed with it, do you see, um, where do you see kind of the next big features or the next really useful, uh, uh, annoyances that might be fixed in Kamal?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2559.2,
+      "text": "So, uh, one thing that Kamal doesn't support now and, uh, it might support in the future are canary deployment. Um, but I don't expect many more big bank teachers coming to Kamal, mostly like works, you know. Uh, originally, I would say it could also go in the way to ease the deployment of open source applications. So not the application you are developing, but"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2589.4,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2590.4,
+      "text": "that already are published and you just want to run. And I always found that it's not... Like you can do it with Kamal, of course, but I felt like something's missing there to make it, uh, very nice. But now we have this new tool called Once from Forticell Signals as well. That will fill that need, right? That will fill that, okay, our packaging application, you want people to run it with a few strokes on the, on the keyboard. Uh, so because of that, I don't think these things necessarily will be part of Kamal or maybe yes, but like Once will be the tool for it. So because of that, I don't expect like some big, big, uh, big things. I, I don't think Kamal is getting out of scaling, for example, you know."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2638.3,
+      "text": "Like, uh, yeah, the, the thing with Kamal is that nothing apart from the proxy currently runs on, on your server, so there's nothing to, uh, some centerpiece that would handle all your servers like in Kubernetes and so on. And, uh, yeah, for me, it would be the lit- these little quality improvements I would like to see for, for myself at least."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2664.1,
+      "text": "Sure. It, uh, it's kind of intentionally simple and boring as it is. Uh, so it, it just does the work well and, and kind of stays in its lane. Um, so I think you're right. There's not gonna be any huge features that are coming down the line, but, uh, some of the little annoyances, uh, that could be fixed and, uh, and, and just to make it a slightly smoother, uh, process and to use it. Um, so besides being the Kamal expert, um, you, uh, well, kind of as being part of a Kamal expert, you're, you're an author and you've written, uh, is it, how many books have you written now?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2704.8,
+      "text": "Three"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2706.2,
+      "text": "books and, uh, you've posted on X you've made a good chunk of money from, from those books by, um... Were they all self-published and self-distributed?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2716.3,
+      "text": "So yes, they are all self-published on Gumroad."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2719.9,
+      "text": "Mm-hmm."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2720.5,
+      "text": "they are like e-books on Gumroad"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2723.4,
+      "text": "And that's amazing. You've made, I think, something over $120,000, uh, in, in selling stuff on Gumroad, which is just incredible. Um, and as, as somebody myself who is an independent, uh, builder currently, uh, it's, it's really, it's awesome to see that, that I'm sure it didn't happen overnight, but that, uh, that there's people out there still building and, and, and, and making some money on, on their products. So kudos to you on, on, on that, on being able to do that. That's a really, uh, a really cool thing"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2754.7,
+      "text": "Yeah, thank you. Like, uh, I know that if you cross one million, they give you like this kind of stuff, something like, you know, like YouTubers have, like this kind of..."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2764.9,
+      "text": "the"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2765.2,
+      "text": "don't know what is it called. Yeah. Uh, so, uh, I was hopeful they would also do the smaller tiers like YouTube, so I could have it maybe now it would be in the background, but they,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2777.5,
+      "text": "you"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2777.8,
+      "text": "but they don't, they don't give it. So I gave this idea to the competitors. They should do it, you know. It's actually really good. Like, it's motivating. Uh, they should all be doing that. But, uh, yeah, so I-- crossing like 100k with Camera Raw was like very nice and very interesting moment. Uh, but right now I don't sell that, that, that many anymore, you know, just here and there. But, uh, it was nice, uh, nice era, and let's see what the future will have."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2813.4,
+      "text": "Well, maybe what you just said about, uh, the competitors. Greg, didn't you pull something together? Was that you recently? week or this week, Greg, you pulled together a, a product to, uh, an app or something to sell your stuff in repl- in instead of Gumroad or something like that?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2829.5,
+      "text": "Yes. Yes, I moved all my, all my stuff away from Gumroad to a self-hosted little shop, which is a Rail app. It's very simple because yeah, I, don't like Gumroad anymore. And to me, Gumroad, I don't know about Josef, but to me the Gumroad marketplace... 'Cause one, one, uh, strong point of Gumroad is that they have their own marketplace, so your product there is recommended to people who are browsing other stuff."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2856.0,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2856.4,
+      "text": "Well, I just looked at my stats, and for me that didn't really bring any sales to be honest. So for me it's just kinda useless to have Gumroad. And I also, I don't like to be logged in"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2869.4,
+      "text": "Sure"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2870.0,
+      "text": "to a platform. I like my freedom and, uh, I don't think Gumroad is that developed these days. They are not really focusing on what the user wants."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2879.2,
+      "text": "Yeah, it's, it,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2880.2,
+      "text": "they"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2880.8,
+      "text": "it's definitely changed a little bit since the transition happened, uh, when was that? A year or two or ago. Um, it's a, it's a slightly different, slightly different corner of the internet"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2891.0,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2891.4,
+      "text": "Yeah. I, I agree with Greg, like, uh, it, it went down, especially on the community side and the care, you know. Like, for example, uh, I had some months that were really good. Like, so if they take, I don't know, like ten percent plus something a cut from eight thousand dollars. Like in every other PaaS, I would be a big customer. Like, they would take me seriously, you know. I wanted two small things from them, and they would never implement them, you know. And then when they started with all the AI and like scaling down like their team and so on, then it kind of started, then they bought out Small bets, which we both were part with Greg, which was kind of nice thing that we-- that, that was going on."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2945.2,
+      "text": "But with the overtake from Gumroad, it just also went down, and there's almost no point to, to be part of it anymore. So yeah, I started with Gumroad because there was not much competition, and they had, they had a marketplace at SGX that looked big thing. And for me, it almost covered their fees. So even though they were expensive, it kind of covers like with extra sales. And I always rather have an extra sale because you have new customer, which is nice. Uh, but yeah, today it's very hard to recommend them. I'm, I'm sad for that, but, uh, if they don't care, how should I care, right?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2984.2,
+      "text": "Yeah. Well, if you're, if you're looking for a product, uh, go check out J- uh, Greg's, uh, GitHub page and you can see it. It- that you posted, didn't you, Greg?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2992.3,
+      "text": "Yeah, yeah, it's open source. Anybody can install it."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 2994.9,
+      "text": "I've seen it. I've seen it"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2996.7,
+      "text": "a really nice, uh, default command file. You just need to provide the environment variables, and you can deploy it super easy"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3003.6,
+      "text": "But, but even more I like that you have to import from Gumroad because that's what I would have to do if I do that."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3011.2,
+      "text": "Yeah, and it had an import from Gumroad because I moved all my stuff, so I wanted to move my sales and be able to communicate to my customers"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3021.2,
+      "text": "This is, uh, another example of how, uh, I think we talked about it last week on the show how, or maybe it was a conversation I had with somebody this last week, how products are, uh, products that are, that are defined and, and designed for single users, uh, are, are a lot more easy to knock off these days. Look at, we talked about with like the Photoshop and, and Lightroom and all these tools that are being built, uh, with agents now. Uh, this is another case here where, where platform essentially has been, you know, you can recreate the platform too with the help of agents"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3057.4,
+      "text": "Yeah, but I actually I made this without agents,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3060.2,
+      "text": "Get out of here"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3062.2,
+      "text": "two years ago. is an old project, and I wanted to"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3066.1,
+      "text": "I thought you just made this"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3068.4,
+      "text": "kind of like a platform like Gumroad. But then I realized there is one thing which is actually not an easy thing to, to do, which Gumroad does. You know how many illegal shit people try to sell on those platforms, kiddy porn and whatnot,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3085.2,
+      "text": "Right"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3085.6,
+      "text": "I don't want to deal with that shit. I'm like, it's better if people just host themself,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3090.9,
+      "text": "Right"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3091.5,
+      "text": "sell through it. It's not my responsibility. It's not under my domain, right?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3095.2,
+      "text": "Yeah. Yeah, that's a good point"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3097.7,
+      "text": "I just actually what I did, I just migrated this multi-tenant application into a single tenant and then, uh, make it, made it open source."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3106.7,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3108.1,
+      "text": "But I started actually be- before the agentic era."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3111.8,
+      "text": "Wow. We actually wrote software before agents? I didn't know that we did that. That was-- feels like it was forever ago"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3117.5,
+      "text": "it or not, took like three or four days, 'cause Reyes is bloody amazing to get something. If you ha- if you know what you wanna do and you have a good idea in your brain, I think with Reyes even h- just typing out, it's, it's a lot of typing anyways. It's, it was a, a few days. A long weekend, I would say"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3138.2,
+      "text": "Those were the days when we could, uh, have a weekend project, which now is a, is a 15, 20-minute project with Claude."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3145.7,
+      "text": "I think it's still a weekend project because you go back and forth, right? At least for me, it's, I mean, it speeds up things, but I don't get stuff necessarily done faster 'cause I do more iterations. I don't know. It's, I, I don't feel like I'm getting more stuff done, to be honest. Maybe it's just a feeling. I don't know"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3164.5,
+      "text": "Yeah. You know that, uh, talking about agents, it makes me think of something, Yoseph, you said, uh, a couple of weeks ago, or maybe it was this week. Um, you said, uh, something like y- y- y- you think y- y- it's strange that people think tokens are gonna go down in value. Um, how-- what was that? It was a post about that. Um-"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3185.8,
+      "text": "Yeah. That, uh, the tokens, uh, are free. Like some people basically"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3191.2,
+      "text": "yeah, yeah"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3192.3,
+      "text": "see them as free. So"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3194.5,
+      "text": "Unpack"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3195.0,
+      "text": "imagine if we..."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3196.1,
+      "text": "us"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3196.2,
+      "text": "Yeah, i-"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3197.0,
+      "text": "or"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3197.1,
+      "text": "because"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3197.6,
+      "text": "that"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3199.0,
+      "text": "we would pay for AI the real price since the beginning. So the adoption would be much lower. We would probably still have juniors around. You know, those people that like have started their career. Yeah,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3212.6,
+      "text": "the"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3212.8,
+      "text": "we don't have them anymore. Um, actually, just sidetrack, we hired a junior and an intern at Surpy PI, uh, this year, so I'm happy to report at least some companies still care. Uh, so I'm very happy that I work for one like that. But yeah, like, um, it's very tough for, for juniors. For everybody, but especially juniors, I would say. But if we pay the real money for, for the subscriptions and for the tokens, they might be around because, uh, yeah, especially in the beginning for what it could do, it was super expensive. Now it's getting, of course, better, and it will be cheaper. It will be cheaper. A lot of that will move local as well. But even with like some free model, you would still need to pay some hardware, buy some new stuff."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3261.6,
+      "text": "And now, for example, all chips seem to be sold out, and so on. So definitely, uh, things will improve, but they are not free today. They are subsidized heavily, right? And it would be very different if you have to pay this price today, like e- every one of us. So the companies' budgets, yeah, they will probably pay it and experiment more, but, uh, it will be very different. Very different. So I'm curious where we will be in like two, three years. Uh, yeah. But it's not, it's not free. It's illusion for now."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3302.2,
+      "text": "It's a good point that, uh, you know, it costs 20 bucks a month, 200 bucks a month or whatever for these different subscriptions, but that-- these companies are not yet profitable from what I understand. They're just-- They're, they're still burning cash. So yeah, what if it costs $2,000 a month to get the $20 a month plan does for us? Which is kind of, I don't know, maybe that's not even close. Maybe it would cost $20,000 a month. But your point is, is it's, it's being subsidized heavily. So, uh, and if it was like that, we would still have-- we would have less folks using it, which means we would have a chance for the, the, uh, the, the newer developers to get their foot in the door. Um, so that's an interesting take on that. Do you think that that would just be putting off the inevitable in a way?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3347.2,
+      "text": "That sure, that's eventually gonna get us to where people are using AI as ubiquitously as we are now, but it would just have happened s- more slowly?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3357.6,
+      "text": "It would have to happen more slowly, that's for sure. I even don't know if you would get there because in a way you need funding for that, right? They needed the money to scale the use, even more code to send their way and information. So who knows? Um, this is, uh, this is definitely, this is definitely tricky, but, uh, I think more and more, uh, we spend on AI, like for example, SerpAPI definitely increases the spend for AI every month, and it's not insignificant. Uh, I'm not sure I can say how much we spend, but"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3397.6,
+      "text": "fine."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3398.1,
+      "text": "it's not, it's not,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3399.1,
+      "text": "gives us a good"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3399.9,
+      "text": "not insignificant. Uh, and, and when you realize that might not even be the final price, although I think the case for companies are closer to real price than like, let's say the small 20, uh, subscriptions. But that's still probably just also to run models, not to also pay for the development and, and, and so many other things. So I think it would be very interesting when we would, uh, work with the real value and cost, you know, because it's like-- But it's not always the case, like in entrepreneurship when you had a competitor and he got some up-front money, you know,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3438.8,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3439.1,
+      "text": "he could just spend around and, uh, give free things, you know. It's even like when you are in the making of company that can afford a free plan."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3449.8,
+      "text": "Mm-hmm."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3450.4,
+      "text": "At SerpAPI, we have free plan. We can afford it, but if you have to really pay from our pocket and you're starting out, uh, how can you offer, how can you offer the same?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3463.2,
+      "text": "Yeah, it's a good point. And, and, and, and if it was a non-VC backed, uh, industry, uh, AI that is, you know, all these big, these big companies, n- n- fewer people would be using the products, the development would go almost slowly. Maybe it would never take off. It would be a bunch of just nerds paying a lot of money to use this machine to, to do things for them, and maybe it wouldn't have ever caught on or, or would've caught on more slowly. But boy, that didn't happen, um, because here we are where, uh, it's a, it's an extremely different world. Um, and man, I think we could sit here all day and think about how it could have been this way or that way. Um, you know, whether the tokens cost $20, $2,000, $2 million, um, we are..."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3509.9,
+      "text": "It's safe to say that we are currently moving full steam ahead. Like you said a few minutes ago, things are changing so quickly. I feel that sometimes if I ever step away for a weekend and have a holiday and go away with the family and don't take my laptop with me, I come back three or four or five days later and, and I just don't know where I am anymore because it's moving so quickly, uh, in development that, uh, we're, we're moving forward fast and I don't think we're slowing down."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3536.4,
+      "text": "Yeah, e-exactly. There was like the prompt engineer and context engineer, harness engineer. Now, now I watched a talk. It was like ha-ha-harness is that, you know, that the models are getting so much better that the harness is that. So you really don't know what the next week, uh, will be"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3556.6,
+      "text": "Yeah. What, uh, what are we gonna do? What kind of engineers are we gonna be next? I guess we're always engineers, so that's a good thing. Uh, it's just what's the, what kind of engineer are we?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3566.6,
+      "text": "You know, both for now. And, you know, we don't know who will win. So for example, we talk about, okay, some frontier labs are not being profitable, and some people say like, \"Oh, so now we will have this bubble,\" right? But we might have some kind of bubble, but not in a way like that AI is fake. AI is not fake because everybody's using it, you know, and more and more, and there are markets that can only use it even more. So definitely we will need the hardware. Definitely people will use it. The only thing we don't know, I think, is who will earn the money on it in the end. Yeah. We know now it's Nvidia, AMD, Micro, these guys."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3612.3,
+      "text": "Uh, but, uh, will the AI lab be able to, uh, make it? We will probably see with IPOs. Maybe that will tell us something. I don't know."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3623.2,
+      "text": "Very interesting point. Man, could you imagine that if there was a bubble and the bubble popped? I mean, there is a bubble to some degree, but if it, if it popped and then, uh, kinda collapsed, that would be, uh, that would be a day"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3635.0,
+      "text": "There's bubble in this interconnected financing and stuff"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3639.9,
+      "text": "Right? Right. If cloud would go down"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3642.0,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3642.4,
+      "text": "are like, Yeah, from two, we cannot support a company.\" But I think you know what would change, Joel, if you pay full prices for tokens,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3649.5,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3650.0,
+      "text": "people would maybe use it more sen- in a more sensible way."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3653.9,
+      "text": "Sure"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3656.0,
+      "text": "AI uses. For instance, somebody just say this, it was a while ago, \"Oh, I wrote a skill to pull down my staging database to my local machine. So production database, whatever, to my local machine to make a clone. And every time I need it, I just run this skill.\" But that's just dumb, right? You should ask the AI, \"Hey, write me a fucking script which does this.\" Every time I need to do that thing, I just run the script so I don't burn tokens every time I need to do something, and I don't make the AI reinvent the same bloody script all the time because it doesn't make sense, right? You should still AI making tools and not just use AI all the time to, for the sake of using AI."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3695.7,
+      "text": "Right"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3697.3,
+      "text": "Like for Cron, some people were using AI for Cron, and at every fucking minute it, it was running, it was checking itself. And of course, by the morning you have a bloody high bill because you should just create a bloody Cron job."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3710.9,
+      "text": "I, uh, I admit that I'm slightly guilty on that because I do have my agent sometimes do my pushes and my, uh, I could just hit get push in the terminal rather than having it do those things, uh, that are, that are"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3724.8,
+      "text": "not that costly. think that's not that costly because it's a simple"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3728.3,
+      "text": "Of course, it's a little bit different, but the point is, is that you can... There are these things like a cron job. You don't need an agent to run a cron job."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3734.8,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3736.1,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3738.3,
+      "text": "There's some AI maxing in the world."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3741.2,
+      "text": "Oh, totally."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3741.9,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3743.3,
+      "text": "The, and the, the, the best or the worst are these, these memes of these videos that people are making out there on, on the internet of, you know, all sorts of funny things. Just, uh, they look, they look real, they're funny, uh, but man, it's just a waste of ch- that's a true waste of, of actual resources if we, if we were getting into it"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3762.8,
+      "text": "Yeah. And then"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3763.3,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3763.7,
+      "text": "at the RAM prices. I wanna buy a new laptop and I'm like, \"Oh, shit, I can't buy it, but at least I can watch that funny video, right? With the face swap.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3771.2,
+      "text": "There you go. the videos of, uh, of Sam, uh, Altman and Elon and, and everybody dancing and all, all, all of the funny things. Thanks, uh, thanks to the subsidization of these, of these labs"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3786.3,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3788.0,
+      "text": "Well, Yosef,"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3788.5,
+      "text": "imaginary number"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3789.9,
+      "text": "Go ahead"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3791.5,
+      "text": "Now it's just like final thought, like imagine when your AI also runs your life like fully, you know, your personal life, your work life, everything. Even then you live in the real world, because lately I watched another, uh, interview and they said like there's higher chance that we live in the simulation. But let's say even if you are in the real world, then if AI controls everything about your life, you know, what kind of life is it, you know?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3819.9,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3822.4,
+      "text": "So"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3822.9,
+      "text": "like,"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3823.2,
+      "text": "yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3823.6,
+      "text": "about if we, if we woke up in the morning and put on our goggles and just sat there and stared into the fake world all day long, which we kinda do just looking at our screens all day long. Uh, and then when work is done, we unplug the goggles and then we're in, in real life again. But it's like, what is real life when we're living in this, this fake world all day long? But, uh, man, now we've gotten to that point in the podcast where we're talking about existential existence, uh, um, yeah. Um, well, Yosef, what's, uh, what's something that you're, uh, that you're excited about as we're kinda wrapping up, uh, towards the end of our, of our time together here? What's something that you're, um, that you're working on or excited about that you wanna share with people right now?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3869.1,
+      "text": "Be it at work, uh, in your day job, or a side project or, or whatever it might be"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3875.1,
+      "text": "So, uh, I'm actually excited to work on Search Rail as part of my work, like open source Rails project. And, uh, you know, we create a lot of demos and some code that is maybe like throw away, just for example. But this project I really want to develop to become a really nice, uh, open source tool. Uh, so it would be for your SEO, uh, local SEO, and also geo, all these like shortcuts for basically, uh, marketing, you know, knowing your positions in all, all kinds of search engines. So I would really continue working on it."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3921.5,
+      "text": "I hope I will start soon on the version two. Uh, so that's one thing I would like to share. Unfortunately, for my personal projects, I am not doing much lately. I was really focusing on, you know, on, uh, speaking and because I was at Warsaw Ruby, and then I was at, uh, Rails World. So I didn't do that much on that front. But I am vibe coding a small app, although I don't know if it will be public even, uh, for myself, because I was always, um, how to say, uh, unorganized, you know. A lot of people over time, they figure out, okay, I save contacts here, I have notes here."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 3969.2,
+      "text": "I was never... I never managed to do that, like honestly. And between switching also from Linux to Mac and back to Linux and back to Mac, you know, like the native tools that I like, uh, they might not have alternatives, and I'm just a bit annoyed by all of that, that I, I could never organize myself in all that time because I'm not so young anymore. Um, so I said, \"Enough is enough. I will just, uh, write an app or vibe code an app for myself with all the reminders and things that I really need to keep an eye on.\" Because I, I missed the payment for my, uh, what do you say? Income tax. Yeah, like the deposit."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 4015.5,
+      "text": "Yeah. Uh, I sleep, I, I miss it. I find out at the end of the year that I was supposed to send some payment. I was like, \"Hmm, okay. What now?\" So yeah, I want to organize myself better finally, for the first time ever, you know. Also, uh, clean up contacts and everything. So I'm putting the various things, and I don't even know what it will end up being. But for now, I just want to like organize my life, because I tried many tools from Notion and, uh, notes and whatever. But nothing truly worked. And I would say I don't want to replace this tool. I don't want to necessarily replace Notion for what Notion is good for, right? Like if I have some big table in Notion, I will not write code from functionality."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 4063.6,
+      "text": "But I will have some kind of shortcut that, okay, it's, it, it's there, and I should look there. You know? Kind of it will be like my second brain where the most important information that I really cannot lose will be, uh, I don't know. Will end up with something"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4079.9,
+      "text": "That's the beauty of, of the, the era that we're in, I think right now, is all these small personal little pet projects that we can do. I've got a few of them going myself that are just little tools that are n- the, the, the tool I wanted didn't exist. And it's not a big tool. It's not a Notion, it's not a Basecamp, it's not a whatever. But just these little things that we can build now that just make life a little bit easier somehow, and we can build it exactly the way we want it, which is just, um, pretty awesome. really cool to hear that you're working on those things too. Well, before we wrap up, uh, we, uh, we wanted to, to chat about a couple of things. Greg, what were some of those, uh, big announcements from the week in the, in the world we live in? Was there a, a new Rails version that came out this week? Do I remember seeing that?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 4128.2,
+      "text": "Not yet, I think."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4129.3,
+      "text": "sorry, not"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 4129.7,
+      "text": "The eight-- Because eight two is next, right? There will be a couple nice things, but, uh"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4135.4,
+      "text": "uh, that came out this week? Or what was that, what was... Sorry, in Ruby, not Rails"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4138.7,
+      "text": "there, there was a Ruby security release"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4142.3,
+      "text": "That's what it was. Yep"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4143.8,
+      "text": "two, two, two releases within a few hours. Because there was a, a security issue in GitHub, GitHub, sorry, GitLab. Yeah, two confusing names. And, uh, and there are, uh, there's a Ruby release which will prevent that from happening for every- to everybody else. If you are using any regular expressions with user-controlled values, then you might be affected. But even if you are not affected, it makes sense to just upgrade, just to make sure that it's patched up"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4176.9,
+      "text": "Sounds good. We will, uh, we can post links in the show notes about, um, about resources, um, for that as well. Well, uh, anything else we wanna chat about, fellas?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4190.6,
+      "text": "I think we covered pretty much everything."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4192.5,
+      "text": "All right."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4193.4,
+      "text": "so far"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4195.1,
+      "text": "Well, Yosef, if folks wanna, to find you or, or, or learn more about your work, what's the best way for them to do that out there on the internet?"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 4202.5,
+      "text": "Often my handle is my surname and sometimes it's difficult for people to, to get it. Uh, it's best if they simply Google \"Deployment from Scratch\" or \"Kamal Handbook\" and then go to the author section and click there. That's the easiest, this is the easiest way"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4221.4,
+      "text": "Well, and we can post a link. What is your, tell us what your, what any link, what it is. Tell us now and then we can include it in the show notes too, so folks can just click on it"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 4228.4,
+      "text": "Yeah, so the best one is like x, uh, .com/ uh, s-t-r-z-i-b-n-y-j. It's like my surname and J."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4240.9,
+      "text": "Sure."
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 4241.3,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4242.4,
+      "text": "All right, we'll include it in the show notes there then. Well, Yosef, thanks for joining us today, um, and sharing everything with us about, uh, the world of Kamal, um, authorship, and, um, and platforms. Uh, it's been really an honor to have you here, and, um, appreciate you taking the time today"
+    },
+    {
+      "speaker": "Josef Strzibny",
+      "t": 4261.2,
+      "text": "Thank you. Thank you for having me. It was fun"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4264.5,
+      "text": "Absolutely"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4265.2,
+      "text": "Yeah, thanks for coming"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4268.1,
+      "text": "Well, with that, uh, until the next time everybody, we will see you from the Pingback Podcast. Greg and Joel, be well"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4277.8,
+      "text": "Cheers everybody. Bye"
+    }
+  ]
+}

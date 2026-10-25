@@ -67,17 +67,18 @@ file): there is no CLI for the Descript transcript export and its format is
 unconfirmed (save the first real export, look at it, then write the parser
 and tests); `bin/episode transcript` reads Buzzsprout's public transcript,
 which may not exist while the episode is private (the API's
-`high_fidelity_transcript` is the fallback); `bin/ci` fails on any
-future-dated post, which blocks every push while a draft waits for its release
-date, so give it a way to allow drafts (e.g. `bin/ci --future` for local
-commits, strict on pre-push).
+`high_fidelity_transcript` is the fallback). (Buzzsprout gave episode 4's
+transcript while it was still private, so this may never bite.)
 
 ## 2. Draft (you write; read the whole transcript first)
 Fill every TODO. House rules:
 - **title**: sentence case, specific, no clickbait ("Sam Ruby on Roundhouse, Rails as a 4GL, and …").
 - **description**: one or two plain sentences. Used on cards, SEO and the share card.
 - **date**: the release time from intake, `YYYY-MM-DD HH:MM:SS -0700`; the
-  filename date matches. The site post goes live by pushing at release (step 4).
+  filename date matches. A future date **schedules** the page: Jekyll leaves
+  it out of every build, `bin/ci` lists it as scheduled, and the hourly deploy
+  (`bin/release-due` in `.github/workflows/jekyll.yml`) publishes it on the
+  first run after that time. It must be pushed before then.
 - **topics**: slugs from `_data/topics.yml` only (rails, ai, indie, tools, other-tech).
 - **guests**, **speaker_names** as needed.
 - **chapters**: the host's, from YouTube.
@@ -91,7 +92,7 @@ Fill every TODO. House rules:
 Then:
 ```bash
 bin/og-cards N        # the Claude hook usually does this after edits
-bin/ci                # must say "CI passed." (see the future-date gap above)
+bin/ci                # must say "CI passed."; lists scheduled posts
 bundle exec jekyll serve --port 4100 --future   # http://localhost:4100/episodes/episode-N/
 ```
 Commit locally (no push). Report: preview URL, title, anything you weren't
@@ -110,7 +111,9 @@ printed) and Save. Re-run `bin/episode thumbnail N` if they changed it.
 ## 4. Publish (only when told "publish" / "schedule for …")
 ```bash
 bin/episode publish N                      # or --at "2026-10-30 23:00 -0700"
-git push                                   # at release time; pre-push runs bin/ci
+git push                                   # any time before release; the page stays
+                                           # hidden until its date, then the hourly
+                                           # deploy publishes it
 ```
 Remind the host to set the YouTube video to Public (or schedule it in Studio
 for the same time). Afterwards confirm with `bin/episode status N` and
