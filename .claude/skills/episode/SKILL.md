@@ -85,6 +85,6 @@ links and commit hashes.
 
 ## If something fails
 Stop and say what failed; don't half-publish. Tokens come from 1Password
-(vault "Pingback Podcast": item "Buzzsprout API", and the "Descript" item's
-"website deploy API token" field); a
+(vault "Pingback Podcast", item "Descript", fields "Buzzsprout API token" and
+"Descript website deploy API token"); a
 failed `op read` means the host needs to sign in to 1Password.

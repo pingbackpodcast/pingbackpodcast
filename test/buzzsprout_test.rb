@@ -83,14 +83,14 @@ class SecretsTest < Minitest::Test
     calls = []
     runner = ->(*cmd) { calls << cmd; ["s3cret\n", true] }
     assert_equal "s3cret", Pingback::Secrets.new(runner: runner, env: {}).fetch(:buzzsprout)
-    assert_equal [["op", "read", "op://Pingback Podcast/Buzzsprout API/credential"]], calls
+    assert_equal [["op", "read", "op://Pingback Podcast/Descript/Buzzsprout API token"]], calls
   end
 
   def test_descript_token_is_a_field_on_the_descript_login_item
     calls = []
     runner = ->(*cmd) { calls << cmd; ["dtok\n", true] }
     assert_equal "dtok", Pingback::Secrets.new(runner: runner, env: {}).fetch(:descript)
-    assert_equal [["op", "read", "op://Pingback Podcast/Descript/website deploy API token"]], calls
+    assert_equal [["op", "read", "op://Pingback Podcast/Descript/Descript website deploy API token"]], calls
   end
 
   def test_environment_variable_wins
@@ -102,6 +102,6 @@ class SecretsTest < Minitest::Test
     runner = ->(*) { ["", false] }
     error = assert_raises(Pingback::Secrets::Error) { Pingback::Secrets.new(runner: runner, env: {}).fetch(:buzzsprout) }
     assert_match(/op signin/, error.message)
-    assert_match(/Buzzsprout API/, error.message)
+    assert_match(/Buzzsprout API token/, error.message)
   end
 end

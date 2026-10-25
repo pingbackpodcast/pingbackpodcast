@@ -63,7 +63,7 @@ Ruby version in `.ruby-version` (mise). Work test-first: write the failing test,
 ## Publishing an episode
 Run **`/episode N`** in Claude Code (`.claude/skills/episode/SKILL.md`): it walks the whole flow. The pieces:
 `bin/episode new N --youtube URL` (scaffold from YouTube) → `audio N --descript LINK` (Descript renders audio → private Buzzsprout episode + upload) → `transcript N` / `thumbnail N` → Claude drafts the post (no TODOs left; `bin/ci` blocks them) → `sync N [--dry-run]` (Buzzsprout title/notes/tags/number/chapters; YouTube description to the clipboard, pasted by hand: there is deliberately no Google Cloud project) → `publish N [--at TIME]` → `git push`. **Sync, publish and push only on a host's explicit word.**
-Tokens: 1Password vault "Pingback Podcast", item "Buzzsprout API" (field `credential`) and the "Descript" login item (field `website deploy API token`), or `PINGBACK_BUZZSPROUT_TOKEN` / `PINGBACK_DESCRIPT_TOKEN`; requested only when an API call is about to run.
+Tokens: 1Password vault "Pingback Podcast", item "Descript", fields `Buzzsprout API token` and `Descript website deploy API token`, or `PINGBACK_BUZZSPROUT_TOKEN` / `PINGBACK_DESCRIPT_TOKEN`; requested only when an API call is about to run.
 Not done yet: drafting from Descript's own transcript export (markers → chapters) needs one real export to pin the format; until then transcripts come from Buzzsprout.
 
 ## Local CI (pre-push)
