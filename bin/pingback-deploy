@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Start a Pingback episode from any terminal: opens Claude Code in this repo
+# running /pingback-deploy, which asks for what it needs and walks the steps.
+#
+#   pingback-deploy        next episode
+#   pingback-deploy 4      a specific episode
+#
+# Install once: ln -s ~/Work/pingbackpodcast/bin/pingback-deploy ~/.local/bin/
+set -euo pipefail
+
+repo="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"
+cd "$repo"
+exec claude "/pingback-deploy${1:+ $1}"
