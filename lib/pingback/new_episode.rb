@@ -21,7 +21,7 @@ module Pingback
       raise Error, "episode #{number} already exists" if EpisodeFile.find(@root, number)
 
       out, ok = @runner.call("yt-dlp", "--skip-download", "--dump-single-json", "--no-warnings", youtube)
-      raise Error, "yt-dlp couldn't read #{youtube} (is the link right, and is yt-dlp installed?)" unless ok
+      raise Error, "yt-dlp couldn't read #{youtube}: is the video Unlisted, not Private (YouTube hides private videos), and is the link right?" unless ok
 
       info = JSON.parse(out)
       date = Date.strptime(info.fetch("upload_date"), "%Y%m%d")

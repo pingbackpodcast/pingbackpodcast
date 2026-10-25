@@ -158,6 +158,47 @@ class PublisherTest < Minitest::Test
     assert_equal 1, @clipboard.size
   end
 
+  # Hosts publish the audio privately to Buzzsprout from Descript; the
+  # pipeline finds that episode by its number in the title.
+  def four(extra = "")
+    File.write(File.join(@root, "_posts/2026-10-24-episode-4.md"), "---\ntitle: Four\nepisode: 4\n#{extra}---\nNotes.\n")
+  end
+
+  def listing
+    [{ "id" => 20014767, "title" => "Pingback Podcast Episode 4: Josef Strzibny", "private" => true },
+     { "id" => 19975498, "title" => "Pingback Podcast - Episode 3 - Sam Ruby", "private" => false },
+     { "id" => 19902168, "title" => "Pingback Podcast - Episode 1", "private" => false }]
+  end
+
+  def test_link_finds_the_buzzsprout_episode_by_number_and_records_it
+    four
+    out = StringIO.new
+    publisher(FakeHttp.new([200, listing]), out: out).link_buzzsprout(4)
+    assert_match(/^buzzsprout_id: 20014767$/, File.read(File.join(@root, "_posts/2026-10-24-episode-4.md")))
+    assert_match(/Episode 4: Josef Strzibny.*20014767.*private/, out.string)
+  end
+
+  def test_link_does_not_mistake_episode_14_for_4
+    four
+    list = [{ "id" => 1, "title" => "Pingback Podcast Episode 14", "private" => true }]
+    error = assert_raises(Pingback::Publisher::Error) { publisher(FakeHttp.new([200, list])).link_buzzsprout(4) }
+    assert_match(/no Buzzsprout episode with "Episode 4"/, error.message)
+  end
+
+  def test_link_refuses_two_matches
+    four
+    list = listing + [{ "id" => 2, "title" => "Episode 4 (re-upload)", "private" => true }]
+    error = assert_raises(Pingback::Publisher::Error) { publisher(FakeHttp.new([200, list])).link_buzzsprout(4) }
+    assert_match(/2 Buzzsprout episodes/, error.message)
+  end
+
+  def test_link_leaves_an_existing_id_alone_without_asking_for_a_token
+    four("buzzsprout_id: 555\n")
+    p = Pingback::Publisher.new(root: @root, buzzsprout: -> { flunk "no token needed" }, out: StringIO.new)
+    p.link_buzzsprout(4)
+    assert_match(/^buzzsprout_id: 555$/, File.read(File.join(@root, "_posts/2026-10-24-episode-4.md")))
+  end
+
   def test_site_config_locks_episodes_one_to_three
     assert_equal 3, YAML.safe_load_file(File.expand_path("../_config.yml", __dir__))["buzzsprout_locked_through"]
   end

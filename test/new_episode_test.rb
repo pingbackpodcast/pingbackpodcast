@@ -26,6 +26,12 @@ class NewEpisodeTest < Minitest::Test
 
   def front(path) = YAML.safe_load(File.read(path)[/\A---\n(.*?)\n---/m, 1], permitted_classes: [Date, Time])
 
+  def test_a_private_video_explains_it_must_be_unlisted
+    @runner = ->(*) { ["", false] }
+    error = assert_raises(Pingback::NewEpisode::Error) { scaffold }
+    assert_match(/Unlisted, not Private/, error.message)
+  end
+
   def test_writes_a_post_from_the_youtube_details
     path = scaffold
     assert_equal File.join(@root, "_posts/2026-10-30-episode-4.md"), path

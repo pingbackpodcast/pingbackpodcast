@@ -97,6 +97,22 @@ module Pingback
     end
 
     # Just the YouTube description (works before Buzzsprout has the episode).
+    # Find the Buzzsprout episode the host published (privately) from Descript
+    # by "Episode N" in its title, and record its id in the post.
+    def link_buzzsprout(number)
+      ep = EpisodeFile.find(@root, number) or raise Error, "no post for episode #{number} in _posts/"
+      return say("Buzzsprout: already linked (buzzsprout_id #{ep['buzzsprout_id']})") if ep["buzzsprout_id"]
+
+      ensure_unlocked!(number)
+      matches = Array(bz.episodes).select { |e| e["title"].to_s.match?(/\bepisode\s*#?\s*#{number}(?!\d)/i) }
+      raise Error, "no Buzzsprout episode with \"Episode #{number}\" in its title yet; publish it privately from Descript, then run `bin/episode link #{number}`" if matches.empty?
+      raise Error, "#{matches.size} Buzzsprout episodes match \"Episode #{number}\" (#{matches.map { |e| e['id'] }.join(', ')}); add the right buzzsprout_id to the post by hand" if matches.size > 1
+
+      found = matches.first
+      ep.set!("buzzsprout_id", found["id"])
+      say "Buzzsprout: linked \"#{found['title']}\" (#{found['id']}, #{found['private'] ? 'private' : 'PUBLIC'})"
+    end
+
     def youtube_text(number)
       ep = EpisodeFile.find(@root, number) or raise Error, "no post for episode #{number} in _posts/"
       raise Error, "episode #{number} has no youtube_id" unless ep["youtube_id"]
