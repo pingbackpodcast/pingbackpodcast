@@ -7,7 +7,8 @@
 #   1. Production build, strict front matter, no errors or warnings
 #   2. Every episode has the front matter the templates need
 #   3. Every episode's share card exists and is committed
-#   4. No episode is dated in the future (Jekyll would silently skip it)
+#   4. Episodes dated in the future are scheduled: listed, left out of the
+#      build, and deployed by the hourly workflow run once due
 #      Chapters are in order; chapter and moment times fall inside the episode;
 #      every moment has committed art; topic slugs exist in _data/topics.yml;
 #      no TODOs left from `bin/episode new`
@@ -24,6 +25,7 @@ ROOT = File.expand_path("..", __dir__)
 Dir.chdir(ROOT)
 
 failures = []
+scheduled = []
 step = ->(name) { puts "== #{name}" }
 
 Dir.mktmpdir("pingback-ci") do |site|
@@ -77,7 +79,7 @@ Dir.mktmpdir("pingback-ci") do |site|
 
     date = fm["date"] || Date.parse(name[0, 10])
     date = date.to_time if date.respond_to?(:to_time)
-    failures << "#{name}: dated #{date} which is in the future; Jekyll will not publish it" if date > now
+    scheduled << "#{name} goes live at #{date} (hourly deploy picks it up)" if date > now
   end
 
   step["Internal links and images"]
@@ -100,6 +102,7 @@ step["Site tests"]
 out, status = Open3.capture2e("bin/test")
 failures << "Site tests failed:\n#{out.lines.grep(/Failure|Error|runs,|Expected/).first(20).join}" unless status.success?
 
+scheduled.each { |s| puts "Scheduled: #{s}" }
 if failures.empty?
   puts "CI passed."
 else

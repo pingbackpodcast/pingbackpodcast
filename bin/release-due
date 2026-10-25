@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Used by the hourly workflow run: prints due=true if a scheduled post's
+# release time passed within the last two hours (so the site needs a rebuild),
+# else due=false. Appends to $GITHUB_OUTPUT when set.
+require_relative "../lib/pingback/schedule"
+
+due = Pingback::Schedule.new(root: File.expand_path("..", __dir__)).due?
+line = "due=#{due}"
+puts line
+File.write(ENV["GITHUB_OUTPUT"], "#{line}\n", mode: "a") if ENV["GITHUB_OUTPUT"]

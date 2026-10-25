@@ -6,6 +6,10 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
+  # Hourly: posts dated in the future (scheduled episodes) go live on the first
+  # run after their release time. bin/release-due skips the build otherwise.
+  schedule:
+    - cron: "7 * * * *"
 
 permissions:
   contents: read
@@ -17,7 +21,18 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  due:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    outputs:
+      due: ${{ steps.check.outputs.due }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: check
+        run: ruby bin/release-due
   build:
+    needs: due
+    if: ${{ !cancelled() && (github.event_name != 'schedule' || needs.due.outputs.due == 'true') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

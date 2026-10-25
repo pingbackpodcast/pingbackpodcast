@@ -18,7 +18,7 @@ module Pingback
 
     def initialize(path)
       @path = path
-      raw = File.read(path)
+      raw = File.read(path, encoding: "UTF-8")
       @raw_front = raw[/\A---\n(.*?)\n---/m, 1].to_s
       @front_matter = YAML.safe_load(@raw_front, permitted_classes: [Date, Time]) || {}
       @body = raw.sub(/\A---\n.*?\n---\n?/m, "")
@@ -30,7 +30,7 @@ module Pingback
     # there, otherwise adds it right after `episode:`. Values are written as
     # plain YAML scalars (strings quoted).
     def set!(key, value)
-      raw = File.read(path)
+      raw = File.read(path, encoding: "UTF-8")
       front = raw[/\A---\n(.*?\n)---/m, 1]
       line = "#{key}: #{value.is_a?(String) ? value.inspect : value}\n"
       updated = if front.match?(/^#{Regexp.escape(key)}:.*\n/)
