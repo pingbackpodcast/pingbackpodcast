@@ -48,6 +48,8 @@ jobs:
         with:
           path: _site
   deploy:
+    # Needed because "due" is skipped on pushes; without this, deploy is skipped too.
+    if: ${{ !cancelled() && needs.build.result == 'success' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

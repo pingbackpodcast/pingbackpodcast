@@ -58,5 +58,8 @@ class ScheduleTest < Minitest::Test
     gate = wf["jobs"]["due"]
     assert gate["steps"].any? { |s| s["run"].to_s.include?("bin/release-due") }
     assert_match(/github\.event_name != 'schedule'.*needs\.due\.outputs\.due == 'true'/m, wf["jobs"]["build"]["if"])
+    # On a push the "due" job is skipped, and GitHub skips every job after a
+    # skipped one unless it says otherwise: deploy must check build itself.
+    assert_match(/!cancelled\(\).*needs\.build\.result == 'success'/, wf["jobs"]["deploy"]["if"].to_s)
   end
 end
