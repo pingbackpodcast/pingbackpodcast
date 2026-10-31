@@ -425,6 +425,8 @@ main { padding-bottom: 5rem; }
 .latest-card__body { display: flex; flex-direction: column; padding: clamp(1.25rem, 3vw, 2rem); }
 .latest-card .card__title { font-size: clamp(1.4rem, 3vw, 1.9rem); }
 .latest-card__actions { margin: auto 0 0; padding-top: 1.25rem; }
+// Above the stretched title link, so the button keeps its own hover.
+.latest-card__actions .btn { position: relative; z-index: 1; }
 
 .episode-card { display: flex; flex-direction: column; padding: 0; overflow: hidden; }
 .episode-card__media { overflow: hidden; border-bottom: 1px solid var(--line); background: var(--surface-2); }

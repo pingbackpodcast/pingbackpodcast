@@ -16,13 +16,17 @@ class HomepageTest < SiteTest
   def test_latest_episode_feature_card
     card = home.at_css("section.latest article.card.latest-card")
     assert card, "latest card"
-    assert_equal "/assets/images/episodes/episode-3.jpg", card.at_css("img.latest-card__thumb")&.[]("src")
-    assert_equal "Episode 3", card.at_css(".chip")&.text&.strip
-    assert_match(/Sam Ruby on Roundhouse/, card.at_css(".card__title").text)
+    n = card.at_css(".chip")&.text.to_s[/\AEpisode (\d+)\z/, 1]
+    assert n, "episode chip"
+    url = "/episodes/episode-#{n}/"
+    assert_equal "/assets/images/episodes/episode-#{n}.jpg", card.at_css("img.latest-card__thumb")&.[]("src")
+    assert_equal page(url).at_css("h1").text.strip, card.at_css(".card__title").text.strip
     assert card.at_css(".card__desc"), "summary"
-    play = card.at_css('a.btn.btn--primary[href="/episodes/episode-3/"]')
+    # The title link stretches over the whole card, so any click opens the episode.
+    assert card.at_css(%(.card__title a.card__link[href="#{url}"])), "whole card links to the episode"
+    play = card.at_css(%(a.btn.btn--primary[href="#{url}"]))
     assert play, "play button"
-    assert_equal "Play episode 3", play.text.strip
+    assert_equal "Play episode #{n}", play.text.strip
   end
 
   def test_episode_cards_have_thumbnails

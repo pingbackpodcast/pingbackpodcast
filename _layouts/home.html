@@ -47,7 +47,7 @@ body_class: home
         <span class="chip chip--ruby">Episode {{ latest.episode }}</span>
         <span class="card__meta"><time datetime="{{ latest.date | date_to_xmlschema }}">{{ latest.date | date: date_format }}</time>{% if latest.duration %}, {{ latest.duration }}{% endif %}</span>
       </div>
-      <h3 class="card__title">{{ latest.title | escape }}</h3>
+      <h3 class="card__title"><a class="card__link" href="{{ latest.url | relative_url }}">{{ latest.title | escape }}</a></h3>
       {%- if latest.description %}<p class="card__desc">{{ latest.description | escape }}</p>{% endif %}
       {%- if latest.guests and latest.guests.size > 0 %}<p class="card__meta">With {{ latest.guests | array_to_sentence_string }}</p>{% endif %}
       <p class="latest-card__actions"><a class="btn btn--primary" href="{{ latest.url | relative_url }}">Play episode {{ latest.episode }}</a></p>
