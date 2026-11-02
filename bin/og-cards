@@ -80,7 +80,10 @@ def render(html, out, size: "1200,630", quiet: false)
   Dir.mktmpdir do |dir|
     src = File.join(dir, "card.html")
     File.write(src, html)
-    ok = system(CHROME, "--headless", "--disable-gpu", "--hide-scrollbars", "--force-device-scale-factor=1",
+    # A temp XDG_CONFIG_HOME keeps Arch's wrapper from adding the user's
+    # chromium-flags.conf (--remote-debugging-port there keeps headless
+    # Chromium running after the screenshot).
+    ok = system({ "XDG_CONFIG_HOME" => dir }, CHROME, "--headless", "--disable-gpu", "--hide-scrollbars", "--force-device-scale-factor=1",
                 "--allow-file-access-from-files", "--virtual-time-budget=8000", "--window-size=#{size}",
                 "--screenshot=#{out}", "file://#{src}", out: File::NULL, err: File::NULL)
     abort "Chromium failed rendering #{out}" unless ok && File.exist?(out)
