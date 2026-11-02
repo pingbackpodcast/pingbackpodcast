@@ -84,14 +84,14 @@ class SecretsTest < Minitest::Test
   def test_reads_from_1password_vault_item
     calls = []
     runner = ->(*cmd) { calls << cmd; ["s3cret\n", true] }
-    assert_equal "s3cret", Pingback::Secrets.new(runner: runner, env: {}, key_file: NO_KEY).fetch(:buzzsprout)
+    assert_equal "s3cret", Pingback::Secrets.new(runner: runner, env: {}, key_file: NO_KEY, token_dir: NO_KEY).fetch(:buzzsprout)
     assert_equal [["op", "read", "op://Pingback Podcast/Descript/Buzzsprout API token"]], calls
   end
 
   def test_descript_token_is_a_field_on_the_descript_login_item
     calls = []
     runner = ->(*cmd) { calls << cmd; ["dtok\n", true] }
-    assert_equal "dtok", Pingback::Secrets.new(runner: runner, env: {}, key_file: NO_KEY).fetch(:descript)
+    assert_equal "dtok", Pingback::Secrets.new(runner: runner, env: {}, key_file: NO_KEY, token_dir: NO_KEY).fetch(:descript)
     assert_equal [["op", "read", "op://Pingback Podcast/Descript/Descript website deploy API token"]], calls
   end
 
@@ -102,13 +102,35 @@ class SecretsTest < Minitest::Test
 
   def test_explains_how_to_fix_a_failed_read
     runner = ->(*) { ["", false] }
-    error = assert_raises(Pingback::Secrets::Error) { Pingback::Secrets.new(runner: runner, env: {}, key_file: NO_KEY).fetch(:buzzsprout) }
+    error = assert_raises(Pingback::Secrets::Error) { Pingback::Secrets.new(runner: runner, env: {}, key_file: NO_KEY, token_dir: NO_KEY).fetch(:buzzsprout) }
     assert_match(/op signin/, error.message)
     assert_match(/Buzzsprout API token/, error.message)
   end
 
   # A read-only 1Password service account key (for SSH and scripts, where the
   # desktop app can't unlock) is handed to op when the key file exists.
+  # Over SSH the desktop app can't unlock, so a token can also sit in
+  # ~/.config/pingback/<name>-token (mode 600); it wins over op.
+  def test_token_file_is_used_before_op
+    Dir.mktmpdir do |dir|
+      File.write(File.join(dir, "buzzsprout-token"), "filetok\n")
+      File.chmod(0o600, File.join(dir, "buzzsprout-token"))
+      runner = ->(*) { flunk "op should not run" }
+      assert_equal "filetok", Pingback::Secrets.new(runner: runner, env: {}, key_file: NO_KEY, token_dir: dir).fetch(:buzzsprout)
+    end
+  end
+
+  def test_token_file_readable_by_others_is_refused
+    Dir.mktmpdir do |dir|
+      File.write(File.join(dir, "buzzsprout-token"), "filetok")
+      File.chmod(0o644, File.join(dir, "buzzsprout-token"))
+      error = assert_raises(Pingback::Secrets::Error) do
+        Pingback::Secrets.new(runner: ->(*) { flunk }, env: {}, key_file: NO_KEY, token_dir: dir).fetch(:buzzsprout)
+      end
+      assert_match(/chmod 600/, error.message)
+    end
+  end
+
   def test_service_account_key_file_is_passed_to_op
     Dir.mktmpdir do |dir|
       key = File.join(dir, "op-service-account-token")
@@ -116,7 +138,7 @@ class SecretsTest < Minitest::Test
       File.chmod(0o600, key)
       calls = []
       runner = ->(*cmd) { calls << cmd; ["s3cret\n", true] }
-      assert_equal "s3cret", Pingback::Secrets.new(runner: runner, env: {}, key_file: key).fetch(:buzzsprout)
+      assert_equal "s3cret", Pingback::Secrets.new(runner: runner, env: {}, key_file: key, token_dir: NO_KEY).fetch(:buzzsprout)
       assert_equal [[{ "OP_SERVICE_ACCOUNT_TOKEN" => "ops_abc" }, "op", "read",
                      "op://Pingback Podcast/Descript/Buzzsprout API token"]], calls
     end
@@ -129,7 +151,7 @@ class SecretsTest < Minitest::Test
       File.chmod(0o644, key)
       runner = ->(*) { flunk "op should not run" }
       error = assert_raises(Pingback::Secrets::Error) do
-        Pingback::Secrets.new(runner: runner, env: {}, key_file: key).fetch(:buzzsprout)
+        Pingback::Secrets.new(runner: runner, env: {}, key_file: key, token_dir: NO_KEY).fetch(:buzzsprout)
       end
       assert_match(/chmod 600/, error.message)
     end
