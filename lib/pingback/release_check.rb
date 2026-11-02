@@ -165,7 +165,14 @@ module Pingback
       want = wanted.map { |c| [c["title"], seconds(c["t"])] }
       return item(:ok, label, wanted.size.to_s) if have == want && want.any?
 
-      item(:todo, label, "#{have.size} of #{want.size} match the post; paste the chapter timeline, or `bin/episode sync #{@n}`")
+      matching = want.count { |c| have.include?(c) }
+      diff = want.zip(have).find { |w, h| w != h }
+      first = if diff&.last then %(; first difference: #{Transcript.clock(diff[0][1])} "#{diff[1][0]}" vs "#{diff[0][0]}")
+              elsif diff then "; missing from #{Transcript.clock(diff[0][1])}"
+              else ""
+              end
+      item(:todo, label, "#{matching} of #{want.size} match the post#{first}; " \
+                         "paste the chapter timeline, or `bin/episode sync #{@n}`")
     end
 
     def buzzsprout_scheduled

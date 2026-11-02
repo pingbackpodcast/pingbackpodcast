@@ -130,6 +130,12 @@ class ReleaseCheckTest < Minitest::Test
     assert_match(/✗.*20:00.*50:00/, line(out, "Audio on Buzzsprout"))
   end
 
+  def test_buzzsprout_chapter_that_differs_is_named
+    @bz.chapter_list = [{ "title" => "Hello", "start_time" => "00:00:00" }] + @bz.chapter_list.drop(1)
+    _, out = check
+    assert_match(/✗.*2 of 3 match.*0:00 "Hello" vs "Welcome"/, line(out, "Chapters on Buzzsprout"))
+  end
+
   def test_buzzsprout_still_private_or_at_another_time
     @bz.ep = @bz.ep.merge("private" => true)
     _, out = check
