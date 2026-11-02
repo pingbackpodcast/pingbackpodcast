@@ -4,9 +4,7 @@ require "test_helper"
 
 # Phase 1: existing pages move onto the card/chip/button components.
 class PagesRestyleTest < SiteTest
-  EPISODES = [3, 2, 1].freeze
-
-  def assert_episode_cards(doc, episodes = EPISODES)
+  def assert_episode_cards(doc, episodes = released.map { |ep| ep["episode"] })
     cards = doc.css("article.card.episode-card")
     assert_equal episodes.size, cards.size, "one card per episode"
     cards.zip(episodes).each do |card, n|
@@ -20,7 +18,7 @@ class PagesRestyleTest < SiteTest
 
   # The latest episode gets its own feature card, so the grid holds the rest.
   def test_homepage_lists_earlier_episodes_as_cards
-    assert_episode_cards(page("/"), EPISODES.drop(1))
+    assert_episode_cards(page("/"), released.drop(1).map { |ep| ep["episode"] })
   end
 
   def test_episodes_page_lists_episodes_as_cards
@@ -31,7 +29,7 @@ class PagesRestyleTest < SiteTest
     doc = page("/")
     primary = doc.at_css(".hero a.btn.btn--primary")
     assert primary, "Play the latest button"
-    assert_equal "/episodes/episode-3/", primary["href"]
+    assert_equal "/episodes/episode-#{latest['episode']}/", primary["href"]
     assert_match(/latest/i, primary.text)
     assert doc.at_css('.hero a.btn.btn--ghost[href="/episodes/"]'), "All episodes button"
   end

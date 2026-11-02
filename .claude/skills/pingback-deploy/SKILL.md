@@ -8,12 +8,23 @@ description: Take a Pingback Podcast episode from an unlisted YouTube video (upl
 Started by the `pingback-deploy` terminal command (`bin/pingback-deploy`), or
 typed in Claude Code.
 
-**What the host does before starting:** names the speakers in Descript,
-publishes the audio from Descript to Buzzsprout **privately** (with "Episode N"
-in the title), publishes the video to YouTube as **Unlisted** (not Private:
-nothing can read a private video), sets the **thumbnail** in YouTube Studio,
-and writes the **chapter timestamps** in the YouTube description. Treat those as theirs: use their chapters and thumbnail
-as they are (fix only obvious typos, and say so); don't make thumbnails.
+**What the host does before starting** (their checklist):
+- Export to YouTube as **Unlisted** (not Private: nothing can read a private
+  video). Paste Descript's auto-created description, which includes the
+  **chapters**. Generate the **thumbnail** and set it in YouTube Studio.
+- Export to Buzzsprout **privately** (with "Episode N" in the title): first
+  **duplicate the Descript project as audio only**, then export that. Paste
+  the chapter timeline into Buzzsprout.
+- Then: run the website import (this skill), and schedule YouTube, Buzzsprout
+  and the post for the **release slot: Monday 09:00 Azores time** (`release:`
+  in `_config.yml`).
+
+Treat their chapters and thumbnail as theirs: use them as they are (fix only
+obvious typos, and say so); don't make thumbnails.
+
+**`bin/episode check N`** checks that whole list against YouTube, Buzzsprout
+and the repo (✓ done, ✗ to do, ? check by hand). Run it after scaffolding and
+again at the end, and tell the host each ✗ in plain words.
 
 **What you do:** everything else. One episode file
 (`_posts/YYYY-MM-DD-episode-N.md`) is the source of truth for every platform.
@@ -35,8 +46,10 @@ the choices, plain questions for the rest):
 2. **YouTube link** (must be Unlisted or Public) and the **Descript project
    link** (for the transcript; optional if Buzzsprout's will do).
 3. **Guests**: full names, links (site, X, GitHub, company). Or just Joel and Greg.
-4. **Release time**: default is one week after the previous episode's `date:`
-   (Pacific). Offer that and "other".
+4. **Release time**: default is the next release slot (Monday 09:00 Azores,
+   which is UTC-1 in winter and UTC+0 in summer). Offer that, the Monday
+   after, and "other". Write `date:` in Pacific with that day's offset (e.g.
+   `2026-11-02 02:00:00 -0800`).
 5. Anything to mention in the notes (links, sponsors, corrections).
 
 Don't ask for what you can read (duration, chapters, thumbnail, ids).
@@ -47,6 +60,7 @@ bin/episode new N --youtube <video link>   # post with the host's chapters, dura
                                            # youtube_id; then links the private Buzzsprout
                                            # episode ("Episode N" in its title)
 bin/episode thumbnail N                    # the host's YouTube thumbnail, for the site
+bin/episode check N                        # the host's checklist so far
 ```
 If `new` says the video is private, ask the host to set it to Unlisted in
 Studio and Save. If it couldn't link Buzzsprout, the audio isn't there yet:
@@ -54,8 +68,9 @@ ask, then `bin/episode link N`. Fallback only, if Descript's Buzzsprout publish
 isn't working: `bin/episode audio N --descript <project link>` (Descript renders
 the audio, a new private Buzzsprout episode gets it).
 If the thumbnail or chapters aren't on YouTube yet, say so and carry on; fetch
-them again before step 3. Check the chapters meet YouTube's rules (first at
-0:00, ≥3, ≥10 s apart) and tell the host if not: YouTube ignores them otherwise.
+them again before step 3. `check` tests the chapters against YouTube's rules
+(first at 0:00, ≥3, ≥10 s apart); tell the host if they fail: YouTube ignores
+them otherwise.
 
 Transcript: Descript's export (`Pingback::Descript#export_transcript`), which
 has the host's speaker names, or Buzzsprout's once it has processed the audio
@@ -116,7 +131,8 @@ git push                                   # any time before release; the page s
                                            # deploy publishes it
 ```
 Remind the host to set the YouTube video to Public (or schedule it in Studio
-for the same time). Afterwards confirm with `bin/episode status N` and
+for the same time). Afterwards confirm with `bin/episode check N` (once the
+video is scheduled it's Private, so YouTube items show ?), `bin/episode status N` and
 `yt-dlp` that the chapters took, check the live page, and report the links and
 commit hashes.
 

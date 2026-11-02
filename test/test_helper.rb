@@ -7,6 +7,8 @@ require "minitest/autorun"
 require "nokogiri"
 require "tmpdir"
 require "open3"
+require "time"
+require_relative "../lib/pingback/episode_file"
 
 module SiteBuild
   ROOT = File.expand_path("..", __dir__)
@@ -25,6 +27,17 @@ module SiteBuild
 end
 
 class SiteTest < Minitest::Test
+  # Episodes in the build: future-dated posts are scheduled and left out, so
+  # this list grows as each release time passes. Newest first.
+  def self.released
+    @released ||= Dir[File.join(SiteBuild::ROOT, "_posts/*.md")]
+                  .map { |path| Pingback::EpisodeFile.new(path) }
+                  .select { |ep| Time.parse(ep.date_string) <= Time.now }
+                  .sort_by { |ep| -ep["episode"] }
+  end
+
+  def released = SiteTest.released
+  def latest = released.first
   # Parsed HTML for a site path like "/" or "/episodes/episode-3/".
   def page(path)
     file = File.join(SiteBuild.dir, path, path.end_with?("/") ? "index.html" : "")

@@ -43,6 +43,9 @@ class PingbackDeployTest < Minitest::Test
     assert_match(/bin\/episode new N --youtube/, skill)
     assert_match(/bin\/episode thumbnail N/, skill)
     refute_match(/thumbnail-style/, skill)
+    # The host's release checklist is checked by bin/episode check.
+    assert_match(/bin\/episode check N/, skill)
+    assert_match(/Monday 09:00 Azores/, skill)
     refute File.exist?(File.join(ROOT, "docs/thumbnail-style.md"))
     refute File.exist?(File.join(ROOT, ".claude/skills/episode/SKILL.md"))
   end

@@ -18,6 +18,7 @@ class HomepageTest < SiteTest
     assert card, "latest card"
     n = card.at_css(".chip")&.text.to_s[/\AEpisode (\d+)\z/, 1]
     assert n, "episode chip"
+    assert_equal latest["episode"].to_s, n, "the newest released episode"
     url = "/episodes/episode-#{n}/"
     assert_equal "/assets/images/episodes/episode-#{n}.jpg", card.at_css("img.latest-card__thumb")&.[]("src")
     assert_equal page(url).at_css("h1").text.strip, card.at_css(".card__title").text.strip

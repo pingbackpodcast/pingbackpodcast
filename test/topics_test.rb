@@ -5,7 +5,12 @@ require "yaml"
 
 # Phase 5: topics (index, one page per topic, filters) and the start-here row.
 class TopicsTest < SiteTest
-  TOPICS = { "rails" => [3, 2, 1], "ai" => [3, 2, 1], "indie" => [2], "tools" => [2, 1], "other-tech" => [1] }.freeze
+  # slug => released episode numbers tagged with it, newest first.
+  TOPICS = YAML.safe_load_file(File.join(SiteBuild::ROOT, "_data/topics.yml")).to_h do |t|
+    [t["slug"], SiteTest.released.select { |ep| Array(ep["topics"]).include?(t["slug"]) }.map { |ep| ep["episode"] }]
+  end.freeze
+
+  def count(slug) = TOPICS[slug].size == 1 ? "1 episode" : "#{TOPICS[slug].size} episodes"
 
   def topic_names
     YAML.safe_load_file(File.join(SiteBuild::ROOT, "_data/topics.yml")).to_h { |t| [t["slug"], t["name"]] }
@@ -26,9 +31,9 @@ class TopicsTest < SiteTest
     cards = page("/topics/").css("article.card.topic-card")
     assert_equal TOPICS.keys.size, cards.size
     rails = cards.find { |c| c.at_css("a.card__link")["href"] == "/topics/rails/" }
-    assert_equal "3 episodes", rails.at_css(".topic-card__count").text.strip
+    assert_equal count("rails"), rails.at_css(".topic-card__count").text.strip
     other = cards.find { |c| c.at_css("a.card__link")["href"] == "/topics/other-tech/" }
-    assert_equal "1 episode", other.at_css(".topic-card__count").text.strip
+    assert_equal count("other-tech"), other.at_css(".topic-card__count").text.strip
   end
 
   def test_episode_header_topic_chips_link_to_topic_pages
