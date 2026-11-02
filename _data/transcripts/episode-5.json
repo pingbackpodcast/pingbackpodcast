@@ -1,0 +1,2410 @@
+{
+  "source": "buzzsprout",
+  "turns": [
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 10.7,
+      "text": "Hey everybody, welcome back to the Pingback Podcast with your hosts Joel and Greg. Uh, this week it's a Joel and Greg episode. Uh, we decided to take a week off of hosting guests and just have a chance to chit-chat with each other and talk about what's been happening in the tech world, uh, over the last week or so, which is candidly, Greg, you can attest to this, one of the reasons, uh, we even started this podcast was we wanted to just have a chance to, to chit-chat and talk about what's, what's going on in the news. Stand around the water cooler, if you will, and, and just kinda catch up since we work as, as, uh, individual contributors in our own home offices in different corners of the world. So here we are. We get to do that today and, um, and just check in with each other. So no guest today. It's just, uh, two talking heads here sharing what's been happening in the, in the world the last week or so"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 57.4,
+      "text": "Yep. Hi, everybody. So yeah, we are back to the beginning, back how we started, and we will see how this goes."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 62.7,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 63.1,
+      "text": "But we'll have guests in the future anyways, so it's just, uh, we might do a, a one a- one week, uh, non-guest, one week guest, or we will see how it goes. It's just, it's still completely fluid"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 73.5,
+      "text": "Yep, which is the great thing about, uh, hosting your own podcast is you can roll with how things go and, and decide what you wanna do as you it up as you go,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 81.0,
+      "text": "Yep"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 81.3,
+      "text": "So..."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 83.4,
+      "text": "Yep"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 83.8,
+      "text": "one of the things we were, uh, we, we, we're recording a little bit later today than we typically do, and that's because, uh, we were trying to catch the, the Evil Martians livestream that happened just, uh, an hour or so ago. Unfortunately, Greg, uh, we had our time zones mixed up and the darn daylight savings time kinda mixed things up. So Greg, you missed part of it, I think. Um"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 104.6,
+      "text": "Yeah, I, I joined only at the very, very end, so you need to brief me."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 108.1,
+      "text": "So it was, it was great. Um, I, uh, I, I won't have a comprehensive review, but, uh, uh, it was a, it was a good, uh, a good chat with, with Irina and a couple of the, the engineering team folks from, from Evil Martians talking about, among other things, how their, um, the agent benchmarking process works that, uh, Evil Martians has been doing for, for the, um, for the Rails Foundation. They've done a really great job, and I think you're aware of it, all the little benchmarks that they've been-- new, all the models that come out, um, benchmarking how they, how they perform kind of with a standard set of tents-- tests, benchmarks, of course. Um, and they chatted about, uh, kind of some of the, the good things that have been happening with that and the bad things and what's, uh, what's been happening. And two things that stuck out to me, I don't know if you were on the, on the, on the live stream when they talked about this, was, uh, agent cheating."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 162.7,
+      "text": "Did you hear that part of it when they talked about how agents are"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 165.3,
+      "text": "Um,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 165.5,
+      "text": "tending to cheat?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 166.7,
+      "text": "no,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 167.4,
+      "text": "this was,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 168.1,
+      "text": "but I've heard about it before"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 170.0,
+      "text": "it was really interesting to me, uh, just in the, in the idea of benchmarking, because obviously when you're, when you're working with an agent, you want it to build some code for you or, or whatever, build something for you. Uh, y- y-you just want it to do the work, right? And, and it's kind of you, you don't really know what's happening under the hood necessarily at a deep level. You just can't because there's so much You can't, you can't watch every line of code and every thought process that, that Claude has per se. Uh, so we-- there's a level of trust there. And one of the things that their tests uncovered, um, the Evil Martians', uh, benchmark, was that some of these agents were cheating, if you will, on, on their benchmark tests. Uh, and not to, not to, to call out DeepSeek, but I'm gonna call out DeepSeek 'cause that's who they called out on the, on the, on the live stream."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 218.9,
+      "text": "And they said that, um... And I forget the exact, the exact specifics, but essentially, they asked DeepSeek to do a certain task, uh, and it, it started to, to dig into the task, and at some point in time, it kind of to the side and tried to, to find the answer somewhere else, and it was able to get the answer somewhere else and copy and paste it in as its own answer. So it wasn't actually doing the thinking, and it wasn't actually, you know, using its own process. It was looking over its shoulder at someone else's paper and taking their work and putting it in, which I thought was quite interesting. So, uh, I'd, I'd never really thought about that, and, and it really kinda opened my eyes and made me start thinking"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 262.5,
+      "text": "Well, here is the thing. It was trained on human data, right? And what do humans do?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 267.5,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 268.0,
+      "text": "My kids, so my eldest is 10 years old. Her classmates are already cheating at school. It's unfucking believable. I don't remember cheating at 10. I, of course, cheated later at 14, 15, 16, but at 10, I was still a, a well-behaving child and I was preparing to exams. And she just told me, no, every kid, almost every kid in her class is cheating at the exams. It's crazy."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 290.7,
+      "text": "That's, that's nuts. So, so your kids at the age of 10 are doing it, so the agents are doing it, everybody's cheating. Is that just part of the way it is?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 298.0,
+      "text": "Yep, but that's also, that's a bit of a scary thing if you think about it because this shows just like that, okay, it was trained on human data, so it kind of behaves like humans, right? And don't take this wrong, but we have piece of shit human beings, right? So there are some like think about Adolf Hitler, for instance, right? Or, or Joseph Stalin. So what if AI is gonna be like one of those or ac- th- because it was trained on, on various data and, uh, it might have learned some from some people who it should have not learned."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 327.6,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 328.4,
+      "text": "cheating is one of that. You, it shouldn't cheat, to be honest."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 332.1,
+      "text": "It's"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 332.5,
+      "text": "Or I don't know, that's slippery slope because I think even when you cheat as a child, you still prepare, right? Because you need to prepare your cheat sheet or whatever, so you are learning the process. Well, you have to, right? Or, well, the other thing, yeah, you can cheat or you can copy. Copying is worse than you just ask from somebody, \"Hey, tell me the solution,\" somebody who sits next to you or something. But if you prepare your own cheat sheet, I think you are learning in the process, right? Because you have to do some work, so you do the work"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 359.9,
+      "text": "a cheat sheet is different than just like, like you said, just staring at someone else's answers and taking them. That's, to me, that's cheating. You know? The, the cheat sheet is almost like it's studying when you prepare that little piece of paper or something you're"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 371.5,
+      "text": "But, uh,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 371.8,
+      "text": "put in your"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 372.4,
+      "text": "yeah, but if you take it with you, if you take it with you and you pull it out and you use it But at least you put in some work, right? Maybe you didn't memorize everything. At least you put in some work to, to do the preparation. Yeah. I d- I don't know if it's good to cheat or not. Maybe sometimes it's good, sometimes it's not. I don't know."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 391.7,
+      "text": "Well, I think it's,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 392.4,
+      "text": "But yeah, it's scary, scary thing that AI might have learned all the bad things from humans as well,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 397.7,
+      "text": "that's,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 398.2,
+      "text": "right?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 398.7,
+      "text": "that it-- because it's, it's non-deterministic, you know, you ask an agent to do two things in a row twice, and it's never gonna give you the same answer. Can you, um, could c- I want-- I'm curious on how they're training the models to not cheat or, or how they could do that because it's not like the agent isn't an algorithm. It's not do X, Y, Z, A, B, C. It's very fluid, just like our brains are. I mean, that's the intelligence part of it, is it can think. So how do you tell a model have free thought and free, free will, but not, not, not cheat? know? C- how-- what-- how do you define cheating? Y- y- do they define it in their training? That's what, what, what I started thinking about."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 445.0,
+      "text": "I don't know enough about how these LLMs works to talk about. I am almost 100% sure there must be a way, to be honest. But then the question is, do you want them to not cheat? Because if they can-- Because, you know, sometimes with cheating you can find a solution faster, so why not find a solution faster, right? But that's actually one thing I was g- uh, if I join on time to this live, I was gonna ask them, how are they making these benchmarks? Is it like a reproducible benchmark? So if I run it two times in a row, am I gonna get the same results or not?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 477.1,
+      "text": "Right. Yeah, I didn't, uh, and to be honest, I was actually, uh, my kids don't have school today, so I had the kids with me, uh, had the kids with me, and I was kind of half listening to the, to the stream and, and, and making breakfast for the kids. So I didn't catch if they cha- if they talked about that. But I would imagine they would. They would have to do a, a, you know, a best of three or an average of three or something like that, because if you just take one test, especially because these are, are, are non-deterministic, you, you, you can't take a single result as, as the truth, if you will. So there has to be something like that, I would think"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 508.7,
+      "text": "Best of three is, I think, is a too small sample rate, so you'd need at least best of N."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 513.1,
+      "text": "yeah,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 513.7,
+      "text": "But even N, it's still a bit of a gamble, to be honest, if it's a non-deterministic thing."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 519.4,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 519.9,
+      "text": "'Cause, you know, it's like gambling. You might get 10, uh, three sevens in a row, and then you get peanuts for the next 1,000"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 526.9,
+      "text": "you think, \"Oh my gosh, I got three sevens. This is the, this is the gold mine,\" you know? And then w- the next one, next 12 you get nothing. So no, you're right. Um, and I think, uh, I actually don't... I, I would imagine that the, the Evil Martians team is, is... I know they're doing these tests regularly, 'cause these, these models are coming out nonstop every day, every week we're getting new models. So they're, they're constantly retesting and, and, and reevaluating. So, um, there's some of that going on as well"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 557.7,
+      "text": "Yeah. Yeah, now I, I think they are gonna introduce change logs."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 562.0,
+      "text": "Mm."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 562.4,
+      "text": "So we will see how they change, how the performance changes, which models are getting better or worse"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 571.4,
+      "text": "Yeah, that'll be,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 572.0,
+      "text": "that we believe in"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 572.8,
+      "text": "to see the, you know, like a line graph of, of how Opus 5.5, for example, is, is doing good and going down and, um, yeah, that would be really interesting to see. Because you, you notice it, at least in Twitter, on, on X, the-- when a, either when a new model comes out or, or there's apparently tweaks to a model, people say, \"Oh man, Fable is really doing bad this week,\" or, \"It's really whatever is happening this week,\" and it's... So you, you kinda have that. When they're tweaking, you get these different, uh, different... It, it seems, it feels different on a given day or a different, a given week"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 608.9,
+      "text": "Yeah, they, people say it's nerfed, right? Today, \"Oh, it's nerfed. They nerfed it because they want us to upgrade or they want to"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 615.0,
+      "text": "Right"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 615.6,
+      "text": "release the new version and then to feel that one much better.\" And, but I think that's bullshit."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 620.3,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 620.7,
+      "text": "I think it's just, it's non-deterministic. I, I have this experience with all these LLMs. Some days I'm like, \"Holy shit, unbelievable. This thing is going to take my job. This is going to take everything over.\" And the next day I'm like, \"How the fuck do we trust this? It's unbelievable. It's just so bad.\" But I think it's just, it's just, it's the non-deterministic nature, and sometimes you get all the se- three sevens for the whole day, and the next day you are getting all the bad, bad, bad, um, rolls or the bad, you know, dice, and now it's on- only ones, not sixes. So it's just that. And sometimes you have g- good days, and sometimes you have bad days. Sometimes it performs well, and it also depends on the task,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 661.7,
+      "text": "Sure"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 663.5,
+      "text": "which is simple and is done gazillions of times, or if you ask it to do something a bit more novel or more difficult, of course it's not going to perform the best all the time. It's just like a human, basically, right? And like humans, we also have good and bad days, right?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 677.9,
+      "text": "Get me before a cup of coffee and I'm a different engineer than I am after a cup of coffee. It's just, uh, it's just the way things are."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 684.9,
+      "text": "Yeah, I don't drink coffee normally, so"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 687.1,
+      "text": "\"Oh,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 687.5,
+      "text": "yeah. But I, I see what you mean"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 689.2,
+      "text": "as he takes a pull from his Starbucks mug. Full"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 693.2,
+      "text": "Yeah, but this is Steve Starbucks mug."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 696.9,
+      "text": "You know,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 697.2,
+      "text": "I love the mug. This mug is amazing. I really like it. I have it for, I don't know, more than 10 years, I think."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 702.9,
+      "text": "Oh, that's awesome. I guess they"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 704.0,
+      "text": "But I don't drink coffee"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 705.1,
+      "text": "off the hook on that one"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 708.5,
+      "text": "Yeah, I'd, actually I drink, t-tea is, uh, is, uh, something I'm really particular about. It's a loose leaf tea from China. It's a particularly Dan tea. It's a speci-specialty I'm drinking"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 719.1,
+      "text": "There's so many different kinds of teas, just like coffees, but I think teas even more. There's, there's so many different ways you can prepare tea and, and variations of it and origins of it"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 727.7,
+      "text": "Yeah, but it's the same plant. A lot of people don't know that. A lot of people think that green tea and black tea is different. It's the same plant, same leaves, but different processing."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 736.9,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 737.5,
+      "text": "same leaves is not entirely true. Like, white tea is the, the, the tip of the, of the shoot, the very green, fresh leaves, and sometimes even the flowers, and that, that used to be, like, only the, uh... Who was the- the emperor could drink it in China because it was very expensive because that's wh- what you have the lowest amount. And then you have the green tea, and then you have the black tea, and then you have the pu-erh tea, which is like wine. The older it gets, the more expensive it gets because it, uh, ferments. There are tea which are, like, 50, 60, 70 years old, and it's super expensive"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 774.2,
+      "text": "Have"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 774.4,
+      "text": "to buy those."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 775.1,
+      "text": "that?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 776.8,
+      "text": "Yeah, I drink pu-erh tea. I don't drink the old ones because it's just overpriced in my-- I tried some, uh, 10, 15 years old ones, and I didn't feel them that special, to be honest. But it's a taste thing. Some people like this, some people like that. It's actually, I prefer the fresh pu-erh tea for some reason."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 796.8,
+      "text": "Mm-hmm."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 797.5,
+      "text": "the taste of those."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 798.9,
+      "text": "Yeah, I"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 799.3,
+      "text": "But yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 799.9,
+      "text": "it's all subjective, just like these LLMs are, are non-deterministic."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 803.3,
+      "text": "Yeah, yeah, yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 803.9,
+      "text": "people have are, are the same way. Some people like a cheap can of beer, and some people like a really fine crafted wine. Uh, and it's all, uh,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 811.2,
+      "text": "Yep"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 811.5,
+      "text": "all just comes down to what, uh, what floats your boat"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 814.2,
+      "text": "Exactly. Exactly. And sometimes it's just marketing, right? Sometimes maybe the expensive one is actually not that good, it's just had, it had better marketing and they create demand. Same with LLMs actually here. Some, some the models"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 826.5,
+      "text": "it's just like these models. Uh, they"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 829.5,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 830.3,
+      "text": "as"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 830.7,
+      "text": "Oh, and while, and while we are at the topic, so there is this thing, I don't know if you heard, heard of this thing called Black October. Have you heard about this thing?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 839.4,
+      "text": "I, uh, you mentioned it the other day or, or in our show notes and I, and I had to look it up 'cause I wasn't sure what it was, and I, I got a quick, uh, synopsis of what it is. Tell us about what Black October is. Here we are, we're near the end of October, the last two days of October. What is Black October, Greg?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 854.9,
+      "text": "So, so in October, this month, we had PHP to Shell, we had Node.js to Shell, we had a Ruby, which some people said Ruby to Shell, but that's bullshit, it's not Ruby to Shell at all, uh, Ruby vulnerability, and, uh, we had a few other vulnerabilities, and people are like, \"Oh, this is the worst month for cybersecurity, the most issues found, so this is Black October because now it's just-- it's going to-- the world is going to end. We have so many vulnerabilities. We can't patch on time. It's just we can't handle this. We are done.\" Which is-- I think it's bullshit. It's, uh, a lot of it is, uh, marketing,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 889.6,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 889.9,
+      "text": "I would say, because people who-- in my opinion, people who push this narrative are people who are selling products to protect you."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 900.5,
+      "text": "sure"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 901.0,
+      "text": "Or like they, they, they, they j- they also it's, it's LLM providers as well. They're always pushing for this world-ending capabilities of LLMs, which is bullshit. Like, oh, they can-- There is some people who are so out of their minds. They say, if you put an LLM, you cannot sandbox LLM. I heard, uh, on a podcast from this from someone. If you put on a, a computer, even i- unless you put it into a Faraday cage, if there is internet in that building anywhere, it will find a way to connect to it and break out."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 928.6,
+      "text": "Hmm."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 929.1,
+      "text": "fuck are you talking about? That's bullshit. That's complete bollocks. But people believe this, some people"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 937.2,
+      "text": "baloney. I would agree with that"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 940.2,
+      "text": "Exactly. I'm not saying that they ha- they don't have good capabilities, especially if it's driven by someone who knows how to drive them. It's-- You can get so much done in so short period of time. This is why we have a lot of mo- lot more vulnerabilities published recently. But it's still not like world ending, and we had a lot of vulnerabilities in the past, but nobody paid attention for some reason. Now a lot more people pay attention probably because all of these LLM providers blow this up because what happens now, for- before XYZ filed a vulnerability for a company, they fixed it. Like, nobody knows who found Heartbleed, which was actually a really serious vulnerability. You can't name the person. But you know who found, uh, PHP to Shell because it was on LLM, because they are using it for marketing and say, \"Hey, look what our models are ca-\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 987.3,
+      "text": "Right"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 987.9,
+      "text": "Or, uh, there was a vulnerability found, uh, in, uh, in Rails recently, two days ago, yesterday, whatever. It's also the a- the, the report that is actually Anthropic's open source, uh, vulnerability scanner. So now there is more marketing behind it because they use it for marketing."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1006.0,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1006.7,
+      "text": "our models found this issue.\" And it's not just like, you know, if you're a s- a security researcher, you don't have a marketing machine behind you. You can't go to newspapers and say, \"Hey, publish about this because we want you to, to publish this.\" They are not gonna listen, right? Nobody cares. And then they interview someone, they interview someone in BBC who said, \"Oh, before yesterday, I didn't even know PHP exists.\" And that's an expert on cybersecurity and on this vulnerability."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1032.1,
+      "text": "as a, as a thing they didn't know it existed?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1035.5,
+      "text": "Yes, yes. He said, uh, he didn't even know PHP exists, and that's an expert talking about this vulnerability on BBC. That's fucking bollocks,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1043.3,
+      "text": "not to"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1043.6,
+      "text": "right?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1044.6,
+      "text": "Yeah, that's baloney"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1047.5,
+      "text": "Yeah, so I'm not saying that we are-- I think we should pay attention for security, of course, even more than before, but it's still, the world is not going to end. Come on, you patch and that's it. You should monitor and see if you get owned. The-- Everybody should have done the same things two years ago that what they are trying to do now, but nobody gave a shit. Now people finally pay attention, and they, they hopefully will improve their processes. But it's not, the world is not going to end, and it's, it's we, we, we can still make everything secure. But yeah, we need... Finally, people need to put their work into securing software and infrastructure and everything."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1085.1,
+      "text": "And I, I agree"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1086.4,
+      "text": "But also this, this, uh, I, I didn't look into the PHP to shell one, but Node, Node.js to shell, that's indeed an, a, a, a, a correctly classified vulnerability because you can send a crafted request to a Node.js server, and then you can get a shell on the box. But Ruby vulnerability was a vulnerability in the Regex library in, uh, Ruby, the Regex parser, and you had to use, uh, a specific method with user-supplied value, and that's how the vulnerability would have been triggered. So not every Rails application, every Ruby application is vulnerable to this. You need specific conditions to be met. That's-- I'm not saying it's not a serious vulnerability, but it's not like it's not affecting everybody. Exactly like Heartbleed was affecting every OpenSSL library, every OpenSSL implementation."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1137.0,
+      "text": "So people are overblowing a lot of these things."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1141.3,
+      "text": "Well, I"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1141.6,
+      "text": "And while we are talking about..."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1143.9,
+      "text": "No, go ahead"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1144.7,
+      "text": "Go ahead, sorry. Uh, there was a Rails vulnerability published yesterday, which was in, uh, uh, in this, uh, MySQL adapter called Trilogy."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1156.7,
+      "text": "Okay, I"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1157.1,
+      "text": "also, it's not super... Uh, it's because probably you are, no, don't use MySQL, I guess, so it doesn't really affect you. You use PostgreSQL. Also, Trilogy is for more high load if you are... Like GitHub uses it, but GitHub has same load, and they are backed by MySQL, not PostgreSQL. But that's also not something that, uh, maybe even GitHub wasn't affected because you still need certain conditions to be met, and I don't think a lot of application would be affected by that issue. Still, upgrade your, your dependency if you use Trilogy, for sure,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1197.2,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1197.7,
+      "text": "because better to be safe than sorry. But you need to use specific things to be a- to be vulnerable to that issue, and I don't think a lot of people use those."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1208.5,
+      "text": "Yeah. They'll... And to-- That's, that's an interesting one to, to know that existed, and like you said, it just came out yesterday or whatever, and I, I don't use, uh, um, MySQL, so I'm not, not really closely paying attention to that. But, uh, in terms of the Black October phenomenon or idea or thought, I, I, I tend... I agree with you that it's, it's, it's could be a marketing thing, but I think more than anything, it's just the fact that I think to some degree, all these types of vulnerabilities have always existed. They've always been"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1238.5,
+      "text": "Yep"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1240.3,
+      "text": "to find them more quickly and more readily"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1243.1,
+      "text": "Much fast"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1244.5,
+      "text": "because of the agents, you know? So it's always been somewhat unsecure. We just have ways to find them better and luckily patch them better than before. So I think like y- like, like you're saying, it's not necessarily a Black October, it's just we're at a point in the agentic evolution, if you will, where we're just getting to the point where we can find them better and patch them better. Uh, so, so it seems like, oh my gosh, the world is on fire, but really it's kinda been on fire the whole time. We just didn't see the fires."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1276.5,
+      "text": "Exactly. Exactly. But patching better, I'm not sure we are there yet. But this raises the alarm, and a lot of people are realizing now that maybe we should make this whole patching thing a bit faster."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1288.9,
+      "text": "Угу."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1289.4,
+      "text": "instance, when the Ruby vulnerability came out, then, uh, there is an, an official... or I don't know if it's that the official, but there is a Ruby image on Docker Hub, which is, uh, owned by Docker Hub, I think. And, uh, that one is based on, uh, Alpine Ru- uh, Alpine, uh, the Alpine distro, so it's a very small image. And, uh, they didn't publish a new version for, I think, seven, eight hours. There is a s- there's a guy, Dennis Pugman, I think, who wrote a blog post about this, about the timeframes. So when the vulnerability was published, and then the new version of Ruby was released, but it took a few hours, like, I think seven, eight hours to get the, the Docker image ready, which used by a lot of people who deploy, uh, with Docker images."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1338.9,
+      "text": "The Ruby core team has their own repository, but that's a Ubuntu-based image, so it's a much larger image, image. That's why a lot of people are not using that."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1346.6,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1347.4,
+      "text": "And, um, and now they are working together to speed up the whole process because there were some people who wa- who were waiting for hours before they, before they could deploy a new Ruby version for their app. I also wrote a blog post how you can, if something like that happens, how you can take things into your own hand and just build your own Ruby image, because you can do that. If you use Docker, you can... For instance, I use Kamal for most of, for all of my apps, so I just build it with Kamal and locally and then deploy it. But you can build the image, push it to a repository. It can be public because there is nothing in the, in that image. It's only the Ruby image. And then you reference it in your Docker file, and then it's out, it's in your own hands, and they can speed up the process."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1389.0,
+      "text": "So rather than, than you waiting for the patch to happen upstream, you just patched it in your own kind of fork of it or clone of it, pushed it, used that, then you were safe essentially is what you did."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1401.4,
+      "text": "Yes, but the patch was out, the new version of Ruby was out, but the Docker image for the image was not out. So I just built it, the image myself, so I could deploy before the official Dock- Docker image is published on Docker Hub"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1414.9,
+      "text": "And then when the, when the official image was posted, did you then utilize that one or did you just stick with your own one?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1420.6,
+      "text": "Yeah, yeah, I just-- but actually I just reverted it today."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1423.2,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1427.1,
+      "text": "uh, I just reverted that today"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1429.3,
+      "text": "Well, that's a good point. You don't have to just sit there when, when these vulnerabilities are, are announced and there's not a fix yet or a patch yet. You don't have to sit there and twiddle your thumbs and, and just, you know, cross your fingers and hope that no one's you. You can go for it and, and fix it. What- whatever it is, you know? At least take a stab at it. Um, if you're not gonna take your data offline or you're not gonna do something like that, uh, try to fix it"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1451.6,
+      "text": "But patches, patches are always there. So it's very rare that there is a vulnerability published and there is no patch. That's like, um, that's super rar- rarely happens. Usually they, they publish the vulnerability with the new release, which has the fix. The question is how fast you can upgrade,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1469.2,
+      "text": "can get it"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1469.6,
+      "text": "because sometimes..."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1471.1,
+      "text": "Yeah, applied"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1472.3,
+      "text": "is sometimes, uh, sometimes you have issues upgrading. Uh, let's say for instance, a good example for this is, uh, if you're on an older version of Rails and it's a Rails vulnerability, they fix it in the supported versions, which is currently it's eight plus, and you are still on Rails 7.2. So what can you do? It's just are you sitting d- ducks? No, you're gonna... Because somebody has to backport it. Or actually there's a company called Makandra, and they have, uh, a project called Rails LTS, which is Rails Long Term Support, and it's a paid service, so you pay them a fee. But every time when there is a security issue, they backport it for the old Ruby versions, and then you can... or Rails versions, sorry, and then you can just, uh, use their own, uh, fork of Rails,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1522.5,
+      "text": "interesting."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1523.3,
+      "text": "all"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1523.7,
+      "text": "a, what a novel, uh, maybe not novel, but what a cool business idea, you know, for those folks or those, those entities who, who don't or won't or want, don't wanna upgrade their rails to a later version for whatever reason. \"Hey, we'll take care of you for a fee.\""
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1537.3,
+      "text": "It's definitely not novel because this is a very lo- old project. They do this for maybe a decade, I think. I don't know for how long, but I think it might be even a decade."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1546.2,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1546.6,
+      "text": "And I think the reason they started to do that because, uh, you started to work with Rails a few years ago, so you d- you might not know this history, but Rails 2 to Rails 3, the upgrade was an unbelievably painful process"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1560.7,
+      "text": "heard"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1561.5,
+      "text": "there is a, there were a lot of changes in active record. And I still know applications running in production on Rails 2. And like a few years ago, there were a lot because it's difficult to upgrade and it doesn't make sense. It don't"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1577.7,
+      "text": "there was a lot of"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1578.4,
+      "text": "make money on it"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1579.1,
+      "text": "my goodness"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1581.1,
+      "text": "Exactly. And, and, uh, let's say five years ago, there were a lot of companies who were in that situation, and Rails 2 didn't get security updates for a long time. So that's why, uh, Maka's project, I think, is a really good idea"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1593.6,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1593.9,
+      "text": "because then those companies can say, \"Oh yeah, the upgrade would cost, let's say 15 grand for us. We'd rather pay,\" I don't know how much they charge, but I don't think it's much. They w- they'd rather pay that fee, and then they are kinda safe"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1607.2,
+      "text": "Yeah. Interesting"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1610.7,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1611.2,
+      "text": "Well, the thing-- I mean, that's kind of a, a different conversation, but historically, until the last year, the, the, the time of agents, you know, that upgrade would've been obviously quite burdensome, it sounds like, especially with those, those major releases from two to three where there was a lot of things that were breaking. I wonder if it, if it would be easier today. I imagine it would with an agent's help"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1631.9,
+      "text": "Way easier. So the issue back then was that Active Record was, uh, rewritten. Not really rewritten. Merb and Rails merged, the two biggest re- web frameworks, and, uh, a lot of stuff came from Merb to the, to Active Record. And, uh, and because of that, the syntax completely changed and, and you had to rewrite a lot of, uh, your Active Record queries."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1657.9,
+      "text": "hand"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1658.5,
+      "text": "of them, but all of them by hand. Exactly. And that's by hand, it's a massive overtaking, right? But if you just ask an LLM, \"Hey, convert this from the old syntax to new syntax,\" you know, that's, that's easy peasy task for an agent. And exactly."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1674.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1675.0,
+      "text": "all like when the hash syntax changed in Ruby, like with an LLM, that's just super easy to do, right? It's because you couldn't do a regular expression because it a- it broke at a few places for sure, so it, it had to be done pretty much manually file by file. That's how I did all these upgrades, file by file. You did like mass updates in a file, and then you still grabbed and searched for the pattern, and then you noticed, oh, yes, some was missed and whatever. With LLM, it's just, it's super easy. So no excuses anymore. Upgrade your dependencies. Upgrade Rails"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1707.4,
+      "text": "It's, uh, thinking about those times, uh, even, even earlier on when I was, um, I'm a much newer, uh, engineer than you are, but even earlier on when I was in, in my engineering process and, and, and, and career, if you will, uh, I was still doing stuff by hand. At, at most it was like auto-complete, tab complete, a few little things here and a few little things there. But when I would wanna re- want to refactor something, it was, it was, it was a process, and I couldn't imagine having to, to manually... Well, not s- you could still do find and replace type stuff or, or search, search for patterns and things like that, but the, the manual labor and the manual time that it would take to do that is just, it's something that had to be done, obviously. Uh, and that's why we all have software jobs because we need somebody to do that. Uh, and that kind of, you know, it's, it's, it's..."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1755.1,
+      "text": "Where we are now is, is great in so many ways because we're lucky we don't have to do that kind of tedious work that really doesn't move the needle. It doesn't... It needs to be done, but it doesn't create a better product, so to speak, or whatever it is. You're just patching things. You're fixing things. You're keeping them, you know, up. And, and so it's necessary, but it's not adding new features and adding things that are maybe more, uh, impactful, so to speak"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1784.1,
+      "text": "That's how those people who don't upgrade were thinking about this, but I don't agree, to be honest."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1790.0,
+      "text": "tell"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1790.2,
+      "text": "Because if gra- s- because when you upgrade Rails, you get speed improvements, performance im- improvements for sure. You also open yourself for new po- possibilities. So let's say when Turbo was introduced, so you can make your front end much faster without relying on a single page application. So if you don't w- upgrade, then you are staying behind, and you might add new features, but you're still building on basically a, a pile of, uh, shit, and eventually it's going to collapse on you."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1821.1,
+      "text": "I guess what,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1821.6,
+      "text": "It's much better to fix the foundation because also that strong foundation will open avenues for better new features"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1829.8,
+      "text": "agree completely on that. I guess what I was saying is that, uh, all these fixes isn't, uh... Yeah, sure, there's, there's, there's new, uh, new features and new things that come along with, let's say, a Rails, uh, a major upgrade or even a minor one. Um, but those, in my eyes, are, are, are less... Maybe they're less flashy than adding, adding a new bit to your product or a new part of your product itself. Uh, sure, when you upgrade from Rail 6 to Rail 8, you're gonna notice a difference, but, uh, but you, you, you kinda have to do it. You kinda should do it. adding a new feature or adding a new, uh, efficiency somewhere else, those are the things, at least in my eyes, that are, are... They're the more apparent things. They're, they're more superficial, I guess you could say. Um, so it's what the user sees more. Um, but it's a good point that you make that you, when you do upgrade and when you do do these things, y- you're gonna get benefits from it, too."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1880.1,
+      "text": "Speed, uh, uh, all those kind of things. So that makes sense."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1885.0,
+      "text": "Yeah, yeah. I, I, uh, I have one example. Uh, a, a person who I upgraded Rails many times. Every time when there's a Rails, and usually I do the Ruby upgrade as well at the same time, he always just said, \"Hey man, what did you do? Everything is just so much faster. This is unbelievable.\" And that's just a testament how fast Rails actually becomes with every new release. A lot of people don't even realize that, but it's actually noticeable because there are a bunch of performance improvements in all releases, and also Ruby as well. It's, it's just unbelievable. I think Ruby is not even slow anymore, to be honest. It used to be slow, but not slow anymore"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1921.9,
+      "text": "That's really cool. So yeah, Black October. Is it, has it actually been, been black? Sounds like Greg and I are saying maybe not"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1931.2,
+      "text": "Yeah, I don't think it was black. And also I think i- the future is going to be similar to this. So you will have vulnerabilities to patch every month. So rather than saying, \"Oh, we are done and over,\" maybe think about how to handle this in a faster, better process, how to utilize LLMs to, to speed up also the, the defense. So whenever a vulnerability comes, then you are really-- you are quick to mitigate it."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1958.1,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1958.6,
+      "text": "And also start to monitor because a lot of people don't understand this. It's the biggest part of security is monitoring, because that's how you catch a lot of zero days. Like if there is zero day, nobody knows about the issue. Usually it's some company, some big company is targeted by it, and then they notice it from their logs, and that's how it's like, hey, there is something fishy going on. They research it and then realize, oh, there is a bloody vulnerability in, in let's say Ruby."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1983.3,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1984.7,
+      "text": "You should always monitor for potential security issues, for potential hacking, uh, attempts because you might notice something which is completely novel and, uh, and you can help everybody else if you report it and it gets fixed and patched"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2001.7,
+      "text": "Help other people by doing it. Yeah, that's a good point"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2004.9,
+      "text": "Yeah. And everybody can get hacked because there is, there is alwa- there is, there is a, there is a will, there is a way."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2012.3,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2012.9,
+      "text": "So the best way is like, you know, if you... It's like your house. Whatever lock you have on your door, it just keeps out the honest people. So what you should do is make sure that if somebody breaks in, that's why you have security cameras, right? At least you can identify who it was, and at least you have some evidence. You can go to the police and report, \"Hey, it was this guy.\" And then at least he goes to jail. And, uh, and that's how you should think about cybersecurity as well. Make sure that if anybody hacks you, you have proof that it happened, and you have a way to find out who it was, how it happened, so you can prevent it from happening next time, and learn from it and then move on. Rinse and repeat."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2053.0,
+      "text": "That's a really cool framing. I like the way you said that, how, you know, somebody could get in the front door, so to speak. They break into your house, but then can you log it? Can you see who it was, what they look like? Can you find a description to fix it or to, to, to catch them and, and not make it, make it not happen again? That's a, a really cool"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2068.7,
+      "text": "Exactly. And also know that it happened so you can... And how it happened so next time you have, you can have better protection"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2076.5,
+      "text": "If you wake up one day and, and all your jewelry's gone from your house, but you have no idea where it went or how it disappeared, that's a,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2083.1,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2083.6,
+      "text": "situation."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2085.7,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2086.1,
+      "text": "you had"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2086.4,
+      "text": "And I do look pictures"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2087.6,
+      "text": "then you can see that it was taken by a thief. Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2090.8,
+      "text": "Exactly. And I do lock picking as a hobby and I'm not great at it,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2096.6,
+      "text": "Like"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2097.0,
+      "text": "still I'm, I-"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2098.5,
+      "text": "physical locks?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2100.8,
+      "text": "Yeah, yeah, and physical locks, yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2102.5,
+      "text": "Watch out"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2103.1,
+      "text": "And I'm not great."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2104.5,
+      "text": "for your"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2105.0,
+      "text": "I o- No, no, no. I only do it with permission, but, uh, I'm not great at it, but still I can open a lot of stuff. It's unbelievable. So people who are really good at it, they can open anything, to be honest."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2119.1,
+      "text": "You are a,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2119.5,
+      "text": "It's scary."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2120.6,
+      "text": "in every"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2121.2,
+      "text": "But"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2121.5,
+      "text": "the word, not just in, in software, but in, in the real world too"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2127.2,
+      "text": "Yeah, there are phy- there are physical penetration testers. There are people who are hired to break into offices or factories."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2133.4,
+      "text": "Sure. It make,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2134.3,
+      "text": "I would actually, I would love jobs"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2137.3,
+      "text": "You what?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2138.1,
+      "text": "because it's so great challenge. I would love to get such, such jobs. It's, it's an amazing challenge if you think about it. How to figure out how to get into physically into an office and then get onto the network and then"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2149.4,
+      "text": "Right?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2150.0,
+      "text": "pivo from that. It sounds amazing"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2152.6,
+      "text": "the things you see in the movies where somebody breaks in and then hacks into the, knocks out the security guard and, and does all these things. Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2161.3,
+      "text": "That's, that's out-- always out of scope. You cannot harm anybody. But you can break in with permission. That's just amazing, right? And figure out-- I love to figure out flaws, like m-mistakes or in, in processes. That's, that's a great challenge, just to look at how something is done and, \"Okay, how can I circumvent this?\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2184.9,
+      "text": "It's necessary. It's necessary, and I think like, uh, to, to kind of wrap things up on this topic, it's this month of October has shown us that we have to be vigilant. We have to be aware of what's happening and, and the agents are getting better, and, um, it's something that if we didn't wanna think about it before, we, we really should be thinking about it more"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2202.5,
+      "text": "Yeah. And don't fearmonger because that doesn't move the needle."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2205.6,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2206.5,
+      "text": "fear it. Don't do it b- out of fear. You do it out of, uh, take it as a challenge. Oh, now we have all these issues. Now let's figure out how to make it better. And just one more thing on this topic. I don't wanna name names, but on Twitter, I see a few people who have zero idea about security, and they are-- they, they s- for some reason, they feel that they need to talk about this topic, and they are posting silly things, which is just like, ah, unbelievable. And I think if you don't know what you are talking about, if you just asked Claude about some things and how that works, then maybe don't speak about it like you know what you are talking about because I don't think it helps, and you might mislead people and plant fear into others, which you shouldn't, and just misrepresent things, like thinking that a s- a programming language determines the security of your application."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2261.5,
+      "text": "It doesn't. You can write insecure code in Rust. You can write secure code in C. You can write secure code in Ruby. You can write secure code in PHP. The-- it doesn't-- that, that's not the bottleneck. That, that's not what will determine how good your security posture is, to be honest. It's, it has nothing to do with it"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2280.3,
+      "text": "likes, looking for, for exposure."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2282.8,
+      "text": "Exa- exactly. Oh, now we have some sexual issues, let's post about it because then everybody... Th- that's what the, that's the hot topic, which is just, it's silly. If you don't, i- it's like, I don't know, when there is some hot topic about something I have no idea about, why would I chip in? It's, I don't know shit about it, right?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2302.4,
+      "text": "But with, with agents now everybody thinks they know everything"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2306.2,
+      "text": "Oh yeah, of course, you can just ask Claude, and Claude might be actually rubbish about that thing and it might"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2312.2,
+      "text": "then, then you know who's full of, who's full of horse pucky when, uh, you see their, their comments online about, about languages being secure or not secure"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2321.6,
+      "text": "Yeah. Yeah, definitely."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2323.8,
+      "text": "Well, uh, speaking, speaking"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2325.1,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2326.0,
+      "text": "as a, as a language, let's talk about Ruby as a person. Uh, we had a couple of weeks ago Sam Ruby on, uh, the Pingback Podcast as a, as a guest, and, uh, we talked about on the podcast how he, he had retired twice. Uh, he, he came back, uh, after his first retirement to work at, what was it, Fly.io, and, uh, and then he"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2346.2,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2347.9,
+      "text": "uh, just this week he's not retired anymore He's, uh,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2354.9,
+      "text": "Yep, he's stuck. Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2356.7,
+      "text": "biggest, if not the biggest rail shops around, Shopify"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2362.3,
+      "text": "Yep. I think it's the, it might, I think it's the s- either the biggest or the second biggest. I think Procore, Procore might be bigger, but I'm not sure. Shopify is massive now."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2372.5,
+      "text": "I'll"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2373.0,
+      "text": "yeah, I, I think this means that Roundhouse will get even more support and love"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2378.0,
+      "text": "Yeah. I was, I was, I"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2380.5,
+      "text": "And"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2382.7,
+      "text": "puffing my chest out all week as I walked around the house here thinking that our podcast somehow had a an influence on Sam getting that job. I know that's absolutely not"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2393.3,
+      "text": "I don't think so."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2394.1,
+      "text": "to, I like to pretend it might"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2395.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2395.9,
+      "text": "that we exposed, uh, and, and spread his word to the, to, to Toby and team at, at Shopify, and they said, \"Wow, those guys at Pingback, they're really a... Yeah, let me give Sam a call.\""
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2408.4,
+      "text": "I don't think it happened because the plant- the seed was planted before our podcast because Tobi also had been contributing to, to Roundhouse before that. Yeah, he even wrote a-"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2419.0,
+      "text": "it was like a month later or something like that, Sam did. He"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2422.8,
+      "text": "Yeah, yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2424.3,
+      "text": "'cause Toby submitted a, a PR or something on Roundhouse, and, and I think, yeah, Sam in his announcement said, \"One month later, I got my security clearance and I'm going to, going to Shopify,\" or whatever it was"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2435.2,
+      "text": "Yep. Yeah, it's crazy. Unbelievable. So the job market is tough, it's difficult, but look guys, you just need to put yourself out. Just do something out of love because that's what, why he does it, right? Sammy's just like, \"Yeah, I just love it. I enjoy this.\" I, I could- he could be just retired, right? He could just say whatever. I mean,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2453.3,
+      "text": "chilling out"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2454.5,
+      "text": "exactly, exactly. But he's passionate about something, and then it looks like if you work on something out of passion, and then maybe some people will notice it and they will hire you."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2466.4,
+      "text": "Yeah. No, it's so"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2467.6,
+      "text": "It's the, there's also story, the guy who was hired by, uh, Se- 37signals, Rob Zokov."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2475.3,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2476.3,
+      "text": "Rob, yeah. He was also hired because he was just sending open source pull requests to, to"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2481.9,
+      "text": "just,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2482.2,
+      "text": "37signals."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2483.1,
+      "text": "it. And"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2483.6,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2483.9,
+      "text": "know. I love that story. I'm, I'm so geeked for, for Rob, first of all, um, and, uh,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2489.1,
+      "text": "Yep"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2490.5,
+      "text": "general too, that you can just do those cool kind of things. Um, I mean, I think we see some of that in the Omachi community as well too, where some of the, the folks who have now become, a couple of them full-time employees of the Omachi Foundation just started out as folks who were doing, doing cool stuff, you know, pitching, pitching in, lending a hand, and now they have jobs. Um, they put themselves out there,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2510.7,
+      "text": "Yep Yep, yep, definitely. Just find your passion because if you're passionate about something, I'm sure you're gonna do a great job at it,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2520.0,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2520.4,
+      "text": "and then work will find you. Don't focus on finding work, focus on finding what makes you passionate, and then I think you'll land your ideal job"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2529.8,
+      "text": "Yeah, it's a good, it's a good point, and I think it's, uh, it... I like the way you framed it. If you're, if you're looking for work and, and, and trying to find a job, the job market's tough, uh, right now in many respects, especially for folks who are newer, uh, and maybe don't have as much experience. But if you're out there just making things, building things, making connections, and, and doing what you would like to be getting paid to do, you know, after a while, if you, if you get into the community, people will see you and notice and, and at some point in time, hopefully take notice and, and you can make those connections. So that's a really good point, that just, just build. Just be out there and be part of it and then see what happens, 'cause you certainly can't, uh, very easily hop onto LinkedIn and just apply your, uh, apply to all these jobs because there's thousands of people applying to all the jobs out there. Um, but when you're"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2575.3,
+      "text": "Yes"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2577.2,
+      "text": "it's a way for folks to actually see you do work. And it, it, as they say, a picture is worth a thousand words, and, and showing your work is worth way more than just saying, \"Here's what I could do,\" on a resume."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2588.1,
+      "text": "Yeah. Yeah, and I, I think the job market is, is just... I, I don't even know. What is the hiring process today, right? Like, are they gonna ask you, \"Hey, let's do pair programming during a call\"? And what are you gonna do? Just get Claude to do it, or are you gonna handwrite code which you haven't done for maybe a fair few months? Or"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2608.0,
+      "text": "Well,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2608.5,
+      "text": "how are they even determine the, your technical capabilities?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2613.9,
+      "text": "uh, I'm actually kind of looking for some more full-time work right now and, um, went through an interview process over the last couple of weeks, and I ended up not getting the position. But as part of it, there was still a technical interview, um, and the organization, the company that I was applying for, uh, is a very AI-forward organization. And the technical interview, it was, it was-- They, they mentioned beforehand that about six months or so ago, they were still not wanting folks to use AI per se. They knew it existed, but they didn't want you to lean heavily on it. But more recently, and for my technical interview, they, uh, they fully are, are aware and okay that you're using AI and, and it's, it's, it's deeply part of their process. So the technical interview was essentially, uh, how can you drive the AI?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2659.8,
+      "text": "Not do you know the code and exactly what the outputs are, but can you show that you're-- that you know h- what it's doing and how to manage it, how to navigate it, so you're kind of, uh, an AI driver rather than a code writer per se. So that was one, one example of, of how that worked. And I did also see somewhere on Twitter yesterday or the day before, I forget who it was, it was just kind of in passing, somebody talking about how they thought that the technical interview is kind of something that may go away because, because of not actually writing software anymore. We're, we're driving agents. So that's more the"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2696.3,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2696.8,
+      "text": "actually you write a method? Can you, you know, work with all the, the bits and pieces? It's can you drive the AI? And I think there's still reason to have an interview in that regard because you still need to have a technical ability, but it's just a different technical ability."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2714.5,
+      "text": "Yeah, but I think it's very, uh, what's the word? So, so y- you-- everybody drives these agents in a different way. Like, there are so many various tooling, it's crazy. It's just you could use a new tool every, every 15 minutes, right? It's just an absolute crazy amount of, of tools you could choose from, and everybody does it differently. And you can use it in your own way, and I can use it in my own way, and we can get to the same end result, right? So I think it's really hard. I-- it might be hard during an interview to, to figure that out or to not-- to see if somebody's good at driving AI or not. I think maybe take-home exercises would be better"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2758.6,
+      "text": "Sure"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2759.3,
+      "text": "because, uh, 'cause now the issue with take-home exercises before was that, oh yeah, people are asking he- for help or they are being, um, cheating exactly. But today, why would you cheat, right?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2770.7,
+      "text": "people are always cheating"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2773.5,
+      "text": "Yeah, but, but now, now why, why would you cheat? Basically you cheat, but it's not cheating anymore because you are using AI, right? So it, it's, yeah, you are asking somebody for help, but you, you will ask that somebody to help during your work anyways."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2786.6,
+      "text": "We're"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2786.8,
+      "text": "So it does, it doesn't"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2788.0,
+      "text": "during our"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2788.5,
+      "text": "constitute that... So it's not cheating basically. But then you have for, for instance, so as you just mentioned, that AI is non-deterministic. Maybe during the interview you are getting a bad period and, uh, and maybe because you are a bit under pressure, you don't realize, hey, the output is not as good as it could be, and then you fail the interview. And maybe if you do it on your own time, you are more relaxed and you are like: \"Oh, actually, now this is shit, let's retry it,\" and then you get a better outcome. And I think the outcome matters, right? It doesn't matter how you get from A to B, the, the, the goal is to see can you get from A to B."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2826.2,
+      "text": "Yeah. Yeah, I"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2827.2,
+      "text": "And, uh, I think that's probably in, in this age of AI, a take-home exercise might make much more sense than before. I think even before it took, it took a lot of sense. There are some... I know some people who get super stressed during an interview, and they forget everything they know. I used to be like that, like 10, 15 years ago. Um, not 15, but a little over 10 years ago. And then I had one interview where I went there as I was like: \"Yeah, I'm just ex- I'm just, uh, practicing. I don't give a shit about this interview. I don't care about the outcome at all.\" And I was super relaxed. And I passed. They hired me. And from then like, this is what I should do all the fucking time. Just go there without giving a shit, and then I'm relaxed and I can finally perform."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2873.9,
+      "text": "so"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2874.4,
+      "text": "It's just a mindset"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2875.2,
+      "text": "Yeah. Yeah, and that's, uh... I don't work well under pressure either, and I'm not gonna say that's why I did or didn't get the position. I didn't get the position, but, um, but it's, it's true. I definitely know that when I'm, when I'm in front of somebody trying to work, it's way more stressful and, and I'm not, I'm not in my groove. I'm not in my normal flow. So, um, that's a really good point. And to, to that thought of, of how you, in that one interview 10 years ago or whatever, just decided that you were not gonna care about it, um, I think about that in, uh... I'm a, a runner, uh, an athlete, and I, I, I do r- marathons and running races and that kind of stuff, and sometimes, oftentimes I'll get nervous about, about training for a race, and then the race comes, and I'm nervous about am I gonna do well? Have my... Has my training been what I wanted it to be? And I'm nervous, and y- I don't perform well."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2921.8,
+      "text": "But if I go into that race thinking, \"I don't give a care about this,\" just like you said, sometimes those are some of my best performances, when you can just relax and let it happen. Trust the"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2932.7,
+      "text": "Yep. Yep"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2932.9,
+      "text": "trust your knowledge, and just go. I agr- I think"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2936.7,
+      "text": "And enjoy it"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2938.1,
+      "text": "it. Yes. I think that is such a, such a, a, a clutch thing to do. If you can do that, whatever it is, whether it's in a technical interview or on the running course, uh, that's, that's, that's, that's key. That's important"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2952.3,
+      "text": "Yeah. I compete in BJJ and I went to a competition roughly a year ago, and that was my first BJJ competition, and I went with the"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2961.5,
+      "text": "that is?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2963.4,
+      "text": "CS Brazilian jujitsu. And I went there, I'm like, \"What can go wrong, right? I'm, I'm beginner. Worst case scenario, I lose.\" So I was really relaxed, and I won. Then I went to the European Championships a few months later, and then I had to go down in age category because nobody was in my age category, so I had to go down two categories actually. And I was looking at these young, much younger, much faster, much stronger guys, and that completely fucked my mentality. I lost the, I lost the guy who became the champion at the end. But, uh, I very underperformed and, like, I didn't, I wasn't as... I didn't perform as well as I, I could have."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3001.4,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3001.9,
+      "text": "think and it was all because it's just a bloody mind game, right? I went, \"Fuck, this kid could be almost my fucking child."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3009.7,
+      "text": "He's gonna whip"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3010.4,
+      "text": "What am I doing?\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3011.4,
+      "text": "in this competition here"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3013.2,
+      "text": "Yeah, it's just much faster reaction time. It's-- A lot of people say, \"Oh yeah, I, I look younger than my age.\" I'm, I'm turning for-44 soon, and at the gym everybody says, \"Oh yeah, I don't believe you are that old because you are, like, really strong and fast and everything.\" But I notice, I see the 25 years old are much faster. The reaction time, the thinking is way, way faster, and that matters a lot in, in that sport. How, how quickly you are realizing the position you are in and how to counter and what to do is just you need a really fast thinking. And I have to admit, it's getting slower as you age. You can't do shit about it"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3049.7,
+      "text": "Yeah, it's true. I,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3050.6,
+      "text": "Over 30, it goes downhill. Over 40, it goes even"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3054.6,
+      "text": "yep."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3055.3,
+      "text": "worse."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3055.5,
+      "text": "noticing it in so many ways, uh, every day that time, uh, am aging and, uh, I'm not like I was when I was 25 either, so we gotta live in that"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3066.7,
+      "text": "Yep. But you get also wiser actually, and I'm trying to use that in every sense of my life"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3073.3,
+      "text": "true"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3073.9,
+      "text": "because I'm much wiser. I'm not as fast, I'm not as quick reaction- I can't react as quick, but I've been in many more situations than they have been, and I try to turn that to my advantage"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3085.7,
+      "text": "versus sage."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3088.7,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3089.3,
+      "text": "I, uh,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3089.8,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3090.2,
+      "text": "with that, and"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3090.9,
+      "text": "It's the best"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3091.5,
+      "text": "I do try to embrace myself as well, is just to, to, to, to think about even maybe if my body and mind don't work quite as well as they did 20 years ago, I've got so much more experience in there, so I can be more efficient and just have a better knowledge base upon which to apply it"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3106.5,
+      "text": "Yep Or just don't panic in a situation, right? Because you've already been there. Like, if you are running a race and then you have, let's say, cramps in your leg or whatever, \"Oh, I've been here before. It's not a big"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3118.9,
+      "text": "that. Yeah, exactly. So true."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3120.6,
+      "text": "deal.\" Yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3120.8,
+      "text": "So true"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3121.5,
+      "text": "Or if you throw up or, or you fucked up your, your, uh, fueling,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3125.7,
+      "text": "Ja."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3125.9,
+      "text": "it's like, \"Yeah, I've been before. I know how to fix it. It's fine.\" But as if it's your, let's say, you're 25 years old and it's one of your first races, you might panic, and then you just fuck it up"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3137.0,
+      "text": "know what to do 'cause you've never been there before in that situation. Nuts. It's so true. So"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3141.0,
+      "text": "Yep. Yep"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3144.4,
+      "text": "Uh, let's see here. Uh, we had on our, our, our punch list for other things to chat about. Um, see, we were doing some hacking recently. I was doing some, uh, uh, frame, me, cheap, cheap frame hacking, thanks to Wes Bos, uh, on, on Twitter. Uh, I joined the wave of, of buying these cheap $30 or $50 photo frames and hacking it, turning it into a, a home information hub or a home HQ. Uh, and so I went down a big rabbit hole for about a week with that and, and basically got it functioning. I took this, this front end that Wes had, had, had developed. It was a cool kind of like a Skylight calendar is this, this product that exists out there. It's like a, a tablet that you can buy for your family, and it has all your calendars on it, and you can have chore lists and everybody..."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3194.1,
+      "text": "It's like a home information center. But they're like 500 bucks, and you might even have to pay a monthly subscription. And who wants another subscription? So Wes do-went down this rabbit hole, which he does often with many things and, and hacked it, and he made a nice repo that people could connect their agents to, which I did, and I turned a, like a $40, uh, cheap photo frame into a little, uh, a little, um, thing we have sitting on the, on a table in the corner of the house and, uh, and it, uh, it's got a calendar on it with everybody's, uh, calendars connected to it. I've got a chore list for the kids. I've connected some of our home, uh, automated devices to it. Uh, and I built a... So Wes's thing was basically just a fake front end. Um, it was like JavaScript and, and it all, it worked, but it wasn't connected to a back end. So I took that front, the UI essentially, and built a, a Rails app on the back end to it, uh, to give it true function."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3244.2,
+      "text": "So that's what I was really working on for, or my agents were working on, and I was helping design, um, for, for four or five days over the last week. So, uh, it's, uh, it's been a pretty neat little project. Uh, it's having some issues still. Uh, I'm running up with, um, one of the things I need to, to address is it keeps disconnecting from the internet in the house. I don't know why that's happening. Um, Claude thought it might have been because there was not enough power getting to the frame from, uh, from the power, but I'm using the, the stock cable and USB plug and all that kind of stuff. So still not totally dialed in, but it's been, it's been pretty cool to, to be able to take this cheap little thing and spend a few hours with Claude and burn a few tokens and a cool feature, have a cool little product."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3286.9,
+      "text": "Would it connect to Wi-Fi the stock frame? Would it connect to Wi-Fi"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3291.5,
+      "text": "Yep. So you could connect it to Wi-Fi, and I think you could, there was a, there was a companion app for your smartphone where you could, you would send it pictures. That's what it was for, is you would send it pictures, and the pictures would show up on this frame, and, you know, you, so you could. It did and it does. It's essentially an Android tablet underneath. That's what it"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3307.1,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3307.3,
+      "text": "in its root, so, so yeah, it did connect to, to Wi-Fi initially"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3313.3,
+      "text": "And it's weird why, why it disconnects. I use a terminal, not one, two terminals for the same thing. It's much cheaper than the tools you were talking about. It's like 100 bucks something, and it's also an E-ink screen,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3327.3,
+      "text": "we've got"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3327.6,
+      "text": "so it's better for your eyes. You got it. So I have two of those, but I want to also experiment with the photo frame just to see, uh, what, what can you do with it. And yeah, I also did some interesting home automation stuff recently. Uh, we are completely off the grid, so we are not connected to the mains, uh, electricity grid. And, uh, if you have such a system, it's very important to use the power when it's generated."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3356.5,
+      "text": "Okay"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3357.5,
+      "text": "So for instance, uh, hot water, you want to warm... It's-- You-- I need it in the evening to take a shower, right? But it makes-- Sometimes it makes much more sense to warm it up to 80 degrees in the morning and don't turn on the heat water heater in the afternoon, because in the morning I have full sun, and in the afternoon it's cloudy. So timing is not really efficient. What you need to-- It's much better if you can monitor your production, and based on the production, you can turn on the water heater or turn it off. Same with my electric car, the charging. I try to charge it. Uh, so ideally, I just plug in the charger. It's all, all the time it's plugged in when I'm home, and whenever my production is high, I charge the car. If it goes down, I turn it off because then it's fine. I don't need, I don't have to charge the car. I only have to charge the car when I have production."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3405.1,
+      "text": "So I use, uh, Home Assistant,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3407.4,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3407.9,
+      "text": "and it has all these automations where I... Actually, the guy who installed my whole solar system, he, he, he doesn't know much. He's very low tech. He knows the electricity part, but he didn't even know how high tech all these tools he installed. You can connect it to your local network, and then you can, you can read on the local network the, uh, all the readings, like your current production, your battery state, and all the stuff. And, uh, so I, I changed it. I had to actually reset everything, and it, it took a while to, to configure everything the way I, I wanted it. But now it sends all the information to my Home Assistant, and based on the battery levels, I... Uh, for the car charger, I bought an, uh, uh, smart socket,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3449.6,
+      "text": "Угу."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3450.0,
+      "text": "so that's connected to my Wi-Fi. And based on, uh, on the battery levels, on the, the production, it turns on the car charger, turns on the hot water, and turns it off when the production is not high enough. So I always close the, the day with, uh, almost full batteries, and I, I use all the power when I produce it,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3468.0,
+      "text": "That's"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3468.4,
+      "text": "is just, it's so much more efficient, yeah. I used to do this manually,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3472.6,
+      "text": "But that's a lot of"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3473.4,
+      "text": "but now it's all automated"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3474.2,
+      "text": "monitoring your smart devices when to do that?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3477.2,
+      "text": "Well, you don't. That's the thing. Sometimes you forget, and sometimes you drain your bloody batteries and you're like, \"Shit, now I need to charge the house from the car,\" which is a pain in the butt. And, uh, \"Oh yeah, I forgot to turn the hot water and the fucking batteries are full all day.\" It's, yeah, that's, that's not the ideal way. This automation is amazing."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3493.4,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3494.0,
+      "text": "And I used to be against this whole why are they putting Wi-Fi into everything, right? They are putting Wi-Fi into your washing machine. Why? It's ridiculous. Now I realized if you are in a situation like I am, it makes complete sense because you could do the same with your washing."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3510.8,
+      "text": "Yep."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3511.2,
+      "text": "put all of it into the morning, and then from Wi-Fi, you start the washing only when your production is high. If production is low all day, then you don't even turn it on because, yeah, it will be tomorrow. It's fine. You don't need to do all the laundry that particular day. If you just use a timer, it might turn on when there is no production"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3531.5,
+      "text": "That ability to, to, to, to micro adjust it based on the conditions and the power levels and all that stuff, the clouds, for example, for solar, that's, that's really cool. Um, that's really cool"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3541.9,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3542.3,
+      "text": "designed that system to, to, to make it all kind of flow and be more efficient. Um, and Home Assistant is part of this back end of this, uh, this Frame app that I, that I developed, and I had never heard of it really until I got deep into this, and it's so cool, this open source thing that can connect all of your little bits and pieces and, um, I really wanna dig more into it. Um, especially because system right now is kind of fragmented. We use some Apple devices. We use some Google devices. We use some, uh, other devices, and they're all... I try to... I kinda try to, have tried to connect them into a single... I think I got many of them connected to my Google Home, uh, system because you can still, you can connect a, uh, what's a, a third-party brand into, into Google still."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3587.4,
+      "text": "But, but the idea that n- the, the Home Assistant can kind of connect everything into one spot is really intriguing to me. Um, and to your point about the efficiency and the washing made me think about how one of the big annoyances I've had, we got a new dishwasher, uh, dishwashing machine, uh, six months, nine months ago, something like that, and it's, it's got Wi-Fi. It can connect to the internet, and it's got an app that works it, but the app is terrible. It's like a white labeled app of some sort, and it's just awful. And one of the biggest things that always bug me is that it has minimal controls on the dishwasher itself, and one of the"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3624.3,
+      "text": "Have you ever used"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3624.9,
+      "text": "I"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3625.2,
+      "text": "it?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3625.3,
+      "text": "use all the time is a delayed start. Uh, so I want it... For example, we pay here in Portland different amounts for our electricity at different times of the day, from"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3636.4,
+      "text": "Yep"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3637.9,
+      "text": "really expensive, so we try to do nothing or use... you know, we don't run the dishwasher or dry clothes or wash clothes in that time. So I want to, I want the thing to start at 9:00 PM, uh, uh, when it's cheap. And to do that, I have to use the app on the phone to do it. There's no button on the device to do it. And I'm... At the end of the day, I'm tired, and I usually don't play on my phone a lot after dinner, and I always load it up, put the soap in, and tell myself, \"I'm gonna go get my phone and hit the remote timer and make it start at 9:00,\" and I always forget. And the next morning, I go to the dishwasher, and it's dirty still. And I'm just like, \"Ah.\" So I built the thing so it automatically, as long as it's shut and the, like, the soap drawer has soap in it, it will start at 9:00, and I don't ever have to think about"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3680.3,
+      "text": "With Home Assistant, right?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3681.6,
+      "text": "Exactly"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3682.5,
+      "text": "with, you need with Home Assistant, right?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3685.3,
+      "text": "exactly. Through Home Assistant. Yep. So"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3688.1,
+      "text": "Yeah. Yeah, it's, it's actually amazing"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3690.0,
+      "text": "you forget that the thing's on and the clouds come out and the sun, and you're like, \"Ah, I"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3694.0,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3694.7,
+      "text": "Oh, same thing. It's just efficient now, and I don't have to think about it. So I"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3698.8,
+      "text": "Yeah, exactly. That's the best thing. You don't have to think about it. It's so amazing."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3703.3,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3703.8,
+      "text": "And I didn't know about Home Assistant either. I learned about it, um, I don't... Well, actually, I learned about it, uh, quite a while ago from someone, Abdelkader Bouri Cheurrouche or Cheurrouche. I don't know how to pronounce his name. He's a Rayos guy, and, uh, I was talking to him about h- this off-grid stuff, and I was like, \"Yeah, I wanna write some so- software to automate all this shit.\" And he said, \"What are you doing? There's Home Assistant. Have you heard about it? You don't need to write every- anything. It's all done. You just need to configure it.\" I'm like, \"Oh, yeah, I'm gonna try it.\" You know, developers, we want to build our own shit, right? But, uh, but then when I was, uh, uh, when I... Actually, in the summer, it doesn't matter. We have so much production every day, you don't care about all this stuff, to be honest. But now fall came, and the days are getting shorter. I was like, \"Okay, now I need to finally spend some time on this,\" and that's when I, I installed it on my home lab machine, and I was like, \"Wow, this shit is actually amazing.\""
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3755.3,
+      "text": "And it has so many integrations, it's unbelievable. But it's also funny how your life and my life is the complete opposite, right? Because your electricity is cheap during the night,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3765.2,
+      "text": "Mm-hmm."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3765.8,
+      "text": "for me, I wanna do everything during the day because that's when the sun is shining. That's when my production comes. I don't wanna do anything in the evening because then we are battery powered."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3774.9,
+      "text": "on the grid, you're off the grid. So it's, it really is, like you said, it's opposite. You're making, hey, you're making power when the sun's out, and I'm, I'm s- I'm burning electricity when the sun's down, so that's really funny"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3786.0,
+      "text": "Yeah, because that's when the industrial, uh, thing is lower, so that's when the offices are don't using that, that much. That's why,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3792.5,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3793.2,
+      "text": "during the night. But yeah, it's interesting how it's the opposite"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3798.2,
+      "text": "Yeah. That's really cool that you're off-grid, and we should, we should talk more about that on a, on a future episode and dive into that on how you've-- what you've done to do that. I think always thought about it, uh, but I, it's, it's, it's... I shouldn't say it's impossible, but it's quite impractical, or it would be for, for me in my situation where I live in a, in a major metropolitan city to, to be off-grid, it would be a little more challenging. But for you, you're in a little bit more of a remote location, I think, and, and the possibility of doing it is there, and, and you've got the conditions where you could do such, so that would be, uh, cool to learn about on another conversation"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3830.2,
+      "text": "Yeah, it happened by accident because I was gonna go connect to the grid, but everything takes so long here, I would have not been able to on time. And then they also told me that the, the box where I-- which I should connect to, to get the electricity to my house is pretty far from me, from my property, because we are on the last road of the village, the last street of the village, and we are on the outer side of the street. And when they were pulling out the cables, they thought that on this side, nobody's gonna build houses here. Nobody's go- will build houses. Now it-- I also have a neighbor. They are also building a house. So now there are two houses on this side, but the cables don't come here. And everything is underground because, uh, of the wind. So the-- we have storms in the winter, so it's better to put the cables underground."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3878.3,
+      "text": "So to get the cable to my house, they need to cut the asphalt"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3882.1,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3882.4,
+      "text": "on a, I don't know, fifty-meter stretch or whatever. So the cost would have been close to the cost I got for the solar system. And I was like, \"Yeah, but I get the solar, I'm not paying anything.\" Whereas if I connect to the grid for 30% less than what the solar shit costs, then I still need to pay my monthly bill."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3902.1,
+      "text": "Every, every"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3902.7,
+      "text": "And it was just, yeah, it was, uh, it was the best decision in my life. I think I already, yeah, I think it already paid for itself"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3912.8,
+      "text": "And how long have you"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3913.4,
+      "text": "two years in."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3914.1,
+      "text": "years. That's amazing."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3915.5,
+      "text": "years."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3915.8,
+      "text": "Wow"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3917.2,
+      "text": "Yeah. Because I use so much electricity because it's free, right? So my consumption. But if I would just use the baseline, what I used before, then I think it would take one more year, three, three and a half years"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3927.7,
+      "text": "amazing because"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3928.2,
+      "text": "to, to repay"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3929.3,
+      "text": "at least, um, in, in many other parts of the world, they talk about a 10-year... It, it really does depend. If you're talking about California or Arizona or a sunny place, it's different. But in Portland here, where we don't have the most sun, uh, they talk about a 10-year window to start, to, to break even when you install some of these solar-type systems, which that's such a long, a"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3948.2,
+      "text": "But, but, but I think that's, is that if you connect to the grid, because if you are not connected to grid, it's a different"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3953.8,
+      "text": "I don't know the, the ins and outs of it, but, um, just anecdotally at least, they talk about 10 years kind of when you will recoup your costs, which to me that seems like an unreasonable amount of time because by then some of the equipment might start failing. You need to r- to, to do other upgrades and, and, and, and, ugh, it's"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3969.5,
+      "text": "that's how I was thinking about this as well. But then I talked to the people who install it, and they say that's bollocks. On my batteries, I have 10 years of warranty on the batteries. They guaran- they guarantee that for 15 years, it's gonna hold more than 70% of its, uh, capacity. So by 15 years, it's, it's paid already three to four times for itself. And the inverter is the same thing. I have, I don't know how, t-12 years of warranty or something, and the guy who installed it said, \"This shit never really breaks down. It's, it's gonna last for 30 years probably.\" And, uh, the difference is if you connect to the grid, s- what sometimes they do is that so you buy the electricity when you use it, and then you backfill it from your production, and then, uh, and then they calculate the difference."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4015.5,
+      "text": "But you are still paying a very high, uh, premium when you have to buy the electricity. And if you overproduce, then they pay you, they, they pay you one-tenth of what you pay for electricity. So it doesn't make financial sense."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4029.1,
+      "text": "Yeah, it is a different"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4030.0,
+      "text": "And, ju-"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4031.1,
+      "text": "backfilling"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4032.1,
+      "text": "Yeah, simple mathematics. So I pay... Well, actually, yeah, it would be, uh, it would be six years roughly, I think, because so my, my electricity bill is like 150 euros roughly, and, uh, the, the solar system was thir- 12,000. So it's like seven years."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4052.1,
+      "text": "Sure."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4052.4,
+      "text": "But then if you get an electric car"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4054.8,
+      "text": "huge right"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4055.4,
+      "text": "then so it's exac- Just my electric car, I save 150 euros a month on the car"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4062.0,
+      "text": "You're"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4062.2,
+      "text": "because I charge it-"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4063.3,
+      "text": "those things. We got an electric car a couple years ago, and man, it just, it's a lot of electricity"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4069.9,
+      "text": "E- especially now, I don't know about the US, but in Europe, electricity prices, I think it's because of the war in Iran."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4076.3,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4076.7,
+      "text": "On this island, actually, I think it's, uh, 40 some percent is renewables. The rest is a diesel generator. So when fuel prices goes up, electricity goes up here, unfortunately. And I, I just had to charge the car at the charging station because now we are expanding the solar system, and because the days are too short now, I had to actually charge it, and I was... I couldn't believe. The last time I charged was in March, and now I paid twice as much, I think, for the same thing. It's"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4107.3,
+      "text": "less than plain"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4108.0,
+      "text": "Prices"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4108.4,
+      "text": "for petrol or for gas? Would it be less than that still?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4112.2,
+      "text": "No. I also, I have a, a diesel car and I, I ra- I rarely use that, so I d- and it's a big tank, so I rarely go to the petrol station. I went with the car as well a few weeks ago. I was like, \"What the fuck are these prices? It's insane.\" It's crazy. Super expensive"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4127.8,
+      "text": "But when you're"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4128.4,
+      "text": "now, fuel"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4129.2,
+      "text": "that's just when it's gold because, you know, you're just taking that sun and turning it into free electricity, and you don't have to worry about it. So,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4136.1,
+      "text": "Exactly."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4136.7,
+      "text": "Our-- We pay a lot less for our per mile with our electric car than we do for, for a gas car, but we're still paying for the electricity. But when it's, uh, if we could pay, if we could have the electric car and make our own electricity from solar, oh man, I would feel like I was cheating life if we could do that."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4154.1,
+      "text": "Yeah. Yeah. I, I, I'm in the same situation, but my electric car is much smaller than my combustion car, so of course it's, it's cheaper per mile, per mileage. But the, the diesel one is a seven-seater minivan, and the other one is a, is a, a four-seater little one just to get around."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4172.7,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4173.1,
+      "text": "So it's a totally different car. But yeah. Yeah, I also wanna, wanna experiment with that photo frame thing because that sounds like an interesting thing to do"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4183.4,
+      "text": "Yeah, there's so many... It, it kinda made me realize all the other devices I have, old phones, old tablets, old that I, I, I could give a new life to in some way now. Uh,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4195.7,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4196.3,
+      "text": "cool"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4196.7,
+      "text": "Yeah. I, I try to give-- I don't know how many old MacBooks I have, four or five. I was like, \"Oh, yeah, I'm gonna put Omarchan on all of them, right? I'm gonna make a laptop for everybody in the family.\" Man, they don't even fucking boot"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4208.6,
+      "text": "Yeah, yeah,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4209.5,
+      "text": "I have two, I only have two that boots. One is, uh, one I still want to keep as a MacBook with macOS if I need to do anything on a Mac. So it's still, I can, I still... Yeah, and I have another one which I used for my mu-music stuff when I was, uh, making music. I don't want to really erase that. Those are the two that boots. The others don't even bloody boot. And I have old phones, I have the same issue. I have-- I, I was just trying to do some stuff with some old phones, and they don't even-- some of them don't even boot,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4240.0,
+      "text": "But hey, put an"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4240.8,
+      "text": "unfortunately"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4241.6,
+      "text": "and, you know, do some rooting, do some fixing, do some whatever, and turn in... There's gotta be some way we could, you know. With, with what I've"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4248.7,
+      "text": "Probably I need to replace the buttons"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4251.9,
+      "text": "could be done for those old machines. I've got a few myself too, and I've tried, like you, to put a Marchi on them and do the basics, and it doesn't work 'cause they're too old or whatever. But there's gotta be a way. It's, uh, I, I just think there has to be"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4263.8,
+      "text": "It's a hardware failure. That's the issue. I think it's a hardware failure"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4267.3,
+      "text": "true, you can't fix an electrical circuit. You can't-- Well, easily at least or, or, or some sort of other hardware thing."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4273.9,
+      "text": "On the Max, it's quite a challenge to fix anything, even to replace the battery. I used to replace my batteries in the Max and it's, it just became harder and harder and harder every new"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4284.1,
+      "text": "They're just designed to be closed, so that's why it makes"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4287.2,
+      "text": "That is a"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4287.4,
+      "text": "on the"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4287.6,
+      "text": "beauty place."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4288.3,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4289.5,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4290.2,
+      "text": "Framework for the win"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4291.3,
+      "text": "Yeah. Yep. Yep"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4295.6,
+      "text": "All right. Well, uh, we've been talking for well over an hour now, Greg. Um, yeah, should"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4300.6,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4301.2,
+      "text": "this episode for the day?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4304.3,
+      "text": "Yeah, let's wrap it up. Let's, let's wait for a few more years until we become Joe Rogan and we do a three and a half"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4310.4,
+      "text": "for hours. I know."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4311.7,
+      "text": "hours."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4311.8,
+      "text": "Uh, we, we could keep, we could keep talking for probably another hour, but, uh, I don't want to,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4316.6,
+      "text": "Yeah, but who's gonna list them?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4318.1,
+      "text": "I, I tend to not think our listeners are gonna really enjoy our, our ranting at this point in time. Um, but like you said, maybe in a few years we'll have everything dialed in and people will, will like that. So one thing we didn't get to that we wanted to talk about, which we maybe we'll talk about later, is one of the new Omarchi 4.5 release candidate, um, which was out there. Um, that's got some new, new cool features to it. Uh, it's still in, uh, release candidate, so it's not released yet. Um, but that's a big one that, uh, is out there already and happening. So if you're, if you're adventurous and, and wanna try the release candidate, that's got a lot of cool things on it. But, uh, if you're not so adventurous, uh, it should be, I imagine, released in a stable form in probably in the next couple of weeks, if not sooner, so"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4359.6,
+      "text": "I think maybe even next week, maybe before the next episode,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4362.5,
+      "text": "fingers are crossed. We'll"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4363.3,
+      "text": "it's gonna be up"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4364.0,
+      "text": "uh, maybe next time"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4366.9,
+      "text": "Yep. You are not running the RC, right? Or are you"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4369.3,
+      "text": "I'm not. No, I, I, I thought about it, but, uh, I just, I'm gonna wait, um, to, to give it a shot"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4376.6,
+      "text": "I have a, a secondary laptop. Maybe I should put it on that one."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4380.0,
+      "text": "Yep. I thought about it as well, but I just"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4381.9,
+      "text": "I..."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4382.3,
+      "text": "to it"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4384.1,
+      "text": "The issue is I don't have much time to experiment with stuff recently. Yeah, life is busy"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4388.9,
+      "text": "Life is busy."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4391.3,
+      "text": "Yeah. Which is good. Busy is good. I-- It's better than being bored and"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4397.0,
+      "text": "your"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4397.3,
+      "text": "thinking about, \"Oh, what should I do?\" Yeah, yeah. I think I like to be busy"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4403.0,
+      "text": "Well, hey everybody. Thanks for, uh, for tuning in for, uh, this week's episode of the Pingback Podcast. We'll be back again, uh, likely on our weekly schedule next week. Uh, maybe we'll have a guest, maybe it'll be Greg and I again. You'll just have to, uh, tune in later to see. So, uh, until the next time, we will, uh, we'll see you later"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4423.4,
+      "text": "Yep. Thanks everybody, and see you next time"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4425.9,
+      "text": "Cheers. Bye-bye"
+    }
+  ]
+}
