@@ -1,0 +1,2115 @@
+{
+  "source": "buzzsprout",
+  "turns": [
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 21.0,
+      "text": "Hi, everybody. Welcome back to the Pingback Podcast. Uh, this week on our show, uh, our guest today joins us from Vienna, I believe. Are you in Vienna today?"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 31.9,
+      "text": "Yes, yes, yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 32.9,
+      "text": "all right. Our guest joins us from Vienna today by way of Bosnia. Uh, he's been writing Ruby since twenty sixteen. He's a staff engineer who spent ten years taking software from idea to production, and he's become one of the hardest working people in the European Ruby community, if I don't say so myself. He brought Iruko to Sarajevo in twenty twenty-four, which was the first Ruby conference ever held in Bosnia and Herzegovina. He founded, uh, RubyConf Austria, and he's now building a free charter-driven conference called goatConf, uh, in his hometown. Lately, he's been on a mission to make code written by AI agents actually trustworthy, uh, with a whole family of tools, um, to make that happen. He's a good friend of Greg's, uh, my co-host, and we're glad to finally have him on the podcast."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 80.6,
+      "text": "Muhammed Isa Gobovic, welcome to the Pingback Podcast"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 85.9,
+      "text": "Almost. Almost. Thank you very much for having me."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 88.5,
+      "text": "so say,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 89.1,
+      "text": "Yes."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 89.6,
+      "text": "me how I missed up the name there."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 91.6,
+      "text": "Isa Begovic, yeah. But what you... Yeah, the first time you said it was good, the son. Yeah, it's good. Yeah. It's a good effort. It's a good effort"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 100.0,
+      "text": "Oh, well thank you for being so gracious, um, in my slaughtering of, of your name. So Mohammed, welcome to the show."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 106.7,
+      "text": "Thank you very"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 107.3,
+      "text": "I'm so glad I'm not the one doing the intros."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 112.5,
+      "text": "Now next time, Greg, I'm gonna make you do that part of our, part of the show, so, uh, you get"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 116.7,
+      "text": "Yeah, if,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 117.1,
+      "text": "what"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 117.3,
+      "text": "if someone with a, with an easy name, of course."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 121.1,
+      "text": "We need to have, uh, we need to have John Smith on the show eventually so I can, uh, have a good"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 126.4,
+      "text": "Someone has Sam Ruby. You already had him, but Sam Ruby was super, yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 131.0,
+      "text": "That's about as"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 131.6,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 132.2,
+      "text": "Good point there. Uh,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 134.5,
+      "text": "That was really"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 135.3,
+      "text": "show. Thanks for joining us today"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 138.1,
+      "text": "Thank you for having me. I, I think you said, uh, some things that are gonna impact my, imposter syndrome for quite a while now. So thanks for saying the nice things"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 149.3,
+      "text": "it's so, it's funny you mention that because imposter syndrome, we'll, we'll jump off right with that one. It's, it's something, it's a, it's a real thing, isn't it? You know, it's, it's something that even when you've got legit credentials to your credit, it, it, it still persists because I, I, from what I know of you, you've, you've had some real accomplishments, and I just listed off some of them or many of them, and you're saying, \"Ugh, I, I feel kinda like it's not true.\" But I mean, tell me if I'm wrong. M- did I... I... All those things are basically true, right? That you did, and that you've accomplished, yeah?"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 180.2,
+      "text": "Yeah. Uh, but you know, with these things, uh, w- when these projects finish, you always kinda look back and you can find some problems. I, I'm a, I'm a type of a person that's always a bit too self-critical, I guess. So I get to dig around myself, try to find, uh, flaws and issues that I can fix and, uh, I, uh... So we, we, we came to the topic of my fa- father very fast. So yeah. uh, I guess that's how I approach generally my work and my projects, uh, and I try to make them as good as possible, so I'm focusing on finding these little imperfections, and that's constantly, you know, uh, on my mind also about myself and stuff. So I think imposter syndrome is something that I've had for quite a while."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 229.2,
+      "text": "Yeah. I've actually volunteered in organizations in Bosnia, uh, and I've done studies on people, like I- I've done thorough interviews of folks applying to join these, these organizations, and a lot of them have it as well. So I don't know about you guys. Do you, do you don't have any imposter syndrome? Like are, are you always like, \"Yeah, I'm perfect.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 251.7,
+      "text": "I feel it every dang day. That's why I"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 254.9,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 255.4,
+      "text": "this because I feel it too all the time. Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 260.2,
+      "text": "Me too. And I think there is the opposite, which is called Dunning, Dunning-Kruger effect, when you think you know everything. And the reason you know it-- you think you know everything because you don't know much. And once you reach a point when you know enough, that's when you realize, \"Shit, there is so much more I don't know.\" And, and I think that's, that's the reason why we have imposter syndrome, because we understand how many other things are in our industry which we have not enough clue about. And I think it's also beneficial because it forces you to get better, to learn more, always progress, not just lay back and say, \"Hey, I know everything,\" right? \"I'm the best. What else could I learn?\" Right? 'Cause I think that would be the end of tech, right? We still need to constantly improve and get better."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 304.6,
+      "text": "uh, on that topic, we, we reach very fast one of the main motivators for me to do any of these conferences as well. Like, it's basically making myself be the least qualified person in the room. Uh, that's my way of doing it. Yeah."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 319.4,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 319.6,
+      "text": "I- it's my kinda excuse to get people that I find inspiring that, that, you know, push me to- towards being a better, uh, engineer, developer. And yeah. So that, that's one of my major for doing that as well. Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 336.2,
+      "text": "Ta- talk more about that. I like the way you just said that. It's the way to get you, uh, into the room to be the least qualified person in the room. Tell us more what you mean by that. I liked, I like that"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 346.3,
+      "text": "Oh, that's not difficult."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 348.3,
+      "text": "Well, and I"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 348.9,
+      "text": "not difficult,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 349.7,
+      "text": "where you're leading with it, but, but expand more upon it"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 353.6,
+      "text": "Yeah, but, know, I don't know. I, I... It's, it's a weird thing to start from. I mean, my journey in doing these, any of these events, like, uh, well, 2023 is, uh, when I j- first attended, like this within the Ruby ecosystem at least, it was my first big conference that I attended was EuRuKo in, in, uh, Vilnius. Uh, Sergi, uh, and his team organized a beautiful conference, and prior to that I was always the developer in the cave, kinda hiding away and, uh, you know, taking care of my small corner in the world, uh, living a life not that deeply within the community. And I was living for quite a while, uh, away from my hometown, from Tuzla, where GOTO Conf is."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 399.7,
+      "text": "And I was in this environment and with this, uh, with these amazing people and I, I, you know, I've seen these great talks, uh, great individuals, someone mentioned that you can pitch for your city and it... I got carried away with, like, homesickness, emotional stuff and, and I, I said I wanted to bring, I wanted to see something like this in Tuzla. So I went and pitched quite, um, like right now when I look back at it, it was, um, how do you say it in English? Naive, uh, or, or, or a bit like I didn't know what I was letting myself into in a, in a sense, because EuRuKo doesn't have, like now I know it, but EuRuKo doesn't have a legal entity. You're kinda left by yourself."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 445.0,
+      "text": "You know, I had to start a company to do it. Uh, and, and all of these things, like that wildly let me out of my, uh, put me out of my comfort zone. At that time, it was a f- most more of a frenzy of, okay, I have no idea how to do any of these things. I need to figure out everything, and I went and did historical research of Euruko and stuff. When I was doing Euruko, that's not necessarily what I was doing. uh, what, what, what I just said, the, the, the surrounding myself with, with people that, you know, uh, and to be more close to that community started more with Rubicon Austria. When, when I was recovering from the Stockholm syndrome of Euruko, uh, essentially I was, I was focusing on, um, to say it, like consciously organizing something where I, I'm consciously making careful decisions about, yeah, this, this piece I want it to be like this and, you know, uh, uh, it was a general theme and was, I was inviting these people that I wanted to learn from the..."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 516.7,
+      "text": "and, and stuff, specific things. with Euruko, it was more of a how do I make it the best? Uh, I, I think I went to... Where did I go? In Italy, in Verona, there was a, there was a, uh, Ruby"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 531.8,
+      "text": "We'll be there"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 533.0,
+      "text": "Yeah, I went there and I, I, I went to present Euruko as well, um, among other things, and I said, \"I want, uh, Euruko this year is gonna be like RubyKaigi but in Europe.\" And, and I, I did the crazy thing and, uh, I think I had panic attacks and stuff, and it was, it was, uh, I, I, I didn't have like... I risked €100,000 of money I didn't have, and then I raised it. And yeah, it was, it was, it was a huge undertaking. It was three days, three tracks, 50 speakers from 20 different countries, 25 different countries and, and more. Uh, 700 attendees. I think I gave out like 350 tickets for free. I was, I was in a frenzy trying to find folks, like contacting universities, uh, because it was, for me, was, mmm, uh- It was kinda..."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 587.3,
+      "text": "I, I wanted it, I wanted, wanted it to be a light that shines from, from Bosnia and Herzegovina so that they're so bright that it leaves a mark. And, and that's w- that's where the passion came from f- that, that, at that point. And for some reason, people c- just continued accepting my invitations, and we got an amazing conference. And, uh, I'm super grateful for everything that then. But that experience kinda transformed me, um, into, into, uh, someone who I am today. Um, I, I guess, uh, it, it was a very stressful experience, but I got to be close to, to people, uh, more than I ever was, closer, uh, than I ever was. I got to spend time thinking about what Mats is doing, thinking about what Javier Noria is doing, thinking about, uh, Jose Valim, thinking about all of these different people, you know, learning about them because now they're gonna be my guests and I need to host them."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 648.0,
+      "text": "And, and I got to, to read deep stuff into their blogs, uh, because I, I like to understand who the people that I'm working with are. I like to say that I love my speakers. I really try to, to, to... you know, I look at it in the sense that it's, it's a partnership and, uh, I like to be a good partner in, in that sense. I also love giving people their first time speaking engagements. I, I remember we did when we were assembling Evruko. I know I'm talking a lot. You can just interrupt me at any moment."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 680.0,
+      "text": "keep, please keep going. No, this is great"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 682.5,
+      "text": "yeah. So I, I remember when we were doing Evruko, we were assembling this, this program and I had, uh, Christoph Lipows and, and, uh, other people in the, in the program committee that we assembled that did, did an amazing job helping me with that. we wanted to have newcomers as well. We wanted to have as many flags, you know, on the program as possible, so from different countries. And I remember just, just accepting some people just because, hey, it would be cool to give this person the first chance to come and speak. And, uh, later on, I just remember following the career of that person and just feeling awesome that, you know, hey, uh, we, we, we did that and, uh, you, you kinda have a stake in someone else's success or at least just feel it a bit. I don't know. I obviously we did, you know, but... So things like these, uh, made me really like it um, I continued being part of the community from that day on."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 737.1,
+      "text": "And I, I, I was looking for something, uh, I remember, uh, like should I do something again? Should I not? I was, uh, con- constantly thinking about Tuzla, and then, uh, it, it clicked, uh, like for Vienna, like, hey, I could do really something different and that's when I did the other stuff. But I'm gonna stop now 'cause I've been talking for quite a while. Yeah. I don't know if I... Yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 760.3,
+      "text": "by, by organizing these, these conferences and these, these get-togethers, you, like you said, you, you brought these great people into your, into the room with you, so to speak, and, and you got to learn from them, and you got to know them. And then, like you said, you've, you've watched some of these people go on throughout the rest of their career, some of these first-timers, which only did you learn from this experience from, from these folks, but, but they also obviously had a great jumping-off point with, with their experience at these time- these conferences for the first time with... because of you. So, um, it sounds like it was, uh, a mutually beneficial setup for, for, for everybody involved."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 795.4,
+      "text": "Yeah, a network is a very powerful thing. Like, uh, and, and getting, getting close to good people and, and maintaining that friendship in, in, in a sense of it's always gonna be mutually beneficial, like, uh, and, and supportive environment, I think that's a very, very powerful thing to, to have and, and maintain. And it, you know, it costs nothing just to be like friendly and open to, to, uh, to new ideas and open to, to, to something a bit different, so... Uh, but, but there's also stuff like, I remember, like, because I was hunting for big people, I wanted to have like really good folks come, and I, I remember Dave Thomas like, \"Yeah, if Mats is coming, I'm coming.\" I li- literally did this in, in the cold and, you know, like just rejoicing at, at every step. Like, I have these, these moments that I carry on with me."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 842.2,
+      "text": "Uh, yeah. So"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 845.2,
+      "text": "Those"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 845.4,
+      "text": "that, you know, I was, uh... Yeah, for me personally, because would... Before that, I would never... You know, when you, when you look at... Take a look at the theater, like normal, like a normal person. I mean, you take a look at the theater and then you think like, \"Yeah, may- I don't know if any show is there. Maybe I'll take a look if something is going on, and then, you know, if something's there, maybe I'm gonna buy a ticket and go in.\" And, and that was the maximum extent of how I thought about venues before this. But after the, the EUruko thing, now I look at a venue and I think, \"What could I do at this venue that could be special enough for me to invest energy and invite people that are dear to me and, uh, we could, we could have a special moment?\""
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 890.9,
+      "text": "And, you know, it, it, it completely flipped how I think, uh, in that sense as well. So, uh"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 898.4,
+      "text": "That's"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 898.6,
+      "text": "thing I really like about the conferences you organize is that you are always doing something interesting and special. Like with EuroRuby, it was called the Goat Edition, and we, we need to talk about goats, by the way. And that Rubicon of Austria, you were trying to make it free. You said if somebody's gonna s- uh, buy the highest sponsorship, then it's gonna be for free all the attendance. And also the musical performance was something unusual for a conference like that. And now there is this GoatConf, which is also the name is already interesting, and it's tech agnostic, but I guess there will be still a lot of Ruby people, and it is free, which is, like, unheard of. How can it be free, right? It's, it's crazy. So I, I really like these ideas. And one thing about goats, so why is goats?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 945.7,
+      "text": "Is goat like a national, uh, animal of Bosnia?"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 950.5,
+      "text": "no. Like when we did the Uruko, because it was supposed to be in Tuzla, right? You remember the passion that I mentioned about Bosnian stuff? All of the passion came because of my love towards Tuzla, right? And it was supposed to be a goat, the Uruko, because of the Tuzla goat. And then we moved it in Sarajevo, but we kept the name. And I always regretted moving it to Sarajevo. I always wanted it... Because my whole desire was I wanna, bring it to my city. I wanna, I wanna have, like, my network there and, uh, have people that I, uh, that, that kn- I, you know, when I was growing up there and, uh, I didn't have many of these things happening around and then, you know. And, and the goat thing is the goat story goes like, uh, there's a saying goes, uh, in Tuzla that everyone knows is, uh, uh, the whole of Tuzla was fed by a single goat or, uh, the whole of Tuzla milked one goat essentially."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1005.5,
+      "text": "And what it means is, um, the Austro-Hungarian, uh, period when the Austria-H-Hungary, uh, occupied Bosnia Herzegovina, uh, for some reason, uh, I think they, they thought like the goats are harming the forest or something like that. Uh, they, they,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1021.9,
+      "text": "Yeah,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1022.2,
+      "text": "ordered"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1022.6,
+      "text": "everything"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1023.2,
+      "text": "off their goats. Everyone kill off their goats. There was something like this. And there was one guy that said no, and he hid his goat in, in private, that goat ended up providing milk and cheese to everyone in the city, right? So because it was the goat that left, was left, you know. And goat, goat Uruko, why goat conf is the one that feeds the community essentially because there's nothing like this kinda happening, uh, at you know, scale or at least the scale where I see it growing,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1054.3,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1054.6,
+      "text": "um, in Tuzla. So that's why goats. Um, yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1060.1,
+      "text": "That's really"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1060.6,
+      "text": "Nice, my bloody ancestor"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1063.8,
+      "text": "Yeah,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1064.2,
+      "text": "Yeah, me neither. And I, I didn't know because it's shared history because I'm Hungarian, but I didn't know about this. I didn't even know that Bosnia was occupied by the Austro-Hungarians"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1072.6,
+      "text": "W-w-very brief, very brief period, uh, before they lost the, the Fir-First World War, I think, so"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1079.6,
+      "text": "You know, thing about history is, you know, your history book is different from the one I was learning from. 'Cause, you know, it's always like we were the good guys. In your history books it's the same. Like the Russians say they liberated us. In our history books they, they didn't liberate us"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1095.5,
+      "text": "Yep. The, the, the victors write the books, right?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1099.3,
+      "text": "Yes. Yeah. Funny thing about history. But yeah, now we know"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1106.0,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1108.3,
+      "text": "I know the story of the goats"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1110.3,
+      "text": "yeah, that's a, that's a really... I was, I w- I'm glad you asked that, Greg, because I was wondering, uh, what the goat, uh, what the goat significance was. Uh, and, uh, and now we know what that's all"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1119.4,
+      "text": "There's a sta- there's actually a statue of a goat in Tuzla"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1122.6,
+      "text": "Okay. All right. Makes, I mean, it makes sense, right? Because it's, it's culturally part of the, part of the community there, so to speak, so that, uh, that makes sense"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1131.2,
+      "text": "Yeah, yeah, in a sense"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1134.0,
+      "text": "While we are at that topic, is it... How, how is it... So I want people to go to GOTO Conf. So can you tell us a little bit about... There is one concern always when people going to a place where there is no airport. Like, is it easy to get there from Sarajevo where there is an airport?"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1150.7,
+      "text": "Yeah, so I, there's a travel page and I put up everything that you would see in a normal conference. Um, is provided, uh, accessibility, like information, uh, all of it. So you can travel in from... Tuzla has an airport and it has connections. You can land in the Tuzla Airport. There's a bus that's gonna take you to the center. Sarajevo Airport, and then you can drive for a few hours. Tuzla, Banja Luka Airport, and you can drive, uh, you, you can have a bus take you from either of these to Tuzla, and then you have and stuff and yeah. So what, what I learned is I don't think it matters that much where something is. Uh, people are gonna come, as long as, as they wanna come."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1196.7,
+      "text": "So I don't think... Like that, that's one of the lessons that I took on from some of these last, uh, projects that I did. So I,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1204.9,
+      "text": "Yeah, I think that's true"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1206.6,
+      "text": "yeah, I'm not that worried about it, so."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1209.3,
+      "text": "When I went to Vienna"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1210.6,
+      "text": "were, you were talk-- you were talking about putting something on in, in, in your town, Greg"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1215.6,
+      "text": "Yeah, well, I don't think I'm gonna do that, to be honest."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1218.7,
+      "text": "Why not,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1219.3,
+      "text": "But I will tell, I will tell you about that, but when I went to Vienna for Euroku, I wa- al- I was also in that, in that group where people said, \"Oh yeah, why not Porto? It's much easier to get there,\" blah, blah, blah. Man, Vienna was amazing. It was a really beautiful small town, and even the trip there No, no, we are the Castelo, Portugal"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1241.8,
+      "text": "啊， 维 也 纳， 维"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1242.8,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1243.1,
+      "text": "耶 耶， 耶"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1243.9,
+      "text": "It was, it was actually amazing. Even the trip to go from Porto to there, you were already with other Rubyists, so it was like the conference already started at the airport 'cause you were surrounded with people that are going there. It was so much fun. And that little one hour travel on a bus is nothing. It's, it's not a big deal. So I, I am actually planning to go to Toulouse. I need to check my travel options because for me, travel is not always easy to certain locations. But actually I should check that as soon as I can and then book my trip, because I wanna see the goat. I love goats,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1275.6,
+      "text": "Nice."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1276.2,
+      "text": "and I own goats."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1278.0,
+      "text": "yeah, I was about to say, if you organize something, uh, at your, uh, at your place, you, you could have free, you know, workforce, uh, to work on your farm and help out and stuff. You can mask it into a, a community activity and, you know"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1290.8,
+      "text": "Yeah. My problem is, so actually next year would be the ideal time to organize something here, I think, because Rails World will be in Lisbon. So I could do the week after and then just tell people, \"Hey, just extend your stay. It's only a short flight from Lisbon to here, and then you can have a holiday and come to a conference.\" But who knows what's gonna happen in a year, right? If, if people even wanna go to conferences. Are we gonna be even doing work or I don't know. The, the, the uncertainty is huge"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1324.6,
+      "text": "I think you're, I think you're too Black October about that one, Greg. Like, you know, maybe, maybe DHH said some things at Rails World that, that kind of stirred the pot. But like whether we're-- I think we're all gonna, like you said, Mohammed, these, these connections and, and connecting with people and making a community and a network is, is still important even if AI is writing our code and we're, we're, we're doing things like that. I mean, if I don't ever look at any line of code I ever write again, I'm still gonna wanna go and talk to people about it hang out and,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1356.3,
+      "text": "Exactly"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1357.1,
+      "text": "and network. So I, I think to that point, Greg, to the, to the point of are we gonna be going to conferences next year or in a year? Like, oh, come on, man, of course we are, you know? Whether or not it's a good financial decision to have it in the Azores, hard to say, but like I, I'm gonna still wanna go to conferences at least, so."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1378.2,
+      "text": "That's, that's the, that's the GOTO Conf take. It's gonna be free. You can come whatever your language or tech stack is, and you can have... You can be sure that there's gonna be amazing people that you're gonna be, uh, spending time with. It's cheap also. Tuzla is super cheap and there's a salt lake right in the middle of the city. It opens in June and you can... Like, there's a, there's a beach and stuff and people... Like, it's go- like, like going to the sea es- es- essentially. Like the salinity of the water is higher than, uh, at, at sea Tuzla essentially means, Tuz means salt and, uh, Tuzla has a history of salt mines, uh, historically from, I don't know how long. Like even at, at the time of Rome and before, like people were just digging up and extracting salt, uh, back there."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1423.4,
+      "text": "So there was a problem with the sinking of the city at the time. Uh, like the ground was sinking be- because of these salt mines and they filled it up with water and now they have the salt lakes as the main attraction, so. Yeah, no, it's a win-win, win-win for every- for everyone. Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1439.8,
+      "text": "Sounds like an interesting place to visit actually, right? The more we hear, hear about it, the more I wanna go."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1446.3,
+      "text": "Yeah. That,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1447.0,
+      "text": "It's in-"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1447.5,
+      "text": "that's at least I hope that it resonates that, in that way. And the idea was that it's kinda like FOSDEM, but it's very close to FOSDEM in a ve- very FOSS way organized, that people can extend it and their own thing, and I just provide the minimal thing. Uh, so let's see how it resonates then"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1466.3,
+      "text": "And it's in June, right?"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1468.2,
+      "text": "Yeah, third to fifth of, of June. Yeah. The beginning"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1473.2,
+      "text": "I, I think, I think it's, it's a good point that people at least thinking about... It doesn't matter where a conference is, people are gonna wanna go or, or, or be there. It doesn't-- Of course, there's reasons to have it in big metropolitan areas, but you could have it in these small towns, and it's, it's all about getting together. And, and if it's in a small place where people haven't been, as long as it's relatively accessible to get there and easy to get there or, or can be, you know, you don't have to take four days on three different cars and, you know, hike another five miles to get there. Uh, as long as it's reasonably accessible, not? Why"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1507.9,
+      "text": "but if you make it, if you make it three to four days and you need to hike to get there, people are gonna find it interesting as well"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1515.2,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1516.0,
+      "text": "It's a good"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1516.5,
+      "text": "Yeah. That could be"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1517.8,
+      "text": "I think it..."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1518.3,
+      "text": "we do, you know?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1519.3,
+      "text": "shoot,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1519.8,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1520.4,
+      "text": "you are an idea guy. I, I can"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1522.5,
+      "text": "So..."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1522.7,
+      "text": "that, like, just the way you can kind of see things in a, in a slightly different angle is, is something you're good at. Uh, I can tell that"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1531.7,
+      "text": "I think it's also size dependent. A big conference needs a big venue, so you have to be at a big city because you can't find a big enough venue in a small town usually. So it's the smaller the conference is, the smaller place you can go, I believe"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1545.4,
+      "text": "Yeah. I have, I have a hack for that, for Tuzla though, because the, the, the venue right now is right at the middle of the, the city and the, the whole town is accessible right outside of the front door of the venue, right? next to that venue, which I got for free, I have amazing partnerships Tuzla and there's a-awesome people that when they, you know, see such a good story going on, uh, ne- also the mayor and stuff, I have all of these contacts, uh, they wanna help out, they wanna join and they wanna build it up, and they, they also love their city. They wanna see it prosper, right? So as a brand that I'm actually building, building with the GOAT conference, I'm building a brand. And the same thing that I was trying to build with RubyConf is you, you try to build a brand that fits the city, right?"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1594.1,
+      "text": "That was one of the challenges that I was solving for, and it was the creative part of what makes it interesting for me as well. but right next to that venue that I have now where I can run a full Fosdem conference there for free, uh, right next to it there's a beautiful glass church, like full glass on church that, that takes on like 200 people inside and it's a, it's a venue, right? It's right next to the, the current one. So it's... You still get all of the benefits. So two venues and then a short walk from it, there's a national theater, uh, you know, Tuzla also takes like 200 people, 300 people. So I think, like I see if this grows and there's a bunch of other venues for parties, for, for, um, gatherings, for, for many different things that I could find, uh, creative ideas that, you know, for, for, for networking and for events that people would enjo- enjoy that other companies can already extend the current conference with."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1656.6,
+      "text": "But I can see it growing into a sustainable, place which where, where, where it takes over the town e- a few days every year and a lot of people can join. We have a good time then we just, you know. So I, I see it in that sense, right in the, in the middle of the season for taking a break, enjoying the lakes, uh, you know, and, and, and the town is beautiful at that, that time of the year. I don't know. So th- there's these things that I wanna see happen there and which I hope I, I do. I hope maybe with the second or, or the third edition. Let's see how it goes. Yeah. But I, I, I see it hopefully becoming a nice brand for the city, not just, uh, something that I one-off do and it's finished."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1710.6,
+      "text": "So yeah."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1712.4,
+      "text": "Nice. Yeah, you could have three tracks at three different spots if they are, uh, walkable distance from each other"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1717.8,
+      "text": "Yeah, you can have more technical, uh, aspects at the current venue. You can have more, uh, business panels, uh, within the church and, and some, some, uh, workshops around that topic there. Uh, within the National Theater, you can have s- uh, a third topic running that's suitable for, for, for that. Uh, you know, so the, you know, depends on how it, how it grows and how it, how it looks like. Um, and also depends on who joins. Like that's... I, I wanted to mention that when you were mentioning the networking parts and how, how a conference succeeds. one of the things that I, that I like when I organize conferences is I like s- seeing the speaker for who they are, not for who, not for what they wanna sell necessarily."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1765.2,
+      "text": "uh, providing a platform where someone can join and share something that they're really passionate about, and I wanna see that passion and kinda learn from that passion myself. And with GoadConf, I think just by removing also the limit of who I can invite on a limitation of a language or a framework, it provides so much space for that. Uh, it's gonna be super interesting. But the key of, of one of... The key of, of having a good conference is self-interest, actually"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 1796.0,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1796.1,
+      "text": "expand on that"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1797.9,
+      "text": "well, if I, if I invite Dave Thomas to join, uh, Jose Valim might want to join as well. And then Jose Valim and Dave Thomas are joining, suddenly a third person that's on the same stature level as th-those two, \"Hey, I wanna be part of this group.\" And, you know, when, when the, the stage itself is kind of worthless. M-mm, doesn't matter which stage it is, it doesn't hold any value, uh, uh, you know, by itself. The person or the people that fill the stage give it its value and the, the... what they bring to the, know. I, I, like for RubyConf, rambling on, you can just stop me at any moment."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1844.7,
+      "text": "But"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1845.0,
+      "text": "love this, man. Please don't. don't stop."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1849.6,
+      "text": "I think I'm finally a bit relaxed. But, uh, for RubyConf Austria, I, I rented the, like, because the theme was it's Vienna and, uh, it's the classical city, it's the imperial city. Uh, and, and then I wanted t-to have it about music. I wanted to have music as the integral part of the event. And then I, together with Hans and in collaboration with some people, uh, we rented Das Muth, which is, uh, Das Musiktheater, uh, which is the home of the Vienna Boys, uh, Choir. It's in the geographical center of the city. And then we also rented, um, what was the thing? Uh, the Museum of Music in Vienna, like as a, as a, as a separate venue for, for the day before And now I w- uh, when I was selling the conference to the venue, I was saying, \"Yeah, this is a serious technical conference, you know, it's, uh, it's gonna be these technical topics and, uh, it's, it's a prestigious thing,\" and venue conversations with these venues, you know."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1915.3,
+      "text": "And the theater, uh, ex- I assume, uh, expected something like that. And I, I remember sitting in the... You know, we had like four, uh, musical performances. The, the choir was performing. We had Chad in the end, uh, performing with a We had, uh, two clarinet players. Uh, we had pianists and it was, in my view, it, it was, it was beautiful. Um, but we also had our speakers, and it's our community, and I remember, uh, Bozidar, uh, Vaco being on stage, uh, at one point, uh, at the conference. And I remember the people that I, you know, made the deal with for, for the venue, which is a beautiful venue, which is... It's, you know, when you, when you..."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 1960.5,
+      "text": "It's a bit of a stuck up place, at least when you, when you look at the... there's this, you know, you, you need to hold up to, to a certain level of, uh, you know, refinement and whatever. And came in expecting to see a bit of, you know, we, we had... I, I remember seeing these people coming in with a sense of... I was sitting in the back, they were carrying themselves in the sense of, you know, we have this technical conference now being organized here, let's see what it is. And there was Bozidar throwing jokes about being a alcoholic or something like that, you know. And, uh, yeah, I mean, it... E- everyone was la- laughing and enjoying. Uh, he, he was, he was, you know, mimicking some stuff. And I... Later on, Hans was writing, uh, in one of his posts that Bozidar was making him laugh like he was in a cabaret."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2010.6,
+      "text": "Uh, and I remember just looking at these people and thinking, \"Oh, no. Am I, am I gonna be able to rent this space ever again?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2018.2,
+      "text": "Yeah, yeah"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2019.5,
+      "text": "Yeah. Uh, but, but nevertheless, uh, you know, from the eyes of, of, uh, observers that are not within the community, someone might see something off from, from, uh, that stage, uh, in terms of energy that was brought there. But what Boji- Bozidar brought was quite unique and, and, uh, he was also one of the, one of the people painting the beautiful picture of RubyConf Austria that, that it was. And just because of these people joining and, and doing that, it's what made it, uh, you know, something that I can look back into it and say, \"Oh, this was... This something I enjoyed doing.\" So,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2058.8,
+      "text": "special, something unique, something different. Uh, it had, it had a character to it. It wasn't just coming in and sitting down and listening and leaving"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2066.7,
+      "text": "Yeah. It, it could have been better though when, when you talk about the imposter syndrome again. Yeah, but"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2072.1,
+      "text": "It could've been better. Mohammed, it can always be better, man. It can"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2075.5,
+      "text": "yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2076.2,
+      "text": "better, and, uh, I"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2077.3,
+      "text": "Yeah, everything could be better"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2079.4,
+      "text": "Eh, best ja"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2081.5,
+      "text": "And that's why you make ano-"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2082.3,
+      "text": "Yeah, I think so."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2083.1,
+      "text": "conference to try to have another shot at it and make it better, you know?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2086.8,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2088.2,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2088.6,
+      "text": "Yeah, I think these conferences are, are really good. These, these special, unique ones. I also liked Friendly Ruby 'cause that's also, like, a very different experience from, like, Rails World even. Because Rails World is amazing because it's massive, it's big, like, everything is, is really great. But at the smaller ones, it's always like it's more about the community, more about you- to, to talk to everybody, and it's more about connecting with everybody, not just with a few small group of people. Because at Rails World you have no chance to connect with everybody. It's just too big. Impossible"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2121.0,
+      "text": "The hall, the hallway track is, is quite amazing. Uh, and, and for example, for GoConf, I'm, I'm breaking stuff up into one hour. Uh, you have a one-hour talk or workshop or something, then I have a full-on one-hour break every time."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2135.8,
+      "text": "Nice"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2136.2,
+      "text": "just enjoy spending time with people, and if you have a topic that you wanna talk about, you have an hour. Like, it doesn't have to be a keynote. Like, just can, we can have everything as a keynote that, you know, that's... It's fine. Like, just bring your passion, show it, and we can talk about it later on. Um, but for Friendly, I wanted to go to Friendly, and Adrian, uh, shut it off. So I hope, I hope, Adrian, if you're listening to this, you need to make another Friendly RV edition so"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2167.7,
+      "text": "Yeah, I think, I think, I think he hears this from many people. A lot of people would like to have another friendly. I went twice, and I would go for the third time as well because I really enjoyed it. And also, and I like different experiences, but there's also something good about going back to the same place, right? Because in Bucharest we know the restaurants, we know the pubs. So anytime you go there, same in Amsterdam, my research was in Amsterdam. Again, everybody's like, \"Oh, it's actually great. We know which pub we're gonna go after the conference. We know the restaurants we want to go.\" So it's actually good because you already know the place. It's also good to have some new,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2203.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2204.0,
+      "text": "impressions. I think there's also beauty about going back to the same place. Like, if you do that in Tuzla, that you're gonna do it regularly, that's gonna be the beauty of, of it. You go back and now you already know the place. You know what you need to take. You know if you're gonna like the lake. You know if you're gonna like something else, and then"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2221.2,
+      "text": "Let's,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2221.7,
+      "text": "you are getting"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2222.7,
+      "text": "let's see how it happens. Uh, you know, yeah, for Tuzla, I think I can do that because there's no risk for me involved at all. Like, the thing, experiment for me and why it's a different, a bit of a different thing is wanted to see if I can do a free conference, and, uh, that also means me not spending money. So, uh, or spending a very limited amount of money that I can risk myself and then seeing how it goes. If you get more support, obviously I can spend more money on it, but, uh, uh, as, as, as defined like that, I can just do it every year without any problems. I can do it multiple times a year. It's, it's not, you know, it's, uh... For RubyConf Austria, it's a €50,000 euro budget that you need to fill, so it's, it's not the same thing."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2272.3,
+      "text": "Like next year, example, there's not gonna be a RubyConf Austria because, um, I, I, I cannot risk at the moment €50,000 euros myself to, to pull it off again. Um, al-although I was in talks with Hans and stuff, we were talking about when we can do it and how we can do it again 2028 maybe. But for now, no, no RubyConf Austria next year. But with dotConf, a-again, it's I, I just see it as something that can exist and continue to exist and, and continue to grow hopefully. So see. I don't know."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2307.8,
+      "text": "There is one interesting thing about free, and I don't know if you thought about this one. You know, when things are free, sometimes people just don't show up because they don't risk losing anything. I know this because I gave away conference tickets in the past for free to people and they didn't show up."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2325.5,
+      "text": "Yeah,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2325.9,
+      "text": "So it's"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2326.4,
+      "text": "right"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2327.4,
+      "text": "of, of gift. I paid for the bloody conference ticket and gave it for free to somebody, and they didn't show up, which is a bit of a shame because I know, I know life happens, so yeah, I, I don't blame people. But I heard from, uh, someone else, I don't wanna name names, but I heard from someone else who did the same, giving away free conference tickets, and he said, \"Man, I'm not doing it again. I'm gonna say you get an 80% discount,\" because people didn't show up. For free tickets, a lot of people didn't show up."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2352.0,
+      "text": "Yeah. You know"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2352.6,
+      "text": "So why don't you get-"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2354.2,
+      "text": "Go ahead, Mohammed"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2356.0,
+      "text": "No, after you finish. After you finish"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2358.2,
+      "text": "Well, I was just gonna say I saw something, um, the team at ba- at 37 Signals did, uh, something recently where they held a kind of a meet and greet in Chicago at their, uh... Well, they're not their headquarters"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2369.1,
+      "text": "Oh, and you got back the money"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2371.1,
+      "text": "And, um, they charged, they charged people I think $100 or something like that to, to show up. if they showed up, they gave them their $100 back."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2382.5,
+      "text": "Yeah, I saw it. Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2384.4,
+      "text": "then they're out 100 bucks. So in that sense, I, and, and Jason Fried talked about it afterwards, said, \"You know, it went great. They had, like, a 95% show rate.\" So"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2394.1,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2394.5,
+      "text": "it- it's free, but if you don't go, you lose money."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2398.1,
+      "text": "It costs money. Yes."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2399.5,
+      "text": "to do it, right? So, like, I saw that, and, like, that makes me think about this when we're talking about how free doesn't work, and I think you're both right. Free doesn't work. give people a reason to come, and they have to come to get their money back. So it is free if you show up. I thought that was a phenomenal strategy, and I think it's something I wanna try to, you know, use somehow down the road"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2420.7,
+      "text": "It is, it is. I agree. But, but also for GOTO Conf, I kinda don't care if you don't show up. I, yeah, I, what I, what I aim to do is I, I try to make it irresistible for you not to come, and then it's up to you if you wanna miss out. um, but also Tuzla is a bit of a specific environment. It's not a US city full of, you know, and it's not even Vienna. So it's, it's a lot of people, they were quite like me probably, like in that cave that I explained, like someone that's not gonna maybe travel to conferences, uh, broadly at all, and if it's not free, it's, it's a bit hard to convince. And also one of the reasons why it's tech agnostic, uh, not only because of the changing times and everything is because of the audience there and, uh, what they might be attracted to as well, so."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2475.1,
+      "text": "But I, I, I wanna, I just wanted to have the, the initial uh, non-existent. So it's, I think it's a requirement for this event, so."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2484.5,
+      "text": "Yeah, there's, there's,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2485.3,
+      "text": "But-"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2485.9,
+      "text": "reason to not go other... I mean, you, it ta-it costs money to get there and stay there, but, uh, you know, that,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2491.3,
+      "text": "Right"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2491.4,
+      "text": "barrier of having to pay to go and be there for the conferences, it doesn't exist."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2496.8,
+      "text": "And it's"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2497.1,
+      "text": "Yeah, I was,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2497.7,
+      "text": "though as well. Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2499.0,
+      "text": "and"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2499.2,
+      "text": "yeah, I was just talking to someone. I was just talking to a friend today and he said he's gonna go as well because he's like, \"Yeah, I already saved 300 euros because the bloody ticket is free. Why would I not go?\" It's just, right? It doesn't make sense to me."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2513.1,
+      "text": "Let's see. Let's see"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2514.2,
+      "text": "are in Europe already, and it's much easier to get there, you know, uh, compared to somebody who is in other continents. Um, I would imagine it's relatively easy to get there, uh, intercont- uh, intracontinentally, um, in, in Europe"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2528.5,
+      "text": "Central Europe for sure. He's in Berlin, so for him it's easy. I'm in Europe, but I'm on the bloody edge of Europe."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2535.3,
+      "text": "not in Europe, man. You're in the middle of the ocean."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2538.5,
+      "text": "I'm nowhere, middle of nowhere"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2541.1,
+      "text": "Well, this"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2543.4,
+      "text": "yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2544.0,
+      "text": "this has been, uh, great talking about these conferences, and it, it really has, has, has sparked something inside of me of thinking, \"Could I put on a conference? How would I do it?\" So I really think I'm gonna walk away from our conversation today thinking, \"Where and how could I put on a conference?\" And I've got some ideas already swirling around in my head. So, so thanks for, for,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2566.3,
+      "text": "For, for the--"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2567.4,
+      "text": "today"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2567.8,
+      "text": "If I can give you ideas, you can extend GOTO Conf with your ideas, and you can make GOTO Conf a bit yours as well, so"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2576.4,
+      "text": "love it. I love it Um,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2580.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2582.2,
+      "text": "s- I mean, that, the conference is, is obviously a big part of what you do. Um, we've talked about it for, you know, uh, half an hour or so right now, which is, which is phenomenal. Um,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2591.4,
+      "text": "Ja."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2591.6,
+      "text": "do anything other than put on conferences? And,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2596.7,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2597.6,
+      "text": "jest, but I also mean that seriously. Like, it, it, this is ti- it's gotta be time-consuming. I've been an event organizer in my, in my career, and I know it's a lot of work to, to put on these kinda things. So, um, I, from what I n- from what I gather, you're working, you are working on some other things. W- when you're not trying to put seats in, in, in conference rooms or in conference, uh, uh, situations,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2617.4,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2618.0,
+      "text": "are you working on these days?"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2620.4,
+      "text": "So, as I said previously, like it's my way to stay close to people that I follow, and those people end up being the ones that I kinda say, \"Hey, do you wanna come?\" You know, and then I get to... In that period, not only in person, I get to ask questions and I get to stay close to them. that's also happening now for GOATConf. If you go to GOATConf and you see who's already confirmed as a speaker, uh, those kind of things are on my mind a bit, uh, as a, as a engineer and how I'm looking at how the field is evolving and what I can learn. Carmine Paolino is there. Uh, I'm, I mean, in contact with him as well, uh, following his work, uh, how, how is, uh, of the things that he's building."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2667.6,
+      "text": "He's a great person that kinda also motivates someone to, to, to build, right? Um, uh, he's doing amazing things with Ruby LLM and makes one person stay close-- uh, want to stay closer to Ruby and to stay, stay closer to, to Ruby LLM and build of these AI agents with Ruby. I love him for that. you have, uh, Roy Tamay, who is someone that supported me in every aspect of my journey, uh, starting from like my first check that I just showed up on, uh... I told you like 100,000 euros. I was just like, \"How do I get this money?\" I, I was... I didn't know anything. I was just learning everything, trying to do stuff, trying out things to see what sticks, what doesn't stick and stuff."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2714.7,
+      "text": "And Roy just showed up and gave me 5,000 euros, uh, company, you know. He was the first sponsor and stuff, so I still remember the value of how that helped me. And then I, I was doing RubyConf Austria, and sure thing, there's Roy again with, with his company just showing up to support. Uh, and Roy is supporting everyone in the community, essentially. Like you cannot see a conference without AppSignal there. And"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 2741.2,
+      "text": "Yep"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2741.8,
+      "text": "my, my honor to host him as a speaker and, uh, to learn from him as a, as a... all of-- from all of his, you know, founder and business experience to see how he builds a company and, and what's, what's, uh, the perspective of a person who's achieved as much as he is. so I'm gonna have him as my guest there as well. Uh, I'm looking forward to, to that. Um, you have, uh, Dejan Mingish, who's become a close friend recently as well. I've been collaborating on, on his open source work with him, uh, on Enola. Enola is a architecture regression, um, graph thingy that, uh, helps... I, I built in in there that you can have deterministic checks within CI, which kind of ties into the whole software development life cycle and, uh, na- making companies AI native, uh, and stuff."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2795.5,
+      "text": "So that's, that's- a lot of my passion was in the... I, I'm gonna miss out some, some people in all of this, but, uh A lot of my passion when organizing RubyConf Austria, uh, like I was trying to figure out for the life of me, how do I make regenerative software work? Uh, because I, I also had that moment in, in December twenty twenty-five where we're in the Cloud three point... Was it five? Yeah. When it came out and I just went all in, I invested a few thousand euros or something like that in, in, in the latest. I, I, I bought the Eleven Labs, uh, subscription and a bunch of other stuff, and I said, \"Okay, let me drive this thing and see where it goes.\" And I just crashed somewhere, and it was beautiful."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2841.6,
+      "text": "And you know, uh, I, I, I, I ran it until it fell apart i- within the first version. I just gave, gave it some thoughts, some ideas, and I wanted to see how, how good it could build something without my guidance. And then I started guiding it more, started building more guardrails, started doing speculative development. And I already knew at that point that Chad is coming to, to, to the conference, Chad Fowler. So I had access to Chad a bit, but I also was following his work and his thoughts on, on the regenerative software. So I was, uh... And I was at that point sorta I read the Boris Stain's Software Development Lifecycle Is Dead article, and he was describing, uh, these steps in the, in the software de- development life cycle and how they evolve from a company to company. And y- you saw it a bit earlier than some people, I think."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2888.4,
+      "text": "he even built very early, uh, the AI foreman. I think, uh, Steven Margram was, uh, tweeting about it quite, quite a lot recently. He was building his own AI foreman, a thing that evaluates if your app works in production the way that you intended it to work, right? So, uh, Boris Stain was already writing about these things, arguing that the observability layer is the last, uh, standing layer from the old software development life cycle. So I was leading a team back then, and I was trying to introduce these concepts into our process, and I was trying to see how I can work with AI, you know, uh, uh, a way that benefits us. Uh, so I was experimenting how do we introduce a process that benefits humans? How do we work in a speculative and development way?"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2934.6,
+      "text": "How do I make regenerative software from Chad work? And then I was trying to make these people, uh, join that would help me figure it out. And then we had Fernandez join, we had Armin Ronacher join, we had, uh, Valim join, right? So, so we had a bunch of these thought leaders in the, in the, in this space. I just remember again, standing back into the, uh, back in, at the back of the room, watching them discuss these topics that I was, uh, I was just-- I wanted to learn, I wanted to know, \"Okay, what do you think about it?\" And I organized the panel as, you know, Hans was moderating, moderating the panel, but was watching it. I, I just wanted to, to see, okay, what do you think about this topic? How can I apply it to something that I'm already working on?"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 2981.0,
+      "text": "I was, I was trying to build These workflows for me, I, I called it the brain whatever, and it sounded weird and, you know, and, uh, how do I automate these workflows? And after that, I started working on constraints for Enola for, for, uh, for this project. I was, I was following that project and a bunch of different ones, um, and Dejan is... Dejan was building this, this amazing tool, it didn't have these constraints that they were mentioning. Then I was, uh, I saw that I could embed it into the LLM Wiki brain thingy that I was doing at the time. Um, and then I started building in these, these constraints that are deterministic checks. So all of these times when an agent would make a mistake, I can now have a deterministic check that co- you know, catches it."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3029.5,
+      "text": "So I started extending it for Ruby and for Rails and, uh, running it on, on, on some local projects that I have. And that story follows up until today as well, where a bunch of these other people that are joining as well that I also love is I'm also trying to learn from them. Codeplane, the CTO from, from Codeplane, Predrag Codeplane, they're, they're one of the rare companies that I actually saw raise money on speculative development. Um, and their motto now is, um, AI code is gonna be regenerated, not maintained. And I had talks with him as, as, you know, as, as being prepared for, uh, as, as, as, uh, you know, making preparations for the conference and stuff, uh, getting him to, to be a speaker there, and they're gonna also do a, uh, a workshop."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3078.7,
+      "text": "I tested their, their open source, uh, harness and, and, and, and I was... I, I got to be close to see how he thinks about building ac- something that actually implements what Chad is writing about, right? And then just by being close to it, I, I saw Obi release the i-impatient programming thing. And then I... If you see that there's imps, like you're... If you start, if you log in, you're an imp. I'm imp number two in, in his, uh, yeah, because I, I... Staying close to these people that, that you respect and that, that you, you know, it just provides so much value of being there when it happens and saying, \"Okay, now I can check it out, and I can see if it works or not.\" So that's what I've been os- obsessing about, I, I guess, uh, for, for the past 11 months, uh, trying to replace myself as much as possible and, uh, do work along the way, uh, in these companies."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3133.3,
+      "text": "I-I've actually been building my own, um, AI memory layer, trying to learn how to do it as well and how to improve myself to do it and to build a harness on top of it just as a side project thing. Um,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3147.8,
+      "text": "Tell me, uh,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3148.4,
+      "text": "Put all of these learnings together"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3149.8,
+      "text": "that you, you've, uh, you've gotten away from kind of the frontier models and you're doing more stuff self-hosted, uh, type harness things? Is that, is that something, is that true? Is that still happening?"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3161.0,
+      "text": "Ah, you mean, you mean the, the, the thing that I wrote about, uh, Kimi, uh"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3165.2,
+      "text": "yeah, yeah. And you kind of, you've, you, you canceled Claude maybe, and, and you've just kind of gone to Kimmy and, and kind of gone the other route. Are you still, are you still exploring that angle?"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3173.2,
+      "text": "I've, I've canceled Claude, my Claude subscription at least once, once a month for the past six months, I think. yeah. And, uh, I have my Kimi subscription still, and, um, I'm building the, the harness on PyDurble. So I, I wanna, I w- I'm still, you know, in that direction of, uh, supporting open source models because I wanna support open source. Um, so that was my thinking then. Uh, I still build both for Claude and, and, and both for the, the Py harness thing, so for myself. So, uh,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3212.5,
+      "text": "well"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3212.7,
+      "text": "self-hosted, self-hosted models"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3214.7,
+      "text": "stuff 'cause I, I cancel... I, I change my subscription usually every other month. You know, I, I go down to the,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3220.1,
+      "text": "ఏ"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3221.7,
+      "text": "might go to the big plan, and it's, it's all over. So I feel you on that. But I have not done really with, um, with the open source models, and that is something that I, really want to, to explore more, and I, I hope it gets better, and it sounds like... I, I think it will get better, but the idea of, of that open source and the, um, being able to do it yourself is, is, is appealing, especially as, as, as a fellow open source, uh, appreciator"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3247.0,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3249.6,
+      "text": "tried them. I didn't have luck, too much luck with them. I tried Kimi K3, I think."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3255.6,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3257.1,
+      "text": "I didn't have much success with it. It was not really up to the things I wanted it to do. And I tried, uh, I think I tried GLM, which wasn't that bad actually, but it was still far from the others. And I tried one, ah, I can't recall the name, but there is one which is, like, trained for security. And, uh, I don't remember how much money I, I, uh, topped up my account with. I run it on someone else's hardware, and, uh, it just run through the tokens super quickly, and the result was terrible. It was just pretty shitty. I was trying to do some security research with it, but it was very, very bad compared to what the other models can do. And actually, I think the frontier models were much, much cheaper for what I needed in that, at that time for that experiment."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3307.8,
+      "text": "But I think with AI, the interesting stuff is the non-determinism and how something might work really well for you, and it might not work at all for me. And it's... We both had this honest experience and, but you say, \"Yeah, man, this is just bloody amazing for me.\" And I have the worst experience with the same thing. It's unbelievable, but it's actually, it can happen. And maybe it's because you've raised things differently and you trigger the bloody model differently than I am. I have no idea if it's that or something else, but somehow this shit happens."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3342.8,
+      "text": "Yeah, it does. Yeah. So"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3344.7,
+      "text": "I like"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3345.1,
+      "text": "I, I"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3345.7,
+      "text": "Mohammed, about that determinism, trying to, to make"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3348.2,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3348.7,
+      "text": "be deterministic because like Greg just said, that's, that's the fuzzy, the fuzziness right now, that it's, it's, it's not deterministic, and it's just kind of, uh, it, it's, it's a weird moment. So being able to, to give some sort of tighten the guardrails and make it more deterministic is, is, is a, is an intriguing thought"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3368.8,
+      "text": "Yeah,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3369.2,
+      "text": "Problem is that once it's more deterministic, it's less creative"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3373.6,
+      "text": "No, I mean, uh, you're still in control of how, how deterministic and where do you want it to be in determinist- deterministic in which ways and stuff. So all of these linters and, uh, stuff that, that's, that's why I like working on Enola. Uh, one of the, the on the, on top of the AI memory layer, I call Tabula for tabula rasa, it's a, it's a blank sheet and you start from it, whatever. Enola is architecture graph, right? I wanna be able to draw architecture and that doesn't exist yet, and, and have it compile into something that the model is gonna iterate against until it fulfills it. That the... You know, that was w- that's one of my efforts right now with Tabula that I'm doing, uh, is building on top of what already exists, uh, with Enola, with the constraints that are built in and on top of it being able to guide it without when something doesn't exist at all until it is there, right?"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3431.0,
+      "text": "So, uh, and then having it, uh, like explain existing code bases from an abstract level, e- even though you don't understand Rust, for example, or some other programming language, you can have a bit more of a guidance from architecture perspective and all of these patterns that you recognize, uh, from your career, how they apply, how they correlate, and, uh, it could be, uh, hopefully a useful project in that sense. Um, but also when you, when I talk about this topic with the code plane people and, and how they think about it, and I follow what Chad is doing, one of the things that I built in is, uh, and, and they have their own pl- uh, plane spec format like .plane, right? They, they have their, their, their, uh, they don't have an MD file, they have a plane file, they structure it in a way that it's, uh, verifiable against every claim that you define that you, or, uh, against every, every line of intent."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3485.9,
+      "text": "So you can build something and then the, the harness that you build it, uh, knows how to evaluate every step, every point against what you want it to achieve. you can have those evals, uh, as, as, as built-in parts of the harness itself. And their idea is if you build it many times and you delete it and regenerate and see if there's any problems, that means the spec is not complete. So that's one of the, the spec can come later rules from Chad. Um, so you continue iterating and when you reach the point of you can regenerate the code without any, uh, of the evaluations failing and everything is working, that means that you can forget about it, uh, how it looks within, and then you can regenerate that part in whatever language and whatever."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3534.4,
+      "text": "So,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3536.1,
+      "text": "Interesting"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3537.8,
+      "text": "yeah-"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3540.1,
+      "text": "And it reminds me, Greg, somewhat of what, um, what Sam Ruby was talking about and somewhat, some-somewhat about how Roundhouse i-is, is kind of working to try to be able to transpile these things from one language to another. Well, Muhammad, what you're talking about is to take it from zero to something in a deterministic way. Um, so I... It's, it's kind of a, a, a parallel idea of, of a determinism, 'cause I think that's what Roundhouse has going for it, is you need to deterministically go from, let's say, Ruby to, uh, whatever, so any other language that it supports currently and, and have it be the same, uh, across those different languages. So same thing, you're going from zero to 10 rather than from 10 to 10 in different languages."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3582.0,
+      "text": "Exactly. Yeah. All also has support for multiple languages and frameworks, so that is a very interesting direction. Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3589.8,
+      "text": "Yeah. I almost, I almost see how you could couple the two of them, at least theoretically, uh, together, of having Enola be the startup, the, the thing that creates this thing from zero, from an idea to, to something, and then if you wanna move it to a different language or a different, uh, different, uh, something, you can, you can do that with, with Roundhouse. Um,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3610.2,
+      "text": "yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3610.8,
+      "text": "a,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3611.1,
+      "text": "M-may-maybe I need to, maybe I need to reach out to Sam Ruby and, uh, put Sam Ruby, uh, Dejan Wengesh, and, uh, Carmine Pauline on stage together and see how we can get those thoughts out"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3623.7,
+      "text": "That should be a good idea."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3625.0,
+      "text": "fo- you heard it here first, folks."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3627.4,
+      "text": "Yes."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3629.7,
+      "text": "I wanna be in that corner when those three are talking."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3632.8,
+      "text": "Yes, I wanna be there watching that as well. That would be incredible"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3637.4,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3638.7,
+      "text": "Yeah. Speaking of, of conferences, I, uh, I, I just finally confirmed that I'll actually be handing- heading to San Francisco next week to, to attend SF Ruby, and I think Carmin is gonna be, I think, speaking there, um, at SF Ruby. So I'm excited to, to see that talk. and, uh,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3656.4,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3657.8,
+      "text": "your way and, and say, \"Hey, let's get you on stage with, with Sam and, and company, and and make something like that happen.\""
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3665.0,
+      "text": "Yeah, Irina and the team are doing a beautiful job at that conference"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3668.4,
+      "text": "Yeah, it looks like, and I'm excited to, to be able to attend that. Greg, we'll,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3673.3,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3673.6,
+      "text": "more about that on, on a future episode of the, of the podcast about SF Ruby"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3679.5,
+      "text": "Yep. Which day is it? Are we gonna record next Friday?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3683.7,
+      "text": "it's next. The conference is next Tuesday and Wednesday, and kinda Thursday is the community day, I believe it is. Yeah, I'll"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3692.3,
+      "text": "Oh, so you can..."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3694.6,
+      "text": "Yeah, so I'll be"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3695.3,
+      "text": "Nice. Nice"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3698.7,
+      "text": "It ki-kind of sucks. Yeah. I was just about to say that it kind of sucks I, uh, I, I won't be there"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3708.0,
+      "text": "It's the other side of the world"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3709.8,
+      "text": "It is on the other side of the world. But, uh, yeah, it's, it's, it's easier for me. I'm in Portland, Oregon, which is an hour and a half flight j- or straight south, same time zone to get to San Francisco, so it's way easy for me. Um, but, uh, just like some of the conferences you're, you're talking about and putting on over in, in, in Europe and that side of the world are, are much easier for folks on that side of the world to get to too, so, um, I'm jealous about the ease of which some folks have to get to those conferences. So it, uh, you know, it's a, it's a give and a take. It's a, it's a big world we live in and, I'm not, I'm not throwing the money around like this, so I can't go to every conference all year long, as much as I wish I could"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3747.6,
+      "text": "Exactly"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3749.2,
+      "text": "But before COVID, we didn't have many conferences in Europe, so actually it's really great. After COVID, they were just popping up everywhere, so we have so many options, which is amazing. I remember I was always like, \"Oh, I wish Railsconf would be in Europe,\" but they didn't give a shit about Europeans"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3767.5,
+      "text": "Well, we've been, uh, we've been chatting for over an hour here, and I, I feel like we've barely scratched the surface on, on all of the things that you do, Muhammad. Um, and, uh, it's really been great to talk about, uh, the,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3780.6,
+      "text": "I don't know if this was a, don't know if this was a puddle or, or a lake."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3784.7,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3785.5,
+      "text": "been a puddle in the end. Let's see"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3788.6,
+      "text": "But I, uh, I, I, I really like the direction that, that our conversation has taken in, in talking about the conference stuff, 'cause that's something that, you know, we could talk about Ruby, we can talk about, you know, AI all day, and that's kind of the, the conversation du jour, if you will, and it's the thing that is, is more prevalent in the con- in, in, in, in the conversations happening these days. But, uh, talking about organizing conferences is, is something that isn't, isn't talked about. But Greg, I know you are a big conference, uh, uh, aficionado. You appreciate them. And, and to hear, to talk to you, Muhammad, about, about that aspect of, of what it takes, even if it was just I, I know at a superficial level, 'cause I know there's a lot of stuff going on underneath the surface there. Uh, this has been really great to, to, to get that, um, to get that angle and get that experience from you who, who's had that."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3836.1,
+      "text": "So I, I appreciate that and the conversation we've had"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3839.7,
+      "text": "Thank you guys for, for having me, and thank you for talking to me on this topic. It was very nice to speak with you"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3845.6,
+      "text": "Greg, are there, are there any things we wanna, we wanna chat about while Muhammad's still on, uh, together as a, as a trio here? What, what, what, what, what do we wanna"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3853.7,
+      "text": "Yes."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3854.3,
+      "text": "while we wrap, kinda get"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3855.3,
+      "text": "I have, I, I have a few things which I would like to mention. One is Omarchief 4.5 was released this week. It's a massive release, a lot of new stuff. I just upgraded today. I tried maybe three new things out of the... I don't know how many, so I still need time to explore. But that's something if people are interested in, they should upgrade and see what are all the goodies."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3879.4,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3879.9,
+      "text": "other new thing, which is Rails 8.1 point whatever and 8.0 point whatever, which is, uh, which are security releases, so everybody should upgrade their Railses. 20... Ah, I don't know, 20-odd security issues were fixed in this release. It's insane."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3897.6,
+      "text": "It was big."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3898.4,
+      "text": "Some of them are more serious, some of them are less serious. Especially if you use active storage, there are some serious ones, so you should definitely upgrade. Uh, what else? Oh, one more thing which I wanted to talk about. I don't know if any of you heard about this thing. There is this company called Railway, which is a hosting"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3918.0,
+      "text": "I,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3918.1,
+      "text": "company"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 3919.0,
+      "text": "I deleted all of my projects, uh, earlier. Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3922.7,
+      "text": "So Railway is an interesting company. They had a security breach a few weeks ago, which is, yeah, it happens with everybody, right? Whatever. You, you own it, and that's it. Everybody makes mistakes. But then this week, there is a other guy called Josh Mondes, maybe I, I'm, uh, maybe I'm... It's Josh for sure, and he actually builds a similar, uh, platform, a hosting platform, and he just found out that, uh, somebody from Railway is trying to hack his, uh, hosting platform. And this is also like, yeah, shit happens, right? Things like this happens, and you would, you would expect them to, to to handle it in a different way than they handled because all they say, they should, \"Oh, yeah, it's us. Sorry, it's not gonna happen again. It's just an AI thing we built to test competitors, and it went off the rails.\""
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 3972.9,
+      "text": "Which is like, are you kidding? How? Because then the guy posted all the logs, and it wasn't like it was trying to log in or something. It's actually trying to submit payloads and basically trying to find vulnerabilities and hack the system, which is like, that's actually a crime. It's, uh, it's, you know, I, I do a bug bounty sometimes that even if you do bug bounty, if you go off the scope, then it's a fucking crime. You can end up in jail. That's not a joke. And it's also, it's really not nice to do to someone. Come on. If you... Especially to a competitor,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4007.3,
+      "text": "no. But, but, but if you look at it from a different perspective, he brought in so much business. Uh, like I, I th- I, I, I think the guy was tweeting like, \"Hey, I, I get so much traffic right now. Just so you know, I cannot accept any more users and stuff,\""
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4021.3,
+      "text": "Yeah, yeah. He had to, he had to, to stop sub- the sign-ups and j- just to vet them before he let anybody on the platform, which is actually is great for him. It's great marketing."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4030.4,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4030.8,
+      "text": "But I, I, I still think it's just what Railway does is just... But I think it's not just them. So this whole thing started with this accountability. You know, when the Hugging Face hack happened, OpenAI just said, \"Oh yeah, it was one of our agents who went off the rails.\" It's like, what the fuck are you talking about? It's still your responsibility. If I write a script and I let that script go on the internet and that script hacks somebody's site, it's my bloody responsibility. I should go to jail, right? Because it's-- I was doing it. It's like, I think that's, that's crazy. And because those guys were not, uh, responsible, nobody really did anything to them. I think maybe other people think, \"Oh yeah, if it's my agent, it's fine.\" But it's not fine. You should still take responsibility, and actually you shouldn't do something like that."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4079.8,
+      "text": "If you wanna do bug bounty, go and find a bug bounty program and, and hack on that, and don't hack your competitors. And even if it's a, if it's an honest mistake, I, I, I f- I find it hard to believe it was an honest mistake, to be honest. Because if I tell... Let's say I'm, I'm dumb, which I don't think they are, but let's say I'm dumb and I just tell my agent, \"Hey, just go and test the authentication of this, uh, competitor because I wanna see what their flow is, and maybe I will learn some things to change in my platform.\" I'm 100% sure a stupid simple prompt like that wouldn't end up probing the authentication endpoint with fucking hacking payloads. It's-- I'm 100% sure that wouldn't happen."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4125.2,
+      "text": "So you have to actually instruct the agent to do something like that. Even if you instruct the agent, sometimes it says no because they have these guardrails, so you need to be verified to be able to do red teaming with, uh, Claude and OpenAI. So unless it was an open source model, I think it's actually needed to take extra steps to be able to do something like that. So yeah, that's just crazy."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4150.8,
+      "text": "Two things that come to mind about that one. One is, is, is I think we're gonna see more of that. We're gonna see the, the, uh, We're gonna see agents probing and, and poking, and we're already finding a lot more security vulnerabilities on purpose or not on purpose, which is a good thing, I think, because we've got the ability to do it with AI, so it's gonna happen. I think the, the, the place that Railway maybe, maybe might have wanted to take a different tack on their response is, is, is owning it, like you said, uh, and, and just, and just coming clean. And the phenomenon which, uh, I don't know if it has a name, but I, I remember, um, DHH talking about this some time ago at some point about where when, when you as a business make a mistake, for example, or this could be you as a person, doesn't matter, but let's pretend you as a business."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4201.7,
+      "text": "If your business makes a mistake and a customer calls you out on it, if you pretend like that problem is no big deal, the customer is gonna think it's the biggest deal in the world, are gonna be"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4215.0,
+      "text": "Yep"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4216.4,
+      "text": "if you, on the other hand, \"Oh, this is a big deal, the biggest deal in the world,\" and you apologize and you own it, that customer is gonna say, \"Ah, it's no big deal,\" and they're gonna minimize it. This is like psychology here happening, folks. So what Railway did, it seems, is they were like, \"Ah, it's no big deal.\" So what does the internet do? They think it's a huge deal. Whereas when"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4238.8,
+      "text": "Yep"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4240.4,
+      "text": "bad. We are so sorry,\" you know, even if you're lying, own it, and then the rest of the world or the person will say, \"All right, owned up for it. I'm gonna give them a pass.\" That's typically how things happen more often than not. So when I see a company that's just like, \"Pfft, whatever,\" just watch the, I just watch the fire start."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4261.6,
+      "text": "I think they owned it, but they didn't take responsibility. Because what they said, \"Oh yeah, it's one of our employees who did some testing, and it's not gonna happen ever again. We talked to him.\" I think they should've... If that's the reality, they should fire the guy. If the guy did it without permission, then he should be fired. Because also some people say, \"Oh yeah, they were not trying to hack because they, the guy gave his real name,\" which is not true. So what happened that his agent signed up with a throwaway email account and did everything anonymously except one thing, the payment was a real card, and the c- name on the card was the actual employee of the company. So this is how he tracked back to who it was, and I think it was just a mistake on his end. He didn't realize that either that the agent will use his card, or he didn't realize that the person will see the name on the card, which is, you should know that, by the way."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4312.4,
+      "text": "But I think he just didn't realize it's going to lead back to him. I think the, the actual, uh, consequence should be at least fire that person, but the reason they don't fire that person, because probably the CEO and everybody knew that he's doing this. They give authorization. \"Of course you can do this. We don't care.\" Which is the, I think that's the bad part, right? Because you shouldn't allow anybody to do that. Come on. If you wanna test the authentication of your company, do it manually, right? And may- because if you say, \"Oh yeah, the agent can go off the rails,\" then you ha- you, you d- you know you shouldn't use an agent for such task. It's,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4347.7,
+      "text": "much,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4348.0,
+      "text": "think that's"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4349.0,
+      "text": "how much of this qualifies as defamation, uh, like, uh, liable for suits and stuff?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4355.9,
+      "text": "Not defamation, but it's, uh, it breaks the cyber, uh, act or whatever it is. It's a, it's a crime actually in the United States"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4364.8,
+      "text": "No, no, I"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4365.2,
+      "text": "because you are"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4366.2,
+      "text": "on the, on the podcast, all of these things,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4368.7,
+      "text": "Oh, no, nothing. The, all of-- anything I say is, is, is true. It's on the internet. I'm not making up facts. It's all public on the internet, so there's no defamation. It's... The crime, the, the peop- the people who committed the crime here is actually Railway, even if they want to admit to or not. It's a crime in the States for sure. And I-- the reason I know this, because I work in this industry, right? So I know, uh, without permission, I'm not gonna hack anybody, come on. I would end up in fucking jail. Do I want to, to do that? No, of course not. You need to ask permission. And even sometimes I find, uh, security issues in things I use, and they don't have a bug bounty program. But it's not like I run a scanner. It's just I use something and I notice, oh, this might be vulnerable to XYZ."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4415.8,
+      "text": "Let's quickly verify it, and I verify it on my own account so I don't cause any damage, and then I immediately report it. So it's not like I run a scanner and I try to break their system and cause havoc. It's just I, I very specifically test one thing, and if it turns out to be an issue, I report it to them. They don't have a bug bounty, I don't expect any money, nothing. Just please fix it because it's something I use, so I want it to be secure, right? I don't want anything I use to be hacked because then the hackers get access to my stuff as well. It's not good for me either. So that, that's an, an okay way to do it, even if they don't have a bug bounty program, in my opinion, and nobody ever complained about this to me. But if you do like, uh, uh, an actual scanning or anything without authorization, that's not gonna fly, in my opinion, and that's actually a crime"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4462.9,
+      "text": "one thing's for sure, their reputation took a hit, so"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4466.4,
+      "text": "Well,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4466.7,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4467.1,
+      "text": "said you pulled your stuff off of Railway, Mohammed, right? So"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4470.5,
+      "text": "Yep, all of it"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4471.8,
+      "text": "reputation took a hit. Their, their, their, their money's gonna, their, their income's gonna take a hit"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4478.7,
+      "text": "Yeah. Not,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4479.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4479.9,
+      "text": "saying that I, not saying that I wouldn't host anything on Railway again. just, uh, just that I took my... Because there was a security issue and I just thought, \"Yeah, I'm just gonna take everything off.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4490.3,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4491.0,
+      "text": "Uh, yeah. But"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4492.5,
+      "text": "I--"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4493.6,
+      "text": "I don't know. Yeah. Let's see"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4495.5,
+      "text": "That was an interesting, uh, an interesting thing to kinda see unfold this week on, on the internet. I'll agree with you on that one, Greg. Um, and I don't think it's done unfolding. Uh, I think we're, we're still in-- seeing it happen. But, uh,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4508.9,
+      "text": "I think, I think it is kinda it's going to be quiet from now on because the, uh, the only thing which is, uh, the other thing about this is you need money even in the States. If you want to, to push this to have a criminal case, you need money, right? It's not like if you're a small one-guy shop who just started this project and trying to make it profitable, I don't think you have the money in the States to spend on lawyers, right? To-"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4534.0,
+      "text": "Fair enough."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4534.7,
+      "text": "So probably Railway because they have more money, they would have been anyways. Usually court cases it's who has the most money, right? They can drain you out and they can postpone things just until you are running out of money"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4547.6,
+      "text": "Truth"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4548.1,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4548.5,
+      "text": "But yeah, I think we should do better and don't be, don't be like railway"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4555.5,
+      "text": "And on that"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4556.3,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4558.3,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4559.7,
+      "text": "So yes, go, uh, go patch your, your, your Rails, uh, uh, applications. Uh, I-- to follow up on that point, Greg, it, uh, is-- it was as easy for me to take that post from Rails, uh, the Rails Foundation, and I just plopped that link into Claude or, or Groq, or I forget where I dropped it, and I said, through all my repos and, and fix these things. Go.\" And it ran, and it, it gave me a list, and there was a lot of patches that were, were put in there. So, um, it's good to, to stay on top of these things, especially because we're seeing more of these in, in the world today. It's not because there are more security issues, it's because we have more agents, more bodies, more people, more entities, more things looking for them, finding them, probing for them."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4605.2,
+      "text": "Uh, so it's, it's easier to, to find them and it's easier to fix them too"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4610.7,
+      "text": "Not necessarily more people, but it, it became cheaper and faster. When before without AI, it was like, \"Yeah, I'm going to probe these 100 targets with this issue.\" You wrote a script, it took some time to write the script, it didn't work on all of them. You had some failures, you had to tweak it, et cetera. Now it's much, much easier. You just tell the agent, \"Hey, try this,\" and the agent is itself is going to figure out all the, all the issues, the up- upcoming issues. Like, \"Oh yeah, I have an issue here,\" for whatever reason. They adapt to everything, so it's, it became much cheaper and much faster to try to probe all of these issues. I think that's why you see more, more exploitation attempts"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4648.8,
+      "text": "How has it changed your work, Greg? Like, I, I see people running on the topic of open source models, like I know Dan has a machine that, uh, 24/7 runs and, uh, searches for bugs on his... And I guess if someone said search for security issues and a-analyze whatever, like, uh, running open code and, and, and some, I think it's DeepSeek, We Flash or something like that, uh, just analyzing for issues and, you know... How, how is it affecting your line of work? I'm, I'm curious. Like, uh, how do"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4680.9,
+      "text": "And it speeds up things for sure, but what I see is I think s- you still need the knowledge to be able to, to efficiently use them. So maybe that model runs twenty-four seven, but without proper instructions, it's not going to find much. So you still need to know what it needs to probe for, and even then, the way I use AI for doing an audit is I-- let's say it's a web application. I know a few things about the app, right? Because people tell me, like, \"This is wh- how it works. This is what they do. This is the stack we use. These are the areas where I think we might have some issues.\" So I already ideate in my brain. The ideation I still do myself because if I just tell the AI agent, sometimes they can come up with good ideas, but they miss a lot of things. And based on my idea, they'll tell, \"Okay, so tell me and, and, and figure out from the code base,\" which this is very-- it's really useful because pattern matching is amazing for AI."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4733.0,
+      "text": "In defining patterns, it's much, much efficient than anything else I used ever in my life. So I just tell him, \"Hey, look for these certain things.\" And then sometimes it comes b- back with false positives. That's the other thing which you need to... You sometimes you need to do multiple rounds, but it definitely speeds up the things, and the good thing about that is now you can cover more surface area in the same time, which is like, yeah, this is why you find more issues. And,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4761.7,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4762.1,
+      "text": "and that's, that's how it changes"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4763.6,
+      "text": "when's the Greg harness coming out?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4767.0,
+      "text": "Yeah. There is no harness. There's no harness. I-- Actually, o-one thing I, I did, I built my own... I used to use Burp Suite, which is an interception proxy, and, uh, one of the reasons I, uh, my license was about to renew, I wanted to make an alternative for years, but I never bit the bullet because, yeah, you know, development time is insane. But with AI, right, it's, it's much, much faster. So like maybe this is the time. Now I need to make my own. And I made my own, and it's, it, it's still not public, but my plans with that is to make it very friendly for agents, to make it a good tool to work for agents and humans as well at the same time. So you can ask your agents to do certain tasks, and you can, as a human, still look into the, the interception proxy results and, and check things yourself and just make the whole process more integrated, the AI and human inter-interactions."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4825.1,
+      "text": "And, uh, Burp is doing something similar, but they charge you for the tokens, so it's pay a, a higher fee, which I'm like, my idea is, \"Hey, this is open source. Plug any bloody AI you want into it. Pay whatever subscription you want for your AI or your self-hosted model, whatever, and then just use it with that.\" And"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4842.6,
+      "text": "my weakness as well. Everything I do ends up being open source. I never, I never build a product that I can-- that I actually sell and stuff, so. Every, you know, I..."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4851.9,
+      "text": "days"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4853.2,
+      "text": "Yeah, like a free conference, open source tools, all of these, you know, just"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4859.3,
+      "text": "Do,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4859.6,
+      "text": "yeah."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4859.9,
+      "text": "Yes"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4861.6,
+      "text": "no no way to make any"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4863.5,
+      "text": "No. not yet. Not yet. Hopefully, no. Yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4870.4,
+      "text": "It's tricky to charge for these things because anybody else could actually build the same thing if they want to. So maybe it's better if I make mine open source and I ask other people to improve it, and then, I don't know, and may s- try to make money somehow from, from other stuff. I don't know. It's, it's tricky. It's tricky"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4889.9,
+      "text": "see, it's the same weaknesses I have. Yeah. I, I, I recognize that, yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4895.8,
+      "text": "it's to your point, Greg, and to Mohammed as well, it's the idea these days that it, it, it is so easy to make things with AI. We can create all these things that we wouldn't have created otherwise, because like you said, Greg, the, the development time is, is, is a lot. It's a big thing. But now the development time isn't an issue. The tokens, relatively speaking, aren't an issue. So with that said, you can make pretty much any piece of software you want, so you do. But then people like us know that, well, the other guy down the street could do the same thing, so I can't charge them to do it 'cause they're just gonna say, \"I'll build one myself.\" But could you"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4930.6,
+      "text": "Ja."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4931.0,
+      "text": "it? I-- it's a... I think the answer, I think I'm like you, Mohammed. I tend to come up with all sorts of little programs and things, and I just open source them because I n- I, at least it seems to me that I can't make money off of this 'cause somebody else could go just make it their own, you know? So it's, it's, it's,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 4946.9,
+      "text": "Exactly. But, but it, but if you go back to the Boris Stain AI foreman solution that he built super early on, and now he charges for it as a product, as an observability tool, you pay for expertise, I guess. And same for Greg, like if Greg were to build a scanning tool or something that I can use and kind of from, from it, from, from Greg's expertise, it's still expertise that, that you buy, right? For example, if, if Dejan didn't open source his part of the, the CodeGraph and it's a closed source thing, close would I be building what Dejan built myself? You know, it's a... I, I think it's a, it's a very... a process. Uh, and then, uh, at one point I think you're gonna pay for expertise though."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4996.2,
+      "text": "love"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 4996.5,
+      "text": "Yeah, but these two is more"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4999.1,
+      "text": "Go ahead, Greg. Oh, I was gonna say the same thing about w- very close to what you said, Mohammed, is, is selling expertise. I think that experience, which is kinda what makes up expertise, is what is still... I hate this word, it's a moat. It's, it's a skill. It's something that can still have value that AI can't. AI cannot create real-world experience, which then translates into expertise in a specific area. And you can't, you can s- I thi- I, I agree, you can still sell that"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 5031.5,
+      "text": "Yeah. And these tool what I did is it's more like red teaming, so it's, uh, used by an individual, and I think those are the tools. We already talked about this, Joel, that those are the things which are more in danger of being replaced by custom tools for everybody, because it's a, it, it's a single use tool. It's basically every pen tester uses something like this. So it's super easy. If you don't like it, super easy to make your own thing nowadays because it's, it's not a big deal. So I think if you wanna make money from something, it's much better to target multi-user tools, because those are still... Would a company want to host it themselves? Probably they not, because nobody wanna take on an extra hassle, right? Especially now when they, they need to deal with a lot of stuff, it's much easier to, to just outsource."
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 5077.9,
+      "text": "But the tool, tool needs to be good because that's also a bit of a challenge. Now you need to really vet who you outsource to, because what if they are having issues and"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 5087.3,
+      "text": "Right"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 5087.8,
+      "text": "it's wide COVID. But yeah, I think if you And also I think if you put out a lot of stuff for free, eventually you will find something which makes money, right? But if not, who cares? I'm still following my passion"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 5100.7,
+      "text": "Yeah, yeah. You, you mean like marketing for yourself and someone sees like, \"Yeah, this guy's awesome. I'm, I'm gonna hire this, this person\"?"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 5108.5,
+      "text": "Yeah. Look, Sam Ruby,"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 5110.1,
+      "text": "yeah"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 5110.3,
+      "text": "we just talked about, we just talked about this last week. Sam Ruby, he, he's hired by Shopify."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 5114.8,
+      "text": "Yeah, I saw it. Yeah, that's"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 5116.2,
+      "text": "For Shopify, I think, I don't know the details, but I guess Shopify pays him to work on Roundhouse. So he's basically working on something he's passionate about, something which he would do anyways, and somebody funds it, which is amazing."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 5127.8,
+      "text": "also, that's-- I, I also love that from Shopify, by the way. I,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 5131.2,
+      "text": "Yep."
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 5131.6,
+      "text": "they... That was the move, right? That's an awesome move to do,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 5134.3,
+      "text": "Yep"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 5134.4,
+      "text": "make. And I, I think that's also the right message to the community. I really love saw- seeing that, so"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 5139.1,
+      "text": "Yep. I never really liked Heroku because they were always expensive, but I love that they also hired Matz for a period and some other Ruby core members, and they said, \"We are paying you a salary, and you are working whatever you worked before and whatever you wanna work on. We don't care. You just get the money, and you make Ruby better for us.\" It was amazing. I love when a company does something like that"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 5163.4,
+      "text": "It's"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 5163.7,
+      "text": "Yeah. And now it's only Shopify. I think Shopify is the biggest now with the Rails and Ruby infrastructure team, I think that's how it's called. They have quite a few people who are paid to make Rails and Ruby better for the whole community. It's amazing"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 5178.5,
+      "text": "Yeah, those kind of-- I love it when companies do that. Shopify does it, 37signals does it, all these open source things that, that have come out of both of those, uh, those companies. Uh, and it's, it's, it's a, it's a, it's an important part of our, of our ecosystem as Ruby, Rubyists and Rails, uh, developers. So, uh, it's, it's great to see that. I agree"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 5197.6,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 5199.4,
+      "text": "Well,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 5200.0,
+      "text": "Should we wrap this up?"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 5201.3,
+      "text": "one, yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 5202.6,
+      "text": "We, uh, we, we've been talking for almost an hour and a half here, and I could talk for three more hours, but, um, out of"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 5208.3,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 5209.2,
+      "text": "time, including our listeners, uh, who did not expect this to go this long, um, we should"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 5215.0,
+      "text": "Sorry."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 5215.5,
+      "text": "uh... No, no, it's all good. It's"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 5217.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 5218.2,
+      "text": "needed. Like I said, I could talk for another three hours. But, um, uh, Mohammed, if people, if people wanna find you out there on the internet, what's a good way for folks to, to get in touch or, or see your work or find you?"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 5230.1,
+      "text": "So I, I have a very popular domain called muhammed.at, but it's single M, so it's, uh, you know, the, the most recognizable name, one of the most recognizable names in the, in the world. Just Austrian domain. Y- yeah, I have a, I have the personal site there, and, uh, every link that leads to, to what I do is there. you can follow me or reach out on Twitter, I guess, um, and Link- LinkedIn. I don't know. yeah. Uh, if, if none of those click, just come to Tuzla and hang out, and then, and we- we'll figure it out. Yeah, so"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 5268.6,
+      "text": "there, uh, Mohammed,"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 5269.3,
+      "text": "Go to .com"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 5271.3,
+      "text": "Go to GOAT Conf, yes. Um, are there any other things you wanna, to, to, any last final, uh, things you wanna share with folks before we, uh, before we sign off here?"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 5285.1,
+      "text": "Yeah. Um, I don't know. stay healthy. I don't know. What's the, what's the message that you send out at the, at the end? Uh, also, also go to conferences, go to other conferences. Visit, uh, the, the San Francisco Ruby Conference. It's gonna be amazing, and, uh, fully love what they're doing, and support your community. Don't stay in a cave. It's so amazing to go out and then meet people and then, and hang out. transforms you as a, as a professional, trust me. So"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 5315.8,
+      "text": "I"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 5316.1,
+      "text": "maybe that's a, may- maybe that's a good thing to, to finish on. Yeah"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 5319.5,
+      "text": "message. I love that. I love"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 5321.2,
+      "text": "Yep, me too"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 5322.6,
+      "text": "there, there you have it, folks. Now you know how to find Muhammad. Um, to find more episodes of the Pingback Podcast, you can head to pingbackpodcast.com. You can find us on YouTube as well at Pingback Podcast and, um, on all the other, uh, podcast, uh, sites as well. So until next time, uh, thanks listeners for joining in. Um, on behalf of Greg and Muhammad, um, we'll talk to you guys next time, uh, from the Pingback Podcast. Take care, everybody"
+    },
+    {
+      "speaker": "Greg Molnar",
+      "t": 5350.9,
+      "text": "Peace, guys. Bye"
+    },
+    {
+      "speaker": "Muhamed Isabegović",
+      "t": 5352.8,
+      "text": "All right. Thank you for having me"
+    }
+  ]
+}
