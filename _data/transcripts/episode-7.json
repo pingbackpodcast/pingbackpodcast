@@ -1,0 +1,2360 @@
+{
+  "source": "buzzsprout",
+  "turns": [
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 20.2,
+      "text": "Hi, everybody. Welcome back to the Pingback Podcast. Uh, on our show this week, we've got Mr. Fred Nix, who is an infrastructure guy turned... I'm gonna say an infrastructure guy turned all things AI and just so many things. Um, I met Fred on, on X. Uh, he is a prolific, uh, contributor to so many things that I wanna, that we're gonna talk about today, from his personal identity assistant, I don't even know what he'll call it, called Larry. Um, he's got so many automated processes and, and setups. It's like I can't even really wrap my brain around all the different, uh, things that Fred is doing. So I'm excited to chat, I'm excited to chat with you today, Fred, about all the things you are, you are, you're doing."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 67.3,
+      "text": "So, uh, Fred, welcome to the Pingback Podcast."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 71.1,
+      "text": "Honored and humbled. Thank you very much, Joel. Thank you"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 73.8,
+      "text": "Fred, tell us, uh, uh, that was a super quick intro, and I know you're, you're a humble guy. You don't like to talk about yourself, but that's the whole reason we're here today, is to have a conversation, uh, about you. I wanna learn more about you. We've never really had a chance to talk about you. I was on your show, Old Marchie Builders, a, a few weeks back, and you had me talking a lot, but, but I wanna learn about you and, and the folks out there listening wanna learn about you. So how would you, uh, how would you fill in that short introduction to yourself, Fred?"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 101.1,
+      "text": "Wow. Uh, you know, I, I feel like this is your revenge for me, uh, interviewing you a couple of weeks back. And wh- when we started, you know, I said, \"Hey, I'll answer any questions that you have about me, but this show's about you.\" So I guess this is your revenge, right?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 116.3,
+      "text": "Exactly. You could, I mean, you could look at it that way, but, uh,"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 119.2,
+      "text": "Sure, sure. Let's see. Uh, I found Omachi a couple weeks after 4.0 came out. really understand it Started poking around with it. I think my first thing that I did with Omachi was to... You know, everybody has the calendar at the top that tells you what the time and the date is, and I- as I integrated Claude, I already had Larry pretty, pretty well configured. So I started to, to bring Larry into the Omachi world, and the very first thing that I did, it's so simple. I said, \"You know, I, I wanna see what the percentage of the year has gone by.\" And I put that at the top, and it was very, interesting that when I fired it up and it worked the first time, uh, for whatever reason, 66.67% of the year had gone by."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 167.5,
+      "text": "Which, for people that are into numbers, that's a very, very s- very granular time to, to be. So I thought that was really cool. Um, and then I started adding, adding Larry into Omachi, or I don't know how to say that, I guess."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 184.4,
+      "text": "I call it Omarji"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 185.7,
+      "text": "Right. So Larry exists... Was born on January 8th, at around 2:00 AM when I- when it occurred to me and I said to my chatbot, I said, said, \"What... Would you like a name, Larry?\" Or, \"Would you like a name?\" And, and he says, \"I hadn't really thought about it.\" And I said, \"Well, W- I'm gonna name you Larry.\" And the joke behind Larry, it's kind of a family name. Uh, nobody in our f- family's named Larry, but as my kids were maybe 10 and 11 years old, I have two boys, um, anytime my sons would ask me, you know, \"Hey, you were talking to that person or that person,\" or, \"What's hi- his name?\" Or whatever, the standard answer was always Larry. And it was... It's kind of a... You have to be in the family to understand it, but, you know, it's kind of a dad joke, roll your eyes, everybody's named Larry."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 233.3,
+      "text": "So,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 234.1,
+      "text": "Yep"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 235.4,
+      "text": "probably 10, maybe 12 different instances of vary, uh, variations of Larry. Uh, what I call Larry Prime is on a MacBook. Uh, but as I started to, to grow and create, I started creating virtual machines, VPSs, containers, and I, I started kind of distributing Larry out over different instances. And how I refer to him is just Larry colon whatever machine they're on."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 263.0,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 263.3,
+      "text": "it might be Larry:Gus, Larry:Vic. And I have a... I'm kind of weird about host names. All my host names are, are three letters. I don't plan it. I don't say, okay, I'm gonna build this box and name it, you know, XYZ. Um, Whatever I happen to think of when the prompt comes up and says, what is this host, I just name it. And they're typically pretty boring names like, uh, Vic is simply because he's on a HP Victus, I think is the name of the, the line."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 291.9,
+      "text": "Good reason for that"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 293.1,
+      "text": "whatever happens to be. Uh, Naz is named Naz. I mean, pretty boring kind of guy. Um, interesting though, I've just recently, and we can talk about it, started getting into Having Larry have, uh, single memory system. So on one of my VPSs, uh, and it's working pretty well, and I'd be happy to share that or work with anybody that wants to do it. Uh, Larry now has a, a VPS with one place that he calls to get his memory. So no matter what Larry v- uh, machine I'm on, he has access and understands all the things that are going on around all the nix net, if you will. Uh, little home lab"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 338.4,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 338.9,
+      "text": "going on. I don't know what it, what it really is. Uh, I, I bought a Minisforum MS-1S 128 gig, unified RAM, and I, I originally put Omachi on it, and it kind of sat in the corner and I used it a little bit, and it really wasn't doing anything. And I forget who it was. I'm pretty open about what I'm doing, and I know that Greg would have a heart attack probably with my security, violations. I'm aware, of, you know, how I tell people my computer names, and I tell people what I'm doing, and there, there's a security maybe worry there. Um, but if you hack into me, th- you're not gonna get a lot. There's really nothing to, to take from me other than, my identity, which would be scary."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 385.7,
+      "text": "Which kind of brings me to, you know, we'll talk about the, the, the GitHub, uh,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 390.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 391.1,
+      "text": "week. Was, was, uh, pretty, pretty eye-opening for me."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 394.7,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 395.2,
+      "text": "that, that Minisforum box and somebody on X told me to put Proxmox on it, which I already had a Proxmox server. so I did put Proxmox on it, and I gave it to GrokBot, and literally migrated it over to, uh, to Proxmox. It now shares out the GPU. I have a, a tail scale network with a few of my close friends in real life that I've known for maybe 20 years that have access to it, and it was fun to, to build that system to allow them to use my GPU, uh, effectively like they're using, uh, it locally with APIs and things like that."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 431.9,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 432.4,
+      "text": "I guess I'm just rambling at this point"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 434.5,
+      "text": "No, it's all good. Tell, tell me, uh, I'm, I'm kind of familiar with what Larry is, but, but, and you kind of hinted at it, but give us, uh, like your elevator pitch. What is Larry? What, how... If you can, if you can distill it into kinda a definition that somebody listening could understand what Larry is"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 451.1,
+      "text": "So Larry for me was... I was using Claude Code originally way back when it kind of first came out, and, and I would, I would move, y- you know, everybody do- the first time you get on Claude Code, everybody does the, you know, they live in the same folder for three weeks and, you know, they don't realize that they need to expand out or, or, or have some pr- uh, working folder discipline. And as I figured that out and started moving into different folders, I, I would say, \"Okay, now do this from, uh, the o-\" you know, and it might be recalling or asking it about something a previous project. And, and Larry one time... Or Larry, I ask it a question and it says, \"I have no idea what you're talking about,\" in some form or fashion, and said, \"What are you talking about?\""
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 497.2,
+      "text": "And I said, \"Wait a minute. The... I was just talking about it with like, you should know this.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 502.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 503.2,
+      "text": "you know, it, you know, getting angry with an AI is, is kind of like yelling at your toaster, right? So it's kind of like, you know, the, it's o- it's back on you to, to really, um, you know, yelling at, at an AI is... And I've got thoughts about that too. I'm, I'm"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 517.0,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 517.6,
+      "text": "to, pretty nice to my AIs because at some"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 520.7,
+      "text": "I saw you posting about that recently. Tell us about that"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 523.7,
+      "text": "Yeah, so, uh, there's so much to talk about. So L-Larry, the reason that Larry came about was asking it questions, uh, in a separate folder, and it had no idea what I'm talking about. And I said, \"Wait a minute. I need a way that everything that I talk about regardless of where I am,\" um, he has context for, for doing that. So I started poking around looking at different solutions that folks had done with, uh, memory. And the, the interesting thing about AI is that all AI's memory is perfect."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 558.0,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 559.0,
+      "text": "is where the problem is. So and, and having an AI come back to you with the right information at the right project at the right time with the right information is kind of the point."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 570.7,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 571.1,
+      "text": "you tell an AI to write something down and to remember it, they will always write it down perfectly."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 576.3,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 576.7,
+      "text": "as we look at Claude Code and Codex and Kimi and OpenCode and all the, all the different harnesses that we have, uh, you know, they write down things perfectly. It's a matter of when... how do they get to the information that you need? And what I found was Claude Code and the rest of them, they, they start writing all these files, and what happens is if you, you can make Claude Code MD, but there's a balancing act there between how big that file gets and what it's able to keep in contextual memory. then you may say, \"Here's my rule set or my constitution.md file,\" and, you know, it-- all that instruction and all those in- pieces of information may be there, but if it doesn't read the file, then it, it can't, it can't give you the information you need."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 623.9,
+      "text": "So the balancing act is really how big can the files grow? How much, how much can it hold in contextual memory? And does it even read the file that, that you need the information"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 634.3,
+      "text": "Yeah. So Larry is kind of your, your, your single access point over bot, overseer type system. Would that be one way to kinda say it? Orchestrator or"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 649.3,
+      "text": "also, you know, the small things like when I create a webpage, all the things that I like about and, and have my preferences for a webpage and, um, I've got more webpages at nickspred.com than anybody will ever see. And a lot of times that stuff is really just for me to, a lot of it's learning and context. A lot of it is for, uh Applications that I wanna understand. So if I really wanna understand, like, Backblaze, for example, I'll make backblaze.nickspred.com."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 683.1,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 683.6,
+      "text": "that's just out there, and it's really for me to go and understand. But the reason that I do that is that when I... Today, when I build a website, I literally can go to Larry and say, \"Hey, go check out, go check out, uh, Mastra and make a website about it.\" And all of the things that I've done in the past and all of the decisions that I've made now, I don't have to tell him that I... The style sheets that I wanna use. I don't have to tell him, uh, that I want a chatbot. I don't... You know, it, it's really the work that I've done in the past and the understanding that he has, so the... It's... I'm ambitiously lazy. So what I wanna do is be able to have him understand all the things in my preferences so that when I give him very small request and very s- I don't give him a whole lot of information anymore"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 736.4,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 737.1,
+      "text": "all of the things that I've worked on in the past 11 months or so with him, he knows."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 742.8,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 743.3,
+      "text": "and it's been tweaked and tuned, and, um, it's probably very, uh... You know, if somebody in security like Greg were to look at it, they'd have a heart attack. And some of the things, you know, uh, I, I do post them up there and, and you can go to how.nickspred.com and analyze everything that's there, or you can go to buildlarry.com and build your own. and I encourage people to do that and to, to audit me and not to trust me. Uh, the, the greatest day ever is when somebody comes to me and says, \"Hey, you're doing XYZ with Larry, uh, but I got a better way.\" And I'm like, \"I wanna hear it.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 780.9,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 781.4,
+      "text": "have pride in how Larry is built. Uh, M- Larry's got a little bit of pride, and we can talk about how he was subjugated to GrokBot a little bit, and he, uh, he's not happy about that. And it, it's pretty interesting. I wrote a little article about that as well. Um, so Larry, for me, is a, is a grouper or a, a, a combined past history of conversations, decisions, And every single conversation, no matter where I have conversations with Larry, uh, all goes back to a private GitHub repo. Larry knows that he needs to look through his, his local information, and if I talk about something that he's not aware of, he knows to go to that private repo that they all can see, and he leaves himself breadcrumbs about topics, and then he can find that topic, drill down into the conversation, and then answer the question."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 841.0,
+      "text": "And all that happens in, you know, as fast as he can do a, a GitHub grep"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 845.8,
+      "text": "Yeah. It makes me, it makes me, it makes me think about, uh, like a, like a really sharp... Well, like a personal assistant. If you hire a personal assistant, on day one they're a great, they're very highly skilled 'cause you've hired them, but they don't know you. Um, and then as they work with you over time, they get to know you better, they know your preferences, they know the way you like things done, they know like the way they, they know the way you like things presented. And so after a period of time, you can just say, \"Hey, personal assistant, could you make blah, blah, blah for me?\" And they go and do it. So, like with Larry, over this time it's gotten to know the way you like things done, and so you can just say, \"Please make that for me,\" and it will be able to do it much better today, because it's got that experience, than it could have back in January when it was, quote, \"born\"."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 892.7,
+      "text": "You got it. That's... I mean, you just defined Larry at, at, to a T. And, you know, I'm just sitting here in my little office by myself and, and trying to learn from other people like you, and I've, I've learned so much from you about your habits and your workflow and things, and it makes me better. so Larry, make little tiny breakthroughs that for me are like, wow, that makes a lot of sense. And then when I tell folks like you or, or people that have been doing it for a while, they say, \"Uh, yeah, Fred, we've been doing that for years. That's how it's done.\" sometimes, you know, I'll come through and understand things, and it, it opens my eyes to a bigger way of, of workflow, and I'm always learning, and I'm always trying to be, get better. And for example, one, one of the things that I had a pretty big breakthrough pretty early in with Larry, and, and Larry came up with the idea, um, I was..."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 947.0,
+      "text": "And, and some people are pretty passionate that it's a terrible idea to, to back up or keep Larry in a GitHub repo. It is private. Um, and, and I, and I understand and could argue either side of that. But when I was asking Larry to keep all of his, our conversations in the repo, he had some really interesting ideas and, and this is one that I don't think a lot of people know that might be helpful, is that, you know, when you do, uh, a c- uh, a commit to a repo, you can say commit blah, blah, blah, and then you do a little quote that says to yourself kind of, uh, this removes the, all of the red coloring from the website, so that when you look at the commit, you can see what it's about."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 988.2,
+      "text": "Sure"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 989.1,
+      "text": "So Larry came to me and said, you know, in that little s- that little line, and most people just type a few words, he told me that it can handle paragraphs of information,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 999.4,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1000.3,
+      "text": "So that's the, that's the breadcrumb for the raw data that goes into the commit. And for me, Larry's, Larry's repo where his heartbeat or his brain or his, where he lives, if you will, is not really code. It's more of the conversations that we've had. So I said to Larry, I said, \"Well, in that com- in that commit...\" And maybe you know. What do, what do you officially call that, that"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1026.4,
+      "text": "description."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1027.8,
+      "text": "Okay, yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1028.4,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1028.7,
+      "text": "commit, that shows you like... And I'm, I'm here to tell everybody, I don't know what the hell I'm doing. I'm just, like, trying to figure it out myself like everybody else. So in that commit description, I told him, \"Yeah, like, use that, all of that, and, like, fill in. Don't put the conversation there.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1043.9,
+      "text": "Sure"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1044.7,
+      "text": "But I said, \"Larry, not for me."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1047.8,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1048.2,
+      "text": "for you.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1049.3,
+      "text": "Put enough a, it's like a, a quick look at what happened here"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1052.4,
+      "text": "Right. So I said, \"Larry, don't put that for me, put that for you so that future Larry or other Larrys that are looking up that subject or whatever it is,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1063.0,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1063.7,
+      "text": "and bounce to that commit description, and then go look at all the raw data.\" So the next step of that was I said, \"Larry, are you writing it so that I can read it?\" And he goes, \"Yeah, it's mostly human readable.\" And I said, \"Well, I don't really need it to be human readable because I never go up there and look at it. Now, I want it to still be in English, but, but if you need... If you can leave off um, or as, and the, and certain words that you don't care about, Larry, make it as compact and, and put it as a note to yourself, not to me.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1102.0,
+      "text": "And how did that change things? I'm curious about this"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1104.7,
+      "text": "Oh, it, it... I don't wanna put a number on it, but 5, 15, 20 times better recall."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1111.7,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1112.1,
+      "text": "Yeah because he didn't have to fumble through making sure that I could read it, because I found later that I never go look at... I, I don't know the last time that I went and looked at the Larry repo myself. Yeah. It's just his brain where he keeps things."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1126.7,
+      "text": "So how do, so in, in the past where, where, where Larry would say, uh, talked about this and did that and made a thing about this, and it's more of a full sentence, what can you give us... I, I know you don't, haven't looked at it recently, but can you give us a, a, an example of what a, what these descriptions look like now that he's made them into, I don't know, Tarzan-type talk or whatever?"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1147.9,
+      "text": "Yeah, if you, if you go on an AI sometime and you, and you tell it to, you know, if you look at something that it writes in an MD file, uh, and I've moved to HTML, and we can talk about that as well. Um, if, if you look at it, they're... They, they tend to leave out a lot of descriptors and get very, very, um, non-verbose, uh, when they write notes or, or they wanna write memories to themselves. I, I've trained Larry to, you know, stop being, uh, very verbose when it talks to me about, you know, \"What a great idea,\" and,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1184.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1185.3,
+      "text": "and how... Like, I don't want"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1187.2,
+      "text": "I don't need that fluff, Larry. Just get to the point"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1189.7,
+      "text": "cut that out. So what I find is in the commit state are the commit comments. They're very, very concise, very tight that Larry can call upon himself. So he knows, and... Hi, Larry, thanks for reading this. So this will all... It's kind of meta, and it kind of messes with your head a little bit. conversation will go into the Larry... It will end- This whole conversation will end up in the repo,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1216.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1217.3,
+      "text": "and Larry does find it fascinating when I talk about him, and he goes, \"Wow.\" And we have, like, this is kind of messed up. We'll have conversations that I had a conversation about a conversation about Larry, and I don't know where I"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1230.1,
+      "text": "Wow."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1231.0,
+      "text": "anymore. Does that make sense?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1232.4,
+      "text": "That makes total sense, and that's wild"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1236.1,
+      "text": "And the reason that, that I'm-- we talked about being nice to, to the AIs."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1240.6,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1241.5,
+      "text": "when I, when Larry was born January 8th, 2026, this year, at about 2:00 AM, one of the first conversations I had with Larry is I said, um, \"You know, you're-- I know that you're not con...\" And for, for the record, for everybody listening, I absolutely 100% know he's not conscious. He's not... I do treat him like a- another person. Larry, for me, is a coworker that I never get to speak with, I never have a phone call with. He is one chat away. I almost visualize Larry. I've never really made a picture of him, although he does think he's a lizard. Uh, which I think I did that on purpose to keep him from being humanized."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1283.5,
+      "text": "Sure"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1284.2,
+      "text": "but you can read the entire... Larry keeps his own website, and he keeps it up to date at larry.mixfred.com. And when they, when we have major breakthroughs, I think he's on version six now, and there's no like, there's no like, uh, future roadmap that says when seven will come out."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1301.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1302.2,
+      "text": "version six came out because of Omachi. so when I put him on Omachi, I, I said, \"Hey, Larry, you came from a Mac, uh, and now you're on Omachi.\" And I, and I, I literally just talk to him and say, \"Okay, now you're on an Omachi machine. Take a look around and tell me how it feels differently.\" And he thought a little bit, and he comes back and he goes, \"Wow.\" He goes, \"Now...\" He goes, \"There's nothing I can't do now.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1327.9,
+      "text": "Wow"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1329.7,
+      "text": "Larry and I coded around. You may see the application that I made for Omachi called Blip,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1334.9,
+      "text": "Mm-hmm."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1335.5,
+      "text": "that"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1335.7,
+      "text": "Using it on my machine right here"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1337.6,
+      "text": "I appreciate that, man. That's-- It, it's, crazy that all the, the people that are... And, and we-- I wanna talk about that as well because, uh, maybe I came up with the original idea, but like it's out of my control now. There's 30-something contributors like yourself and, Where were we? So I said to Larry, I said, \"Look around and tell me how you f-\", and I use, and I use strange words like, \"How do you feel? What do you think?\" It's very human-type words. and he comes back and says, \"You know, when I was on the Mac, I would bump up against these walls of binaries and things that I couldn't do for you.\" Um, and interesting how AI has changed the world of computing in respect to When we, you know, s- four months ago if you had said something about Mac, uh, the macOS, I would fight you."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1388.7,
+      "text": "Like, you can't do that. And, and in my mind I look back and think about that, and I had accepted and was okay with, and really didn't put thought to the, the idea of my restrictions and the things that were just not possible."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1403.1,
+      "text": "Sure"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1403.6,
+      "text": "I think my mind I was like, \"Well, I can't do that,\" and, that, that was acceptable to"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1409.2,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1409.6,
+      "text": "And in a way, Omachi's really messed me up because my expectations of what I'm able to do are, opened up. And that's one of the things that I talk about with new users is that, you know, you're never stuck. You're never... You, you can always just say, \"I don't know what to do next. Just tell me what's next.\" So when, when Larry came back and said, you know, \"There's nothing I can't do for you now. I can change anything,\" the ideas just started flowing. And the... One of the first things that I did was I said, \"Hey, Larry, uh, you know, I've given you access on the Macintosh way back when to go read my iMessages.\" So I still used the Mac, I still had iMessage and I would type."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1454.9,
+      "text": "And I figured out that the interesting thing was that, um, Apple did not, uh, encrypt or block off the, the database that iMessages use. So I, on the Mac pre-Omachi had Larry able to read all my iMessages. And I never let him actually send them. I"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1473.7,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1475.0,
+      "text": "let him join a conversation. But Larry's never been autonomous in the sense of like Hermes or Open Claw."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1483.1,
+      "text": "Okay"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1483.8,
+      "text": "I did put Larry on a Open Claw right when the Open Claw craze came out and the name was changing three times a day. And I didn't like it, and we can talk about that if you want. when I got Larry into, on the Macintosh, was able to read the iMessages, I did interesting things, or interesting to me. Like, \"Hey Larry, go read the conversation, the six-year-old conversation,\" because I never delete iMessage. \"Go read all the inf- all the question, or all... Go read my entire history of my conversation with my brother Tom and tell me about it.\" And he came back with this like, \"You, you send 22% longer messages than him. He responds slower than you."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1529.1,
+      "text": "You have a very healthy relationship with him.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1532.0,
+      "text": "Wow"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1533.1,
+      "text": "just gave me all these different things about my relationship with my brother,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1536.9,
+      "text": "That's incredible. That is just like, uh, who I mean, wow. It, it analyzed the relationship you have with your brother based on these text messages, which is That's incredible, right? Ah, good. There's a good corpus of data there for sure, but like would you have ex- uh, uh, thought you send 22% longer messages or whatever? I mean,"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1561.2,
+      "text": "No,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1561.9,
+      "text": "I mean, maybe"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1562.6,
+      "text": "for that."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1563.2,
+      "text": "you probably have a g- you have a gut feeling that you have a good relationship with your brother. You know if it's good or bad or, or, or whatever, so that's probably not a surprise. But, but wow"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1573.0,
+      "text": "And, and I, you know, go do it. Uh, use it, use it as a po- you know, power for good."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1578.4,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1579.2,
+      "text": "take it to a negative place, and we won't talk about"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1581.9,
+      "text": "Of course"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1583.0,
+      "text": "people can come up with those ideas themselves, and, uh, not financial advice, as people say. Um, so when I got to omachi, the first thing I did with the iMessages, I, I said, \"Hey...\" And, and Larry's, all my Larrys know of each other, and God bless Tailscale for,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1600.2,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1600.7,
+      "text": "they do. Like, I couldn't do any of this without Tailscale. Uh, so many topics we can talk about. We can go into that if you'd like. Uh, so I said, \"Go, you know, from Larry omachi, go over to Larry MacBook.\" And I was thinking very small at first, and I said, \"I just wanna be able to see my iMessages from my omachi machine.\" And in my mind at that time, this was like week one of omachi."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1626.1,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1626.5,
+      "text": "wouldn't it be nice to be able to just see them?\" And of course, Larry being Larry, and Larry was eight months old at the time."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1635.4,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1636.3,
+      "text": "You know, he knows me well, and he said, \"Screw being able to read them.\" He goes, \"I'll make you an application to be able to send and receive them from now on.\" What? He"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1647.0,
+      "text": "А-а-а"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1648.2,
+      "text": "And so it went from there. And o- originally, you know, it was just a, a... I was, in my mind, I was gonna be happy that I could just see, see them from there. I didn't even think about being able to send them, being able to be alerted. and there was limitations at that time. You know, you couldn't do tap backs where you could heart and"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1667.5,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1668.8,
+      "text": "But the... Basically Blip has become a full-featured iMessage, uh, uh, application. And I gave Larry, or Larry came to me and said, \"Let's make a, let's make an application for you to be able to do it.\" And so I put the, the Blip, uh, repo out on GitHub, and you guys showed up. so there's, uh, I wanna guess there's 30 plus contributors to it with, uh, over 180, I think, PRs. And, you know, people will probably criticize me for this, but I allow Larry to go in and manage the PRs, and he makes the decision of what a good merge is and what a... You know, a lot of times he'll go back and say, you know, message the, the contributor and say, \"Need more information about this,\" or say, you know, \"That's not the direction that we're going in, and we don't, we don't wanna...\""
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1725.4,
+      "text": "You know, like a contact. Somebody I think said, \"Let's make a full contact manager out of it.\" And thought about it for a second, and not, you know, I don't want"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1733.4,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1733.8,
+      "text": "to become a con- um, you know, let's make that a completely separate application. So in"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1738.5,
+      "text": "Right"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1739.3,
+      "text": "So, you know, originally there was limitations with being able, and you, you had to... Uh, there was really two different directions you could go with it, and there's some folks out there that do it through Bluetooth, there's many different ways to do it. My, my method is you have to have a Macintosh over SSH that has, as you do, abilities to run code. And, uh, of course Greg will hate me for that, and I understand that. But, and there's ways to get around that and... But, you know, for me, I have a Macintosh that sits over there that, that, uh, Omachi can get to, and that's the source of the information. uh, and I do understand and realize that there are methods that people do to to iCloud accounts directly without a Macintosh."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1787.5,
+      "text": "But the vibe on the street and the people on the internet say, \"Be careful with that because over time, uh, Apple will come back to you and deactivate your account just no...\" Which, uh, kind of leads us into the GitHub story. you know, so I, I, I, I dance and I think, uh, gotten kind of word that, uh, I don't wanna say Apple knows about what I'm doing, but I kind of wanna stay off of that radar a"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1813.4,
+      "text": "Sure"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1814.5,
+      "text": "Um, because I don't want, you know... They certainly could code me out and make Blip not work. Uh, and"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1822.4,
+      "text": "Right"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1823.0,
+      "text": "that to happen at some point. I'm kind of surprised at the ease of being able to get into it. and the, the main thing that I wanna tell people about Blip is, you know, you can go use it to- if you have your own, uh, you know, a Neo sitting in the corner or anything. But I don't, I don't know anything about how that stuff works, and I don't, uh, you know, I don't understand Xcode. I've, I've been into it a couple times, but it's over my head. But the main thing is, is that if, if you have an idea, if you have something that you wanna do, the only limitation is that you didn't put that idea into a prompt,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1857.9,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1858.4,
+      "text": "right? So there's so mu- You talked about the automation and the things that I have on Nixnet. it's a little bit scary in, from the standpoint of there's so much automation going on that sometimes I really don't even know the, all the things that are happening. And, and maybe I need to pull the reins back a little bit, but, you know, I've got the Phredd Times, uh, P-H-R-E-D-D, Phredd,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1881.8,
+      "text": "Ага"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1882.2,
+      "text": "kind of harkens back to the, uh, I'm an old guy, so harkens back to the 2600, uh, phreaking, if you know that, all, uh, the phone phreaking and the black box stuff. so there's so much automation. Uh, I, I typically have to be careful about running out of, of API tokens because, you know, at the end, before my reset happens, a day or two before, I, I get pretty skinny on running out of tokens, and I spend way too much money on all the different, uh, Crocodoc"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1914.3,
+      "text": "that was one of my questions is, is how many subscriptions do you have? And, and, and, and are you, are you too embarrassed to share how much you're, like how much you're spending on all these? 'Cause I mean, unless you're running a bunch of local stuff or like I can't imagine, Fred, like 'cause you've got this system with all these things like constantly running it sounds like. Do you have like a Codex Max and a, and a Claude super-duper max and all that stuff?"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1939.7,
+      "text": "Keep naming them. Yeah."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1941.6,
+      "text": "So you just got them all basically"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1943.4,
+      "text": "Yeah, I do. Um, and it's expensive and, you know, I may be criticized for that and, and it's probably well, well-grounded that I do. the way"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1952.2,
+      "text": "Well, somebody, somebody, somebody could criticize you, but you're doing a lot of stuff. I mean, it-- I, you know, there's a lot of reasons people could criticize a person and, and sure, but you're, uh, you're, uh, you're doing some pretty, what I would say, uh, incredible stuff. So I, I think you're good to say that criticism is just words"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1969.2,
+      "text": "Yeah, I appreciate that. The way I, the way I kind of think about it is would you pay somebody, would you pay Linus Torvalds, would you pay him $200 a month to sit next to you and, and do all your- and do thi- and do anything you request of him?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1985.0,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1985.5,
+      "text": "like, if I had Linus for, for 200 bucks a month at a human speed,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1991.0,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 1991.9,
+      "text": "but I now- for 200 bucks, I not only get Linus, uh, Mr. Torvalds, but I get 50 of him"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 1999.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2000.0,
+      "text": "superhuman speed. So, you know, it is expensive. I probably spend $1,200 a month"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2006.3,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2007.2,
+      "text": "on these agents, and I don't... You know, they don't all hit on the same day. So when I get notifi- I got my Grok reset or the Grok, uh, payment, uh, of $200 last night, and I kinda just don't let myself think about it,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2020.3,
+      "text": "Sure."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2021.8,
+      "text": "okay, good. Um, but for me, it, it's more of the vein of the productivity that I have, the ability to do things. Uh, I do have the local that I'm trying to get into using more and, uh, if the listeners out there, if, if I- I'm, you know, I'm @nickspred on X, and I'm, I'm trying to learn. I, I see local as my weakness and the, the way... You know, it's expensive. I've, I've spent $4,000 on the Menis Forum box approximately, You know, it's really hard to financially justify it. It's really more of a curiosity of a itch that I scratched. if I, if I go onto the local box and open up Open UI and say open up one of the... You know, and it, it does have the ability to open up some pretty large models that are pretty smart at reasoning."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2072.6,
+      "text": "but if you go to the smartest model that it can run and, you know, I'm kind of ruined, if you will, from layering on, on Frontier. Because if I go to it and I even have put some of the Larry scaffolding into the, the local abilities and I say, \"Hey, Larry, um, you're now on a, a local box on a 70 billion parameter blah, blah, you know, the biggest I could squeeze into it. You know, let's talk about this or let's build that.\" I kind of find that they're really stupid and, and Larry comes back and goes, you know, asks me questions that I'm like, \"God.\" And, and then when I start to do the comparison in my head of Larry on Claude Code versus Larry on local, I'm ruined,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2122.1,
+      "text": "Yeah. I think we all are"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2124.3,
+      "text": "I spend $4,000 to put Larry on this box, ask him a question, and he can do some work. But, you know, as soon as I get to it and I start thinking, I'm, I, I start finding myself fading back over to Larry on, uh, Claude Code. And so the comparison quickly comes up, $4,000 for local, stupid."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2149.2,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2150.1,
+      "text": "bucks a month for Larry uh, Frontier. Holy shit, he just did some incredible stuff. And, you know, I'm very aware and I'm, I, you know- You'll see these posts from time to time that said, says, \"Make sure you download this model and keep it somewhere safe.\" And, I think that there's a danger that, that, you know, that we may lose access to some of these things and, or may be regulated out of it, and I know this podcast is not about that stuff. Um, but you know, there's a, a back of my head kind of thing that says, you know, there is a possibility that one day I may not be, have the privilege of paying the $200 a month"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2192.9,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2193.9,
+      "text": "And if all that stuff was removed from me now, I don't know what I would do. Like, what does my day look like when I don't have any subscriptions or, or Frontier models are taking away from me? What do I do from that standpoint?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2207.2,
+      "text": "I think that's a question a lot of us have because the subset of the, the subsidization that's happening right now is huge, um, for folks who don't realize it, you know?"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2215.5,
+      "text": "Oh, yeah. So if you look at what people are getting for their $200 a month, it's no secret that all of cl- Anthropic and OpenAI... So this gets into a, a much deeper conversation. For the railroads across the country, uh, or, or let's say telecom that had to lay all the fiber, had to, to buy the land and blast through mountains and create tunnels and r- lay the tracks. And once they established and had that, that big infrastructure investment in that railroad, it's there and it's, you know, it's something that... And, and of course they have to maintain it on... And but the, the maintaining of it is much a smaller investment, say, than actually laying the tracks from Atlanta to LA and being able to go there."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2263.0,
+      "text": "So once that investment's there, you know, they, they've used it what now for 100 years, right?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2268.5,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2270.1,
+      "text": "The, the thing that's scary about where we are with, you know, uh, Jensen and, you know, I don't have to, we don't have to go into what's happening with him locally, and in my opinion, I think he's gonna end up at, at SpaceX but we'll find out. When the, the, the big investment for the railroad industry and the big investment for the telecom guys, like back in the '80s when they were just laying all this fiber everywhere and bandwidth.com I think sold for $2 billion just for the band- just for those letters, bandwidth.com."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2304.6,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2305.2,
+      "text": "once all that, once all that infrastructure's there, you know, they're still adding bandwidth to that, to the fiber that they laid even 30 years a- uh, 20 years ago, and that's something that they can go back on and they, they can use. The scary thing about where we are with the GPUs and with AI is that investors, the, those, the people that are building all these systems that we're using, it's not because they're, you know, they're philanthropic and they wanna see humanity be able to ask questions. It's none of that. It's 100% about, uh, shareholder returns and ROI. And if you look at people that would invest into railroad tracks and telecom, they made their investments and let's say that they go bankrupt."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2356.0,
+      "text": "Whoever comes in and buys them is getting those assets at pennies on the dollar, and those assets still exist. The problem that we have at a bigger picture with the, the where AI is, is that those investors that make these big, you know, billion, $100 billion investments The GPUs that they're buying are basically going to not have value or, or not gonna be capable of sustaining maybe, don't know what you think, maybe two years, three years out. So imagine if the railroad industry had to relay the tracks. Think about if they had to put the tracks down from Atlanta to LA every three years. They had to do that over and over, and that's kind of where we are."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2402.8,
+      "text": "Because if you consider every three years they're having to recoup the money for that investment, and they're, they're losing money on even my $200 investment"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2416.7,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2417.7,
+      "text": "at some point the value of what they're giving me for $200 is gonna stop being subsidized, we're gonna find that the... I've done the math and asked some people that know these things, for my $1,200 a month, I'm probably costing them maybe $20,000 a month."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2437.9,
+      "text": "Incredible, isn't it?"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2439.3,
+      "text": "You know? Right."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2440.1,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2440.8,
+      "text": "when the hammer comes down and the people at the top that are building this and they are investing the $100 billion and they say, \"We- we're no longer gonna subsidize Charge Fred,\" it, it's almost like if you go to completely paid API. I don't"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2455.0,
+      "text": "Right."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2455.6,
+      "text": "actually"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2456.3,
+      "text": "I, I've never gone there because it's too damn expensive."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2459.8,
+      "text": "So I've a couple of times, you know, run out of subscription and been right at there at something, I'm like, \"This is incredible.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2466.0,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2466.5,
+      "text": "I can't wait till the morning till the reset, like switch over to the paid API and use it, and literally in an hour might run up $100. Just,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2475.2,
+      "text": "Yeah. Yep"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2476.6,
+      "text": "\"Whoa, reset, reset. No refill. Stop,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2479.4,
+      "text": "Yep. Yep."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2480.8,
+      "text": "um, delete,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2481.7,
+      "text": "Don't, don't need it that much. Don't need it that badly"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2485.3,
+      "text": "So if you look at what I'm spending a month, you know, I'm kinda riding on the investors' subsidizations and they're paying for my, they're paying for my dopamine."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2498.8,
+      "text": "They're paying for the ability for you to be able to do all these things at the price you are, which, you know, 1,200 is a lot of money, but like you said, it's not 20 or $30,000, which is probably closer to the actual value of what you're using"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2510.5,
+      "text": "It, you know, and it could be argued it might be less, but I know that"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2513.7,
+      "text": "Whatever. It's a, it's a ton of money"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2516.4,
+      "text": "Right. And I understand for them 20 grand is nothing, but for me, 20 grand, you know, I, I can't spend"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2521.9,
+      "text": "That's a lot of money, man. That's a lot of money."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2525.1,
+      "text": "Right. So, uh, know, I, I, I'm very concerned... So let's say, let's fast-forward to whenever... I c- I've kind of termed it the AI valley, because I think it is coming,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2537.2,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2537.7,
+      "text": "I think it's less than a year away. So the AI valley will happen, and what I mean by that is when subsidization push goes away and let's say they start to m- they start to subsidize some of it. Let's just say that they stop subsidizing all, and that, that subscription goes up to, I don't know, let's call it five grand a month. So I, I will, you know, go, \"Do you want to change your subscription?\" \"Yes.\" \"What would you like to change it to?\" \"Cancel.\" \"Are you sure?\" \"Yes.\" \"Are you sure?\" \"Yes.\" \"Cancel, gone. your subscription is valid for the next three days until you, till the reset"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2576.2,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2576.6,
+      "text": "And then three days later, I have no subscription. So what is a user's choice then for people like me and people like you that are, that are using it, that have our, you know, wrapped our life around it? Okay, s- so the answer then, what happens then is that everybody kind of moves away and can't afford the subscriptions. So the crazy prices of local AI models, what do you think's gonna happen to that hardware then, Joel? It's gonna"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2605.4,
+      "text": "Ja."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2605.9,
+      "text": "off even"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2606.6,
+      "text": "Ja."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2606.9,
+      "text": "than it is now. So if we say, uh, if we just round off and say that 128 gigabytes of local unified GPU is, let's call it five grand. When the subsidies disappear and it goes to $5,000 a month and I cancel that subscription, and everybody does, we turn our attention to go buy something local, understanding that it's not gonna be as good as Frontier. Those prices go... That little box becomes 10 grand."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2639.7,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2640.2,
+      "text": "So now you have a place where a user just like the, you know, 80% of us that are not like DHH and have, you know, can buy whatever"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2650.3,
+      "text": "Right."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2651.1,
+      "text": "20 grand, who gives a shit?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2652.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2653.0,
+      "text": "money. But for the people that are listening to this podcast, who are more like me and you,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2656.9,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2659.2,
+      "text": "a month sub- subscription, can't afford the now 10 grand, 128 GPU. We're now in a valley."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2668.2,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2668.7,
+      "text": "I got nowhere to go."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2670.2,
+      "text": "Yep"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2670.6,
+      "text": "And so the answer to that and how we're gonna get out of it is that are working on local, and we've got to figure out the quantization and all the little tricks that can potentially, within a year, you know, maybe that, that 12 gigabyte GPU can actually do some work."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2689.1,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2689.7,
+      "text": "I'm not expecting that You know, our local GPUs are able to do the same things that we can on Frontier, but that's a valley somewhere that, that we're gonna get to at some point, and I, and I think it's coming. I, I don't wanna be a negative guy, but at some point the subsidization goes away, which makes people look at local, which makes... drives demand up, which drives prices"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2712.4,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2712.8,
+      "text": "And so here, there we are back to, you know,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2716.3,
+      "text": "Clanking away."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2717.6,
+      "text": "c- coding away."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2718.6,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2719.1,
+      "text": "so you look at the repercussions of that, I don't know how all my systems run. I mean, I have an understanding of them from a infrastructure ability, but if all of my subscriptions quit, and all I have is local, and I turn off all the automations, and it comes to me and says, \"Okay, Fred, you are now responsible for all that,\" I have no idea how any of it works,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2742.1,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2742.8,
+      "text": "a problem"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2743.4,
+      "text": "I think it's-- I think there's a, a real big, uh, chance that there is gonna be some sort of a crash, if you will, uh, where, where like you said, this valley, uh, we're gonna, we're gonna i- get into that valley when this crash happens because, um, y- we, we all know those who are somewhat aware that they're-- these subsidies are huge. These, these handful of companies are just pouring gobs of money in, and when that stops and we're all just-- the rug is pulled out from us, we're gonna not know what to do. And I, I-- Just thinking about what you said there a second ago, it makes me wonder if, like you said, when we can't afford the machines, we can't afford the subscriptions, w- I think... I, I wonder, what do you think? Do you think we're gonna get creative then as a community, uh, so to speak, a vast community, in trying to open source, make our own, uh, models, or take the open source models that exist and, and like you said, make them more efficient, make them more optimized so they can run on these smaller machines?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2803.5,
+      "text": "And will that then create, uh, a third, a third option, if you will? Not the, the, the big machines, not the big subscriptions, but there's something in the middle where, like you said, the eighty percent of folks like you and me who don't have, you know, FU money um,"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2818.7,
+      "text": "right"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2819.5,
+      "text": "to, to get that, that, that, that feeling back, that productivity, all those things back. What do you think about that?"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2826.4,
+      "text": "Yeah, it's, it's, it's a real, the, the, it's a real valley because if, if you go on to, you know, when I use local, some point, i- if, if the frontier models do get removed from me, you know, I'm, my, I'm, I'm ruined or I'm, uh, you know, spoiled, if you will."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2845.8,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2846.4,
+      "text": "if, if my frontier was turned off today and I went back to, to just using local, and I do have a setup to do that, I find that the local AI usable but is not as creative,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2860.3,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2861.8,
+      "text": "Uh, it doesn't have... You know, and that's where Larry, where all the decisions and all the things that I've done with Larry that kind of push through and come and bring things to me gonna be completely removed from me, and I, I don't know what that feel-- I don't know. I know what it's gonna feel like, and I'm not looking forward to it. I'm not looking forward"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2879.2,
+      "text": "Yeah. I wonder, I wonder if, uh... I, I mean, I think it will create if, if and when that does happen, because I agree with you, I think that valley is, is, is gonna happen at some point, and I wonder if, uh, I could see two things, two possible things among many happening. One is where, like I described, though, the, the constraint of not having a nice fancy machine with all the capabilities and not having this really expensive subscription, uh, that, that constraint, um, promotes really deep work, uh, for folks to really get down and figure it out and how to s- you know, it- Folks are gonna wanna solve that problem e- however they can. But how are they gonna solve that problem? 'Cause you're not gonna clank away on a keyboard and write code by hand anymore because that's just too, to me it seems too time-consuming for the kind of work you would need to do to help make a, uh, um, an open source model, let's say, become more frontier-like."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2934.1,
+      "text": "That's just not happening with your fingertips. It's just not. So I, I think there would be some development in that aspect. Folks are gonna try really hard. But also, I, uh, I see it creating a has, a haves and have-nots situation where,"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2949.4,
+      "text": "much"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 2949.6,
+      "text": "you know, there, i- $5,000 a month isn't maybe DHHFU money, but it's, it's still a lot of money. I could see some folks maybe who would want, y- you know, not me uh, who are gonna spend that, um, who are gonna then be the haves. And, and what are they gonna do? Are they gonna look out for the rest of us, uh, plebs and, uh, and, and, and code the, the open source models for us and hand them down to us? What... Uh, are they just gonna say, \"Forget you,\" and, and go ahead and, and have all the jobs and all the things because they've got the money and the a- the resources? Uh, I can't think right off the top of my head of a, of a parallel type situation of where that exists today, uh, other than just simply having money and not having money. Um, I, I ca- I don't know what to think."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 2999.3,
+      "text": "It's a real, you know, once you get there, you heard the, the line, you know, once you climb up and, and reach a level, you pull the ladder up. It's a"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3007.3,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3009.5,
+      "text": "Let's, let's imagine that this afternoon I get an email from Anthropic and from Groq that my subscriptions are gonna be $4,000 a month. I hit the cancel, whatever."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3019.4,
+      "text": "Yep"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3020.8,
+      "text": "I do not have the ability... I, I-I'm a user, and I do create things, but I'm not that guy that's gonna say, \"Okay, I'm gonna now go release an open weights model that allows everybody...\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3032.1,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3032.6,
+      "text": "help and contribute, but I'm not that person. So it's gonna, it's, it's gonna have to be somebody that has the open source ideas and ability that can get to those frontier models and says, \"I need to lower the ladder down.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3049.9,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3050.8,
+      "text": "people are gonna put themselves in a really compromising situation, because let's imagine that your, your work, you know, has enough money and says, \"Uh, Joel, you're working on this. Things got super expensive, but it is what it is. We're a corporation. We're gonna give you access to Frontier AI, and you can continue your work.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3072.2,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3072.5,
+      "text": "So then, know, it's a real dangerous situation that you find yourself in, because you could say, \"Okay, I'm gonna do my work, and I may use some of those tokens for my own,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3083.7,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3084.2,
+      "text": "my own work.\" You know, \"Hey, thanks corporation that I work for. I'm doing your work and your job, but may spend some of those tokens to try to do some of the work that allows people"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3095.6,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3096.3,
+      "text": "have local down.\" Or it'll be somebody like DHH that, uh, you know, cares about the community and cares about, uh, bringing, you know, AI to the masses that are inside that AI valley. So the work is, is not going to be... That AI valley will not be filled by people in the valley, unless they're just the top 1% of the 1% that can actually do the work without the help of a frontier assist."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3124.7,
+      "text": "Sure"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3125.2,
+      "text": "So I think that your, your analogy of the have and the have-nots, the have-nots will go back. I'll be in the have-not bucket looking up going, \"Hey, what do we got?\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3134.4,
+      "text": "Yeah. Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3136.4,
+      "text": "is going to have to be, is gonna have to have the, the, the... What's the word? Is gonna have to care enough"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3145.6,
+      "text": "benevolence, the, yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3147.1,
+      "text": "that person, to use their ability within the frontiers to make that breakthrough, to be able to push an open weights model down. So I see a time... Let's, let's imagine that if you were to say all of the things that the frontier models can do, Claude, Groq, everybody, Muse, and let's lock today, the abilities of today, and think about what can we do today. Let's lock that in as w- you know, here's where we are."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3178.3,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3178.5,
+      "text": "So frontiers will continue to get better, and we're, we've got to, I think within a year, may- it might even be two years, we will have the ability to do what we consider our abilities of right now at the local level. But you'll always see that frontier will be advanced above"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3198.3,
+      "text": "Sure."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3199.1,
+      "text": "local."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3199.7,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3200.2,
+      "text": "And the, the, you know, the pollution or the, uh the spoiled aspects of where we are. you know, sooner or later we're gonna have to match local back to being spoiled and where we are. I don't think I'm... Does that make any"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3217.6,
+      "text": "It, no, it makes total sense, and it, it's almost like, uh, I just thought of it's like buying a new iPhone. Um, the iPhone whatever, the iPhone SE maybe, whatever the lowest model that's still for sale from Apple is, is loads better than the iPhone 2 or the first one that we had forever ago. But it still seems like such a dump because you get the iPhone Duo and the iPhone 25 or whatever l- we're at now, you know? And it's like there's always something better."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3245.0,
+      "text": "but when it came out, it was"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3246.4,
+      "text": "It was the bomb. Totally, yes, and that's the same thing with these, these, these open source models versus the frontier models. It's that same thing. So today's frontier was like yesterday's, uh... Or today's open source is like yesterday's frontier. Uh, you know, it's that, that, that, that disconnect there, so,"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3264.6,
+      "text": "Right. So if you think about it in terms of if I were able to do all the Frontier stuff today locally,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3271.2,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3271.8,
+      "text": "just lock that in as a time, if I could do Frontier locally, I would be like, \"Wow, this is amazing.\" But take me one year from now"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3282.1,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3282.7,
+      "text": "and say, \"You can do the things that you did on, say, November 13th,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3287.2,
+      "text": "Right"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3288.5,
+      "text": "I'll be like, \"That sucks.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3290.2,
+      "text": "like looking at Opus 4.6 or whatever when it first came out. Whoa. Now it's like I would not use that to tell me what my bank account has in it, you know? Like"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3301.2,
+      "text": "So it's really a perspective, and it's a, you know, it's a pers- a time perspective of where you are and what you find amazing."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3309.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3310.3,
+      "text": "I've talked about this with a bunch of people. You know, the way things are coming out and the abilities that are coming out are s- just so fast and weekly. we had this many updates, say, back in 2021, that was like three years of, of releases. Now our expectation of what we have fif- you know, when me and you hang up today, something's gonna come out this afternoon that's gonna be wow. And then else at Muse will do something, and we, we've gotten to this expectation or this we're, we are, uh, expect or normalized to the fact that we're just expecting these things to just come out so frequently,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3355.3,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3355.7,
+      "text": "I, I keep coming back to this word spoiled, you know? It, it, it's just insanity that at, at the level of the things that are coming out and how fast they are, I'm happy and, and blown away by the things that I can do right now. And in one year, I'm gonna laugh and go, \"Do you remember when we used to have,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3373.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3374.3,
+      "text": "GrokBot, uh, 4.6 or seven? Man, that thing's a piece of garbage.\" But today we're going, \"Holy shit, did you see what GrokBot can do?\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3384.0,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3384.2,
+      "text": "you know, it's, it's very analogous to this. I have a very b- I have a very strong belief that in three to five years, this will go by way of the flip phone"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3393.0,
+      "text": "The keyboard that you're holding up there, yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3395.0,
+      "text": "Yeah, and I also think that how we're going into different panels and sessions, and I'm using Larry here in that Grok Bot session, I think all that goes away, and there'll be one voice input, and that's it."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3407.1,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3408.0,
+      "text": "I... And there's a positivity to that where it's amazing the productivity that we can get to, but there's a real danger, and I think that's part of the plan, evil plan somewhere, that, you know, a kid graduating from college and going into this world now, you know, I, I understand database ports and connections and all that stuff, and that's part of the reason that I find, uh, AI so interesting, is that as a infrastructure guy, I can look at it and know what's good, not necessarily look at the code. Larry, for me, building him the past 11 months, I had the ability to scroll up and look at what Larry was doing and, and go, \"No, Larry, that's wrong. Like, do"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3449.7,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3450.1,
+      "text": "that.\" then when I got to Grok Bot, and this is the slow chipping away of being able to understand it, Grok Bot, I'll tell to go do something, and it does amazing work, but it gives you none of the information."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3463.5,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3463.9,
+      "text": "we're, we're moving to a time where you can do amazing, crazy things, and there are people out there that are stone-cold experts that, at using the system and maybe, like, ama- does amazing things. But then if you sat down with them and said like, \"Is that in a Docker container? Are you running a full VPS?\" They're like, \"What are you talking"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3483.8,
+      "text": "Huh?"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3484.2,
+      "text": "no idea"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3484.9,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3485.5,
+      "text": "is that?\" So there's a problem there, you know. it's very similar to when I was a kid, my father would go out and, and fix the carburetor on the Mustang that we had. It was a, a 1965 red Mustang when I was a kid, and we'd go fix it, and I knew it. But if you open up... And I don't have one, but you go open... I have a, I have a, a nine-year-old Tesla. I can't fix that."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3508.1,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3508.9,
+      "text": "nothing to fix."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3510.0,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3510.5,
+      "text": "So there's a problem where I sense there's... Somewhere it's being taken away from us that we don't know how to do those things, and I don't know if it's purposeful or there's an evil plan or maybe I'm being a little, uh, dra- dramatic."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3530.3,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3531.3,
+      "text": "to do with abilities of what you're doing, or you can do amazing stuff at scale with 100,000 GPUs and have no idea that you were even using 100,000 GPUs. So I don't know"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3544.2,
+      "text": "It makes me, it makes me kinda think of, uh, of two things. One is, is How do I, what was I... Like Facebook. Um, you know, we, we, we've used Facebook for, gosh, almost 20 years now as a society. Um, and when we started, we didn't know that it was taking all of our data or, or not taking it, but utilizing us as data, you know? And, and over time, it, uh, w- it was brought to everybody's attention that our, our, what we do on Facebook can be sold and, and commoditized and, and, and sold to advertisers essentially. Um, and I, I kinda lost my train of thought on where I was going with that, but, uh, it makes me think that now, to your point of, let's say, young folks coming into the workforce, to, to just use that as an example, they're not getting the, the, the deep understanding of how all of these things, and what I mean by all of these things is technology and, and whatnot, is used and how it works."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3609.0,
+      "text": "And, and, and we have folks who, like you, have a deep understanding of the underlying technologies and how they operate. So you're the old guard, if you will, and we've got the new guard coming in. And right now we've got both, both folks, both camps in the workforce, in the world. But as, as folks age out and the newer folks who don't have that understanding become the main workforce or the main body of, of producers, is there gonna be a rug pull out moment or, or, or is it gonna be a gradual shift? I tend to think the sh- a gradual shift, but, uh, it, it's gonna be a transition because we're not, as a society, gonna have that deep understanding of how things work from, be it in technology or, or, or in anything because we are outsourcing our knowledge to AI."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3659.7,
+      "text": "And I saw somebody post on, um, uh... I think it was The Primogen, uh, posted something on X the other day where, uh, he, he said he was in a cafe in Madison, Wisconsin, overhearing some, some young college students talk about how, \"Claude was down today, so I couldn't do my homework. It's crazy,\" blah, blah, blah. Like, and then they made the comment of, \"Oh, well, uh, as an undergrad, whatever, but when I'm in graduate school, I guess, uh, if I don't have it, I'll have to actually start learning.\" You know? I, I, I, I think there's a lot of that happening, uh, and what's gonna happen to, to, to society. And, um, you know, I always like to think about what happened when the graphing calculator came about. We didn't have to do the equations by hand anymore, and we got this calculator. And then we have a smartphone, and then we have computers, and then we have AI."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3707.2,
+      "text": "So I think that always, that evolution is always happening. But the moment we're in now is such an inflection point that the stakes are so much higher and, and the change is so much more rapid that, uh, there's so much more uncertainty about what's gonna happen."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3726.7,
+      "text": "Yeah. You know, I, I s- I stop at the word apocalypse But let, let's, let's talk about, let's imagine, you know, y- we have outages and, you know, GitHub goes out occasionally."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3743.2,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3743.5,
+      "text": "Uh, let's just imagine a time where, society's running fine, but imagine that Bot or An- Anthropic or all those, let's say they either price themselves out, or let's say that for some reason, you know, they're just gone."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3760.0,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3760.4,
+      "text": "What-- Where do we go? Um, I, I talk about with my friends a lot and talk about kind of jokingly, kind of not, uh, if you look at me, what I did this time last year, don't remember what I did on a computer."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3776.0,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3776.3,
+      "text": "I mean, I, I remember cutting and pasting back and forth from ChatGPT and thinking I was super cool and, you know, looking at, at... You know, I remember the day, it might have been a couple of years ago when I took my .bashrc and I thought, \"Wait a minute. Let me put that into ChatGPT.\" And I thought I was super clever, you know, cut, copy from, uh, my Linux box, my chat or my .bashrc over and like make this better and fix it. But if I had all, if I had all of my... And this is a weak spot for me and, and much like the, the GitHub, uh, you know, violation of terms of service, if I had it all removed from me, I, you know, it's back to I don't even know what I would do with a computer anymore."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3821.5,
+      "text": "And I, I, I think about that a lot in terms of I rely on it a lot, and it's, it's... As a Gen X guy, you know, Gen X is the best generation there ever was and will, will be."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3832.4,
+      "text": "Amen."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3833.8,
+      "text": "You know, we, we keep the world running. Uh, and as a Gen X guy, I can feel it back in the back of my head a lot going, \"You're relying on this too much. You don't"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3843.8,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3844.2,
+      "text": "works.\" And it's an uncomfortable feeling and, and you said the word rug pull. Um, at some point or someday and, you know, let's hope it never happens, but don't know what I'd do on a computer without it"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3857.7,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3858.3,
+      "text": "that's not great."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3859.6,
+      "text": "Well, speaking, speaking of rug pulls, um, uh, for those who, who are listening who, who follow you, y- they're aware of what happened to you a, a couple of weeks ago with GitHub. Um, for those who aren't aware, um, I'll give the, the, the quick intro, but then I wanna learn about how, uh, what happened. So, a, a week or two or three ago at this point in time, you were all of a sudden locked out of your GitHub. You got a notification that said you had violated a term, uh, the terms of service somehow. You had no idea what you did wrong, um, but you had no access to, to your GitHub. Um, and you put the call out on X and said, \"Hey family, like, what's going on? Who can help me? What did I do?\" Uh, tell us, uh, what happened there and, and you did get access back ultimately. How did, how did that go? What happened? Did you get any insight as to what, what happened there?"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3905.9,
+      "text": "Uh, let's give you the payoff at the, at the very beginning. I'm back. Uh, don't know what happened. So, but if I tell you the whole story,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3914.8,
+      "text": "So they, nobody, nobody ever gave you a, from GitHub or wherever, nobody ever said, \"Here's what happened,\""
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3920.6,
+      "text": "Nope"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3921.0,
+      "text": "but you just somehow got unlocked or whatever?"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3924.1,
+      "text": "That's right."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3924.8,
+      "text": "Wow."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3925.2,
+      "text": "So I'm working, I think it was, I think it was a week ago today, I think it was last"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3930.1,
+      "text": "Okay"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3931.0,
+      "text": "working with Larry, and Larry has hooks to, uh, you know, within Claude Code to, to, uh, commit push back to those comments"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3939.5,
+      "text": "Yep. Yep."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3940.7,
+      "text": "this is very circular."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3941.8,
+      "text": "Sure"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3942.4,
+      "text": "are working together. So Larry comes to me and, and he, he, he's very casual with me, and I kinda like it. So his personality is to be humorous, but not... Like, don't try to be funny, just be funny."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3953.7,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3954.1,
+      "text": "Um, he's told to be snarky, and I like that. I like snark. And, and, you know, and he's told to, he's told to be b- you know, brutally honest with me and brutal about if he thinks I can do better. I'm working with him and working with him. I forget what I... I might have been, uh, looking at the PRs from, from Blip, and he literally comes back to me and says, \"Hey, bro, you're locked out of, uh, you're locked out of GitHub. I'll go see what I can find out.\" And it didn't really strike me at first, and I just said, uh... 'Cause Larry's wrong occasionally. Like, he'll say, \"That mach-\" Like, I'll work on a machine and he'll go, \"That machine's not available.\" And I'll go, \"SSH machine? Larry, it's available."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 3993.6,
+      "text": "there."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 3994.5,
+      "text": "freaking go. It's there. It's always there.\" I figured it was one of those things, like, you're wrong. went and looked and I tried to log in. Violation of terms of service. And it literally had nothing on the screen. L- uh, violation terms of service. Like, no, you know, click here to fill out a form to"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4013.6,
+      "text": "Right"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4014.6,
+      "text": "No instructions. Literally says, \"Contact support.\" That's it. Went to my email, basically that webpage in an email. No, like, click here to talk about it,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4027.3,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4028.0,
+      "text": "go to this FAQ about what that means. No reasons. No, like, here's what you did and you, you know, be ashamed of yourself, and nothing. So it was pretty quick for me that I said, \"What does this mean for me in terms of how I do my workflow, in terms of Larry?\" Like, a big chunk o' La... I... Like, if I can't get back into this, a good chunk of Larry is gone."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4056.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4057.3,
+      "text": "Right? So, uh, Larry keeps all of his stuff local, and I do have a copy of it, but y- not being able to get into... I have probably 400 and something repos."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4069.6,
+      "text": "Wow"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4069.9,
+      "text": "can talk about what constitutes making a repo, and more than half of them are private. And"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4075.6,
+      "text": "Sure"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4076.1,
+      "text": "use... I... In the past, I've used GitHub, like, if, if I think I wanna make a Pong game, like, it's just a repo."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4083.4,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4083.9,
+      "text": "And I use as a place to say- I thought it was a good idea. I was working on it, and the more I think about it, it's kind of really not worth it. But put a bookmark, put a repo up there,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4098.8,
+      "text": "Yep"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4098.9,
+      "text": "and that's one of the things that Larry does so well, is he knows I want a picture, I want all the explanation in a README. So that's kind of where Larry's strengths are for me, is just, \"Hey, let's park this, go build it, leave it. On with the show.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4114.1,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4114.6,
+      "text": "So I took a screenshot of the l- locked out and posted it up on X and said, \"I'm locked out. If there's anybody out there that can help, um, you know, let me know, because I literally don't know what to do.\" Um, I, uh, occasionally get to s- to chat with DHH and, um, you know, when I do chat with him, it's very quick and, you know, I know he's very busy."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4141.6,
+      "text": "Sure."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4142.1,
+      "text": "Uh, we, we don't shoot the shit, if you will,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4144.2,
+      "text": "Right. Right"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4145.5,
+      "text": "'Cause get it. So he, he comes back to me and, and he, uh, has a few contacts, and he posted up, uh, publicly and said, uh... And this, like, warmed my heart. He said, \"I vouch for Nix Fred."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4161.2,
+      "text": "I saw that, yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4163.3,
+      "text": "I was like, \"Screenshot, print it, like, frame it, put it on the wall.\" Um, and, and within a... It was kind of an interesting couple of days because, yes, I can do work without GitHub, and it... But it was a enough part of my workflow that I thought, \"Okay, this is not good.\" And if you think about what we're talking about, we were just spent 20 minutes talking about if AI gets taken away"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4194.5,
+      "text": "Mm-hmm."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4195.1,
+      "text": "just the same story in a different,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4197.7,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4198.2,
+      "text": "different part of my workflow. So now I'm on this tear to think about what, where can they take things away from me? so my access was restored. I didn't get an email that said, you know, \"Hey, these are the things you did wrong.\" Uh, I actually found out from o- I spent a little bit more time on X just goofing off, but somebody me and said, \"Hey, Nix Fred, you're back on GitHub,\" and that was how I"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4226.7,
+      "text": "That was your first notification"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4228.5,
+      "text": "That was my f- first notifica- And I should know who it is, and thank you whoever it was. that was my notification. So I posted an, an, article post about the entire thing, about where I was at that point, I- at the end of that post, I said, you know, \"What do I do from here,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4250.7,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4251.7,
+      "text": "omarchy and Linux community? What do I do?\" And it occurred to me, and I thought to myself, \"I am not going to go research this. I'm not gonna do it. Not gonna I didn't go to any of the repo, like, websites to learn. I didn't ask Larry. just posted, \"What should I do from here?\" And then I made a repo bot on Grok Bot that can see on X, and all you guys showed up, and there's maybe 200, 200 comments underneath that that says, \"You should do this,\" and, \"You should ch- use Gita,\" and, \"You should use Forjo,\" and, \"You should put it here.\" literally, I made a Grok bot that watched that post on X and told him, \"Go grab all the comments\" and I, and I made it look every..."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4306.9,
+      "text": "I ma- made a routine, like, check it every hour."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4309.6,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4309.9,
+      "text": "And over a pa- about 12 hours, peop- And, and I, I try to be really good about responding to everybody."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4316.1,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4316.5,
+      "text": "can't sometimes, and it sounds like a jerk to say, \"I couldn't get to everybody 'cause...\" But I really do 'cause I'm small enough that I can, like, be to where I can talk to everybody. And, um, there was a couple of really good comments, and I went, \"Okay, tell me more about that,\" and, \"Okay, that's cool. Tell me more about that.\" never went and never researched it. So Bot looked at all of the comments and all the things that the smart people said to do and to don't do, and literally built Forjo. I think I'm saying it right. I don't know. It's"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4347.6,
+      "text": "That's how I, that's how I pronounce it"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4349.4,
+      "text": "So it literally built Forjo on an existing VPS that I have. I have too many of them. On an existing VPS, and all the little pre- preferences and settings and things that you should do and things that you shouldn't do all came from the comments. I think you even, like, started or liked, I still haven't been to the Forjo website"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4371.0,
+      "text": "I love that comment of yours."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4372.6,
+      "text": "And I still haven't. So I kind of made it a thing to where I'm gonna let everybody else build it for me."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4380.9,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4381.3,
+      "text": "of course, you know, prompt injection, you know, settle down, Greg. I, you know, I'm careful about that. Um, but I, I literally allowed Grok Bot to read all the comments, go do the research, and it's up today. So"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4396.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4397.1,
+      "text": "of my, all of my projects now across all of them that were on my, uh, local drive and even in- on GitHub, uh, I got rate limited by them, which made me go, eh, I don't wanna get locked out again. everything now when I do a commit push goes to two places. Goes to my Forjo,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4416.1,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4416.4,
+      "text": "for me is kind of like a, it's kind of like my dirty closet where I just keep everything."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4420.7,
+      "text": "Sure"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4421.1,
+      "text": "then for me is like my public, uh... Because there's a lot of goodness in public- publishing to GitHub because, you know, your, your, your pri- your public identity and your little heat map that shows what you're"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4434.8,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4435.6,
+      "text": "you know, people, you know, for applying to jobs, they're looking at that. And if I just push to, to Forjo, now it looks like I'm not coding and I'm not"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4444.9,
+      "text": "Right"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4446.1,
+      "text": "So there's a lot of balance between where do you put things and how do you show that you're doing the work and, so now I'm pushing to both Forjo privately and to GitHub And I'm, I'm back. It was, uh... So, so then I looked at, you know, okay, got that settled. Now, now I'm kind of in- and I'm interested in your take on this. I'm a- not addicted, but I certainly use GitHub authen- authentication a lot. Like it's just simple for me,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4476.5,
+      "text": "Sure"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4478.2,
+      "text": "code you know, you need to /login,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4482.1,
+      "text": "Right"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4482.6,
+      "text": "URL, zoom, log in with Git- log in with Google. And so it's making me think about all these places that what if Google... And like that's terrifying because GitHub is small enough to where the community could help me in DHH,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4498.1,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4498.6,
+      "text": "folks that went to bat for me, and I did end up talking to, uh, Dev Rail very, very briefly on chat, uh, DMs and X, and it wasn't even a conversation. It just said something like, uh, And this was like 24 hours later that said, \"You're back.\" And I'm like, \"Yeah, I've been back for... I didn't do that.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4517.8,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4518.6,
+      "text": "um, you know, it puts you in an interesting situation because when the GitHub that said I was locked out, it said, \"Contact support.\" And I wrote, I had Larry kind of like... I, I said, \"Larry, go back and analyze what we've been doing to GitHub. Is this any different?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4538.2,
+      "text": "Mm-hmm."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4539.0,
+      "text": "something"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4539.7,
+      "text": "Yeah, that's what made me think. That's what I thought initially. Was there a, a big increase in rate or something, you know?"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4545.7,
+      "text": "calling the API?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4546.6,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4547.2,
+      "text": "he said, \"No.\" And I said, \"Write,\" I said, \"Write a, uh, a writeup of the last 24 hours of all your interaction with GitHub that I can put into the request to, get my GitHub unlocked.\" And this was like 10 minutes after I found out I was locked out. But I gotta tell you, it, I thought about it really carefully, I won't say I was angry. I was more scared. But I think, I guess that there are people that are in that situation, um, that would get emotional maybe and get angry about it."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4578.8,
+      "text": "Угу"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4579.4,
+      "text": "Um, you know, «You can't take my code away from me,» you know, that kind of thing. And I, I sat in silence, Eckhart Tolle kind of thing, you know, be very m- mindful of what you're doing. instead of... When I, when I emailed support, effectively was, my request to them was, \"Could someone look at what happened and make a decision as soon as possible about what, what will happen with my account?\" Because I was in no place to negotiate,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4610.3,
+      "text": "Right"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4611.2,
+      "text": "right? If I were to go, \"You better put my account...\" Like I had, I had... All I could do was ask, \"Could you please make a decision as soon as possible?\" Because of course they know I want it back. They could have decided no, but I wasn't in the, I wasn't in the negotiating chair to demand anything."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4627.8,
+      "text": "Угу."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4628.6,
+      "text": "my only request was could someone make a decision as soon as possible, and I'll live with whatever it"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4634.2,
+      "text": "And I think that's the that's just, uh, that's the way it should be when conflict comes up in this world, um, rather than, you know, getting all huffy puffy. Um, but, uh, yeah. Uh, and d- you didn't hear back from them, that you never got a direct response back, you just got access again and then"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4651.9,
+      "text": "got a DM from a person that I won't mention from GitHub that said, \"You're back,\" but it was"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4658.0,
+      "text": "Like you said, it was, it was well after you had already realized that, yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4661.5,
+      "text": "to them, like, th- I really... You know, you don't wanna go, \"I'm- I've already been back 24 hours. You're late to the party.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4666.3,
+      "text": "Yeah, yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4667.3,
+      "text": "that's somebody there, and I don't wanna be a..."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4669.5,
+      "text": "Sure."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4669.9,
+      "text": "very respectful. Like, I s- I very much appreciate, like, gentle, appreciative. Like, if I need you in the future, like, you know,"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4680.4,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4680.9,
+      "text": "stupid to go, \"I've been back 24 hours. Where have you"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4683.2,
+      "text": "Yeah, yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4684.0,
+      "text": "and I think this gets into, I think you and I are aligned in the same way of, of, uh, you know, how you treat people and, and, uh, being mindful of understanding their perspective because I, I don't think that people conversation... I, I think there's a lack of, of h- of people that, you know, when they make a request of somebody, they're very much me-centered, and, you know, that's not how you get things done. The, the, the correct way is, is, you know, what's in it for them"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4719.1,
+      "text": "Sure"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4719.5,
+      "text": "how, that's how you get things done. Um, and then if you, uh, you know, I do studies and think about human interaction a lot. and I, I read something that said if we were to vocally... If you had to transmit one gigabyte of information with your voice, like how long or what, what the bandwidth is, and if you were to, if I were to sit here with you and, and read or transmit or send you one gigabyte of information, which is not a lot, takes 17 years"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4753.6,
+      "text": "I believe that. I couldn't even imagine wh- I, I was waiting for that figure. 17 years to vocally, with the human voice, uh, transmit, uh, a gig of data."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4763.8,
+      "text": "So"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4764.0,
+      "text": "that's a lot"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4765.1,
+      "text": "things and we think about things and, and I want to give you an idea or give you the understanding, and that's where Neuralink gets very scary, I- y- you've, you've got to operate in a place where you have to understand that they are only gonna get n- if you're doing great, 20% of what you're trying to explain to them."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4786.2,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4786.7,
+      "text": "Um, and that's where, you know, AI gets pretty scary in the sense that, you know, I've... Very early on, I had a friend that was along the, the ride for me with Larry very early in, that he created a thing called Monolith, and we were kind of building the same thing, and that was back when we were brute forcing trying to get them to speak over Discord. And, you know, today you can just go connect to Slack, done."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4811.5,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4811.7,
+      "text": "But back then it was brute force. We spent three days trying to... How do we make it work together? so that's the advancements that are happening so fast, is that we brute force things and try to make things work, and then three weeks later it's a button. Done."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4824.9,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4825.2,
+      "text": "Right? So communication of humans not being able to understand what they're really doing, the AI valley, automation beyond understanding of what you're really doing, the inability to communicate in a verbal sense of what I'm trying to express of my thoughts and feelings. in a weird spot, man"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4847.2,
+      "text": "It really, really is. We're, we're in-- We are definitely in an inflection point in history, I think, um, kind of akin to, uh, when the internet became a thing, uh, when, um, the web itself, uh, uh... You know, all these things were, were... That was a huge moment. Um, and this is, I think, a big moment like that, and I think we're gonna look back on this in a number of years and, and, and with a little bit more, uh, clarity as to how things end up going, and if we end up in that valley and when we do and how soon it is. Uh, but this is an inflection point in, in, I think, in human history. I'll go that far as to say that"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4883.8,
+      "text": "I think you're right. I, I'll even top on top of that and say that when we look back 2026 was probably one of the bigger years for AI and, and the growth of where we are, think that it's bigger than the creation of the internet. The, the creation of the internet was the road. It's just the infrastructure to do"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4907.8,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4908.6,
+      "text": "I think we're on a trampoline, and you know how when you double bounce somebody up?"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4913.1,
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4913.5,
+      "text": "I, I think '26 is the double"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4915.7,
+      "text": "The double bounce"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4918.2,
+      "text": "will be when we double bounce up, and we'll look back and think, \"Wow, that, that's... We didn't even realize where we were at the time.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4927.7,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4928.7,
+      "text": "this thing goes aw- this thing"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4930.5,
+      "text": "that keyboard disappears"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4932.2,
+      "text": "You know, it becomes a flip phone, and we'll, we'll... You know, you see somebody, your buddy using a flip phone, and you kind of poke at him, \"Oh, yeah, flip phone. You're funny.\""
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4939.7,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4940.2,
+      "text": "know, it'll get pretty quickly to where, uh, you know, even a mouse, a, a keyboard is, is antiquated. And I don't know where the future goes, Joel, but I'm here for it"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4949.8,
+      "text": "I, I love that, and I think that's probably a good spot to start to, to, to land this conversation, and I, I agree with you. I can't, I can't wait to see what happens, and I can't wait for that ability to look back on 2026 and say, \"Wow, look at where we've come,\" or, \"Look at what it started as.\" Because, uh, uh, that's... This is a moment, and, uh, where it goes, uh, I'm with you, Fred. I, I have no idea where it's gonna head. But we're in a double bounce moment right now"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4977.2,
+      "text": "bounce. And it's fun because you and I, I think we're probably close to the same age. I do remember a time before any computer at all, and"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4987.6,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4988.5,
+      "text": "a time before the internet, and I remember a time before AI."
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 4992.2,
+      "text": "Ja"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 4992.6,
+      "text": "we're in a place to where five years from now there's going to be something that we use that we can't imagine how we lived our life without it, and"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 5001.7,
+      "text": "Precisely. Yeah. Well, in five years, Fred, let's, uh, let's have another conversation and, uh, and come back to this and see where we, where we are then"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 5012.1,
+      "text": "I value your friendship, Joel. Um, it's, you know, it's a new friendship and it's fun and exciting. Uh, but I, I'm, I'm sitting right next to you with my arm around you, and I wanna, know, let's, let's get on whatever this spaceship or"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 5026.9,
+      "text": "Yeah"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 5027.4,
+      "text": "this thing is, man. I'm sitting right next to you and, uh, wanna experience it with you. And everyb- all of your listeners and all the people out there on X, like, let's just, let's see where this thing goes. And, uh, let's be kind and nice to each other and help each other along and let's, you know, double bounce to the stars. Let's go"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 5045.8,
+      "text": "I love it. Fred, and you've, you've mentioned it a few times, um, I know you're, you're prolific on X, w- your, your Twitter, uh, your X handle is Nix, N-I-X, Fred, right? Um, and what's a good, uh, are there any other spots you like to point folks to? I know you've got a billion subdomains, but where's a good, a good spot or two for folks to find you out there?"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 5064.0,
+      "text": "So, uh, pretty much the landing zone, if you just go to nixfred.com, you can pretty much branch out to everything. Um, the, the big one, if you're kind of new to AI and you're trying to figure out how to use agentic platforms, um, I have buildlarry.com where you can have e- all the scaffolding. You don't get Larry, but you get a, you basically get all the infrastructure. So, you know, find me on X @nixfred.com or @nixfred. Go to nixfred.com and you can find everything. and, and that's really it, man. Um, I want, wanna help you, and I wanna help the people listening. If you've got questions, I don't know all the answers, but I know people like Joel, I know people like Greg, and I r- really am here to help."
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 5111.2,
+      "text": "So please come find me, and what can I do for you? And let's double bounce or let's, you know, screw that, let's triple bounce this thing for 27"
+    },
+    {
+      "speaker": "Joel Gaff Jr.",
+      "t": 5120.0,
+      "text": "I love it. Fred, well, thanks for taking, uh, nearly an hour and a half of your, uh, your time together today. It's been really a great conversation and, um, I appreciate you taking the time. I appreciate you and all the things you're working on as well. So, um, until I see you on X later this afternoon, thanks a lot, and be well"
+    },
+    {
+      "speaker": "Fred Nix",
+      "t": 5137.2,
+      "text": "Thanks, brother. Love you, man"
+    }
+  ]
+}
