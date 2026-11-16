@@ -91,9 +91,9 @@ Fill every TODO. House rules:
 - **description**: one or two plain sentences. Used on cards, SEO and the share card.
 - **date**: the release time from intake, `YYYY-MM-DD HH:MM:SS -0700`; the
   filename date matches. A future date **schedules** the page: Jekyll leaves
-  it out of every build, `bin/ci` lists it as scheduled, and the hourly deploy
-  (`bin/release-due` in `.github/workflows/jekyll.yml`) publishes it on the
-  first run after that time. It must be pushed before then.
+  it out of every build, `bin/ci` lists it as scheduled, and the release timer
+  (`.github/workflows/release-timer.yml`, started by the push) deploys it a
+  minute after that time. It must be pushed before then.
 - **topics**: slugs from `_data/topics.yml` only (rails, ai, indie, tools, other-tech).
 - **guests**, **speaker_names** as needed.
 - **chapters**: the host's, from YouTube.
@@ -127,14 +127,16 @@ printed) and Save. Re-run `bin/episode thumbnail N` if they changed it.
 ```bash
 bin/episode publish N                      # or --at "2026-10-30 23:00 -0700"
 git push                                   # any time before release; the page stays
-                                           # hidden until its date, then the hourly
-                                           # deploy publishes it
+                                           # hidden until its date, then the release
+                                           # timer deploys it
+gh run list -w release-timer.yml -L 1      # must show in_progress: the armed timer
 ```
 Remind the host to set the YouTube video to Public (or schedule it in Studio
 for the same time). Afterwards confirm with `bin/episode check N` (once the
 video is scheduled it's Private, so YouTube items show ?), `bin/episode status N` and
 `yt-dlp` that the chapters took, check the live page, and report the links and
-commit hashes.
+commit hashes. If the page isn't live a few minutes after release, run
+`gh workflow run jekyll.yml` and find out why the timer missed.
 
 ## If something fails
 Stop and say what failed; don't half-publish. Tokens come from 1Password

@@ -1,0 +1,48 @@
+# Deploys each scheduled episode at its release time. GitHub's own cron runs
+# hours late or not at all, so a run started by every push sleeps until the
+# next release, dispatches the deploy, then re-arms for the one after. Jobs
+# stop at 6 hours, so a longer wait sleeps 5.5 hours and re-dispatches itself.
+# (GITHUB_TOKEN may dispatch workflows; on a public repo the minutes are free.)
+# The 3-hourly cron only restarts a timer chain that broke; the hourly run in
+# jekyll.yml is the last backstop.
+name: Release timer
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+  schedule:
+    - cron: "41 */3 * * *"
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: release-timer
+  cancel-in-progress: true
+
+jobs:
+  timer:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: next
+        run: ruby bin/release-wait
+      - if: steps.next.outputs.seconds != ''
+        run: |
+          wait=${{ steps.next.outputs.seconds }}
+          cap=$((330 * 60))
+          if [ "$wait" -le "$cap" ]; then
+            echo "Release in ${wait}s; sleeping, then deploying."
+            sleep $((wait + 60))
+            gh workflow run jekyll.yml --ref main
+          else
+            echo "Release in ${wait}s; sleeping ${cap}s, then re-arming."
+            sleep "$cap"
+          fi
+          gh workflow run release-timer.yml --ref main

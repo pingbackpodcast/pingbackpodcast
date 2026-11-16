@@ -6,8 +6,9 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
-  # Hourly: posts dated in the future (scheduled episodes) go live on the first
-  # run after their release time. bin/release-due skips the build otherwise.
+  # Hourly backstop (GitHub runs it hours late or skips it): rebuilds when a
+  # recently released post isn't live yet, via bin/release-due. The release
+  # timer (release-timer.yml) is what deploys at the release time.
   schedule:
     - cron: "7 * * * *"
 

@@ -5,12 +5,14 @@ require_relative "episode_file"
 
 module Pingback
   # Posts dated in the future are scheduled releases: Jekyll leaves them out
-  # of the build, and the hourly workflow run rebuilds the site once one is
-  # due. WINDOW covers GitHub running scheduled jobs late (a second deploy of
-  # the same post is harmless).
+  # of the build. The release timer workflow deploys at each release time;
+  # the hourly run is the backstop: it deploys whenever a recently released
+  # post's page isn't live yet, however late GitHub runs it.
   class Schedule
-    WINDOW = 2 * 60 * 60
-    Post = Struct.new(:episode, :at, :path)
+    LOOKBACK = 14 * 24 * 60 * 60
+    Post = Struct.new(:episode, :at, :path) do
+      def url_path = "/episodes/#{File.basename(path, '.md').sub(/\A\d{4}-\d{2}-\d{2}-/, '')}/"
+    end
 
     def initialize(root:)
       @root = root
@@ -25,6 +27,11 @@ module Pingback
 
     def upcoming(now: Time.now) = posts.select { |p| p.at > now }
 
-    def due?(now: Time.now) = posts.any? { |p| p.at <= now && p.at > now - WINDOW }
+    def next_release(now: Time.now) = upcoming(now: now).map(&:at).min
+
+    # live: ->(url_path) { true if the page is on the live site }
+    def due?(live:, now: Time.now)
+      posts.any? { |p| p.at <= now && p.at > now - LOOKBACK && !live.call(p.url_path) }
+    end
   end
 end

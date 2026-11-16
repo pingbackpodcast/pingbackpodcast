@@ -8,7 +8,7 @@
 #   2. Every episode has the front matter the templates need
 #   3. Every episode's share card exists and is committed
 #   4. Episodes dated in the future are scheduled: listed, left out of the
-#      build, and deployed by the hourly workflow run once due
+#      build, and deployed by the release timer workflow at its date
 #      Chapters are in order; chapter and moment times fall inside the episode;
 #      every moment has committed art; topic slugs exist in _data/topics.yml;
 #      no TODOs left from `bin/episode new`
@@ -79,7 +79,7 @@ Dir.mktmpdir("pingback-ci") do |site|
 
     date = fm["date"] || Date.parse(name[0, 10])
     date = date.to_time if date.respond_to?(:to_time)
-    scheduled << "#{name} goes live at #{date} (hourly deploy picks it up)" if date > now
+    scheduled << "#{name} goes live at #{date} (the release timer deploys it)" if date > now
   end
 
   step["Internal links and images"]

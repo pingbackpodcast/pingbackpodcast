@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Used by the release timer workflow: prints seconds=N until the next
+# scheduled post's release time, or nothing if none is scheduled. Appends to
+# $GITHUB_OUTPUT when set. Usage: bin/release-wait [ROOT] (RELEASE_NOW
+# overrides the clock, for tests).
+require "time"
+require_relative "../lib/pingback/schedule"
+
+root = ARGV[0] || File.expand_path("..", __dir__)
+now = ENV["RELEASE_NOW"] ? Time.parse(ENV["RELEASE_NOW"]) : Time.now
+at = Pingback::Schedule.new(root: root).next_release(now: now)
+exit unless at
+
+line = "seconds=#{(at - now).ceil}"
+puts line
+File.write(ENV["GITHUB_OUTPUT"], "#{line}\n", mode: "a") if ENV["GITHUB_OUTPUT"]

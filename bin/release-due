@@ -1,12 +1,27 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# Used by the hourly workflow run: prints due=true if a scheduled post's
-# release time passed within the last two hours (so the site needs a rebuild),
-# else due=false. Appends to $GITHUB_OUTPUT when set.
+# Used by the hourly workflow run (the backstop to the release timer): prints
+# due=true if a post released in the last two weeks isn't live on the site
+# yet (so the site needs a rebuild), else due=false. Appends to
+# $GITHUB_OUTPUT when set. A failed check counts as not live: an extra
+# deploy is harmless, a missed one isn't.
+require "net/http"
+require "uri"
+require "yaml"
 require_relative "../lib/pingback/schedule"
 
-due = Pingback::Schedule.new(root: File.expand_path("..", __dir__)).due?
+root = File.expand_path("..", __dir__)
+site = YAML.safe_load_file(File.join(root, "_config.yml"))["url"]
+live = lambda do |path|
+  next true if ENV["RELEASE_DUE_ASSUME_LIVE"]
+
+  Net::HTTP.get_response(URI.join(site, path)).is_a?(Net::HTTPSuccess)
+rescue StandardError
+  false
+end
+
+due = Pingback::Schedule.new(root: root).due?(live: live)
 line = "due=#{due}"
 puts line
 File.write(ENV["GITHUB_OUTPUT"], "#{line}\n", mode: "a") if ENV["GITHUB_OUTPUT"]
