@@ -23,7 +23,7 @@ concurrency:
 jobs:
   due:
     if: github.event_name == 'schedule'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       due: ${{ steps.check.outputs.due }}
     steps:
@@ -33,7 +33,7 @@ jobs:
   build:
     needs: due
     if: ${{ !cancelled() && (github.event_name != 'schedule' || needs.due.outputs.due == 'true') }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
@@ -53,7 +53,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: build
     steps:
       - uses: actions/deploy-pages@v4
